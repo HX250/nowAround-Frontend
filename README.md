@@ -13,10 +13,10 @@ The project structure is organized as follows:
 ```plaintext
 src/
 ├── app/
-│   ├── components/      # Core components of the application
-│   ├── services/        # All the services used in the application
-│   ├── shared/          # Shared components, folders, and utilities across the web app
-│   │   ├── components/  # Shared components like header, footer, etc.
+│   ├── components/Utils/      # Core components of the application
+│   ├── services/              # All the services used in the application
+│   ├── shared/                # Shared components, folders, and utilities across the web app
+│   │   ├── components/        # Shared components like header, footer, etc.
 │   ├── app-routing.module.ts
 │   ├── app.component.html
 │   ├── app.component.ts
