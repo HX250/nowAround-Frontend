@@ -2,10 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
 @layer base {
   :root {
     --color-orange: 17.8deg 100% 71%;
     --color-white: 0deg 0% 92.5%;
     --color-black: 0deg 1.1% 17.8%;
   }
+}
+
+@layer base {
+  .primary-buttons {
+    @apply bg-ang-orange text-ang-black text-base sm:text-xl py-1.5 sm:py-2 px-8 rounded-2xl hover:brightness-75 font-semibold;
+  }
+  .secondary-buttons {
+    @apply bg-ang-white text-ang-black text-base sm:text-xl py-1.5 sm:py-2 px-8 rounded-2xl hover:brightness-75 font-semibold;
+  }
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+  scroll-behavior: smooth;
 }
