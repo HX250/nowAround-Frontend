@@ -1,4 +1,4 @@
-<div class="flex items-center w-full">
+<div class="flex justify-center flex-col w-full">
   <div class="w-full h-screen brightness-50 relative overflow-hidden">
     <div
       *ngFor="let image of images; let i = index"
@@ -10,18 +10,79 @@
   <div class="absolute w-full">
     <div class="container m-auto flex items-center px-4">
       <div class="max-w-[750px] text-base sm:text-4xl flex flex-col gap-4 z-10">
-        <h1 class="text-ang-white font-normal">
+        <p class="text-ang-white font-normal">
           <span class="text-ang-orange text-lg sm:text-5xl font-bold"
             >nowAround</span
           >
           is your all-in-one web and mobile application designed to help you
           effortlessly explore and engage with Slovak establishments.
-        </h1>
+        </p>
         <div class="flex gap-4 flex-col sm:flex-row">
           <button class="primary-buttons">Get started</button>
-          <button class="secondary-buttons">Learn more</button>
+          <button class="secondary-buttons" (click)="scroll(target)">
+            Learn more
+          </button>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div
+  #target
+  class="flex flex-col container m-auto justify-between gap-20 py-10 text-ang-black"
+>
+  <div class="cardContainer">
+    <div>
+      <img
+        src="/assets/landing-page/infoSection/mapSelection.png"
+        alt=""
+        width="380px"
+      />
+    </div>
+    <div class="max-w-96">
+      <h2 class="cardHeader">Choose your location</h2>
+      <div class="cardLine"></div>
+      <p class="cardText">
+        Easily select your current location or any area of interest to see
+        what's happening nearby. With NowAround, you're always in the know about
+        the latest events and activities around you.
+      </p>
+    </div>
+  </div>
+  <div class="cardContainer">
+    <div class="max-w-96">
+      <h2 class="cardHeader">Pick a place of interest</h2>
+      <div class="cardLine"></div>
+      <p class="cardText">
+        Browse through a variety of establishments like restaurants, bars,
+        cafes, theaters, and more. Find daily menus, event schedules, and
+        special activities tailored to your preferences.
+      </p>
+    </div>
+    <div>
+      <img
+        src="/assets/landing-page/infoSection/pickPlace.png"
+        alt=""
+        width="380px"
+      />
+    </div>
+  </div>
+  <div class="cardContainer">
+    <div>
+      <img
+        src="/assets/landing-page/infoSection/havingFun.jpg"
+        alt=""
+        width="380px"
+      />
+    </div>
+    <div class="max-w-96">
+      <h2 class="cardHeader">Enjoy your time</h2>
+      <div class="cardLine"></div>
+      <p class="cardText">
+        Share exciting events with friends, plan group outings, and make the
+        most of your day. With NowAround, all your plans are organized in one
+        place, ensuring a seamless and enjoyable experience.
+      </p>
     </div>
   </div>
 </div>

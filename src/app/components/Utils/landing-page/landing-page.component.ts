@@ -44,6 +44,9 @@ export class LandingPageComponent implements OnInit {
     }, 5000);
   }
 
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
+  }
   getState(index: number): string {
     if (index === this.currentIndex) {
       return 'current';
