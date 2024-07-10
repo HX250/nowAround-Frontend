@@ -8,7 +8,7 @@ describe('LandingPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LandingPageComponent]
+      declarations: [LandingPageComponent],
     });
     fixture = TestBed.createComponent(LandingPageComponent);
     component = fixture.componentInstance;

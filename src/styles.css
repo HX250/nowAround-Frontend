@@ -14,28 +14,28 @@
 
 @layer components {
   app-landing-page .cardContainer {
-    @apply flex flex-col md:flex-row justify-evenly items-center md:items-start;
+    @apply flex flex-col items-center justify-evenly md:flex-row md:items-start;
   }
   app-landing-page .cardHeader {
-    @apply text-3xl text-center font-semibold;
+    @apply text-center text-3xl font-semibold;
   }
   app-landing-page .cardLine {
-    @apply w-full h-2 bg-ang-orange rounded-full shadow-md mt-2;
+    @apply mt-2 h-2 w-full rounded-full bg-ang-orange shadow-md;
   }
   app-landing-page .cardText {
-    @apply text-2xl pt-2;
+    @apply pt-2 text-2xl;
   }
   app-landing-page .cardImg {
-    @apply h-auto w-[380px];
+    @apply h-80 w-auto;
   }
 }
 
 @layer utilities {
   .primary-buttons {
-    @apply bg-ang-orange text-ang-black text-base sm:text-xl py-1.5 sm:py-2 px-8 rounded-2xl hover:brightness-75 font-semibold;
+    @apply rounded-2xl bg-ang-orange px-8 py-1.5 text-base font-semibold text-ang-black hover:brightness-75 sm:py-2 sm:text-xl;
   }
   .secondary-buttons {
-    @apply bg-ang-white text-ang-black text-base sm:text-xl py-1.5 sm:py-2 px-8 rounded-2xl hover:brightness-75 font-semibold;
+    @apply rounded-2xl bg-ang-white px-8 py-1.5 text-base font-semibold text-ang-black hover:brightness-75 sm:py-2 sm:text-xl;
   }
 }
 

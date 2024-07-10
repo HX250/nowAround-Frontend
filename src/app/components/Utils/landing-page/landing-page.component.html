@@ -1,23 +1,23 @@
-<div class="flex justify-center flex-col w-full">
-  <div class="w-full h-screen brightness-50 relative overflow-hidden">
+<div class="flex w-full flex-col justify-center">
+  <div class="relative h-screen w-full overflow-hidden brightness-50">
     <div
       *ngFor="let image of images; let i = index"
       [@slideAnimation]="getState(i)"
       [ngStyle]="{ 'background-image': image }"
-      class="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat z-10"
+      class="absolute left-0 top-0 z-10 h-full w-full bg-cover bg-center bg-no-repeat"
     ></div>
   </div>
   <div class="absolute w-full">
     <div class="container m-auto flex items-center px-4">
-      <div class="max-w-[750px] text-base sm:text-4xl flex flex-col gap-4 z-10">
-        <p class="text-ang-white font-normal">
-          <span class="text-ang-orange text-lg sm:text-5xl font-bold"
+      <div class="z-10 flex max-w-[750px] flex-col gap-4 text-base sm:text-4xl">
+        <p class="font-normal text-ang-white">
+          <span class="text-lg font-bold text-ang-orange sm:text-5xl"
             >nowAround</span
           >
           is your all-in-one web and mobile application designed to help you
           effortlessly explore and engage with Slovak establishments.
         </p>
-        <div class="flex gap-4 flex-col sm:flex-row">
+        <div class="flex flex-col gap-4 sm:flex-row">
           <button class="primary-buttons">Get started</button>
           <button class="secondary-buttons" (click)="scroll(target)">
             Learn more
@@ -29,14 +29,14 @@
 </div>
 <div
   #target
-  class="flex flex-col container m-auto justify-between gap-20 py-10 text-ang-black"
+  class="container m-auto flex flex-col justify-between gap-20 py-10 text-ang-black"
 >
   <div class="cardContainer">
     <div>
       <img
         src="/assets/landing-page/infoSection/mapSelection.png"
         alt=""
-        width="380px"
+        class="cardImg"
       />
     </div>
     <div class="max-w-96">
@@ -63,7 +63,7 @@
       <img
         src="/assets/landing-page/infoSection/pickPlace.png"
         alt=""
-        width="380px"
+        class="cardImg"
       />
     </div>
   </div>
@@ -72,7 +72,7 @@
       <img
         src="/assets/landing-page/infoSection/havingFun.jpg"
         alt=""
-        width="380px"
+        class="cardImg"
       />
     </div>
     <div class="max-w-96">
