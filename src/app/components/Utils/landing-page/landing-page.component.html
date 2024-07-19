@@ -14,13 +14,14 @@
           <span class="text-lg font-bold text-ang-orange sm:text-5xl"
             >nowAround</span
           >
-          is your all-in-one web and mobile application designed to help you
-          effortlessly explore and engage with Slovak establishments.
+          {{ "LANDINGPAGE-INFO" | translate }}
         </p>
         <div class="flex flex-col gap-4 sm:flex-row">
-          <button class="primary-buttons">Get started</button>
+          <button class="primary-buttons">
+            {{ "landingPage-getStarted" | translate }}
+          </button>
           <button class="secondary-buttons" (click)="scroll(target)">
-            Learn more
+            {{ "landingPage-learnMore" | translate }}
           </button>
         </div>
       </div>
