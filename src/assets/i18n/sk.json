@@ -6,5 +6,14 @@
 
   "LANDINGPAGE-INFO": "je vaša webová a mobilná aplikácia typu všetko v jednom, ktorá je navrhnutá tak, aby vám pomohla bez námahy objavovať a zapájať sa do slovenských podnikov.",
   "landingPage-getStarted": "Začnime",
-  "landingPage-learnMore": "Dozvedieť sa viac"
+  "landingPage-learnMore": "Dozvedieť sa viac",
+
+  "landingPage-firstCardHeader": "Vyberte si lokalitu",
+  "landingPage-firstCardText": "Ľahko si vyberte svoju aktuálnu polohu alebo akúkoľvek oblasť záujmu, ktorú chcete vidieť čo sa deje nablízku. Vďaka funkcii NowAround budete vždy informovaní o najnovších udalostiach a aktivitách okolo vás.",
+
+  "landingPage-secondCardHeader": "Vyberte si miesto záujmu",
+  "landingPage-secondCardText": "Prehliadnite si rôzne zariadenia, ako sú reštaurácie, bary, kaviarne, divadlá a pod. Nájdite denné menu, plány podujatí a špeciálne aktivity prispôsobené vašim preferenciám.",
+
+  "landingPage-thirdCardHeader": "Užite si svoj čas",
+  "landingPage-thirdCardText": "Zdieľajte vzrušujúce udalosti s priateľmi, plánujte skupinové výlety a uskutočnite ich väčšinu dňa. So službou NowAround sú všetky vaše plány usporiadané do jedného miesto, ktoré zaisťuje bezproblémový a príjemný zážitok."
 }
