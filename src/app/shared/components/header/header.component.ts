@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
     this.translate.setDefaultLang('en');
   }
   languageSet: string = '0';
+  isNavBarShown: boolean = false;
 
   ngOnInit(): void {
     const storedLang = localStorage.getItem('lang');
@@ -33,5 +34,9 @@ export class HeaderComponent implements OnInit {
   setLanguage(language: string) {
     const lang = language === '0' ? 'en' : 'sk';
     this.translate.use(lang);
+  }
+
+  showNavBar() {
+    this.isNavBarShown = !this.isNavBarShown;
   }
 }

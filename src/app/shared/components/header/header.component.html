@@ -1,6 +1,6 @@
-<div class="absolute z-50 h-16 w-full bg-ang-white px-4 shadow-md">
+<div class="relative z-50 h-16 w-full bg-ang-white px-4 shadow-md md:absolute">
   <div
-    class="container m-auto flex h-full items-center justify-between text-ang-black"
+    class="container m-auto flex h-full justify-between text-ang-black md:items-center"
   >
     <div class="flex items-center gap-2">
       <img src="/assets/logo/logo.png" alt="" srcset="" class="h-10 w-10" />
@@ -9,30 +9,62 @@
         <p>Around</p>
       </div>
     </div>
+    <div class="block hover:cursor-pointer md:hidden" (click)="showNavBar()">
+      <svg
+        [ngClass]="{ hidden: isNavBarShown }"
+        xmlns="http://www.w3.org/2000/svg"
+        height="58px"
+        viewBox="0 -960 960 960"
+        width="58px"
+        fill="#2c2b2b"
+      >
+        <path
+          d="M120-240v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"
+        />
+      </svg>
+      <svg
+        [ngClass]="{ hidden: !isNavBarShown }"
+        xmlns="http://www.w3.org/2000/svg"
+        height="58px"
+        viewBox="0 -960 960 960"
+        width="58px"
+        fill="#2c2b2b"
+      >
+        <path
+          d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
+        />
+      </svg>
+    </div>
 
-    <nav>
-      <ul class="flex items-center gap-2 text-xl text-ang-black lg:gap-4">
+    <nav
+      class="absolute right-0 top-16 w-full bg-ang-white bg-opacity-85 text-right md:static md:block md:w-fit md:bg-transparent"
+      [ngClass]="{ hidden: !isNavBarShown }"
+    >
+      <ul
+        class="flex flex-col justify-center gap-2 text-xl text-ang-black md:flex-row md:items-center lg:gap-4"
+      >
         <li
-          class="px-4 py-4 hover:cursor-pointer hover:text-ang-orange hover:opacity-85"
+          routerLink="/"
+          class="p-4 hover:cursor-pointer hover:text-ang-orange hover:opacity-85"
         >
           <p>{{ "HOME" | translate }}</p>
         </li>
         <li
-          class="px-4 py-4 hover:cursor-pointer hover:text-ang-orange hover:opacity-85"
+          class="p-4 hover:cursor-pointer hover:text-ang-orange hover:opacity-85"
         >
           <p>{{ "MAPS" | translate }}</p>
         </li>
         <li
-          class="px-4 py-4 hover:cursor-pointer hover:text-ang-orange hover:opacity-85"
+          class="p-4 hover:cursor-pointer hover:text-ang-orange hover:opacity-85"
         >
           <p>{{ "DISCOVER" | translate }}</p>
         </li>
         <li
-          class="px-4 py-4 hover:cursor-pointer hover:text-ang-orange hover:opacity-85"
+          class="p-4 hover:cursor-pointer hover:text-ang-orange hover:opacity-85"
         >
           <p>{{ "PROFILE" | translate }}</p>
         </li>
-        <li>
+        <li class="p-4">
           <select
             name="languageSet"
             [(ngModel)]="languageSet"
