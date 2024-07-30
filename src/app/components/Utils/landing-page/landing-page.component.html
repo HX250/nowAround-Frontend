@@ -1,4 +1,4 @@
-<div class="flex w-full flex-col justify-center">
+<div class="flex w-full flex-col justify-center bg-ang-white">
   <div class="relative h-screen w-full overflow-hidden brightness-50">
     <div
       *ngFor="let image of images; let i = index"
@@ -8,13 +8,13 @@
     ></div>
   </div>
   <div class="absolute w-full">
-    <div class="container m-auto flex items-center px-4">
-      <div class="z-10 flex max-w-[750px] flex-col gap-4 text-base sm:text-4xl">
-        <p class="font-normal text-ang-white">
-          <span class="text-lg font-bold text-ang-orange sm:text-5xl"
-            >nowAround</span
-          >
-          {{ "LANDINGPAGE-INFO" | translate }}
+    <div class="container m-auto flex items-center">
+      <div class="z-10 flex max-w-[750px] flex-col gap-4 px-4 sm:px-0">
+        <h1 class="text-3xl font-bold text-ang-orange sm:text-6xl">
+          {{ "landingPage-heading" | translate }}
+        </h1>
+        <p class="text-xl font-normal text-ang-white">
+          {{ "landingPage-info" | translate }}
         </p>
         <div class="flex flex-col gap-4 sm:flex-row">
           <button class="primary-buttons">
@@ -28,63 +28,88 @@
     </div>
   </div>
 </div>
-<div class="bg-ang-white" #target>
+<section class="px-4 text-ang-black" #target>
   <div
-    class="container m-auto flex flex-col justify-between gap-20 py-10 text-ang-black"
+    class="container m-auto flex min-h-[85svh] flex-col items-center justify-evenly"
   >
-    <div class="cardContainer">
-      <div>
+    <div>
+      <h2 class="text-4xl font-bold text-ang-orange drop-shadow-lg">
+        {{ "landingPage-firstSectionHeader" | translate }}
+      </h2>
+    </div>
+    <div class="flex flex-col gap-14 sm:flex-row">
+      <div class="flex flex-col items-center gap-3 text-center">
         <img
-          src="/assets/landing-page/infoSection/mapSelection.png"
-          alt=""
-          class="cardImg"
+          src="assets/landing-page/infoSection/markerIcon.png"
+          alt="footerLogo"
+          class="h-32 w-32"
         />
-      </div>
-      <div class="max-w-96">
-        <h2 class="cardHeader">
+        <p class="text-2xl font-bold">
           {{ "landingPage-firstCardHeader" | translate }}
-        </h2>
-        <div class="cardLine"></div>
-        <p class="cardText">
+        </p>
+        <p class="sm:text-lg">
           {{ "landingPage-firstCardText" | translate }}
         </p>
       </div>
-    </div>
-    <div class="cardContainer">
-      <div class="max-w-96">
-        <h2 class="cardHeader">
+      <div class="flex flex-col items-center gap-3 text-center">
+        <img
+          src="assets/landing-page/infoSection/houseIcon.png"
+          alt="footerLogo"
+          class="h-32 w-32"
+        />
+        <p class="text-2xl font-bold">
           {{ "landingPage-secondCardHeader" | translate }}
-        </h2>
-        <div class="cardLine"></div>
-        <p class="cardText">
+        </p>
+        <p class="sm:text-lg">
           {{ "landingPage-secondCardText" | translate }}
         </p>
       </div>
-      <div>
+      <div class="flex flex-col items-center gap-3 text-center">
         <img
-          src="/assets/landing-page/infoSection/pickPlace.png"
-          alt=""
-          class="cardImg"
+          src="assets/landing-page/infoSection/enjoyIcon.png"
+          alt="footerLogo"
+          class="h-32 w-32"
         />
-      </div>
-    </div>
-    <div class="cardContainer">
-      <div>
-        <img
-          src="/assets/landing-page/infoSection/havingFun.jpg"
-          alt=""
-          class="cardImg"
-        />
-      </div>
-      <div class="max-w-96">
-        <h2 class="cardHeader">
+        <p class="text-2xl font-bold">
           {{ "landingPage-thirdCardHeader" | translate }}
-        </h2>
-        <div class="cardLine"></div>
-        <p class="cardText">
+        </p>
+        <p class="sm:text-lg">
           {{ "landingPage-thirdCardText" | translate }}
         </p>
       </div>
     </div>
   </div>
-</div>
+</section>
+<section class="px-4 pb-20 text-ang-black">
+  <div
+    class="container m-auto flex flex-col justify-between gap-10 sm:flex-row"
+  >
+    <div class="flex flex-col justify-between gap-6 text-ang-black sm:w-1/2">
+      <h2 class="text-5xl font-bold text-ang-orange drop-shadow-lg">
+        {{ "landingPage-secondSectionHeader" | translate }}
+      </h2>
+      <p class="sm:text-lg">
+        {{ "landingPage-secondSectionInfo" | translate }}
+      </p>
+      <div class="flex flex-col gap-6">
+        <p class="sm:text-lg">
+          {{ "landingPage-secondSectionListFirst" | translate }}
+        </p>
+        <p class="sm:text-lg">
+          {{ "landingPage-secondSectionListSecond" | translate }}
+        </p>
+        <p class="sm:text-lg">
+          {{ "landingPage-secondSectionListThird" | translate }}
+        </p>
+      </div>
+      <button class="primary-buttons max-w-60">
+        {{ "landingPage-secondSectionButton" | translate }}
+      </button>
+    </div>
+    <img
+      src="assets/landing-page/infoSection/havingFun.jpg"
+      alt="footerLogo"
+      class="h-auto w-full rounded-sm shadow-lg sm:w-1/2"
+    />
+  </div>
+</section>
