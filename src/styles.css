@@ -12,30 +12,21 @@
   }
 }
 
-@layer components {
-  app-landing-page .cardContainer {
-    @apply flex flex-col items-center justify-evenly md:flex-row md:items-start;
-  }
-  app-landing-page .cardHeader {
-    @apply text-center text-3xl font-semibold;
-  }
-  app-landing-page .cardLine {
-    @apply mt-2 h-2 w-full rounded-full bg-ang-orange shadow-md;
-  }
-  app-landing-page .cardText {
-    @apply pt-2 text-2xl;
-  }
-  app-landing-page .cardImg {
-    @apply h-80 w-auto;
-  }
-}
-
 @layer utilities {
   .primary-buttons {
     @apply rounded-2xl bg-ang-orange px-8 py-1.5 text-base font-semibold text-ang-black hover:brightness-75 sm:py-2 sm:text-xl;
   }
   .secondary-buttons {
     @apply rounded-2xl bg-ang-white px-8 py-1.5 text-base font-semibold text-ang-black hover:brightness-75 sm:py-2 sm:text-xl;
+  }
+  p {
+    @apply sm:text-lg;
+  }
+  h2 {
+    @apply text-4xl font-bold text-ang-orange drop-shadow-lg;
+  }
+  h3 {
+    @apply text-2xl font-bold;
   }
 }
 

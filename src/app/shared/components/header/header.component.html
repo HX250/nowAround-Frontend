@@ -44,22 +44,27 @@
         class="flex flex-col justify-center gap-2 text-xl text-ang-black md:flex-row md:items-center lg:gap-4"
       >
         <li
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="text-ang-orange"
           routerLink="/"
           class="p-4 hover:cursor-pointer hover:text-ang-orange hover:opacity-85"
         >
           <p>{{ "HOME" | translate }}</p>
         </li>
         <li
+          routerLinkActive="text-ang-orange"
           class="p-4 hover:cursor-pointer hover:text-ang-orange hover:opacity-85"
         >
           <p>{{ "MAPS" | translate }}</p>
         </li>
         <li
+          routerLinkActive="text-ang-orange"
           class="p-4 hover:cursor-pointer hover:text-ang-orange hover:opacity-85"
         >
           <p>{{ "DISCOVER" | translate }}</p>
         </li>
         <li
+          routerLinkActive="text-ang-orange"
           class="p-4 hover:cursor-pointer hover:text-ang-orange hover:opacity-85"
         >
           <p>{{ "PROFILE" | translate }}</p>
