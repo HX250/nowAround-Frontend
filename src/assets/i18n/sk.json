@@ -27,5 +27,14 @@
   "landingPage-secondSectionListSecond": "Preskúmajte denné menu a aktivity v miestnych zariadeniach",
   "landingPage-secondSectionListThird": "Plánujte skupinové aktivity a pozvite priateľov, aby sa pridali",
 
-  "landingPage-secondSectionButton": "Prihlásiť sa"
+  "landingPage-secondSectionButton": "Prihlásiť sa",
+
+  "landingPage-thirdSectionHeader": "Objavte udalosti a aktivity v okolí",
+  "landingPage-thirdSectionText": "Zostaňte v spojení s aplikáciou NowAround a nikdy nezmeškáte miestne udalosti.",
+
+  "footer-menuBarEvents": "Události",
+  "footer-menuBarMenus": "Menu",
+  "footer-menuBarActivities": "Aktivity",
+  "footer-menuBarShare": "Zdieľajte",
+  "footer-menuBarFriends": "Priatelia"
 }

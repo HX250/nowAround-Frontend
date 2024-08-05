@@ -27,5 +27,14 @@
   "landingPage-secondSectionListSecond": "Explore daily menus and activities at local establishments",
   "landingPage-secondSectionListThird": "Plan group activities and invite friends to join",
 
-  "landingPage-secondSectionButton": "Sign up"
+  "landingPage-secondSectionButton": "Sign up",
+
+  "landingPage-thirdSectionHeader": "Discover events and activities nearby",
+  "landingPage-thirdSectionText": "Stay connected with the NowAround app and never miss out on local happenings.",
+
+  "footer-menuBarEvents": "Events",
+  "footer-menuBarMenus": "Menus",
+  "footer-menuBarActivities": "Activities",
+  "footer-menuBarShare": "Share",
+  "footer-menuBarFriends": "Friends"
 }
