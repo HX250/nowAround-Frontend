@@ -10,7 +10,9 @@
   <div class="absolute w-full">
     <div class="container m-auto flex items-center">
       <div class="z-10 flex max-w-[750px] flex-col gap-4 px-4 sm:px-0">
-        <h1 class="text-6xl font-bold text-ang-orange drop-shadow-lg">
+        <h1
+          class="text-5xl font-bold text-ang-orange drop-shadow-lg sm:text-6xl"
+        >
           {{ "landingPage-heading" | translate }}
         </h1>
         <p class="text-ang-white">
@@ -37,12 +39,12 @@
         {{ "landingPage-firstSectionHeader" | translate }}
       </h2>
     </div>
-    <div class="flex flex-col gap-14 sm:flex-row">
+    <div class="grid grid-cols-1 gap-14 sm:grid-cols-3">
       <div class="flex flex-col items-center gap-3 text-center">
         <img
           src="assets/landing-page/infoSection/markerIcon.png"
           alt="footerLogo"
-          class="h-32 w-32"
+          class="h-28 w-28 sm:h-32 sm:w-32"
         />
         <h3>
           {{ "landingPage-firstCardHeader" | translate }}
@@ -55,7 +57,7 @@
         <img
           src="assets/landing-page/infoSection/houseIcon.png"
           alt="footerLogo"
-          class="h-32 w-32"
+          class="h-28 w-28 sm:h-32 sm:w-32"
         />
         <h3>
           {{ "landingPage-secondCardHeader" | translate }}
@@ -68,7 +70,7 @@
         <img
           src="assets/landing-page/infoSection/enjoyIcon.png"
           alt="footerLogo"
-          class="h-32 w-32"
+          class="h-28 w-28 sm:h-32 sm:w-32"
         />
         <h3>
           {{ "landingPage-thirdCardHeader" | translate }}
@@ -113,7 +115,7 @@
     />
   </div>
 </section>
-<section class="px-4 py-10 text-ang-black sm:py-20">
+<section class="px-4 pb-20 text-ang-black sm:pt-20">
   <div
     class="container m-auto flex flex-col justify-between gap-10 lg:flex-row"
   >
@@ -123,7 +125,7 @@
         {{ "landingPage-thirdSectionText" | translate }}
       </p>
     </div>
-    <div class="flex gap-10">
+    <div class="flex justify-evenly gap-10">
       <img
         src="assets/landing-page/downloadSection/androidDownload.png"
         alt="footerLogo"

@@ -23,10 +23,10 @@
     @apply sm:text-lg;
   }
   h2 {
-    @apply text-4xl font-bold text-ang-orange drop-shadow-lg;
+    @apply text-3xl font-bold text-ang-orange drop-shadow-lg sm:text-4xl;
   }
   h3 {
-    @apply text-2xl font-bold;
+    @apply text-xl font-bold sm:text-2xl;
   }
 }
 
