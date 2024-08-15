@@ -8,13 +8,19 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { RouterModule } from '@angular/router';
+import { ScrollArrowUpComponent } from './components/scroll-arrow-up/scroll-arrow-up.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
-  declarations: [FooterComponent, HeaderComponent, NotFoundPageComponent],
+  declarations: [
+    FooterComponent,
+    HeaderComponent,
+    NotFoundPageComponent,
+    ScrollArrowUpComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -22,6 +28,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslateModule,
     RouterModule,
   ],
-  exports: [FooterComponent, HeaderComponent, NotFoundPageComponent],
+  exports: [
+    FooterComponent,
+    HeaderComponent,
+    NotFoundPageComponent,
+    ScrollArrowUpComponent,
+  ],
 })
 export class SharedModule {}

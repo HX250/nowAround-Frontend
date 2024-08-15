@@ -7,9 +7,10 @@ import { HttpLoaderFactory, SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
+import { RoleSelectionPageComponent } from './components/userFeature/role-selection-page/role-selection-page.component';
 
 @NgModule({
-  declarations: [AppComponent, routingComponent],
+  declarations: [AppComponent, routingComponent, RoleSelectionPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
