@@ -19,7 +19,7 @@
           {{ "landingPage-info" | translate }}
         </p>
         <div class="flex flex-col gap-4 sm:flex-row">
-          <button class="primary-buttons" routerLink="/choose-account">
+          <button class="primary-buttons" (click)="showRoleWindow()">
             {{ "landingPage-getStarted" | translate }}
           </button>
 
@@ -140,4 +140,10 @@
     </div>
   </div>
 </section>
+<app-role-selection-page
+  *ngIf="shownRoleWindow"
+  [windowShown]="shownRoleWindow"
+  (updatedWindowShown)="updateWindowBool($event)"
+  class="fixed top-0 z-50 h-full w-full"
+></app-role-selection-page>
 <app-scroll-arrow-up></app-scroll-arrow-up>

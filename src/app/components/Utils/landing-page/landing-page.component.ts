@@ -6,6 +6,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { roleGuard } from 'src/app/services/guards/roleGuards/role.guard';
 
 @Component({
   selector: 'app-landing-page',
@@ -27,6 +28,7 @@ import {
 })
 export class LandingPageComponent implements OnInit {
   currentIndex: number = 0;
+  shownRoleWindow: boolean = false;
 
   images: string[] = [
     'url(/assets/landing-page/landingPage-city.jpg)',
@@ -44,6 +46,13 @@ export class LandingPageComponent implements OnInit {
     }, 5000);
   }
 
+  showRoleWindow() {
+    this.shownRoleWindow = !this.shownRoleWindow;
+  }
+
+  updateWindowBool(updatedWindowShown: boolean) {
+    this.shownRoleWindow = updatedWindowShown;
+  }
   scroll(el: HTMLElement) {
     el.scrollIntoView();
   }
