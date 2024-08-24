@@ -2,7 +2,7 @@
   "HOME": "Home",
   "MAPS": "Maps",
   "DISCOVER": "Discover",
-  "PROFILE": "Profile",
+  "PROFILE": "Account",
 
   "landingPage-heading": "Discover the best events near you",
   "landingPage-info": "nowAround is your go-to app for finding and experiencing the latest events, menus, and activities happening around you.",
@@ -31,6 +31,19 @@
 
   "landingPage-thirdSectionHeader": "Discover events and activities nearby",
   "landingPage-thirdSectionText": "Stay connected with the NowAround app and never miss out on local happenings.",
+
+  "roleSelectionPage-fc-firstCard": "Guest account",
+  "roleSelectionPage-fc-firstListItem": "Limited access",
+  "roleSelectionPage-fc-secondListItem": "No group planning",
+  "roleSelectionPage-fc-thirdListItem": "Basic browsing",
+  "roleSelectionPage-fc-button": "Continue as a guest",
+
+  "roleSelectionPage-sc-secondCard": "nowAround account",
+  "roleSelectionPage-sc-firstListItem": "Full access",
+  "roleSelectionPage-sc-secondListItem": "Enhanced sharing",
+  "roleSelectionPage-sc-thirdListItem": "Group planning",
+  "roleSelectionPage-sc-fourthListItem": "Notifications and updates",
+  "roleSelectionPage-sc-button": "nowAround account",
 
   "footer-menuBarEvents": "Events",
   "footer-menuBarMenus": "Menus",

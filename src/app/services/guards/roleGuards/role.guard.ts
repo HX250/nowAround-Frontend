@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 
 export const roleGuard = () => {
   const router = inject(Router);
-  if (!localStorage.getItem('role')) {
+  const role = localStorage.getItem('role');
+  if (role === 'user') {
     return true;
   } else {
     router.navigateByUrl('**');

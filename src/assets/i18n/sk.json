@@ -2,7 +2,7 @@
   "HOME": "Domov",
   "MAPS": "Mapy",
   "DISCOVER": "Objavuj",
-  "PROFILE": "Profil",
+  "PROFILE": "Účet",
 
   "landingPage-heading": "Objavte najlepšie udalosti vo vašom okolí",
   "landingPage-info": "nowAround je vaša aplikácia, ktorá vám umožní nájsť a zažiť najnovšie udalosti, ponuky a aktivity, ktoré sa dejú okolo vás.",
@@ -31,6 +31,19 @@
 
   "landingPage-thirdSectionHeader": "Objavte udalosti a aktivity v okolí",
   "landingPage-thirdSectionText": "Zostaňte v spojení s aplikáciou NowAround a nikdy nezmeškáte miestne udalosti.",
+
+  "roleSelectionPage-fc-firstCard": "Hosť",
+  "roleSelectionPage-fc-firstListItem": "Limitovaný prístup",
+  "roleSelectionPage-fc-secondListItem": "Žiadne skupinové plánovanie",
+  "roleSelectionPage-fc-thirdListItem": "Jednoduché prehliadanie",
+  "roleSelectionPage-fc-button": "Pokračovať ako hosť",
+
+  "roleSelectionPage-sc-secondCard": "nowAround účet",
+  "roleSelectionPage-sc-firstListItem": "Plný prístup",
+  "roleSelectionPage-sc-secondListItem": "Personalizované vyhľadávanie",
+  "roleSelectionPage-sc-thirdListItem": "Spoločné plánovanie",
+  "roleSelectionPage-sc-fourthListItem": "Upozornenia",
+  "roleSelectionPage-sc-button": "nowAround účet",
 
   "footer-menuBarEvents": "Události",
   "footer-menuBarMenus": "Menu",

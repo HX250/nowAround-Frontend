@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-role-selection-page',
@@ -12,5 +12,10 @@ export class RoleSelectionPageComponent {
   closeModalWindow() {
     this.windowShown = !this.windowShown;
     this.updatedWindowShown.emit(this.windowShown);
+  }
+
+  guestAccountButton() {
+    localStorage.setItem('role', 'guest');
+    window.location.reload();
   }
 }
