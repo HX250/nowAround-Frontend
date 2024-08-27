@@ -5,10 +5,12 @@ import { NotFoundPageComponent } from './shared/components/not-found-page/not-fo
 import { authGuard } from './services/guards/authGuards/auth.guard';
 import { guestGuard } from './services/guards/guestGuards/guest.guard';
 import { HomePageComponent } from './components/Utils/home-page/home-page.component';
+import { LoginPageComponent } from './components/authFeature/login-page/login-page.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [authGuard] },
   { path: 'homepage', component: HomePageComponent, canActivate: [guestGuard] },
+  { path: 'loginpage', component: LoginPageComponent },
   { path: '**', component: NotFoundPageComponent },
 ];
 

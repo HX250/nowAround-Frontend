@@ -6,7 +6,6 @@ import {
   animate,
   transition,
 } from '@angular/animations';
-import { roleGuard } from 'src/app/services/guards/roleGuards/role.guard';
 
 @Component({
   selector: 'app-landing-page',
@@ -53,9 +52,11 @@ export class LandingPageComponent implements OnInit {
   updateWindowBool(updatedWindowShown: boolean) {
     this.shownRoleWindow = updatedWindowShown;
   }
+
   scroll(el: HTMLElement) {
     el.scrollIntoView();
   }
+
   getState(index: number): string {
     if (index === this.currentIndex) {
       return 'current';
