@@ -14,10 +14,10 @@
 
 @layer utilities {
   .primary-buttons {
-    @apply rounded-2xl bg-ang-orange px-8 py-1 text-base font-semibold text-ang-black hover:brightness-90 sm:py-1.5 sm:text-lg;
+    @apply rounded-2xl bg-ang-orange px-8 py-1.5 text-base font-semibold text-ang-black hover:brightness-90 sm:text-lg;
   }
   .secondary-buttons {
-    @apply rounded-2xl bg-ang-white px-8 py-1.5 text-base font-semibold text-ang-black hover:brightness-75 sm:py-1.5 sm:text-lg;
+    @apply rounded-2xl bg-ang-white px-8 py-1.5 text-base font-semibold text-ang-black hover:brightness-75 sm:text-lg;
   }
   p {
     @apply sm:text-lg;

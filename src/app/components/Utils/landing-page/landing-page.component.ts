@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   trigger,
   state,
@@ -25,22 +25,23 @@ import {
     ]),
   ],
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent implements OnInit, OnDestroy {
   currentIndex: number = 0;
   shownRoleWindow: boolean = false;
-
   images: string[] = [
     'url(/assets/landing-page/landingPage-city.jpg)',
     'url(/assets/landing-page/landingPage-nature.jpg)',
     'url(/assets/landing-page/landingPage-coffee.jpg)',
   ];
 
+  private carouselInterval: any;
+
   ngOnInit(): void {
     this.startCarousel();
   }
 
   startCarousel(): void {
-    setInterval(() => {
+    this.carouselInterval = setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.images.length;
     }, 5000);
   }
@@ -69,6 +70,12 @@ export class LandingPageComponent implements OnInit {
       return 'next';
     } else {
       return '';
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.carouselInterval) {
+      clearInterval(this.carouselInterval);
     }
   }
 }
