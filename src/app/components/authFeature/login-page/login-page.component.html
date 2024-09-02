@@ -1,1 +1,61 @@
-<p>login-page works!</p>
+<div class="flex h-[100svh] items-center justify-center px-2">
+  <div
+    class="flex w-max flex-col items-center justify-center gap-6 text-ang-black"
+  >
+    <div class="flex w-full flex-col">
+      <label for="loginEmail"
+        ><p class="font-semibold">{{ "loginPage-email" | translate }}</p></label
+      >
+      <input
+        type="text"
+        id="loginEmail"
+        class="rounded-md border border-ang-orange p-1.5"
+      />
+    </div>
+    <div class="flex w-full flex-col gap-2">
+      <div class="flex w-full flex-col">
+        <label for="loginPassword"
+          ><p class="font-semibold">
+            {{ "loginPage-password" | translate }}
+          </p></label
+        >
+        <input
+          type="text"
+          id="loginPassword"
+          class="rounded-md border border-ang-orange p-1.5"
+        />
+      </div>
+      <div class="flex justify-between">
+        <p class="hover:cursor-pointer hover:text-ang-orange">
+          {{ "loginPage-forgot" | translate }}
+        </p>
+        <div class="flex gap-1">
+          <label
+            for="rememberRadio"
+            class="flex flex-row-reverse items-center gap-1 hover:cursor-pointer"
+          >
+            <input
+              type="checkbox"
+              id="rememberRadio"
+              class="peer hover:cursor-pointer"
+            />
+            <p class="peer-hover:text-ang-orange">
+              {{ "loginPage-remember" | translate }}
+            </p>
+          </label>
+        </div>
+      </div>
+    </div>
+    <button class="primary-buttons w-full">
+      {{ "loginPage-logButton" | translate }}
+    </button>
+    <p class="text-center">
+      {{ "loginPage-bottomTextFist" | translate }}
+      <span
+        class="font-bold text-ang-orange hover:cursor-pointer hover:opacity-80"
+        routerLink="/registerpage"
+        >{{ "loginPage-bottomTextSecond" | translate }}</span
+      >
+    </p>
+  </div>
+</div>

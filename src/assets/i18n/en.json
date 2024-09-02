@@ -49,5 +49,13 @@
   "footer-menuBarMenus": "Menus",
   "footer-menuBarActivities": "Activities",
   "footer-menuBarShare": "Share",
-  "footer-menuBarFriends": "Friends"
+  "footer-menuBarFriends": "Friends",
+
+  "loginPage-email": "Email",
+  "loginPage-password": "Password",
+  "loginPage-forgot": "Forgot password?",
+  "loginPage-remember": "Remember me",
+  "loginPage-logButton": "Log in",
+  "loginPage-bottomTextFist": "New to nowAround?",
+  "loginPage-bottomTextSecond": "Create an account"
 }

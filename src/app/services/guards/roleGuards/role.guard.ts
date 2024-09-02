@@ -5,9 +5,9 @@ export const roleGuard = () => {
   const router = inject(Router);
   const role = localStorage.getItem('role');
   if (role === 'user') {
-    return true;
-  } else {
-    router.navigateByUrl('**');
+    router.navigateByUrl('/');
     return false;
+  } else {
+    return true;
   }
 };

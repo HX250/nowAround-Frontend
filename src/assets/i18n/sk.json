@@ -49,5 +49,13 @@
   "footer-menuBarMenus": "Menu",
   "footer-menuBarActivities": "Aktivity",
   "footer-menuBarShare": "Zdieľajte",
-  "footer-menuBarFriends": "Priatelia"
+  "footer-menuBarFriends": "Priatelia",
+
+  "loginPage-email": "Email",
+  "loginPage-password": "Heslo",
+  "loginPage-forgot": "Zabudnuté heslo",
+  "loginPage-remember": "Zapamätať",
+  "loginPage-logButton": "Prihlásiť",
+  "loginPage-bottomTextFist": "Nový na nowAround?",
+  "loginPage-bottomTextSecond": "Vytvor si účet"
 }
