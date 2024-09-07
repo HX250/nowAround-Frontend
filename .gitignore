@@ -43,6 +43,8 @@ Thumbs.db
 .prettierrc.json
 
 # Exclude environment files
-src/app/environments/environment.prod.ts
 src/app/environments/environment.ts
-src/app/environments/*.ts
+src/app/environments/environment.prod.ts
+src/app/environments
+
+
