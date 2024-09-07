@@ -20,7 +20,7 @@
     @apply rounded-2xl bg-ang-white px-8 py-1.5 text-base font-semibold text-ang-black hover:brightness-75 sm:text-lg;
   }
   p {
-    @apply sm:text-lg;
+    @apply sm:text-base;
   }
   h2 {
     @apply text-3xl font-bold text-ang-orange drop-shadow-lg sm:text-4xl;

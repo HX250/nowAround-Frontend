@@ -1,8 +1,9 @@
 <div
   class="flex h-full w-full items-center justify-center bg-ang-black bg-opacity-60 px-6"
+  (click)="closeRoleSelection()"
 >
   <div
-    class="container relative m-auto flex h-2/3 w-full flex-col items-center justify-evenly gap-6 rounded-sm bg-ang-white p-6 md:gap-10 md:p-10 lg:h-1/2 lg:w-2/3 lg:flex-row"
+    class="relative flex h-fit w-fit flex-col items-center justify-evenly gap-6 rounded-lg bg-ang-white p-6 md:flex-row md:gap-10"
   >
     <button
       (click)="closeModalWindow()"
@@ -14,14 +15,14 @@
       >
     </button>
     <div
-      class="flex h-full w-full flex-col items-center justify-between rounded-lg border border-ang-orange"
+      class="flex h-full max-w-96 flex-col items-center justify-between rounded-md border border-ang-orange md:h-80"
     >
       <h3
         class="flex h-16 w-full items-center justify-center border-b border-b-ang-orange text-ang-black"
       >
         {{ "roleSelectionPage-fc-firstCard" | translate }}
       </h3>
-      <ul class="flex flex-col justify-center px-2">
+      <ul class="flex flex-col px-2 py-4">
         <li>
           <p>{{ "roleSelectionPage-fc-firstListItem" | translate }}</p>
         </li>
@@ -40,14 +41,14 @@
       </button>
     </div>
     <div
-      class="flex h-full w-full flex-col items-center justify-between rounded-lg border border-ang-orange"
+      class="flex h-full max-w-96 flex-col items-center justify-between rounded-md border border-ang-orange md:h-80"
     >
       <h3
         class="flex h-16 w-full items-center justify-center rounded-t-md border-b border-b-ang-orange bg-ang-orange text-ang-black"
       >
         {{ "roleSelectionPage-sc-secondCard" | translate }}
       </h3>
-      <ul class="flex flex-col justify-center px-2">
+      <ul class="flex flex-col px-2 py-4">
         <li>
           <p>{{ "roleSelectionPage-sc-firstListItem" | translate }}</p>
         </li>

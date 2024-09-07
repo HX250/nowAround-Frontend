@@ -1,1 +1,145 @@
-<p>register-page works!</p>
+<div class="flex h-[100svh] items-center justify-center px-2">
+  <div
+    class="flex w-max flex-col items-center justify-center gap-4 text-ang-black"
+  >
+    <div class="flex w-full flex-col">
+      <div class="flex flex-col gap-4 sm:flex-row">
+        <div class="flex w-full flex-col gap-1">
+          <label for="firstName"
+            ><p class="font-semibold">First name*</p></label
+          >
+          <input
+            [(ngModel)]="firstName"
+            (input)="validateName()"
+            type="text"
+            id="firstName"
+            class="rounded-md border border-ang-orange p-1"
+          />
+        </div>
+        <div class="flex w-full flex-col gap-1">
+          <label for="lastName"><p class="font-semibold">Last name*</p></label>
+          <input
+            [(ngModel)]="lastName"
+            (input)="validateName()"
+            type="text"
+            id="lastName"
+            class="rounded-md border border-ang-orange p-1"
+          />
+        </div>
+      </div>
+      <ul
+        class="list-disc overflow-hidden pl-4 transition-all duration-500 ease-in-out"
+        [ngClass]="{
+          'max-h-0': nameValidations.regex,
+          'max-h-24': !nameValidations.regex,
+        }"
+      >
+        <li
+          class="text-sm text-red-600 opacity-90 transition-all duration-300"
+          [class.text-green-600]="nameValidations.regex"
+        >
+          Name cannot contain special characters or numbers (!,#,$)
+        </li>
+      </ul>
+    </div>
+
+    <div class="flex w-full flex-col gap-1">
+      <label for="email"><p class="font-semibold">Email*</p></label>
+      <input
+        [(ngModel)]="email"
+        (input)="validateEmail()"
+        type="text"
+        id="email"
+        class="rounded-md border border-ang-orange p-1"
+      />
+      <ul
+        class="list-disc overflow-hidden pl-4 transition-all duration-500 ease-in-out"
+        [ngClass]="{
+          'max-h-0': emailValidations.regex,
+          'max-h-24': !emailValidations.regex,
+        }"
+      >
+        <li
+          class="text-sm text-red-600 opacity-90 transition-all duration-300"
+          [class.text-green-600]="emailValidations.regex"
+        >
+          Invalid email type
+        </li>
+      </ul>
+    </div>
+    <div class="flex w-full flex-col gap-1">
+      <label for="password"><p class="font-semibold">Password*</p></label>
+      <input
+        [(ngModel)]="password"
+        (input)="validatePassword()"
+        type="text"
+        id="password"
+        class="rounded-md border border-ang-orange p-1"
+      />
+      <ul
+        class="list-disc overflow-hidden pl-4 transition-all duration-500 ease-in-out"
+        [ngClass]="{
+          'max-h-0': !showPasswordValidation,
+          'max-h-24': showPasswordValidation,
+        }"
+      >
+        <li
+          class="text-sm text-red-600 opacity-90"
+          [class.text-green-600]="passwordValidations.uppercase"
+        >
+          Password needs to contain atleast one uppercase
+        </li>
+        <li
+          class="text-sm text-red-600 opacity-90"
+          [class.text-green-600]="passwordValidations.lowercase"
+        >
+          Password needs to contain at least one lowercase letter
+        </li>
+        <li
+          class="text-sm text-red-600 opacity-90"
+          [class.text-green-600]="passwordValidations.length"
+        >
+          Password needs to have atleast 6 characters
+        </li>
+      </ul>
+    </div>
+    <div class="flex w-full flex-col gap-1">
+      <label for="repeatPassword"
+        ><p class="font-semibold">Repeat password*</p></label
+      >
+      <input
+        [(ngModel)]="repeatPassword"
+        (input)="validateRepeatPassword()"
+        type="text"
+        id="repeatPassword"
+        class="rounded-md border border-ang-orange p-1"
+      />
+
+      <ul
+        class="list-disc overflow-hidden pl-4 transition-all duration-500 ease-in-out"
+        [ngClass]="{
+          'max-h-0': repeatPassowrdValidations.passwordsMatch,
+          'max-h-24': !repeatPassowrdValidations.passwordsMatch,
+        }"
+      >
+        <li
+          class="text-sm text-red-600 opacity-90 transition-all duration-300"
+          [class.text-green-600]="repeatPassowrdValidations.passwordsMatch"
+        >
+          Passwords do not match.
+        </li>
+      </ul>
+    </div>
+    <div class="flex flex-col gap-6 pt-8">
+      <button class="primary-buttons w-full">Register</button>
+      <p class="text-center">
+        Already have an account?
+        <span
+          routerLink="/loginpage"
+          class="font-bold text-ang-orange hover:cursor-pointer hover:opacity-80"
+          >Back to login</span
+        >
+      </p>
+    </div>
+  </div>
+</div>

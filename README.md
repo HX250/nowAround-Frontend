@@ -14,8 +14,9 @@ The project structure is organized as follows:
 src/
 ├── app/
 │   ├── components/            # Core components of the application
-        ├── Utils/
-        ├── usertFeature/
+        ├── authFeature/       # UI componenets used for handling authentication, for example login and register
+        ├── userFeature/       # UI components for user itself
+        ├── Utils/             # UI components used for guiding through pages
 │   ├── services/              # All the services used in the application
         ├── cookieService/
         ├── loginService/

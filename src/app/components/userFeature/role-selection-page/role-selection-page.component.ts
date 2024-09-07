@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-role-selection-page',
@@ -8,7 +8,12 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 export class RoleSelectionPageComponent {
   @Input() windowShown: boolean | undefined;
   @Output() updatedWindowShown = new EventEmitter<boolean>();
+  @Output() closeWindowWhenClickOutside = new EventEmitter<boolean>();
 
+  closeRoleSelection() {
+    this.windowShown = !this.windowShown;
+    this.updatedWindowShown.emit(this.windowShown);
+  }
   closeModalWindow() {
     this.windowShown = !this.windowShown;
     this.updatedWindowShown.emit(this.windowShown);

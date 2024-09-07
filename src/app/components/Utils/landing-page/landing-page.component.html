@@ -144,6 +144,7 @@
   *ngIf="shownRoleWindow"
   [windowShown]="shownRoleWindow"
   (updatedWindowShown)="updateWindowBool($event)"
+  (closeWindowWhenClickOutside)="updateWindowBool($event)"
   class="fixed top-0 z-50 h-full w-full"
 ></app-role-selection-page>
 <app-scroll-arrow-up></app-scroll-arrow-up>

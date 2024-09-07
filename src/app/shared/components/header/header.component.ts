@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -38,5 +38,13 @@ export class HeaderComponent implements OnInit {
 
   showNavBar() {
     this.isNavBarShown = !this.isNavBarShown;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.navbar') && this.isNavBarShown) {
+      this.isNavBarShown = false;
+    }
   }
 }
