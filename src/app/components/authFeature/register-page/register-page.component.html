@@ -35,7 +35,7 @@
         }"
       >
         <li
-          class="text-sm text-red-600 opacity-90 transition-all duration-300"
+          class="text-sm text-red-600"
           [class.text-green-600]="nameValidations.regex"
         >
           Name cannot contain special characters or numbers (!,#,$)
@@ -85,19 +85,19 @@
       >
         <li
           class="text-sm text-red-600 opacity-90"
-          [class.text-green-600]="passwordValidations.uppercase"
+          [class.text-green-600]="!passwordValidations.uppercase"
         >
           Password needs to contain atleast one uppercase
         </li>
         <li
           class="text-sm text-red-600 opacity-90"
-          [class.text-green-600]="passwordValidations.lowercase"
+          [class.text-green-600]="!passwordValidations.lowercase"
         >
           Password needs to contain at least one lowercase letter
         </li>
         <li
           class="text-sm text-red-600 opacity-90"
-          [class.text-green-600]="passwordValidations.length"
+          [class.text-green-600]="!passwordValidations.length"
         >
           Password needs to have atleast 6 characters
         </li>
