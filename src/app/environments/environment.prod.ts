@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   mapbox: {
-    accessToken: process.env['MAPBOX_ACCESS_TOKEN'] || '',
+    accessToken: 'REPLACE_WITH_MAPBOX_TOKEN',
   },
 };
