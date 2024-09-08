@@ -35,8 +35,11 @@
         }"
       >
         <li
-          class="text-sm text-red-600"
-          [class.text-green-600]="nameValidations.regex"
+          class="text-sm opacity-90 transition-all duration-300"
+          [ngClass]="{
+            'text-green-600': nameValidations.regex,
+            'text-red-600': !nameValidations.regex,
+          }"
         >
           Name cannot contain special characters or numbers (!,#,$)
         </li>
@@ -60,8 +63,11 @@
         }"
       >
         <li
-          class="text-sm text-red-600 opacity-90 transition-all duration-300"
-          [class.text-green-600]="emailValidations.regex"
+          class="text-sm opacity-90 transition-all duration-300"
+          [ngClass]="{
+            'text-green-600': emailValidations.regex,
+            'text-red-600': !emailValidations.regex,
+          }"
         >
           Invalid email type
         </li>
@@ -84,20 +90,29 @@
         }"
       >
         <li
-          class="text-sm text-red-600 opacity-90"
-          [class.text-green-600]="!passwordValidations.uppercase"
+          class="text-sm opacity-90"
+          [ngClass]="{
+            'text-green-600': passwordValidations.uppercase,
+            'text-red-600': !passwordValidations.uppercase,
+          }"
         >
           Password needs to contain atleast one uppercase
         </li>
         <li
-          class="text-sm text-red-600 opacity-90"
-          [class.text-green-600]="!passwordValidations.lowercase"
+          class="text-sm opacity-90"
+          [ngClass]="{
+            'text-green-600': passwordValidations.lowercase,
+            'text-red-600': !passwordValidations.lowercase,
+          }"
         >
           Password needs to contain at least one lowercase letter
         </li>
         <li
-          class="text-sm text-red-600 opacity-90"
-          [class.text-green-600]="!passwordValidations.length"
+          class="text-sm opacity-90"
+          [ngClass]="{
+            'text-green-600': passwordValidations.length,
+            'text-red-600': !passwordValidations.length,
+          }"
         >
           Password needs to have atleast 6 characters
         </li>
@@ -123,8 +138,11 @@
         }"
       >
         <li
-          class="text-sm text-red-600 opacity-90 transition-all duration-300"
-          [class.text-green-600]="repeatPassowrdValidations.passwordsMatch"
+          class="text-sm opacity-90"
+          [ngClass]="{
+            'text-green-600': repeatPassowrdValidations.passwordsMatch,
+            'text-red-600': !repeatPassowrdValidations.passwordsMatch,
+          }"
         >
           Passwords do not match.
         </li>
