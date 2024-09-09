@@ -6,7 +6,9 @@
       <div class="flex flex-col gap-4 sm:flex-row">
         <div class="flex w-full flex-col gap-1">
           <label for="firstName"
-            ><p class="font-semibold">First name*</p></label
+            ><p class="font-semibold">
+              {{ "registerPage-firstName" | translate }}
+            </p></label
           >
           <input
             [(ngModel)]="firstName"
@@ -17,7 +19,11 @@
           />
         </div>
         <div class="flex w-full flex-col gap-1">
-          <label for="lastName"><p class="font-semibold">Last name*</p></label>
+          <label for="lastName"
+            ><p class="font-semibold">
+              {{ "registerPage-lastName" | translate }}
+            </p></label
+          >
           <input
             [(ngModel)]="lastName"
             (input)="validateName()"
@@ -41,7 +47,7 @@
             'text-red-600': !nameValidations.regex,
           }"
         >
-          Name cannot contain special characters or numbers (!,#,$)
+          {{ "registerPageErrorValid-nameValidation" | translate }}
         </li>
       </ul>
     </div>
@@ -69,16 +75,20 @@
             'text-red-600': !emailValidations.regex,
           }"
         >
-          Invalid email type
+          {{ "registerPageErrorValid-emailValidation" | translate }}
         </li>
       </ul>
     </div>
     <div class="flex w-full flex-col gap-1">
-      <label for="password"><p class="font-semibold">Password*</p></label>
+      <label for="password"
+        ><p class="font-semibold">
+          {{ "registerPage-password" | translate }}
+        </p></label
+      >
       <input
         [(ngModel)]="password"
         (input)="validatePassword()"
-        type="text"
+        type="password"
         id="password"
         class="rounded-md border border-ang-orange p-1"
       />
@@ -96,7 +106,7 @@
             'text-red-600': !passwordValidations.uppercase,
           }"
         >
-          Password needs to contain atleast one uppercase
+          {{ "registerPageErrorValid-passwordUpper" | translate }}
         </li>
         <li
           class="text-sm opacity-90"
@@ -105,7 +115,7 @@
             'text-red-600': !passwordValidations.lowercase,
           }"
         >
-          Password needs to contain at least one lowercase letter
+          {{ "registerPageErrorValid-passwordLower" | translate }}
         </li>
         <li
           class="text-sm opacity-90"
@@ -114,18 +124,20 @@
             'text-red-600': !passwordValidations.length,
           }"
         >
-          Password needs to have atleast 6 characters
+          {{ "registerPageErrorValid-passwordLength" | translate }}
         </li>
       </ul>
     </div>
     <div class="flex w-full flex-col gap-1">
       <label for="repeatPassword"
-        ><p class="font-semibold">Repeat password*</p></label
+        ><p class="font-semibold">
+          {{ "registerPage-repeatPassowrd" | translate }}
+        </p></label
       >
       <input
         [(ngModel)]="repeatPassword"
         (input)="validateRepeatPassword()"
-        type="text"
+        type="password"
         id="repeatPassword"
         class="rounded-md border border-ang-orange p-1"
       />
@@ -144,18 +156,20 @@
             'text-red-600': !repeatPassowrdValidations.passwordsMatch,
           }"
         >
-          Passwords do not match.
+          {{ "registerPageErrorValid-repeatPassword" | translate }}
         </li>
       </ul>
     </div>
     <div class="flex flex-col gap-6 pt-8">
-      <button class="primary-buttons w-full">Register</button>
+      <button class="primary-buttons w-full">
+        {{ "registerPage-registerButton" | translate }}
+      </button>
       <p class="text-center">
-        Already have an account?
+        {{ "registerPage-registerText" | translate }}
         <span
           routerLink="/loginpage"
           class="font-bold text-ang-orange hover:cursor-pointer hover:opacity-80"
-          >Back to login</span
+          >{{ "registerPage-backToLoginButton" | translate }}</span
         >
       </p>
     </div>

@@ -57,5 +57,20 @@
   "loginPage-remember": "Zapamätať",
   "loginPage-logButton": "Prihlásiť",
   "loginPage-bottomTextFist": "Nový na nowAround?",
-  "loginPage-bottomTextSecond": "Vytvor si účet"
+  "loginPage-bottomTextSecond": "Vytvor si účet",
+
+  "registerPage-firstName": "Krstné meno*",
+  "registerPage-lastName": "Priezvisko*",
+  "registerPage-password": "Heslo*",
+  "registerPage-repeatPassowrd": "Zopkaovať heslo*",
+  "registerPage-registerButton": "Registrácia",
+  "registerPage-registerText": "Už máte účet?",
+  "registerPage-backToLoginButton": "Späť na prihlásenie",
+
+  "registerPageErrorValid-nameValidation": "Meno nemôže obsahovať špeciálne symboly alebo čísla (!,#,$)",
+  "registerPageErrorValid-emailValidation": "Neplatný formát emailu",
+  "registerPageErrorValid-passwordUpper": "Heslo musí obsahovať minimálne jedno veľké písmeno",
+  "registerPageErrorValid-passwordLower": "Heslo musí obsahovať minimálne jedno malé písmeno",
+  "registerPageErrorValid-passwordLength": "Heslo musí obsahovať minimálne jedno 6 písmen",
+  "registerPageErrorValid-repeatPassword": "Hesla sa nezhodujú"
 }

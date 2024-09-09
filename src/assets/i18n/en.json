@@ -57,5 +57,20 @@
   "loginPage-remember": "Remember me",
   "loginPage-logButton": "Log in",
   "loginPage-bottomTextFist": "New to nowAround?",
-  "loginPage-bottomTextSecond": "Create an account"
+  "loginPage-bottomTextSecond": "Create an account",
+
+  "registerPage-firstName": "First name*",
+  "registerPage-lastName": "Last name*",
+  "registerPage-password": "Password*",
+  "registerPage-repeatPassowrd": "Repeat password*",
+  "registerPage-registerButton": "Register",
+  "registerPage-registerText": "Already have an account?",
+  "registerPage-backToLoginButton": "Back to login",
+
+  "registerPageErrorValid-nameValidation": "Name cannot contain special characters or numbers (!,#,$)",
+  "registerPageErrorValid-emailValidation": "Invalid email type",
+  "registerPageErrorValid-passwordUpper": "Password needs to contain atleast one uppercase",
+  "registerPageErrorValid-passwordLower": "Password needs to contain at least one lowercase letter",
+  "registerPageErrorValid-passwordLength": "Password needs to have atleast 6 characters",
+  "registerPageErrorValid-repeatPassword": "Passwords do not match."
 }
