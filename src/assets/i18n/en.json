@@ -62,7 +62,7 @@
   "registerPage-firstName": "First name*",
   "registerPage-lastName": "Last name*",
   "registerPage-password": "Password*",
-  "registerPage-repeatPassowrd": "Repeat password*",
+  "registerPage-repeatPassword": "Repeat password*",
   "registerPage-registerButton": "Register",
   "registerPage-registerText": "Already have an account?",
   "registerPage-backToLoginButton": "Back to login",
@@ -72,5 +72,6 @@
   "registerPageErrorValid-passwordUpper": "Password needs to contain atleast one uppercase",
   "registerPageErrorValid-passwordLower": "Password needs to contain at least one lowercase letter",
   "registerPageErrorValid-passwordLength": "Password needs to have atleast 6 characters",
-  "registerPageErrorValid-repeatPassword": "Passwords do not match."
+  "registerPageErrorValid-repeatPassword": "Passwords do not match.",
+  "registerPage-registerError": "Please fill out required fields *"
 }

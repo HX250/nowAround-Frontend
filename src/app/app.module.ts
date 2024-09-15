@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { UtilsModule } from './components/Utils/utils.module';
 import { AuthFeatureModuleModule } from './components/authFeature/auth-feature-module.module';
 import { UserFeatureModuleModule } from './components/userFeature/user-feature-module.module';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +31,7 @@ import { UserFeatureModuleModule } from './components/userFeature/user-feature-m
     }),
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

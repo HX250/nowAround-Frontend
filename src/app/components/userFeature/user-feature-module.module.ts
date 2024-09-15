@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RoleSelectionPageComponent } from './role-selection-page/role-selection-page.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [RoleSelectionPageComponent],

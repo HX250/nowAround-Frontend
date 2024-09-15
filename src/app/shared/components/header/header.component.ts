@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,10 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private translate: TranslateService) {
+  constructor(
+    private translate: TranslateService,
+    private cookieService: CookieService,
+  ) {
     this.translate.addLangs(['en', 'sk']);
     this.translate.setDefaultLang('en');
   }
@@ -15,18 +19,18 @@ export class HeaderComponent implements OnInit {
   isNavBarShown: boolean = false;
 
   ngOnInit(): void {
-    const storedLang = localStorage.getItem('lang');
+    const storedLang = this.cookieService.get('lang');
     if (storedLang) {
       this.languageSet = storedLang;
       this.setLanguage(this.languageSet);
     } else {
-      localStorage.setItem('lang', this.languageSet);
+      this.cookieService.set('lang', this.languageSet);
       this.setLanguage(this.languageSet);
     }
   }
 
   changeLang(value: string) {
-    localStorage.setItem('lang', value);
+    this.cookieService.set('lang', value);
     this.languageSet = value;
     this.setLanguage(value);
   }

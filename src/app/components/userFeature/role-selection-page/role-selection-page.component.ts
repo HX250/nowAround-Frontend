@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-role-selection-page',
@@ -10,6 +11,8 @@ export class RoleSelectionPageComponent {
   @Output() updatedWindowShown = new EventEmitter<boolean>();
   @Output() closeWindowWhenClickOutside = new EventEmitter<boolean>();
 
+  constructor(private cookieService: CookieService) {}
+
   closeRoleSelection() {
     this.windowShown = !this.windowShown;
     this.updatedWindowShown.emit(this.windowShown);
@@ -20,7 +23,7 @@ export class RoleSelectionPageComponent {
   }
 
   guestAccountButton() {
-    localStorage.setItem('role', 'guest');
+    this.cookieService.set('role', 'guest');
     window.location.reload();
   }
 }

@@ -11,8 +11,9 @@
             </p></label
           >
           <input
+            placeholder="{{ 'registerPage-firstName' | translate }}"
             [(ngModel)]="firstName"
-            (input)="validateName()"
+            (input)="validateName(); removeError()"
             type="text"
             id="firstName"
             class="rounded-md border border-ang-orange p-1"
@@ -26,7 +27,8 @@
           >
           <input
             [(ngModel)]="lastName"
-            (input)="validateName()"
+            placeholder="{{ 'registerPage-lastName' | translate }}"
+            (input)="validateName(); removeError()"
             type="text"
             id="lastName"
             class="rounded-md border border-ang-orange p-1"
@@ -56,7 +58,8 @@
       <label for="email"><p class="font-semibold">Email*</p></label>
       <input
         [(ngModel)]="email"
-        (input)="validateEmail()"
+        placeholder="{{ 'Email' | translate }}"
+        (input)="validateEmail(); removeError()"
         type="text"
         id="email"
         class="rounded-md border border-ang-orange p-1"
@@ -86,8 +89,9 @@
         </p></label
       >
       <input
+        placeholder="{{ 'registerPage-password' | translate }}"
         [(ngModel)]="password"
-        (input)="validatePassword()"
+        (input)="validatePassword(); removeError()"
         type="password"
         id="password"
         class="rounded-md border border-ang-orange p-1"
@@ -131,12 +135,13 @@
     <div class="flex w-full flex-col gap-1">
       <label for="repeatPassword"
         ><p class="font-semibold">
-          {{ "registerPage-repeatPassowrd" | translate }}
+          {{ "registerPage-repeatPassword" | translate }}
         </p></label
       >
       <input
         [(ngModel)]="repeatPassword"
-        (input)="validateRepeatPassword()"
+        placeholder="{{ 'registerPage-repeatPassword' | translate }}"
+        (input)="validateRepeatPassword(); removeError()"
         type="password"
         id="repeatPassword"
         class="rounded-md border border-ang-orange p-1"
@@ -160,8 +165,11 @@
         </li>
       </ul>
     </div>
-    <div class="flex flex-col gap-6 pt-8">
-      <button class="primary-buttons w-full">
+    <div class="flex flex-col items-center gap-6 pt-2">
+      <p *ngIf="registerError" class="text-sm text-red-600 opacity-90">
+        {{ "registerPage-registerError" | translate }}
+      </p>
+      <button class="primary-buttons w-full" (click)="register()">
         {{ "registerPage-registerButton" | translate }}
       </button>
       <p class="text-center">

@@ -7,9 +7,12 @@
         ><p class="font-semibold">{{ "loginPage-email" | translate }}</p></label
       >
       <input
+        [(ngModel)]="loginEmail"
+        (input)="clearError()"
         type="text"
         id="loginEmail"
         class="rounded-md border border-ang-orange p-1"
+        placeholder="{{ 'loginPage-email' | translate }}"
       />
     </div>
     <div class="flex w-full flex-col gap-2">
@@ -20,9 +23,12 @@
           </p></label
         >
         <input
+          [(ngModel)]="loginPassword"
+          (input)="clearError()"
           type="password"
           id="loginPassword"
           class="rounded-md border border-ang-orange p-1"
+          placeholder="{{ 'loginPage-password' | translate }}"
         />
       </div>
       <div class="flex justify-between">
@@ -46,9 +52,13 @@
         </div>
       </div>
     </div>
-    <button class="primary-buttons w-full">
+    <p *ngIf="loginError" class="text-sm text-red-600 opacity-90">
+      Invalid credentials, please try again.
+    </p>
+    <button class="primary-buttons w-full" (click)="login()">
       {{ "loginPage-logButton" | translate }}
     </button>
+
     <p class="text-center">
       {{ "loginPage-bottomTextFist" | translate }}
       <span
