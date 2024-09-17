@@ -19,9 +19,7 @@ export class LoginPageComponent implements OnInit {
     private router: Router,
     private auth: AuthService,
   ) {}
-  ngOnInit(): void {
-    this.getToken();
-  }
+  ngOnInit(): void {}
 
   getToken(): void {
     this.auth.getAccessTokenSilently().subscribe(
@@ -54,5 +52,6 @@ export class LoginPageComponent implements OnInit {
 
   loginWithRedirect(): void {
     this.auth.loginWithRedirect();
+    this.getToken();
   }
 }
