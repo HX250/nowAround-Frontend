@@ -54,4 +54,9 @@ export class LoginPageComponent implements OnInit {
     this.auth.loginWithRedirect();
     this.getToken();
   }
+  logout(): void {
+    this.auth.logout({
+      logoutParams: { returnTo: window.location.origin },
+    });
+  }
 }
