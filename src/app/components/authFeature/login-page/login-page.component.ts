@@ -12,6 +12,7 @@ export class LoginPageComponent implements OnInit {
   loginEmail: string = '';
   loginPassword: string = '';
   loginError: boolean = false;
+  accessToken: string | null = null;
 
   constructor(
     private loginService: LoginService,
@@ -19,7 +20,19 @@ export class LoginPageComponent implements OnInit {
     private auth: AuthService,
   ) {}
   ngOnInit(): void {
-    console.log(this.auth.getAccessTokenSilently);
+    this.getToken();
+  }
+
+  getToken(): void {
+    this.auth.getAccessTokenSilently().subscribe(
+      (token) => {
+        this.accessToken = token;
+        console.log('Access Token:', token); // This will print the token in the console
+      },
+      (err) => {
+        console.error('Error getting token:', err);
+      },
+    );
   }
 
   clearError() {

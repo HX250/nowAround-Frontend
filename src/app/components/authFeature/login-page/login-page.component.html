@@ -58,6 +58,8 @@
     <button class="primary-buttons w-full" (click)="loginWithRedirect()">
       {{ "loginPage-logButton" | translate }}
     </button>
+    <button (click)="getToken()">Get Token</button>
+    <pre>{{ accessToken }}</pre>
 
     <p class="text-center">
       {{ "loginPage-bottomTextFist" | translate }}
