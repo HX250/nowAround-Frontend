@@ -51,7 +51,7 @@ export class LoginPageComponent implements OnInit {
   }*/
 
   loginWithRedirect(): void {
-    this.auth.loginWithRedirect();
+    this.auth.loginWithPopup();
     this.getToken();
   }
   logout(): void {
