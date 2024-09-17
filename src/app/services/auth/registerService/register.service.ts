@@ -12,6 +12,7 @@ export class RegisterService {
   register(
     registerFirstName: string,
     registerLastName: string,
+    username: string,
     email: string,
     password: string,
     repeatPassword: string,
@@ -19,6 +20,7 @@ export class RegisterService {
     const body = {
       firstName: registerFirstName,
       lastName: registerLastName,
+      username: username,
       email: email,
       password: password,
       repeatPassowrd: repeatPassword,

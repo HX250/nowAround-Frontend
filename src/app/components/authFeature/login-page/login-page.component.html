@@ -55,7 +55,7 @@
     <p *ngIf="loginError" class="text-sm text-red-600 opacity-90">
       Invalid credentials, please try again.
     </p>
-    <button class="primary-buttons w-full" (click)="login()">
+    <button class="primary-buttons w-full" (click)="loginWithRedirect()">
       {{ "loginPage-logButton" | translate }}
     </button>
 

@@ -9,7 +9,7 @@ import { environment } from 'src/app/environments/environment';
 })
 export class HomePageComponent implements OnInit {
   map: mapboxgl.Map | undefined;
-  style = 'mapbox://styles/mapbox/streets-v11';
+  style = 'mapbox://styles/mapbox/outdoors-v12';
   lat: number = 48.716385;
   lng: number = 21.261074;
 

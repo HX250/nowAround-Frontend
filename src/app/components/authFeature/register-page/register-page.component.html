@@ -55,6 +55,34 @@
     </div>
 
     <div class="flex w-full flex-col gap-1">
+      <label for="email"><p class="font-semibold">Username*</p></label>
+      <input
+        [(ngModel)]="username"
+        placeholder="Username"
+        (input)="validateUsername(); removeError()"
+        type="text"
+        id="email"
+        class="rounded-md border border-ang-orange p-1"
+      />
+      <ul
+        class="list-disc overflow-hidden pl-4 transition-all duration-500 ease-in-out"
+        [ngClass]="{
+          'max-h-0': usernameValidations.regex,
+          'max-h-24': !usernameValidations.regex,
+        }"
+      >
+        <li
+          class="text-sm opacity-90 transition-all duration-300"
+          [ngClass]="{
+            'text-green-600': usernameValidations.regex,
+            'text-red-600': !usernameValidations.regex,
+          }"
+        >
+          Username cannot contain special characters or numbers (!,#,$)
+        </li>
+      </ul>
+    </div>
+    <div class="flex w-full flex-col gap-1">
       <label for="email"><p class="font-semibold">Email*</p></label>
       <input
         [(ngModel)]="email"

@@ -5,6 +5,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [LoginPageComponent, RegisterPageComponent],
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     FormsModule,
     TranslateModule,
+    AuthModule,
   ],
 })
 export class AuthFeatureModuleModule {}

@@ -9,6 +9,7 @@ import { RegisterService } from 'src/app/services/auth/registerService/register.
 export class RegisterPageComponent {
   firstName: string = '';
   lastName: string = '';
+  username: string = '';
   email: string = '';
   password: string = '';
   repeatPassword: string = '';
@@ -18,6 +19,9 @@ export class RegisterPageComponent {
   constructor(private registerService: RegisterService) {}
 
   nameValidations = {
+    regex: true,
+  };
+  usernameValidations = {
     regex: true,
   };
   emailValidations = {
@@ -59,6 +63,7 @@ export class RegisterPageComponent {
         this.email,
         this.password,
         this.repeatPassword,
+        this.username,
       )
       .subscribe({
         next: (Response) => {
@@ -70,6 +75,10 @@ export class RegisterPageComponent {
       });
   }
 
+  validateUsername() {
+    const usernamenameRegex = /^[a-zA-Z]*$/;
+    this.usernameValidations.regex = usernamenameRegex.test(this.username);
+  }
   validateName() {
     const nameRegex = /^[a-zA-Z]*$/;
     this.nameValidations.regex =

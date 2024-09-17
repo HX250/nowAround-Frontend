@@ -13,6 +13,8 @@ import { AuthFeatureModuleModule } from './components/authFeature/auth-feature-m
 import { UserFeatureModuleModule } from './components/userFeature/user-feature-module.module';
 import { CookieService } from 'ngx-cookie-service';
 
+import { AuthModule } from '@auth0/auth0-angular';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -30,6 +32,13 @@ import { CookieService } from 'ngx-cookie-service';
       },
     }),
     BrowserAnimationsModule,
+    AuthModule.forRoot({
+      domain: 'dev-1xh8kfmlma5zrj2z.us.auth0.com',
+      clientId: 'TWbSxEXDyHxzzPXExKOyRvGUPGlsh2Px',
+      authorizationParams: {
+        redirect_uri: window.location.origin,
+      },
+    }),
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
