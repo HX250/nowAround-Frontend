@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { LoginService } from 'src/app/services/auth/loginService/login.service';
@@ -8,7 +8,7 @@ import { LoginService } from 'src/app/services/auth/loginService/login.service';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css'],
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnInit {
   loginEmail: string = '';
   loginPassword: string = '';
   loginError: boolean = false;
@@ -18,6 +18,9 @@ export class LoginPageComponent {
     private router: Router,
     private auth: AuthService,
   ) {}
+  ngOnInit(): void {
+    console.log(this.auth.getAccessTokenSilently);
+  }
 
   clearError() {
     this.loginError = false;
