@@ -36,6 +36,7 @@ import { AuthModule } from '@auth0/auth0-angular';
       clientId: 'TWbSxEXDyHxzzPXExKOyRvGUPGlsh2Px',
       authorizationParams: {
         redirect_uri: window.location.origin,
+        audience: 'https://nowaround.vercel.app/',
       },
     }),
   ],
