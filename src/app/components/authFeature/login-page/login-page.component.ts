@@ -55,8 +55,6 @@ export class LoginPageComponent implements OnInit {
     this.getToken();
   }
   logout(): void {
-    this.auth.logout({
-      logoutParams: { returnTo: window.location.origin },
-    });
+    this.auth.logout();
   }
 }
