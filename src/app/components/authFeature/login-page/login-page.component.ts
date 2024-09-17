@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { LoginService } from 'src/app/services/auth/loginService/login.service';
@@ -8,22 +8,36 @@ import { LoginService } from 'src/app/services/auth/loginService/login.service';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css'],
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnInit {
   loginEmail: string = '';
   loginPassword: string = '';
   loginError: boolean = false;
+  accessToken: string | null = null;
 
   constructor(
     private loginService: LoginService,
     private router: Router,
     private auth: AuthService,
   ) {}
+  ngOnInit(): void {}
+
+  getToken(): void {
+    this.auth.getAccessTokenSilently().subscribe(
+      (token) => {
+        this.accessToken = token;
+        console.log('Access Token:', token);
+      },
+      (err) => {
+        console.error('Error getting token:', err);
+      },
+    );
+  }
 
   clearError() {
     this.loginError = false;
   }
 
-  /*login() {
+  /* login() {
     this.loginService.login(this.loginEmail, this.loginPassword).subscribe({
       next: (Response) => {
         this.router.navigateByUrl('/homepage');
@@ -37,11 +51,10 @@ export class LoginPageComponent {
   }*/
 
   loginWithRedirect(): void {
-    this.auth.loginWithRedirect();
+    this.auth.loginWithPopup();
+    this.getToken();
   }
   logout(): void {
-    this.auth.logout({
-      logoutParams: { returnTo: window.location.origin },
-    });
+    this.auth.logout();
   }
 }
