@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 import { LoginService } from 'src/app/services/auth/loginService/login.service';
 
 @Component({
@@ -15,13 +16,14 @@ export class LoginPageComponent {
   constructor(
     private loginService: LoginService,
     private router: Router,
+    private auth: AuthService,
   ) {}
 
   clearError() {
     this.loginError = false;
   }
 
-  login() {
+  /*login() {
     this.loginService.login(this.loginEmail, this.loginPassword).subscribe({
       next: (Response) => {
         this.router.navigateByUrl('/homepage');
@@ -31,6 +33,15 @@ export class LoginPageComponent {
         this.loginError = true;
         console.log(Error);
       },
+    });
+  }*/
+
+  loginWithRedirect(): void {
+    this.auth.loginWithRedirect();
+  }
+  logout(): void {
+    this.auth.logout({
+      logoutParams: { returnTo: window.location.origin },
     });
   }
 }
