@@ -29,6 +29,14 @@ export class LoginPageComponent implements OnInit {
         console.log(err);
       },
     );
+    this.auth.isAuthenticated$.subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      },
+    );
   }
 
   clearError() {
