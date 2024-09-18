@@ -59,10 +59,6 @@
       {{ "loginPage-logButton" | translate }}
     </button>
     <button (click)="getToken()">Get token</button>
-    <div *ngIf="auth.user$ | async as user">
-      <h2>{{ user.email }}</h2>
-      <p>{{ user.nickname }}</p>
-    </div>
 
     <p class="text-center">
       {{ "loginPage-bottomTextFist" | translate }}
