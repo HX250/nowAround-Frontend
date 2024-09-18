@@ -22,15 +22,9 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {}
 
   getToken(): void {
-    this.auth.getAccessTokenSilently().subscribe(
-      (token) => {
-        this.accessToken = token;
-        console.log('Access Token:', token);
-      },
-      (err) => {
-        console.error('Error getting token:', err);
-      },
-    );
+    this.auth.isAuthenticated$.subscribe((auth) => {
+      console.log(auth);
+    });
   }
 
   clearError() {
