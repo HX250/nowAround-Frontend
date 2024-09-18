@@ -12,12 +12,11 @@ export class LoginPageComponent implements OnInit {
   loginEmail: string = '';
   loginPassword: string = '';
   loginError: boolean = false;
-  accessToken: string | null = null;
 
   constructor(
     private loginService: LoginService,
     private router: Router,
-    private auth: AuthService,
+    public auth: AuthService,
   ) {}
   ngOnInit(): void {}
 
