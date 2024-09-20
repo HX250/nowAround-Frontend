@@ -65,7 +65,7 @@
   "registerPage-repeatPassword": "Zopkaovať heslo*",
   "registerPage-registerButton": "Registrácia",
   "registerPage-registerText": "Už máte účet?",
-  "registerPage-backToLoginButton": "Späť na prihlásenie",
+  "registerPage-backToLoginButton": "Prihlásiť sa",
 
   "registerPageErrorValid-nameValidation": "Meno nemôže obsahovať špeciálne symboly alebo čísla (!,#,$)",
   "registerPageErrorValid-emailValidation": "Neplatný formát emailu",
