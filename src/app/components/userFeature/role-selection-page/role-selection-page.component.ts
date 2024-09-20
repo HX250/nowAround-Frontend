@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -8,15 +9,16 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./role-selection-page.component.css'],
 })
 export class RoleSelectionPageComponent {
-  token: string = '';
-
   @Input() windowShown: boolean | undefined;
   @Output() updatedWindowShown = new EventEmitter<boolean>();
   @Output() closeWindowWhenClickOutside = new EventEmitter<boolean>();
 
+  token: string = '';
+
   constructor(
     private cookieService: CookieService,
     private auth: AuthService,
+    private router: Router,
   ) {}
 
   closeRoleSelection() {
@@ -43,14 +45,6 @@ export class RoleSelectionPageComponent {
       },
     });
   }
-
-  logout(): void {
-    this.auth.logout({
-      logoutParams: { returnTo: window.location.origin },
-    });
-    sessionStorage.clear();
-  }
-
   getToken(): void {
     this.auth.getAccessTokenSilently({ detailedResponse: true }).subscribe({
       next: (response) => {
@@ -59,6 +53,7 @@ export class RoleSelectionPageComponent {
 
         this.cookieService.set('tkn', this.token);
         this.cookieService.set('role', 'user');
+        this.router.navigateByUrl('/homepage');
       },
       error: (error) => {
         console.log(error);
