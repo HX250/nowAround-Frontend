@@ -16,8 +16,8 @@ export class HomePageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    (mapboxgl as any).accessToken = environment.mapbox.accessToken;
-    console.log(process.env['accessToken']);
+    (mapboxgl as any).accessToken = process.env['MAPBOX_TOKEN'];
+    console.log(process.env['MAPBOX_TOKEN']);
 
     this.map = new mapboxgl.Map({
       container: 'map',
