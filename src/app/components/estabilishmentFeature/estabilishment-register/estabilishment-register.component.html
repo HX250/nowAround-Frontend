@@ -1,0 +1,122 @@
+<div class="flex h-[100svh] items-center justify-center px-2">
+  <div
+    class="flex w-full flex-col items-center justify-center gap-4 text-ang-black"
+  >
+    <div class="flex flex-col gap-5">
+      <form
+        class="flex max-w-[42rem] flex-col gap-5 text-ang-black"
+        [formGroup]="establishmentRegister"
+        (ngSubmit)="registerEstablishment()"
+      >
+        <div class="flex flex-col gap-6 sm:flex-row">
+          <label
+            for="establishmentPhoto"
+            class="h-40 w-48 border-2 border-ang-orange p-4"
+            >Enter company photo</label
+          >
+          <input
+            class="hidden"
+            type="file"
+            id="establishmentPhoto"
+            formControlName="establishmentPhoto"
+          />
+          <div class="flex w-full flex-col gap-4">
+            <input
+              type="text"
+              placeholder="Establishment name"
+              class="rounded-md border border-ang-orange p-1"
+              id="establishmentName"
+              formControlName="establishmentName"
+            />
+            <div class="flex flex-col gap-4 sm:flex-row">
+              <div class="w-full">
+                <select
+                  #categorySelect
+                  class="w-full border border-ang-orange p-2"
+                  (change)="addCategory(categorySelect.value)"
+                  name="establishmentCategory"
+                  id="establishmentCategory"
+                  formControlName="establishmentCategory"
+                >
+                  <option value="" disabled>Select category</option>
+                  <option *ngFor="let category of category" [value]="category">
+                    {{ category }}
+                  </option>
+                </select>
+                <p *ngIf="catError">{{ catError }}</p>
+                <div
+                  *ngFor="let category of establishmentCategory"
+                  class="flex justify-between"
+                >
+                  <p>{{ category }}</p>
+                  <button (click)="removeCategory(category)">X</button>
+                </div>
+              </div>
+              <div class="w-full">
+                <select
+                  class="w-full border border-ang-orange p-2"
+                  name="establishmentPrize"
+                  id="establishmentPrize"
+                  formControlName="establishmentPrize"
+                >
+                  <option value="" disabled>Select prize range</option>
+                  <option value="€">€</option>
+                  <option value="€€">€€</option>
+                  <option value="€€€">€€€</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-5">
+          <button
+            (click)="addTag(val)"
+            *ngFor="let val of tags"
+            [ngClass]="{
+              'bg-ang-orange text-white': establishmentTags.includes(val),
+              'bg-white text-ang-black': !establishmentTags.includes(val),
+            }"
+            class="w-32 rounded-md border border-ang-orange px-1 py-0.5"
+          >
+            {{ val }}
+          </button>
+        </div>
+        <p *ngIf="tagError" class="text-center">{{ tagError }}</p>
+        <div class="flex flex-col gap-6 sm:flex-row">
+          <div class="flex w-full flex-col">
+            <label for="establishmentCity">City</label>
+            <input
+              type="text"
+              class="rounded-md border border-ang-orange p-1"
+              id="establishmentCity"
+              formControlName="establishmentCity"
+            />
+          </div>
+          <div class="flex w-full flex-col">
+            <label for="establishmentAddress">Address</label>
+            <input
+              type="text"
+              class="rounded-md border border-ang-orange p-1"
+              id="establishmentAddress"
+              formControlName="establishmentAddress"
+            />
+          </div>
+        </div>
+      </form>
+      <button (click)="registerEstablishment()" class="primary-buttons">
+        Register
+      </button>
+    </div>
+    <div>
+      <p class="text-center">
+        Already have an estabilishment?<span
+          class="font-bold text-ang-orange hover:cursor-pointer hover:opacity-70"
+          routerLink="/estabilishment-login"
+        >
+          Log in</span
+        >
+      </p>
+    </div>
+  </div>
+</div>

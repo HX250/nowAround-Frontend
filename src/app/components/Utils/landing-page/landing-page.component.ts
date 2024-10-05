@@ -6,6 +6,8 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { AuthService } from '@auth0/auth0-angular';
+import { CustomAuthService } from 'src/app/services/authService/auth.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -33,6 +35,8 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     'url(/assets/landing-page/landingPage-nature.jpg)',
     'url(/assets/landing-page/landingPage-coffee.jpg)',
   ];
+
+  constructor(private authServ: CustomAuthService) {}
 
   private carouselInterval: any;
 
@@ -71,6 +75,10 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     } else {
       return '';
     }
+  }
+
+  loginWithRedirect(): void {
+    this.authServ.loginWithRedirect();
   }
 
   ngOnDestroy(): void {

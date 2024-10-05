@@ -3,19 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpLoaderFactory, SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
+import { HttpLoaderFactory, SharedModule } from './shared/shared.module';
 import { UtilsModule } from './components/Utils/utils.module';
 import { UserFeatureModuleModule } from './components/userFeature/user-feature-module.module';
-import { CookieService } from 'ngx-cookie-service';
 import { AuthModule } from '@auth0/auth0-angular';
+import { EstFeatureModule } from './components/estabilishmentFeature/est-feature.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    EstFeatureModule,
     SharedModule,
     UtilsModule,
     UserFeatureModuleModule,

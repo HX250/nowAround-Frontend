@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
 import { CookieService } from 'ngx-cookie-service';
+import { CustomAuthService } from 'src/app/services/authService/auth.service';
 
 @Component({
   selector: 'app-role-selection-page',
@@ -16,9 +15,8 @@ export class RoleSelectionPageComponent {
   token: string = '';
 
   constructor(
+    private authServ: CustomAuthService,
     private cookieService: CookieService,
-    private auth: AuthService,
-    private router: Router,
   ) {}
 
   closeRoleSelection() {
@@ -36,28 +34,6 @@ export class RoleSelectionPageComponent {
   }
 
   loginWithRedirect(): void {
-    this.auth.loginWithPopup().subscribe({
-      next: (Response) => {
-        this.getToken();
-      },
-      error: (Error) => {
-        console.log(Error);
-      },
-    });
-  }
-  getToken(): void {
-    this.auth.getAccessTokenSilently({ detailedResponse: true }).subscribe({
-      next: (response) => {
-        console.log(response.access_token);
-        this.token = response.access_token;
-
-        this.cookieService.set('tkn', this.token);
-        this.cookieService.set('role', 'user');
-        this.router.navigateByUrl('/homepage');
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.authServ.loginWithRedirect();
   }
 }
