@@ -5,6 +5,7 @@
   "projects": {
     "nowAroundFrontEnd": {
       "projectType": "application",
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -23,12 +24,6 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -44,16 +39,12 @@
               "outputHashing": "all"
             },
             "development": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "sourceMap": true,
+              "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
-              "extractLicenses": false
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
