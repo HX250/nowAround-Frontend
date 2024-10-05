@@ -11,7 +11,7 @@ const envFile = `export const environment = {
 `;
 const targetPath = path.join(
   __dirname,
-  "./src/environments/environment.development.ts",
+  "./src/environments/environment.prod.ts",
 );
 fs.writeFile(targetPath, envFile, (err) => {
   if (err) {
@@ -20,7 +20,7 @@ fs.writeFile(targetPath, envFile, (err) => {
   } else {
     console.log(
       successColor,
-      `${checkSign} Successfully generated environment.development.ts`,
+      `${checkSign} Successfully generated environment.prod.ts`,
     );
   }
 });
