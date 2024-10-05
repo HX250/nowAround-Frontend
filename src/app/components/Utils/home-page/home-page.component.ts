@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-home-page',
@@ -16,8 +16,7 @@ export class HomePageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    (mapboxgl as any).accessToken = process.env['MAPBOX_TOKEN'];
-    console.log(process.env['MAPBOX_TOKEN']);
+    (mapboxgl as any).accessToken = environment.MAPBOX_TOKEN;
 
     this.map = new mapboxgl.Map({
       container: 'map',
