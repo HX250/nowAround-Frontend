@@ -6,7 +6,6 @@ import {
   animate,
   transition,
 } from '@angular/animations';
-import { AuthService } from '@auth0/auth0-angular';
 import { CustomAuthService } from 'src/app/services/authService/auth.service';
 
 @Component({

@@ -1,0 +1,149 @@
+<div class="flex flex-col gap-5">
+  <form
+    class="flex flex-col gap-5 text-ang-black"
+    [formGroup]="establishmentRegister"
+  >
+    <div class="flex flex-col gap-6 sm:flex-row">
+      <label
+        for="establishmentPhoto"
+        class="h-32 w-full border-2 border-ang-orange p-4 sm:h-40 sm:w-48 sm:rounded-full"
+        >Enter company photo</label
+      >
+      <input
+        class="hidden"
+        type="file"
+        id="establishmentPhoto"
+        formControlName="establishmentPhoto"
+      />
+      <div class="flex w-full flex-col gap-4">
+        <div class="flex flex-col">
+          <label for="establishmentName" class="font-semibold"
+            >Establishment name:</label
+          >
+          <input
+            type="text"
+            class="rounded-md border border-ang-orange p-1"
+            id="establishmentName"
+            formControlName="establishmentName"
+          />
+        </div>
+        <div
+          *ngIf="
+            f['establishmentName'].invalid &&
+            (f['establishmentName'].dirty || f['establishmentName'].touched)
+          "
+        >
+          <div
+            *ngIf="f['establishmentName'].errors?.['required']"
+            class="text-red-600"
+          >
+            Establishment name is required.
+          </div>
+        </div>
+        <div class="flex flex-col gap-4 sm:flex-row">
+          <div class="w-full">
+            <select
+              #categorySelect
+              class="w-full rounded-lg border border-ang-orange p-1"
+              (change)="addCategory(categorySelect.value)"
+              name="establishmentCategory"
+              id="establishmentCategory"
+              formControlName="establishmentCategory"
+            >
+              <option value="" disabled>Select category</option>
+              <option *ngFor="let category of category" [value]="category">
+                {{ category }}
+              </option>
+            </select>
+            <p *ngIf="catError">{{ catError }}</p>
+            <div
+              *ngFor="let category of establishmentCategory"
+              class="flex justify-between pb-0.5"
+            >
+              <p>{{ category }}</p>
+              <button (click)="removeCategory(category)">X</button>
+            </div>
+          </div>
+          <div class="w-full">
+            <select
+              class="w-full rounded-lg border border-ang-orange p-1"
+              name="establishmentPrize"
+              id="establishmentPrize"
+              formControlName="establishmentPrize"
+            >
+              <option value="" disabled>Select prize range</option>
+              <option value="€">€</option>
+              <option value="€€">€€</option>
+              <option value="€€€">€€€</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <h1 class="font-semibold">Select tags:</h1>
+      <div class="flex flex-wrap items-center gap-5 lg:justify-between">
+        <button
+          (click)="addTag(val)"
+          *ngFor="let val of tags"
+          [ngClass]="{
+            'bg-ang-orange text-white': establishmentTags.includes(val),
+            'bg-white text-ang-black': !establishmentTags.includes(val),
+          }"
+          class="w-[7.5rem] rounded-md border border-ang-orange px-1 py-0.5 sm:w-32"
+        >
+          {{ val }}
+        </button>
+      </div>
+    </div>
+    <p *ngIf="tagError" class="text-center">{{ tagError }}</p>
+    <div class="flex flex-col gap-6 sm:flex-row">
+      <div class="flex w-full flex-col">
+        <label for="establishmentCity" class="font-semibold">City:</label>
+        <input
+          type="text"
+          class="rounded-md border border-ang-orange p-1"
+          id="establishmentCity"
+          formControlName="establishmentCity"
+        />
+        <div
+          *ngIf="
+            f['establishmentCity'].invalid &&
+            (f['establishmentCity'].dirty || f['establishmentCity'].touched)
+          "
+        >
+          <div
+            *ngIf="f['establishmentCity'].errors?.['required']"
+            class="text-red-600"
+          >
+            City is required.
+          </div>
+        </div>
+      </div>
+      <div class="flex w-full flex-col">
+        <label for="establishmentAddress" class="font-semibold">Address:</label>
+        <input
+          type="text"
+          class="rounded-md border border-ang-orange p-1"
+          id="establishmentAddress"
+          formControlName="establishmentAddress"
+        />
+        <div
+          *ngIf="
+            f['establishmentAddress'].invalid &&
+            (f['establishmentAddress'].dirty ||
+              f['establishmentAddress'].touched)
+          "
+        >
+          <div
+            *ngIf="f['establishmentAddress'].errors?.['required']"
+            class="text-red-600"
+          >
+            Address is required.
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

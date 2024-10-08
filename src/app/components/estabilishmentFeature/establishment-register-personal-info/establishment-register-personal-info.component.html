@@ -1,127 +1,84 @@
-<div class="flex h-[100svh] items-center justify-center px-2">
-  <div
-    class="flex w-max flex-col items-center justify-center gap-4 text-ang-black"
-  >
-    <div>
-      <form
-        [formGroup]="registerForm"
-        (ngSubmit)="onSubmit()"
-        class="flex flex-col gap-5"
+<div>
+  <form [formGroup]="registerForm" class="flex flex-col gap-5">
+    <div class="flex flex-col gap-5 sm:flex-row">
+      <div class="flex w-full flex-col">
+        <label for="firstName" class="font-semibold">First Name:</label>
+        <input
+          id="firstName"
+          formControlName="firstName"
+          class="rounded-md border border-ang-orange p-1"
+        />
+        <div
+          *ngIf="
+            f['firstName'].invalid &&
+            (f['firstName'].dirty || f['firstName'].touched)
+          "
+        >
+          <div *ngIf="f['firstName'].errors?.['required']" class="text-red-600">
+            First name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex w-full flex-col">
+        <label for="lastName" class="font-semibold">Last Name:</label>
+        <input
+          id="lastName"
+          formControlName="lastName"
+          class="rounded-md border border-ang-orange p-1"
+        />
+        <div
+          *ngIf="
+            f['lastName'].invalid &&
+            (f['lastName'].dirty || f['lastName'].touched)
+          "
+        >
+          <div *ngIf="f['lastName'].errors?.['required']" class="text-red-600">
+            Last name is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <label for="email" class="font-semibold">Email:</label>
+      <input
+        id="email"
+        formControlName="email"
+        class="rounded-md border border-ang-orange p-1"
+      />
+      <div
+        *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)"
       >
-        <div class="flex flex-col gap-5 sm:flex-row">
-          <div class="flex flex-col">
-            <label for="firstName" class="font-semibold">First Name:</label>
-            <input
-              id="firstName"
-              formControlName="firstName"
-              class="rounded-md border border-ang-orange p-1"
-            />
-            <div
-              *ngIf="
-                f['firstName'].invalid &&
-                (f['firstName'].dirty || f['firstName'].touched)
-              "
-            >
-              <div
-                *ngIf="f['firstName'].errors?.['required']"
-                class="text-red-600"
-              >
-                First name is required.
-              </div>
-            </div>
-          </div>
-
-          <div class="flex flex-col">
-            <label for="lastName" class="font-semibold">Last Name:</label>
-            <input
-              id="lastName"
-              formControlName="lastName"
-              class="rounded-md border border-ang-orange p-1"
-            />
-            <div
-              *ngIf="
-                f['lastName'].invalid &&
-                (f['lastName'].dirty || f['lastName'].touched)
-              "
-            >
-              <div
-                *ngIf="f['lastName'].errors?.['required']"
-                class="text-red-600"
-              >
-                Last name is required.
-              </div>
-            </div>
-          </div>
+        <div *ngIf="f['email'].errors?.['required']" class="text-red-600">
+          Email is required.
         </div>
-
-        <div class="flex flex-col">
-          <label for="email" class="font-semibold">Email:</label>
-          <input
-            id="email"
-            formControlName="email"
-            class="rounded-md border border-ang-orange p-1"
-          />
-          <div
-            *ngIf="
-              f['email'].invalid && (f['email'].dirty || f['email'].touched)
-            "
-          >
-            <div *ngIf="f['email'].errors?.['required']" class="text-red-600">
-              Email is required.
-            </div>
-            <div *ngIf="f['email'].errors?.['email']" class="text-red-600">
-              Invalid email format.
-            </div>
-          </div>
+        <div *ngIf="f['email'].errors?.['email']" class="text-red-600">
+          Invalid email format.
         </div>
-
-        <div class="flex flex-col">
-          <label for="phoneNumber" class="font-semibold">Phone Number:</label>
-          <input
-            id="phoneNumber"
-            formControlName="phoneNumber"
-            class="rounded-md border border-ang-orange p-1"
-          />
-          <div
-            *ngIf="
-              f['phoneNumber'].invalid &&
-              (f['phoneNumber'].dirty || f['phoneNumber'].touched)
-            "
-          >
-            <div
-              *ngIf="f['phoneNumber'].errors?.['required']"
-              class="text-red-600"
-            >
-              Phone number is required.
-            </div>
-            <div
-              *ngIf="f['phoneNumber'].errors?.['pattern']"
-              class="text-red-600"
-            >
-              Invalid phone number format.
-            </div>
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          [disabled]="registerForm.invalid"
-          class="primary-buttons"
-        >
-          Next step
-        </button>
-      </form>
-      <button (click)="userInfo()">Show userinf</button>
+      </div>
     </div>
-    <div>
-      <p class="text-center">
-        Already have an estabilishment?<span
-          class="font-bold text-ang-orange hover:cursor-pointer hover:opacity-70"
-          routerLink="/estabilishment-login"
-        >
-          Log in</span
-        >
-      </p>
+
+    <div class="flex flex-col">
+      <label for="phoneNumber" class="font-semibold">Phone Number:</label>
+      <input
+        id="phoneNumber"
+        formControlName="phoneNumber"
+        class="rounded-md border border-ang-orange p-1"
+      />
+      <div
+        *ngIf="
+          f['phoneNumber'].invalid &&
+          (f['phoneNumber'].dirty || f['phoneNumber'].touched)
+        "
+      >
+        <div *ngIf="f['phoneNumber'].errors?.['required']" class="text-red-600">
+          Phone number is required.
+        </div>
+        <div *ngIf="f['phoneNumber'].errors?.['pattern']" class="text-red-600">
+          Invalid phone number format.
+        </div>
+      </div>
     </div>
-  </div>
+  </form>
 </div>

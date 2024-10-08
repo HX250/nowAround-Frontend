@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { EstabilishmentService } from 'src/app/services/estabilishmentService/estabilishment.service';
 
 @Component({
   selector: 'app-establishment-register-personal-info',
@@ -11,11 +9,7 @@ import { EstabilishmentService } from 'src/app/services/estabilishmentService/es
 export class EstablishmentRegisterPersonalInfoComponent {
   registerForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private estServ: EstabilishmentService,
-    private router: Router,
-  ) {
+  constructor(private fb: FormBuilder) {
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -26,19 +20,6 @@ export class EstablishmentRegisterPersonalInfoComponent {
       ],
     });
   }
-
-  onSubmit(): void {
-    if (this.registerForm.valid) {
-      this.estServ.estabilishmentInfo.personalInfo = this.registerForm.value;
-      this.router.navigateByUrl('establishment-register');
-    }
-  }
-
-  userInfo() {
-    console.log(this.estServ.estabilishmentInfo.personalInfo);
-    console.log(this.estServ.body);
-  }
-
   get f() {
     return this.registerForm.controls;
   }

@@ -7,9 +7,8 @@ import { guestGuard } from './services/guards/guestGuards/guest.guard';
 import { HomePageComponent } from './components/Utils/home-page/home-page.component';
 import { UserAccountComponent } from './components/userFeature/user-account/user-account.component';
 import { AuthGuard } from '@auth0/auth0-angular';
-import { EstabilishmentRegisterComponent } from './components/estabilishmentFeature/estabilishment-register/estabilishment-register.component';
 import { EstabilishmentLoginComponent } from './components/estabilishmentFeature/estabilishment-login/estabilishment-login.component';
-import { EstablishmentRegisterPersonalInfoComponent } from './components/estabilishmentFeature/establishment-register-personal-info/establishment-register-personal-info.component';
+import { EstablishmentRegisterFormComponent } from './components/estabilishmentFeature/establishment-register-form/establishment-register-form.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [authGuard] },
@@ -20,12 +19,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'establishment-register-personal-info',
-    component: EstablishmentRegisterPersonalInfoComponent,
-  },
-  {
     path: 'establishment-register',
-    component: EstabilishmentRegisterComponent,
+    component: EstablishmentRegisterFormComponent,
   },
   {
     path: 'establishment-login',
@@ -44,7 +39,6 @@ export class AppRoutingModule {}
 export const routingComponent = [
   LandingPageComponent,
   HomePageComponent,
-  EstabilishmentRegisterComponent,
-  EstablishmentRegisterPersonalInfoComponent,
+  EstablishmentRegisterFormComponent,
   EstabilishmentLoginComponent,
 ];

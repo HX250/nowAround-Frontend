@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EstabilishmentService } from 'src/app/services/estabilishmentService/estabilishment.service';
 
 @Component({
-  selector: 'app-estabilishment-register',
-  templateUrl: './estabilishment-register.component.html',
-  styleUrls: ['./estabilishment-register.component.css'],
+  selector: 'app-establishment-register',
+  templateUrl: './establishment-register.component.html',
+  styleUrls: ['./establishment-register.component.css'],
 })
-export class EstabilishmentRegisterComponent {
+export class EstablishmentRegisterComponent {
   establishmentRegister: FormGroup;
   tags: string[] = [
     'Smoking',
@@ -29,11 +29,11 @@ export class EstabilishmentRegisterComponent {
   ) {
     this.establishmentRegister = fb.group({
       establishmentPhoto: [''],
-      establishmentName: [''],
+      establishmentName: ['', Validators.required],
       establishmentCategory: [[]],
-      establishmentPrize: [''],
-      establishmentAddress: [''],
-      establishmentCity: [''],
+      establishmentPrize: ['', Validators.required],
+      establishmentAddress: ['', Validators.required],
+      establishmentCity: ['', Validators.required],
       establishmentTags: [[]],
     });
   }
@@ -52,7 +52,12 @@ export class EstabilishmentRegisterComponent {
     if (!this.establishmentCategory.includes(category)) {
       this.establishmentCategory.push(category);
     }
+
+    this.establishmentRegister.patchValue({
+      establishmentCategory: this.establishmentCategory,
+    });
   }
+
   addTag(val: string) {
     if (
       !this.establishmentTags.includes(val) &&
@@ -69,20 +74,10 @@ export class EstabilishmentRegisterComponent {
     } else {
       this.establishmentTags.push(val);
     }
-  }
 
-  registerEstablishment() {
-    if (this.establishmentRegister.valid) {
-      this.establishmentRegister.patchValue({
-        establishmentTags: this.establishmentTags,
-        establishmentCategory: this.establishmentCategory,
-      });
-      this.estServ.estabilishmentInfo.establishmentInfo =
-        this.establishmentRegister.value;
-      console.log(this.estServ.estabilishmentInfo);
-    } else {
-      console.log('Form is invalid');
-    }
+    this.establishmentRegister.patchValue({
+      establishmentTags: this.establishmentTags,
+    });
   }
 
   get f() {
