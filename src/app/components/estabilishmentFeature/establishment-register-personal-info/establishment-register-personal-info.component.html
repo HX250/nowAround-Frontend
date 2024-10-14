@@ -2,7 +2,7 @@
   <form [formGroup]="registerForm" class="flex flex-col gap-5">
     <div class="flex flex-col gap-5 sm:flex-row">
       <div class="flex w-full flex-col">
-        <label for="firstName" class="font-semibold">First Name</label>
+        <label for="firstName" class="font-semibold">First Name*</label>
         <input
           id="firstName"
           formControlName="firstName"
@@ -21,7 +21,7 @@
       </div>
 
       <div class="flex w-full flex-col">
-        <label for="lastName" class="font-semibold">Last Name</label>
+        <label for="lastName" class="font-semibold">Last Name*</label>
         <input
           id="lastName"
           formControlName="lastName"
@@ -41,7 +41,7 @@
     </div>
 
     <div class="flex flex-col">
-      <label for="email" class="font-semibold">Email</label>
+      <label for="email" class="font-semibold">Email*</label>
       <input
         id="email"
         formControlName="email"
@@ -60,7 +60,7 @@
     </div>
 
     <div class="flex flex-col">
-      <label for="phoneNumber" class="font-semibold">Phone Number</label>
+      <label for="phoneNumber" class="font-semibold">Phone Number*</label>
       <input
         id="phoneNumber"
         formControlName="phoneNumber"
@@ -81,4 +81,5 @@
       </div>
     </div>
   </form>
+  <p class="pt-6 text-right">* - is required</p>
 </div>

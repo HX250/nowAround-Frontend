@@ -14,6 +14,7 @@
       </h1>
       <app-establishment-register></app-establishment-register>
     </div>
+    <p *ngIf="error" class="text-red-600">Please fill all required inputs</p>
     <button (click)="registerEstablishment()" class="primary-buttons">
       Register establishment
     </button>

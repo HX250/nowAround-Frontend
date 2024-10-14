@@ -9,6 +9,8 @@ import { EstabilishmentService } from 'src/app/services/estabilishmentService/es
   styleUrls: ['./establishment-register-form.component.css'],
 })
 export class EstablishmentRegisterFormComponent {
+  error: boolean = false;
+
   @ViewChild(EstablishmentRegisterComponent)
   establishmentRegisterComponent!: EstablishmentRegisterComponent;
   @ViewChild(EstablishmentRegisterPersonalInfoComponent)
@@ -31,6 +33,8 @@ export class EstablishmentRegisterFormComponent {
       };
       this.estService.estabilishmentInfo = completeFormData;
       this.estService.registerEstablishment();
+    } else {
+      this.error = true;
     }
   }
 }

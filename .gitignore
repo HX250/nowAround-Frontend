@@ -43,3 +43,5 @@ Thumbs.db
 .prettierrc.json
 
 .env
+
+src/environments/environment.prod.ts

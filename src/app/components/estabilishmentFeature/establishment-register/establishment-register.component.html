@@ -6,10 +6,25 @@
     <div class="flex flex-col gap-6 sm:flex-row">
       <label
         for="establishmentPhoto"
-        class="h-32 w-full border-2 border-ang-orange p-4 sm:h-40 sm:w-48 sm:rounded-full"
-        >Enter company photo</label
+        class="flex h-32 w-full items-center justify-center border-2 border-ang-orange bg-ang-black bg-opacity-10 sm:h-40 sm:w-48 sm:rounded-full"
       >
+        <img
+          *ngIf="previewImage; else defaultImage"
+          [src]="previewImage"
+          class="h-full w-full object-cover sm:rounded-full"
+          alt="Uploaded Image"
+        />
+        <ng-template #defaultImage>
+          <img
+            src="../../../../assets/registerIcon/gallery.png"
+            width="64px"
+            height="64px"
+            alt="Default Placeholder"
+          />
+        </ng-template>
+      </label>
       <input
+        (change)="onFileChange($event)"
         class="hidden"
         type="file"
         id="establishmentPhoto"
@@ -18,7 +33,7 @@
       <div class="flex w-full flex-col gap-4">
         <div class="flex flex-col">
           <label for="establishmentName" class="font-semibold"
-            >Establishment name</label
+            >Establishment name*</label
           >
           <input
             type="text"
@@ -50,12 +65,12 @@
               id="establishmentCategory"
               formControlName="establishmentCategory"
             >
-              <option value="" disabled>Select category</option>
+              <option value="" disabled>Select category*</option>
               <option *ngFor="let category of category" [value]="category">
                 {{ category }}
               </option>
             </select>
-            <p *ngIf="catError">{{ catError }}</p>
+            <p *ngIf="catError" class="text-red-600">{{ catError }}</p>
             <div
               *ngFor="let category of establishmentCategory"
               class="flex justify-between pb-0.5"
@@ -71,18 +86,32 @@
               id="establishmentPrize"
               formControlName="establishmentPrize"
             >
-              <option value="" disabled>Select prize range</option>
+              <option value="" disabled>Select prize range*</option>
               <option value="€">€</option>
               <option value="€€">€€</option>
               <option value="€€€">€€€</option>
             </select>
+            <div
+              *ngIf="
+                f['establishmentPrize'].invalid &&
+                (f['establishmentPrize'].dirty ||
+                  f['establishmentPrize'].touched)
+              "
+            >
+              <div
+                *ngIf="f['establishmentPrize'].errors?.['required']"
+                class="text-red-600"
+              >
+                Prize range is required.
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="flex flex-col gap-4">
-      <h1 class="font-semibold">Select tags</h1>
+      <h1 class="font-semibold">Select tags*</h1>
       <div class="flex flex-wrap items-center gap-5 lg:justify-between">
         <button
           (click)="addTag(val)"
@@ -100,7 +129,7 @@
     <p *ngIf="tagError" class="text-center">{{ tagError }}</p>
     <div class="flex flex-col gap-6 sm:flex-row">
       <div class="flex w-full flex-col">
-        <label for="establishmentCity" class="font-semibold">City</label>
+        <label for="establishmentCity" class="font-semibold">City*</label>
         <input
           type="text"
           class="rounded-md border border-ang-orange p-1"
@@ -122,7 +151,7 @@
         </div>
       </div>
       <div class="flex w-full flex-col">
-        <label for="establishmentAddress" class="font-semibold">Address</label>
+        <label for="establishmentAddress" class="font-semibold">Address*</label>
         <input
           type="text"
           class="rounded-md border border-ang-orange p-1"
@@ -146,4 +175,5 @@
       </div>
     </div>
   </form>
+  <p class="pt-6 text-right">* - is required</p>
 </div>
