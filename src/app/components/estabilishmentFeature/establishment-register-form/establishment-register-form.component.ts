@@ -10,6 +10,7 @@ import { EstabilishmentService } from 'src/app/services/estabilishmentService/es
 })
 export class EstablishmentRegisterFormComponent {
   error: boolean = false;
+  popUpHidden: boolean = true;
 
   @ViewChild(EstablishmentRegisterComponent)
   establishmentRegisterComponent!: EstablishmentRegisterComponent;
@@ -19,20 +20,25 @@ export class EstablishmentRegisterFormComponent {
   constructor(private estService: EstabilishmentService) {}
 
   registerEstablishment() {
-    const personalInfo = this.personalInfoComponent.registerForm.value;
-    const establishmentInfo =
-      this.establishmentRegisterComponent.establishmentRegister.value;
+    const { valid: personalValid, value: personalInfo } =
+      this.personalInfoComponent.registerForm;
+    const { valid: establishmentValid, value: establishmentInfo } =
+      this.establishmentRegisterComponent.establishmentRegister;
 
-    if (
-      this.personalInfoComponent.registerForm.valid &&
-      this.establishmentRegisterComponent.establishmentRegister.valid
-    ) {
-      const completeFormData = {
-        personalInfo: personalInfo,
-        establishmentInfo: establishmentInfo,
-      };
-      this.estService.estabilishmentInfo = completeFormData;
-      this.estService.registerEstablishment();
+    if (personalValid && establishmentValid) {
+      const completeFormData = { personalInfo, establishmentInfo };
+      this.estService.registerEstablishment(completeFormData).subscribe({
+        next: (response) => {
+          console.log('Success:', response);
+        },
+        error: (error) => {
+          console.error('Error:', error);
+        },
+        complete: () => {
+          this.popUpHidden = false;
+          console.log('Request completed.');
+        },
+      });
     } else {
       this.error = true;
     }

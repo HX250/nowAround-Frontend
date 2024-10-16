@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EstabilishmentService } from 'src/app/services/estabilishmentService/estabilishment.service';
 
 @Component({
   selector: 'app-establishment-register',
@@ -24,12 +23,9 @@ export class EstablishmentRegisterComponent {
   tagError: string = '';
   previewImage: any;
 
-  constructor(
-    private fb: FormBuilder,
-    private estServ: EstabilishmentService,
-  ) {
+  constructor(private fb: FormBuilder) {
     this.establishmentRegister = fb.group({
-      establishmentPhoto: [],
+      establishmentPhoto: [null],
       establishmentName: ['', Validators.required],
       establishmentCategory: [[], Validators.required],
       establishmentPrize: ['', Validators.required],

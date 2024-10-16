@@ -2,19 +2,19 @@
   <div
     class="flex w-full flex-col items-center justify-center gap-8 text-ang-black"
   >
-    <div class="w-full max-w-[50rem] bg-ang-black bg-opacity-5 p-5">
+    <div class="w-full max-w-[50rem] p-5">
       <h1 class="pb-5 text-lg font-bold text-ang-orange sm:text-xl">
         Step 1: Personal information
       </h1>
       <app-establishment-register-personal-info></app-establishment-register-personal-info>
     </div>
-    <div class="w-full max-w-[50rem] bg-ang-black bg-opacity-5 p-5">
+    <div class="w-full max-w-[50rem] p-5">
       <h1 class="pb-5 text-lg font-bold text-ang-orange sm:text-xl">
         Step 2: Establishment information
       </h1>
       <app-establishment-register></app-establishment-register>
     </div>
-    <p *ngIf="error" class="text-red-600">Please fill all required inputs</p>
+    <p *ngIf="error" class="text-red-600">Please fill all required fields</p>
     <button (click)="registerEstablishment()" class="primary-buttons">
       Register establishment
     </button>
@@ -26,5 +26,9 @@
         Log in</span
       >
     </p>
+    <app-establishment-popup
+      *ngIf="!popUpHidden"
+      class="fixed top-0 z-50 h-full w-full"
+    ></app-establishment-popup>
   </div>
 </div>
