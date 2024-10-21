@@ -2,7 +2,9 @@
   <form [formGroup]="registerForm" class="flex flex-col gap-5">
     <div class="flex flex-col gap-5 sm:flex-row">
       <div class="flex w-full flex-col">
-        <label for="firstName" class="font-semibold">First Name*</label>
+        <label for="firstName" class="font-semibold">{{
+          "establishmentReg-personalInfo-firstName" | translate
+        }}</label>
         <input
           id="firstName"
           formControlName="firstName"
@@ -15,13 +17,15 @@
           "
         >
           <div *ngIf="f['firstName'].errors?.['required']" class="text-red-600">
-            First name is required.
+            {{ "establishmentReg-personalInfoError-firstName" | translate }}
           </div>
         </div>
       </div>
 
       <div class="flex w-full flex-col">
-        <label for="lastName" class="font-semibold">Last Name*</label>
+        <label for="lastName" class="font-semibold">{{
+          "establishmentReg-personalInfo-lastName" | translate
+        }}</label>
         <input
           id="lastName"
           formControlName="lastName"
@@ -34,7 +38,7 @@
           "
         >
           <div *ngIf="f['lastName'].errors?.['required']" class="text-red-600">
-            Last name is required.
+            {{ "establishmentReg-personalInfoError-lastName" | translate }}
           </div>
         </div>
       </div>
@@ -51,16 +55,18 @@
         *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)"
       >
         <div *ngIf="f['email'].errors?.['required']" class="text-red-600">
-          Email is required.
+          {{ "establishmentReg-personalInfoError-emailReq" | translate }}
         </div>
         <div *ngIf="f['email'].errors?.['email']" class="text-red-600">
-          Invalid email format.
+          {{ "establishmentReg-personalInfoError-emailFormat" | translate }}
         </div>
       </div>
     </div>
 
     <div class="flex flex-col">
-      <label for="phoneNumber" class="font-semibold">Phone Number*</label>
+      <label for="phoneNumber" class="font-semibold">{{
+        "establishmentReg-personalInfo-phoneNumber" | translate
+      }}</label>
       <input
         id="phoneNumber"
         formControlName="phoneNumber"
@@ -73,13 +79,15 @@
         "
       >
         <div *ngIf="f['phoneNumber'].errors?.['required']" class="text-red-600">
-          Phone number is required.
+          {{ "establishmentReg-personalInfoError-phoneNumberReq" | translate }}
         </div>
         <div *ngIf="f['phoneNumber'].errors?.['pattern']" class="text-red-600">
-          Invalid phone number format.
+          {{
+            "establishmentReg-personalInfoError-phoneNumberFromat" | translate
+          }}
         </div>
       </div>
     </div>
   </form>
-  <p class="pt-6 text-right">* - is required</p>
+  <p class="pt-6 text-right">{{ "establishmentReg-reqFooter" | translate }}</p>
 </div>

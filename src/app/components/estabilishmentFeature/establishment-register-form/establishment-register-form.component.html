@@ -4,32 +4,35 @@
   >
     <div class="w-full max-w-[50rem] p-5">
       <h1 class="pb-5 text-lg font-bold text-ang-orange sm:text-xl">
-        Step 1: Personal information
+        {{ "establishmentReg-form-stepOne" | translate }}
       </h1>
       <app-establishment-register-personal-info></app-establishment-register-personal-info>
     </div>
     <div class="w-full max-w-[50rem] p-5">
       <h1 class="pb-5 text-lg font-bold text-ang-orange sm:text-xl">
-        Step 2: Establishment information
+        {{ "establishmentReg-form-stepTwo" | translate }}
       </h1>
       <app-establishment-register></app-establishment-register>
     </div>
     <p *ngIf="error" class="text-red-600">Please fill all required fields</p>
     <button (click)="registerEstablishment()" class="primary-buttons">
-      Register establishment
+      {{ "establishmentReg-form-registerButton" | translate }}
     </button>
     <p class="text-center">
-      Already have an estabilishment?<span
+      {{ "establishmentReg-form-logInInfo" | translate
+      }}<span
         class="font-bold text-ang-orange hover:cursor-pointer hover:opacity-70"
         routerLink="/establishment-login"
       >
-        Log in</span
+        {{ "establishmentReg-form-loginButton" | translate }}</span
       >
     </p>
-    <app-establishment-popup
-      [establishmentEmail]="estEmail"
+    <app-popup-window
+      [title]="popUpTitle"
+      [message]="popUpMessage"
+      [footerMessage]="popUpFooterMessage"
       *ngIf="!popUpHidden"
       class="fixed top-0 z-50 h-full w-full"
-    ></app-establishment-popup>
+    ></app-popup-window>
   </div>
 </div>

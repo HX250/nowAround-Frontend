@@ -37,6 +37,8 @@
   "roleSelectionPage-fc-secondListItem": "Žiadne skupinové plánovanie",
   "roleSelectionPage-fc-thirdListItem": "Jednoduché prehliadanie",
   "roleSelectionPage-fc-button": "Pokračovať ako hosť",
+  "roleSelectionPage-estText": "Chcete si zaregistrovať svoj podnik?",
+  "roleSelectionPage-estRedirect": "Zaregistruj teraz",
 
   "roleSelectionPage-sc-secondCard": "nowAround účet",
   "roleSelectionPage-sc-firstListItem": "Plný prístup",
@@ -73,5 +75,58 @@
   "registerPageErrorValid-passwordLower": "Heslo musí obsahovať minimálne jedno malé písmeno",
   "registerPageErrorValid-passwordLength": "Heslo musí obsahovať minimálne jedno 6 písmen",
   "registerPageErrorValid-repeatPassword": "Hesla sa nezhodujú",
-  "registerPage-registerError": "Vyplnťe všetky poždavonané polia *"
+  "registerPage-registerError": "Vyplnťe všetky poždavonané polia *",
+
+  "establishmentReg-form-stepOne": "Krok 1: Osobné informácie",
+  "establishmentReg-form-stepTwo": "Krok 2: Informácie podniku",
+  "establishmentReg-form-registerButton": "Zaregistrovať podnik",
+  "establishmentReg-form-logInInfo": "Už máte vytvorený podnik?",
+  "establishmentReg-form-loginButton": "Prihlásiť sa",
+
+  "establishmentReg-personalInfo-firstName": "Krstné meno*",
+  "establishmentReg-personalInfo-lastName": "Priezvisko*",
+  "establishmentReg-personalInfo-phoneNumber": "Telefonné číslo*",
+
+  "establishmentReg-personalInfoError-firstName": "Krstné meno je povinné.",
+  "establishmentReg-personalInfoError-lastName": "Priezvisko je povinné.",
+  "establishmentReg-personalInfoError-emailReq": "Email je povinný.",
+  "establishmentReg-personalInfoError-emailFormat": "Neplatný formát emailu.",
+  "establishmentReg-personalInfoError-phoneNumberReq": "Telefonné číslo je povinné.",
+  "establishmentReg-personalInfoError-phoneNumberFromat": "Neplatný formát telefonného čísla",
+  "establishmentReg-reqFooter": "* - je povinné",
+
+  "establishmentReg-estRegForm-estName": "Názov podniku*",
+  "establishmentReg-estRegForm-tags": "Vyberte tags*",
+  "establishmentReg-estRegForm-city": "Mesto*",
+  "establishmentReg-estRegForm-address": "Adresa*",
+
+  "Select category*": "Vyberte kategóriu*",
+  "Select prize*": "Vyberte rozsah cien*",
+  "CATEGORIES": {
+    "RESTAURANT": "Reštaurácia",
+    "BAR": "Bar",
+    "CINEMA": "Kino",
+    "THEATRE": "Divadlo"
+  },
+  "TAGS": {
+    "SMOKING": "Fajčiarská zóna",
+    "CHILD_FRIENDLY": "Vhodné pre deti",
+    "PET_FRIENDLY": "Vhodné pre zvieratá",
+    "NO_SMOKING": "Nefajčiarska zóna",
+    "NEXTCAT": "Ďalšia kategória",
+    "NEXTTCAT": "Ďalšia podkategória"
+  },
+
+  "establishmentReg-estRegFormError-estName": "Názov podniku je povinný",
+  "establishmentReg-estRegFormError-prizeRange": "Cennový rozsah je povinný",
+  "establishmentReg-estRegFormError-city": "Mesto je povinné",
+  "establishmentReg-estRegFormError-address": "Adresa je povinná",
+
+  "catError": {
+    "maxCat": "Maximálny počet kategórií je 3"
+  },
+
+  "tagError": {
+    "maxTags": "Maximalný počet tagov je 5"
+  }
 }

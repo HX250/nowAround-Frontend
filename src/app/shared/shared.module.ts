@@ -9,6 +9,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { RouterModule } from '@angular/router';
 import { ScrollArrowUpComponent } from './components/scroll-arrow-up/scroll-arrow-up.component';
+import { PopupWindowComponent } from './components/popup-window/popup-window.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -20,6 +21,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeaderComponent,
     NotFoundPageComponent,
     ScrollArrowUpComponent,
+    PopupWindowComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeaderComponent,
     NotFoundPageComponent,
     ScrollArrowUpComponent,
+    PopupWindowComponent,
   ],
 })
 export class SharedModule {}

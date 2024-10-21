@@ -13,6 +13,13 @@ export class EstablishmentRegisterFormComponent {
   error: boolean = false;
   popUpHidden: boolean = true;
   estEmail: string = '';
+  popUpTitle: string = 'Registration Submitted!';
+  popUpMessage: string =
+    'Our team will review the provided information shortly. You will receive an email notification at ' +
+    this.estEmail +
+    ' regarding the status of your registration.';
+  popUpFooterMessage: string =
+    'Thank you for your submission! We look forward to working with you.';
 
   @ViewChild(EstablishmentRegisterComponent)
   establishmentRegisterComponent!: EstablishmentRegisterComponent;

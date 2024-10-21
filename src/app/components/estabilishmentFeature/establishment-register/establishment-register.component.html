@@ -32,9 +32,9 @@
       />
       <div class="flex w-full flex-col gap-4">
         <div class="flex flex-col">
-          <label for="establishmentName" class="font-semibold"
-            >Establishment name*</label
-          >
+          <label for="establishmentName" class="font-semibold">{{
+            "establishmentReg-estRegForm-estName" | translate
+          }}</label>
           <input
             type="text"
             class="rounded-md border border-ang-orange p-1"
@@ -52,11 +52,14 @@
             *ngIf="f['establishmentName'].errors?.['required']"
             class="text-red-600"
           >
-            Establishment name is required.
+            {{ "establishmentReg-estRegFormError-estName" | translate }}
           </div>
         </div>
         <div class="flex flex-col gap-4 sm:flex-row">
           <div class="w-full">
+            <label for="establishmentCategory" class="font-semibold">{{
+              "Select category*" | translate
+            }}</label>
             <select
               #categorySelect
               class="w-full rounded-lg border border-ang-orange p-1"
@@ -65,28 +68,31 @@
               id="establishmentCategory"
               formControlName="establishmentCategory"
             >
-              <option value="" disabled>Select category*</option>
               <option *ngFor="let category of category" [value]="category">
-                {{ category }}
+                {{ "CATEGORIES." + category | translate }}
               </option>
             </select>
-            <p *ngIf="catError" class="text-red-600">{{ catError }}</p>
+            <p *ngIf="catError" class="text-red-600">
+              {{ "catError." + catError | translate }}
+            </p>
             <div
               *ngFor="let category of establishmentCategory"
               class="flex justify-between pb-0.5"
             >
-              <p>{{ category }}</p>
+              <p>{{ "CATEGORIES." + category | translate }}</p>
               <button (click)="removeCategory(category)">X</button>
             </div>
           </div>
           <div class="w-full">
+            <label for="establishmentPrize" class="font-semibold">{{
+              "Select prize*" | translate
+            }}</label>
             <select
               class="w-full rounded-lg border border-ang-orange p-1"
               name="establishmentPrize"
               id="establishmentPrize"
               formControlName="establishmentPrize"
             >
-              <option value="" disabled>Select prize range*</option>
               <option value="€">€</option>
               <option value="€€">€€</option>
               <option value="€€€">€€€</option>
@@ -102,7 +108,7 @@
                 *ngIf="f['establishmentPrize'].errors?.['required']"
                 class="text-red-600"
               >
-                Prize range is required.
+                {{ "establishmentReg-estRegFormError-prizeRange" | translate }}
               </div>
             </div>
           </div>
@@ -111,25 +117,31 @@
     </div>
 
     <div class="flex flex-col gap-4">
-      <h1 class="font-semibold">Select tags*</h1>
+      <h1 class="font-semibold">
+        {{ "establishmentReg-estRegForm-tags" | translate }}
+      </h1>
       <div class="flex flex-wrap items-center gap-5 lg:justify-between">
         <button
-          (click)="addTag(val)"
-          *ngFor="let val of tags"
+          (click)="addTag(tag)"
+          *ngFor="let tag of tags"
           [ngClass]="{
-            'bg-ang-orange text-white': establishmentTags.includes(val),
-            'bg-white text-ang-black': !establishmentTags.includes(val),
+            'bg-ang-orange text-white': establishmentTags.includes(tag),
+            'bg-white text-ang-black': !establishmentTags.includes(tag),
           }"
           class="w-[7.5rem] rounded-md border border-ang-orange px-1 py-0.5 sm:w-32"
         >
-          {{ val }}
+          {{ "TAGS." + tag | translate }}
         </button>
       </div>
     </div>
-    <p *ngIf="tagError" class="text-center">{{ tagError }}</p>
+    <p *ngIf="tagError" class="text-center text-red-600">
+      {{ "tagError." + tagError | translate }}
+    </p>
     <div class="flex flex-col gap-6 sm:flex-row">
       <div class="flex w-full flex-col">
-        <label for="establishmentCity" class="font-semibold">City*</label>
+        <label for="establishmentCity" class="font-semibold">{{
+          "establishmentReg-estRegForm-city" | translate
+        }}</label>
         <input
           type="text"
           class="rounded-md border border-ang-orange p-1"
@@ -146,12 +158,14 @@
             *ngIf="f['establishmentCity'].errors?.['required']"
             class="text-red-600"
           >
-            City is required.
+            {{ "establishmentReg-estRegFormError-city" | translate }}
           </div>
         </div>
       </div>
       <div class="flex w-full flex-col">
-        <label for="establishmentAddress" class="font-semibold">Address*</label>
+        <label for="establishmentAddress" class="font-semibold">{{
+          "establishmentReg-estRegForm-address" | translate
+        }}</label>
         <input
           type="text"
           class="rounded-md border border-ang-orange p-1"
@@ -169,11 +183,11 @@
             *ngIf="f['establishmentAddress'].errors?.['required']"
             class="text-red-600"
           >
-            Address is required.
+            {{ "establishmentReg-estRegFormError-address" | translate }}
           </div>
         </div>
       </div>
     </div>
   </form>
-  <p class="pt-6 text-right">* - is required</p>
+  <p class="pt-6 text-right">{{ "establishmentReg-reqFooter" | translate }}</p>
 </div>

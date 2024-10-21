@@ -9,15 +9,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class EstablishmentRegisterComponent {
   establishmentRegister: FormGroup;
   tags: string[] = [
-    'Smoking',
-    'Child friendly',
-    'Pet friendly',
-    'No smoking',
-    'nextcat',
-    'nexttcat',
+    'SMOKING',
+    'CHILD_FRIENDLY',
+    'PET_FRIENDLY',
+    'NO_SMOKING',
+    'NEXTCAT',
+    'NEXTTCAT',
   ];
   establishmentTags: string[] = [];
-  category = ['Restaurant', 'Bar', 'Cinema', 'Theatre'];
+  category = ['RESTAURANT', 'BAR', 'CINEMA', 'THEATRE'];
   establishmentCategory: string[] = [];
   catError: string = '';
   tagError: string = '';
@@ -43,7 +43,7 @@ export class EstablishmentRegisterComponent {
 
   addCategory(category: string) {
     if (this.establishmentCategory.length === 3) {
-      this.catError = 'Can select only 3 categories';
+      this.catError = 'maxCat';
       return;
     }
     if (!this.establishmentCategory.includes(category)) {
@@ -60,7 +60,7 @@ export class EstablishmentRegisterComponent {
       !this.establishmentTags.includes(val) &&
       this.establishmentTags.length >= 5
     ) {
-      this.tagError = 'You can only select up to 5 tags';
+      this.tagError = 'maxTags';
       return;
     } else {
       this.tagError = '';

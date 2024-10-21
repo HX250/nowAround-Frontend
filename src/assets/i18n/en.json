@@ -37,6 +37,8 @@
   "roleSelectionPage-fc-secondListItem": "No group planning",
   "roleSelectionPage-fc-thirdListItem": "Basic browsing",
   "roleSelectionPage-fc-button": "Continue as a guest",
+  "roleSelectionPage-estText": "Do you want to register an estabilishment?",
+  "roleSelectionPage-estRedirect": "Register now",
 
   "roleSelectionPage-sc-secondCard": "nowAround account",
   "roleSelectionPage-sc-firstListItem": "Full access",
@@ -73,5 +75,58 @@
   "registerPageErrorValid-passwordLower": "Password needs to contain at least one lowercase letter",
   "registerPageErrorValid-passwordLength": "Password needs to have atleast 6 characters",
   "registerPageErrorValid-repeatPassword": "Passwords do not match.",
-  "registerPage-registerError": "Please fill out required fields *"
+  "registerPage-registerError": "Please fill out required fields *",
+
+  "establishmentReg-form-stepOne": "Step 1: Personal information",
+  "establishmentReg-form-stepTwo": "Step 2: Establishment information",
+  "establishmentReg-form-registerButton": "Register establishment",
+  "establishmentReg-form-logInInfo": "Already have an estabilishment?",
+  "establishmentReg-form-loginButton": "Log in",
+
+  "establishmentReg-personalInfo-firstName": "First name*",
+  "establishmentReg-personalInfo-lastName": "Last name*",
+  "establishmentReg-personalInfo-phoneNumber": "Phone Number*",
+
+  "establishmentReg-personalInfoError-firstName": "First name is required.",
+  "establishmentReg-personalInfoError-lastName": "Last name is required.",
+  "establishmentReg-personalInfoError-emailReq": "Email is required.",
+  "establishmentReg-personalInfoError-emailFormat": "Invalid email format.",
+  "establishmentReg-personalInfoError-phoneNumberReq": "Phone number is required.",
+  "establishmentReg-personalInfoError-phoneNumberFromat": "Invalid phone number format.",
+  "establishmentReg-reqFooter": "* - is required",
+
+  "establishmentReg-estRegForm-estName": "Establishment name*",
+  "establishmentReg-estRegForm-tags": "Select tags*",
+  "establishmentReg-estRegForm-city": "City*",
+  "establishmentReg-estRegForm-address": "Address*",
+
+  "Select category*": "Select category*",
+  "Select prize*": "Select prize range*",
+  "CATEGORIES": {
+    "RESTAURANT": "Restaurant",
+    "BAR": "Bar",
+    "CINEMA": "Cinema",
+    "THEATRE": "Theatre"
+  },
+  "TAGS": {
+    "SMOKING": "Smoking area",
+    "CHILD_FRIENDLY": "Child friendly",
+    "PET_FRIENDLY": "Pet friendly",
+    "NO_SMOKING": "No smoking",
+    "NEXTCAT": "Nextcat",
+    "NEXTTCAT": "Nexttcat"
+  },
+
+  "establishmentReg-estRegFormError-estName": "Establishment name is required",
+  "establishmentReg-estRegFormError-prizeRange": "Prize range is required",
+  "establishmentReg-estRegFormError-city": "City is required",
+  "establishmentReg-estRegFormError-address": "Address is required",
+
+  "catError": {
+    "maxCat": "Can select only 3 categories"
+  },
+
+  "tagError": {
+    "maxTags": "You can only select up to 5 tags"
+  }
 }
