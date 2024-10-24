@@ -101,24 +101,40 @@
   "establishmentReg-estRegForm-address": "Adresa*",
 
   "Select category*": "Vyberte kategóriu*",
-  "Select prize*": "Vyberte rozsah cien*",
+  "Select price*": "Vyberte rozsah cien*",
   "CATEGORIES": {
-    "RESTAURANT": "Reštaurácia",
+    "CAFE": "Kaviareň",
     "BAR": "Bar",
+    "NIGHTCLUB": "Nočný klub",
+    "MUSEUM": "Múzeum",
+    "ART_GALLERY": "Galéria",
+    "FESTIVAL": "Festival",
+    "PARK": "Park",
+    "GYM": "Posilňovňa",
     "CINEMA": "Kino",
+    "RESTAURANT": "Reštaurácia",
     "THEATRE": "Divadlo"
   },
   "TAGS": {
-    "SMOKING": "Fajčiarská zóna",
-    "CHILD_FRIENDLY": "Vhodné pre deti",
-    "PET_FRIENDLY": "Vhodné pre zvieratá",
-    "NO_SMOKING": "Nefajčiarska zóna",
-    "NEXTCAT": "Ďalšia kategória",
-    "NEXTTCAT": "Ďalšia podkategória"
+    "PET_FRIENDLY": "Vhodné pre domácich miláčikov",
+    "OUTDOOR_SEATING": "Sedenie vonku",
+    "WIFI_AVAILABLE": "Dostupné Wi-Fi",
+    "RESERVATIONS_ACCEPTED": "Prijímanie rezervácií",
+    "WHEELCHAIR_ACCESSIBLE": "Prístupné pre vozíčkárov",
+    "LIVE_ENTERTAINMENT": "Živá zábava",
+    "TAKEOUT_AVAILABLE": "Možnosť vyzdvihnutia",
+    "PARKING_AVAILABLE": "Parkovanie k dispozícii",
+    "FAMILY_FRIENDLY": "Vhodné pre rodiny",
+    "DAILY_SPECIALS": "Denné špeciály",
+    "BAR_SERVICE": "Obsluha pri bare",
+    "LIVE_SPORTS_VIEWING": "Sledovanie živých športov",
+    "EVENT_HOSTING": "Organizovanie podujatí",
+    "SMOKING_AREA": "Fajčiarska zóna",
+    "NON_SMOKING": "Nefajčiarska zóna"
   },
 
   "establishmentReg-estRegFormError-estName": "Názov podniku je povinný",
-  "establishmentReg-estRegFormError-prizeRange": "Cennový rozsah je povinný",
+  "establishmentReg-estRegFormError-priceRange": "Cennový rozsah je povinný",
   "establishmentReg-estRegFormError-city": "Mesto je povinné",
   "establishmentReg-estRegFormError-address": "Adresa je povinná",
 
@@ -128,5 +144,9 @@
 
   "tagError": {
     "maxTags": "Maximalný počet tagov je 5"
-  }
+  },
+
+  "popUp-estRegisterHeader": "Registrácia odoslaná!",
+  "popUp-estRegisterMess": "Náš tím poskytnuté informácie čoskoro skontroluje. Na adresu <span class='text-ang-orange font-semibold'>{{email}}</span> dostanete e-mailové upozornenie o stave vašej registrácie.",
+  "popUp-estRegisterFooter": "Ďakujeme vám za registráciu! Tešíme sa na spoluprácu."
 }

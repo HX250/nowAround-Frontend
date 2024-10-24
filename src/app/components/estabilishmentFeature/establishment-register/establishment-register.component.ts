@@ -9,15 +9,35 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class EstablishmentRegisterComponent {
   establishmentRegister: FormGroup;
   tags: string[] = [
-    'SMOKING',
-    'CHILD_FRIENDLY',
     'PET_FRIENDLY',
-    'NO_SMOKING',
-    'NEXTCAT',
-    'NEXTTCAT',
+    'OUTDOOR_SEATING',
+    'WIFI_AVAILABLE',
+    'RESERVATIONS_ACCEPTED',
+    'WHEELCHAIR_ACCESSIBLE',
+    'LIVE_ENTERTAINMENT',
+    'TAKEOUT_AVAILABLE',
+    'PARKING_AVAILABLE',
+    'FAMILY_FRIENDLY',
+    'DAILY_SPECIALS',
+    'BAR_SERVICE',
+    'LIVE_SPORTS_VIEWING',
+    'EVENT_HOSTING',
+    'SMOKING_AREA',
+    'NON_SMOKING',
   ];
   establishmentTags: string[] = [];
-  category = ['RESTAURANT', 'BAR', 'CINEMA', 'THEATRE'];
+  category: string[] = [
+    'CAFE',
+    'BAR',
+    'NIGHTCLUB',
+    'MUSEUM',
+    'ART_GALLERY',
+    'FESTIVAL',
+    'PARK',
+    'GYM',
+    'CINEMA',
+    'RESTAURANT',
+  ];
   establishmentCategory: string[] = [];
   catError: string = '';
   tagError: string = '';
@@ -25,10 +45,10 @@ export class EstablishmentRegisterComponent {
 
   constructor(private fb: FormBuilder) {
     this.establishmentRegister = fb.group({
-      establishmentPhoto: [null],
+      establishmentPhoto: [],
       establishmentName: ['', Validators.required],
       establishmentCategory: [[], Validators.required],
-      establishmentPrize: ['', Validators.required],
+      establishmentPrice: ['', Validators.required],
       establishmentAddress: ['', Validators.required],
       establishmentCity: ['', Validators.required],
       establishmentTags: [[], Validators.required],

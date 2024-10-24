@@ -13,11 +13,13 @@ import { UtilsModule } from './components/Utils/utils.module';
 import { UserFeatureModuleModule } from './components/userFeature/user-feature-module.module';
 import { AuthModule } from '@auth0/auth0-angular';
 import { EstFeatureModule } from './components/estabilishmentFeature/est-feature.module';
+import { AdminFeatureModule } from './components/adminFeature/admin-feature.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     EstFeatureModule,
+    AdminFeatureModule,
     SharedModule,
     UtilsModule,
     UserFeatureModuleModule,

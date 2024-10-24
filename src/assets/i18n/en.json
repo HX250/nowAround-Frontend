@@ -101,24 +101,40 @@
   "establishmentReg-estRegForm-address": "Address*",
 
   "Select category*": "Select category*",
-  "Select prize*": "Select prize range*",
+  "Select price*": "Select price range*",
   "CATEGORIES": {
-    "RESTAURANT": "Restaurant",
+    "CAFE": "Cafe",
     "BAR": "Bar",
+    "NIGHTCLUB": "Nightclub",
+    "MUSEUM": "Museum",
+    "ART_GALLERY": "Art gallery",
+    "FESTIVAL": "Festival",
+    "PARK": "Park",
+    "GYM": "Gym",
     "CINEMA": "Cinema",
+    "RESTAURANT": "Restaurant",
     "THEATRE": "Theatre"
   },
   "TAGS": {
-    "SMOKING": "Smoking area",
-    "CHILD_FRIENDLY": "Child friendly",
-    "PET_FRIENDLY": "Pet friendly",
-    "NO_SMOKING": "No smoking",
-    "NEXTCAT": "Nextcat",
-    "NEXTTCAT": "Nexttcat"
+    "PET_FRIENDLY": "Pet-Friendly",
+    "OUTDOOR_SEATING": "Outdoor Seating",
+    "WIFI_AVAILABLE": "Wi-Fi Available",
+    "RESERVATIONS_ACCEPTED": "Reservations Accepted",
+    "WHEELCHAIR_ACCESSIBLE": "Wheelchair Accessible",
+    "LIVE_ENTERTAINMENT": "Live Entertainment",
+    "TAKEOUT_AVAILABLE": "Takeout Available",
+    "PARKING_AVAILABLE": "Parking Available",
+    "FAMILY_FRIENDLY": "Family-Friendly",
+    "DAILY_SPECIALS": "Daily Specials",
+    "BAR_SERVICE": "Bar Service",
+    "LIVE_SPORTS_VIEWING": "Live Sports Viewing",
+    "EVENT_HOSTING": "Event Hosting",
+    "SMOKING_AREA": "Smoking Area",
+    "NON_SMOKING": "Non-Smoking Area"
   },
 
   "establishmentReg-estRegFormError-estName": "Establishment name is required",
-  "establishmentReg-estRegFormError-prizeRange": "Prize range is required",
+  "establishmentReg-estRegFormError-priceRange": "Price range is required",
   "establishmentReg-estRegFormError-city": "City is required",
   "establishmentReg-estRegFormError-address": "Address is required",
 
@@ -128,5 +144,9 @@
 
   "tagError": {
     "maxTags": "You can only select up to 5 tags"
-  }
+  },
+
+  "popUp-estRegisterHeader": "Registration Submitted!",
+  "popUp-estRegisterMess": "Our team will review the provided information shortly. You will receive an email notification at <span class='text-ang-orange font-semibold'>{{email}}</span> regarding the status of your registration.",
+  "popUp-estRegisterFooter": "Thank you for your submission! We look forward to working with you."
 }

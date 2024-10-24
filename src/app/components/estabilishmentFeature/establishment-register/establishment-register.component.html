@@ -72,43 +72,45 @@
                 {{ "CATEGORIES." + category | translate }}
               </option>
             </select>
-            <p *ngIf="catError" class="text-red-600">
+            <p *ngIf="catError" class="py-1 text-red-600">
               {{ "catError." + catError | translate }}
             </p>
-            <div
-              *ngFor="let category of establishmentCategory"
-              class="flex justify-between pb-0.5"
-            >
-              <p>{{ "CATEGORIES." + category | translate }}</p>
-              <button (click)="removeCategory(category)">X</button>
+            <div class="flex flex-col gap-1">
+              <div
+                *ngFor="let category of establishmentCategory"
+                class="flex justify-between"
+              >
+                <p>{{ "CATEGORIES." + category | translate }}</p>
+                <button (click)="removeCategory(category)">X</button>
+              </div>
             </div>
           </div>
           <div class="w-full">
-            <label for="establishmentPrize" class="font-semibold">{{
-              "Select prize*" | translate
+            <label for="establishmentPrice" class="font-semibold">{{
+              "Select price*" | translate
             }}</label>
             <select
               class="w-full rounded-lg border border-ang-orange p-1"
-              name="establishmentPrize"
-              id="establishmentPrize"
-              formControlName="establishmentPrize"
+              name="establishmentPrice"
+              id="establishmentPrice"
+              formControlName="establishmentPrice"
             >
-              <option value="€">€</option>
-              <option value="€€">€€</option>
-              <option value="€€€">€€€</option>
+              <option value="0">€</option>
+              <option value="1">€€</option>
+              <option value="2">€€€</option>
             </select>
             <div
               *ngIf="
-                f['establishmentPrize'].invalid &&
-                (f['establishmentPrize'].dirty ||
-                  f['establishmentPrize'].touched)
+                f['establishmentPrice'].invalid &&
+                (f['establishmentPrice'].dirty ||
+                  f['establishmentPrice'].touched)
               "
             >
               <div
-                *ngIf="f['establishmentPrize'].errors?.['required']"
+                *ngIf="f['establishmentPrice'].errors?.['required']"
                 class="text-red-600"
               >
-                {{ "establishmentReg-estRegFormError-prizeRange" | translate }}
+                {{ "establishmentReg-estRegFormError-priceRange" | translate }}
               </div>
             </div>
           </div>
@@ -120,7 +122,9 @@
       <h1 class="font-semibold">
         {{ "establishmentReg-estRegForm-tags" | translate }}
       </h1>
-      <div class="flex flex-wrap items-center gap-5 lg:justify-between">
+      <div
+        class="flex flex-wrap items-center justify-center gap-5 lg:justify-between"
+      >
         <button
           (click)="addTag(tag)"
           *ngFor="let tag of tags"
@@ -128,7 +132,7 @@
             'bg-ang-orange text-white': establishmentTags.includes(tag),
             'bg-white text-ang-black': !establishmentTags.includes(tag),
           }"
-          class="w-[7.5rem] rounded-md border border-ang-orange px-1 py-0.5 sm:w-32"
+          class="h-20 w-[7.5rem] rounded-md border border-ang-orange px-1 py-0.5 sm:w-32"
         >
           {{ "TAGS." + tag | translate }}
         </button>

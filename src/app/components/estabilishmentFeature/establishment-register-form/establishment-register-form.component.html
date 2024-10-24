@@ -28,9 +28,9 @@
       >
     </p>
     <app-popup-window
-      [title]="popUpTitle"
-      [message]="popUpMessage"
-      [footerMessage]="popUpFooterMessage"
+      [title]="'popUp-estRegisterHeader' | translate"
+      [message]="'popUp-estRegisterMess' | translate: { email: estEmail }"
+      [footerMessage]="'popUp-estRegisterFooter' | translate"
       *ngIf="!popUpHidden"
       class="fixed top-0 z-50 h-full w-full"
     ></app-popup-window>

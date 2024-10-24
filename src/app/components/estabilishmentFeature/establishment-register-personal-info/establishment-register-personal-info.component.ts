@@ -14,10 +14,10 @@ export class EstablishmentRegisterPersonalInfoComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: [
-        '',
-        [Validators.required, Validators.pattern('^[0-9]{10,15}$')],
-      ],
+      //phoneNumber: [
+      //  '',
+      //  [Validators.required, Validators.pattern('^[0-9]{10,15}$')],
+      //],
     });
   }
   get f() {

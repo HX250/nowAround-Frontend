@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './components/Utils/landing-page/landing-page.component';
 import { NotFoundPageComponent } from './shared/components/not-found-page/not-found-page.component';
-import { authGuard } from './services/guards/authGuards/auth.guard';
-import { guestGuard } from './services/guards/guestGuards/guest.guard';
+import { authGuard } from './services/guards/authGuard/auth.guard';
+import { guestGuard } from './services/guards/guestGuard/guest.guard';
 import { HomePageComponent } from './components/Utils/home-page/home-page.component';
 import { UserAccountComponent } from './components/userFeature/user-account/user-account.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { EstabilishmentLoginComponent } from './components/estabilishmentFeature/estabilishment-login/estabilishment-login.component';
 import { EstablishmentRegisterFormComponent } from './components/estabilishmentFeature/establishment-register-form/establishment-register-form.component';
+import { AdminLoginComponent } from './components/adminFeature/admin-login/admin-login.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [authGuard] },
@@ -26,6 +27,7 @@ const routes: Routes = [
     path: 'establishment-login',
     component: EstabilishmentLoginComponent,
   },
+  { path: 'admin-login', component: AdminLoginComponent },
   { path: '**', component: NotFoundPageComponent },
 ];
 

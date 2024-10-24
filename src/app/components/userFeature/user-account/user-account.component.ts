@@ -36,10 +36,6 @@ export class UserAccountComponent {
     this.auth.getAccessTokenSilently({ detailedResponse: true }).subscribe({
       next: (response) => {
         console.log(response.access_token);
-        this.token = response.access_token;
-
-        this.cookieService.set('tkn', this.token);
-        this.cookieService.set('role', 'user');
       },
       error: (error) => {
         console.log(error);

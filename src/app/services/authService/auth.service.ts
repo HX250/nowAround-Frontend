@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular'; // assuming you're using Auth0
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-
+import jwt_decode, { jwtDecode } from 'jwt-decode';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +16,7 @@ export class CustomAuthService {
   ) {}
 
   loginWithRedirect(): void {
-    this.auth.loginWithRedirect().subscribe({
+    this.auth.loginWithPopup().subscribe({
       next: (response) => {
         this.getToken();
       },
@@ -30,10 +30,10 @@ export class CustomAuthService {
     this.auth.getAccessTokenSilently({ detailedResponse: true }).subscribe({
       next: (response) => {
         console.log(response.access_token);
-        this.token = response.access_token;
+        this.token = response.id_token;
 
-        this.cookieService.set('tkn', this.token);
-        this.cookieService.set('role', 'user');
+        const decodedToken = this.getDecodedAccessToken(this.token);
+        this.setRole(decodedToken);
 
         this.router.navigateByUrl('/homepage');
       },
@@ -41,5 +41,19 @@ export class CustomAuthService {
         console.error('Token error:', error);
       },
     });
+  }
+
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwtDecode(token);
+    } catch (Error) {
+      return Error;
+    }
+  }
+
+  setRole(decodedToken: any) {
+    const namespace = 'https://now-around-auth-api/roles';
+    const role = decodedToken[namespace][0];
+    this.cookieService.set('role', role);
   }
 }
