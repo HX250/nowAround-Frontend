@@ -1,0 +1,29 @@
+<div class="relative overflow-x-auto pt-64 sm:rounded-lg">
+  <table class="container m-auto w-fit text-left text-sm text-slate-900">
+    <thead class="bg-gray-200 text-center text-xs uppercase text-gray-700">
+      <tr>
+        <th scope="col" class="px-6 py-3">Establishment ID</th>
+        <th scope="col" class="px-6 py-3">Establishment name</th>
+        <th scope="col" class="px-6 py-3">Owner name</th>
+        <th scope="col" class="px-6 py-3">Accept/Decline</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="border-b text-center odd:bg-gray-400 even:bg-gray-500"
+        *ngFor="let est of establishments"
+      >
+        <th class="px-6 py-4">{{ est.establishmentId }}</th>
+        <td class="px-6 py-4">{{ est.establishmentName }}</td>
+        <td class="px-6 py-4">{{ est.ownerName }}</td>
+        <td class="px-6 py-4">
+          <div class="flex gap-4">
+            <button>Accept</button>
+            <p>/</p>
+            <button>Decline</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

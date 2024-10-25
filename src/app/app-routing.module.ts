@@ -9,11 +9,16 @@ import { UserAccountComponent } from './components/userFeature/user-account/user
 import { AuthGuard } from '@auth0/auth0-angular';
 import { EstabilishmentLoginComponent } from './components/estabilishmentFeature/estabilishment-login/estabilishment-login.component';
 import { EstablishmentRegisterFormComponent } from './components/estabilishmentFeature/establishment-register-form/establishment-register-form.component';
-import { AdminLoginComponent } from './components/adminFeature/admin-login/admin-login.component';
+import { AdminPageComponent } from './components/adminFeature/admin-page/admin-page.component';
+import { adminGuard } from './services/guards/adminGuard/admin.guard';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [authGuard] },
-  { path: 'homepage', component: HomePageComponent, canActivate: [guestGuard] },
+  {
+    path: 'home-page',
+    component: HomePageComponent,
+    canActivate: [guestGuard],
+  },
   {
     path: 'user-account',
     component: UserAccountComponent,
@@ -27,7 +32,11 @@ const routes: Routes = [
     path: 'establishment-login',
     component: EstabilishmentLoginComponent,
   },
-  { path: 'admin-login', component: AdminLoginComponent },
+  {
+    path: 'admin-page',
+    component: AdminPageComponent,
+    canActivate: [adminGuard],
+  },
   { path: '**', component: NotFoundPageComponent },
 ];
 

@@ -1,6 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
+import { CustomAuthService } from 'src/app/services/authService/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +13,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private cookieService: CookieService,
+    public authServ: CustomAuthService,
+    private auth0: AuthService,
   ) {
     this.translate.addLangs(['en', 'sk']);
     this.translate.setDefaultLang('en');
@@ -42,6 +46,15 @@ export class HeaderComponent implements OnInit {
 
   showNavBar() {
     this.isNavBarShown = !this.isNavBarShown;
+  }
+
+  logout(): void {
+    this.auth0.logout({
+      logoutParams: { returnTo: window.location.origin },
+    });
+    this.cookieService.deleteAll();
+    this.authServ.adminAuthorities = false;
+    this.authServ.establishmentAuthorities = false;
   }
 
   @HostListener('document:click', ['$event'])

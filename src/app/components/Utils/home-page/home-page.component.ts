@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
+import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -13,7 +14,7 @@ export class HomePageComponent implements OnInit {
   lat: number = 48.716385;
   lng: number = 21.261074;
 
-  constructor() {}
+  constructor(private cookie: CookieService) {}
 
   ngOnInit(): void {
     (mapboxgl as any).accessToken = environment.MAPBOX_TOKEN;

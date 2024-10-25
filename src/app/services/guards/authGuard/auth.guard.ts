@@ -14,7 +14,7 @@ export const authGuard = () => {
       if (!cookie.get('role') && !isAuth) {
         return true;
       } else {
-        router.navigateByUrl('/homepage');
+        router.navigateByUrl('/home-page');
         return false;
       }
     }),

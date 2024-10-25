@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { CookieService } from 'ngx-cookie-service';
+import { CustomAuthService } from 'src/app/services/authService/auth.service';
 
 @Component({
   selector: 'app-user-account',
@@ -11,11 +12,12 @@ export class UserAccountComponent {
   token: string = '';
 
   constructor(
-    public auth: AuthService,
+    public auth0: AuthService,
+    private authServ: CustomAuthService,
     private cookieService: CookieService,
   ) {}
   logAuth() {
-    this.auth.isAuthenticated$.subscribe({
+    this.auth0.isAuthenticated$.subscribe({
       next: (Resposne) => {
         console.log(Resposne);
       },
@@ -25,15 +27,8 @@ export class UserAccountComponent {
     });
   }
 
-  logout(): void {
-    this.auth.logout({
-      logoutParams: { returnTo: window.location.origin },
-    });
-    this.cookieService.deleteAll();
-  }
-
   getToken(): void {
-    this.auth.getAccessTokenSilently({ detailedResponse: true }).subscribe({
+    this.auth0.getAccessTokenSilently({ detailedResponse: true }).subscribe({
       next: (response) => {
         console.log(response.access_token);
       },
