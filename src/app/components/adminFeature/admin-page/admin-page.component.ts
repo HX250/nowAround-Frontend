@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/services/adminService/admin.service';
 
 interface Establishment {
   establishmentId: number;
@@ -10,7 +11,7 @@ interface Establishment {
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.css'],
 })
-export class AdminPageComponent {
+export class AdminPageComponent implements OnInit {
   establishments: Establishment[] = [
     {
       establishmentId: 1,
@@ -33,4 +34,22 @@ export class AdminPageComponent {
       ownerName: 'David Brown',
     },
   ];
+
+  constructor(private adminService: AdminService) {}
+
+  ngOnInit(): void {
+    this.adminService.getAllPendingEstablishments().subscribe({
+      next: (Response) => {
+        console.log(Response);
+      },
+      error: (Error) => {
+        console.log(Error);
+      },
+    });
+  }
+
+  processEstablishmentRegistration($event: MouseEvent, estID: number) {
+    const buttonText = ($event.target as HTMLButtonElement).innerText;
+    this.adminService.proccessEstablishment(buttonText, estID);
+  }
 }

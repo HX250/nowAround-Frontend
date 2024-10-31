@@ -11,7 +11,10 @@ export const adminGuard = () => {
 
   return authServ.isAuthenticated$.pipe(
     map((isAuth) => {
-      if (cookie.get('role') == 'Admin' && isAuth) {
+      if (
+        (cookie.get('role') == 'Admin' && isAuth) ||
+        (cookie.get('role') == 'Establishment' && isAuth)
+      ) {
         return true;
       } else {
         router.navigateByUrl('/');

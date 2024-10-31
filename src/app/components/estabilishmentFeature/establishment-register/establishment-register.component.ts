@@ -52,6 +52,10 @@ export class EstablishmentRegisterComponent {
       establishmentAddress: ['', Validators.required],
       establishmentCity: ['', Validators.required],
       establishmentTags: [[], Validators.required],
+      establishmentPostalCode: [
+        '',
+        [Validators.required, Validators.pattern('^\\d{3} \\d{2}$')],
+      ],
     });
   }
 

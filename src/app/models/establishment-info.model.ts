@@ -6,4 +6,5 @@ export interface establishmentInfo {
   establishmentAddress: string;
   establishmentCity: string;
   establishmentTags: string[];
+  establishmentPostalCode: string;
 }

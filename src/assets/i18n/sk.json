@@ -100,6 +100,10 @@
   "establishmentReg-estRegForm-tags": "Vyberte tags*",
   "establishmentReg-estRegForm-city": "Mesto*",
   "establishmentReg-estRegForm-address": "Adresa*",
+  "establishmentReg-estRegForm-postalCode": "PSČ*",
+  "establishmentReg-estRegForm-priceRange€": "€: Dostupné možnosti.",
+  "establishmentReg-estRegForm-priceRange€€": "€€: Možnosti strednej kategórie.",
+  "establishmentReg-estRegForm-priceRange€€€": "€€€: Možnosti vyššej kategórie.",
 
   "Select category*": "Vyberte kategóriu*",
   "Select price*": "Vyberte rozsah cien*",
@@ -134,10 +138,12 @@
     "NON_SMOKING": "Nefajčiarska zóna"
   },
 
-  "establishmentReg-estRegFormError-estName": "Názov podniku je povinný",
-  "establishmentReg-estRegFormError-priceRange": "Cennový rozsah je povinný",
-  "establishmentReg-estRegFormError-city": "Mesto je povinné",
-  "establishmentReg-estRegFormError-address": "Adresa je povinná",
+  "establishmentReg-estRegFormError-estName": "Názov podniku je povinný.",
+  "establishmentReg-estRegFormError-priceRange": "Cennový rozsah je povinný.",
+  "establishmentReg-estRegFormError-city": "Mesto je povinné.",
+  "establishmentReg-estRegFormError-address": "Adresa je povinná.",
+  "establishmentReg-estRegFormError-postalCode": "PSČ je povinné.",
+  "establishmentReg-estRegFormError-postalCodeRegex": "Neplatný formát PSČ.",
 
   "catError": {
     "maxCat": "Maximálny počet kategórií je 3"

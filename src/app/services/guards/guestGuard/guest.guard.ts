@@ -11,7 +11,7 @@ export const guestGuard = () => {
 
   return authServ.isAuthenticated$.pipe(
     map((isAuth) => {
-      if (cookie.get('role') && isAuth) {
+      if (cookie.get('role') || isAuth) {
         return true;
       } else {
         router.navigateByUrl('/');

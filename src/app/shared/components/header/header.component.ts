@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
     private translate: TranslateService,
     private cookieService: CookieService,
     public authServ: CustomAuthService,
-    private auth0: AuthService,
+    public auth0: AuthService,
   ) {
     this.translate.addLangs(['en', 'sk']);
     this.translate.setDefaultLang('en');

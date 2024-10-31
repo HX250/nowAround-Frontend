@@ -36,6 +36,7 @@
             "establishmentReg-estRegForm-estName" | translate
           }}</label>
           <input
+            placeholder="Penzión slnečnica"
             type="text"
             class="rounded-md border border-ang-orange p-1"
             id="establishmentName"
@@ -86,9 +87,42 @@
             </div>
           </div>
           <div class="w-full">
-            <label for="establishmentPrice" class="font-semibold">{{
-              "Select price*" | translate
-            }}</label>
+            <div
+              class="relative flex flex-row-reverse items-center justify-end"
+            >
+              <div class="has-tooltip group w-fit">
+                <span
+                  class="tooltip invisible absolute left-0 z-50 -mt-24 w-max rounded border bg-ang-white p-2 text-ang-black shadow-lg group-hover:visible"
+                >
+                  <ul>
+                    <li>
+                      {{
+                        "establishmentReg-estRegForm-priceRange€" | translate
+                      }}
+                    </li>
+                    <li>
+                      {{
+                        "establishmentReg-estRegForm-priceRange€€" | translate
+                      }}
+                    </li>
+                    <li>
+                      {{
+                        "establishmentReg-estRegForm-priceRange€€€" | translate
+                      }}
+                    </li>
+                  </ul></span
+                >
+                <img
+                  src="../assets/icons/i.png"
+                  alt=""
+                  srcset=""
+                  class="h-6 w-6"
+                />
+              </div>
+              <label for="establishmentPrice" class="font-semibold">{{
+                "Select price*" | translate
+              }}</label>
+            </div>
             <select
               class="w-full rounded-lg border border-ang-orange p-1"
               name="establishmentPrice"
@@ -132,7 +166,7 @@
             'bg-ang-orange text-white': establishmentTags.includes(tag),
             'bg-white text-ang-black': !establishmentTags.includes(tag),
           }"
-          class="h-20 w-[7.5rem] rounded-md border border-ang-orange px-1 py-0.5 sm:w-32"
+          class="h-20 w-[7.5rem] rounded-md border border-ang-orange px-1 py-0.5 text-sm sm:w-32"
         >
           {{ "TAGS." + tag | translate }}
         </button>
@@ -141,53 +175,93 @@
     <p *ngIf="tagError" class="text-center text-red-600">
       {{ "tagError." + tagError | translate }}
     </p>
-    <div class="flex flex-col gap-6 sm:flex-row">
-      <div class="flex w-full flex-col">
-        <label for="establishmentCity" class="font-semibold">{{
-          "establishmentReg-estRegForm-city" | translate
-        }}</label>
-        <input
-          type="text"
-          class="rounded-md border border-ang-orange p-1"
-          id="establishmentCity"
-          formControlName="establishmentCity"
-        />
-        <div
-          *ngIf="
-            f['establishmentCity'].invalid &&
-            (f['establishmentCity'].dirty || f['establishmentCity'].touched)
-          "
-        >
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-6 sm:flex-row">
+        <div class="flex w-full flex-col">
+          <label for="establishmentCity" class="font-semibold">{{
+            "establishmentReg-estRegForm-city" | translate
+          }}</label>
+          <input
+            placeholder="Košice"
+            type="text"
+            class="rounded-md border border-ang-orange p-1"
+            id="establishmentCity"
+            formControlName="establishmentCity"
+          />
           <div
-            *ngIf="f['establishmentCity'].errors?.['required']"
-            class="text-red-600"
+            *ngIf="
+              f['establishmentCity'].invalid &&
+              (f['establishmentCity'].dirty || f['establishmentCity'].touched)
+            "
           >
-            {{ "establishmentReg-estRegFormError-city" | translate }}
+            <div
+              *ngIf="f['establishmentCity'].errors?.['required']"
+              class="text-red-600"
+            >
+              {{ "establishmentReg-estRegFormError-city" | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="flex w-full flex-col">
+          <label for="establishmentAddress" class="font-semibold">{{
+            "establishmentReg-estRegForm-address" | translate
+          }}</label>
+          <input
+            placeholder="Hlavná 123"
+            type="text"
+            class="rounded-md border border-ang-orange p-1"
+            id="establishmentAddress"
+            formControlName="establishmentAddress"
+          />
+          <div
+            *ngIf="
+              f['establishmentAddress'].invalid &&
+              (f['establishmentAddress'].dirty ||
+                f['establishmentAddress'].touched)
+            "
+          >
+            <div
+              *ngIf="f['establishmentAddress'].errors?.['required']"
+              class="text-red-600"
+            >
+              {{ "establishmentReg-estRegFormError-address" | translate }}
+            </div>
           </div>
         </div>
       </div>
       <div class="flex w-full flex-col">
-        <label for="establishmentAddress" class="font-semibold">{{
-          "establishmentReg-estRegForm-address" | translate
+        <label for="establishmentPostalCode" class="font-semibold">{{
+          "establishmentReg-estRegForm-postalCode" | translate
         }}</label>
         <input
+          placeholder="040 00"
           type="text"
-          class="rounded-md border border-ang-orange p-1"
-          id="establishmentAddress"
-          formControlName="establishmentAddress"
+          class="w-full rounded-md border border-ang-orange p-1 sm:max-w-52"
+          id="establishmentPostalCode"
+          formControlName="establishmentPostalCode"
         />
         <div
           *ngIf="
-            f['establishmentAddress'].invalid &&
-            (f['establishmentAddress'].dirty ||
-              f['establishmentAddress'].touched)
+            f['establishmentPostalCode'].invalid &&
+            (f['establishmentPostalCode'].dirty ||
+              f['establishmentPostalCode'].touched)
           "
         >
           <div
-            *ngIf="f['establishmentAddress'].errors?.['required']"
+            *ngIf="f['establishmentPostalCode'].errors?.['required']"
             class="text-red-600"
           >
-            {{ "establishmentReg-estRegFormError-address" | translate }}
+            {{ "establishmentReg-estRegFormError-postalCode" | translate }}
+          </div>
+          <div
+            *ngIf="f['establishmentPostalCode'].errors?.['pattern']"
+            class="text-red-600"
+          >
+            <p>
+              {{
+                "establishmentReg-estRegFormError-postalCodeRegex" | translate
+              }}
+            </p>
           </div>
         </div>
       </div>
