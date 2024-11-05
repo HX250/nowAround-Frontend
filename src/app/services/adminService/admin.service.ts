@@ -1,8 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { map, Observable, switchMap } from 'rxjs';
-import { adminReq } from 'src/app/models/admin-est-req.model';
+import { Establishment } from 'src/app/models/admin-est.model';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
@@ -14,23 +14,27 @@ export class AdminService {
     private auth: AuthService,
   ) {}
 
-  getAllPendingEstablishments(): Observable<adminReq> {
+  getAllPendingEstablishments(): Observable<Establishment[]> {
     return this.setHeaders().pipe(
       switchMap((headers) => {
-        return this.http.get<adminReq>(
+        return this.http.get<Establishment[]>(
           `${environment.API_END_POINT}Establishment/pending`,
           { headers, responseType: 'json' },
         );
       }),
     );
   }
+  proccessEstablishment(buttonText: string, estID: string): Observable<any> {
+    const params = new HttpParams()
+      .set('auth0Id', estID)
+      .set('action', buttonText.toLocaleLowerCase());
 
-  proccessEstablishment(buttonText: string, estID: number): Observable<any> {
     return this.setHeaders().pipe(
       switchMap((headers) => {
         return this.http.put<any>(
-          `${environment.API_END_POINT}${estID}/pending/${buttonText}`,
-          { headers, responseType: 'json' },
+          `${environment.API_END_POINT}Establishment/register-status?${params}`,
+          {},
+          { headers },
         );
       }),
     );
@@ -39,7 +43,7 @@ export class AdminService {
   private setHeaders(): Observable<HttpHeaders> {
     return this.auth.getAccessTokenSilently().pipe(
       map((token) => {
-        return new HttpHeaders().set('Authorization', `${token}`);
+        return new HttpHeaders().set('Authorization', `Bearer ${token}`);
       }),
     );
   }

@@ -12,7 +12,7 @@ export const adminGuard = () => {
   return authServ.isAuthenticated$.pipe(
     map((isAuth) => {
       if (
-        (cookie.get('role') == 'Admin' && isAuth) ||
+        cookie.get('role') == 'Admin' ||
         (cookie.get('role') == 'Establishment' && isAuth)
       ) {
         return true;

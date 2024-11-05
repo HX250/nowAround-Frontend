@@ -1,55 +1,42 @@
 import { Component, OnInit } from '@angular/core';
+import { Establishment } from 'src/app/models/admin-est.model';
 import { AdminService } from 'src/app/services/adminService/admin.service';
 
-interface Establishment {
-  establishmentId: number;
-  establishmentName: string;
-  ownerName: string;
-}
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.css'],
 })
 export class AdminPageComponent implements OnInit {
-  establishments: Establishment[] = [
-    {
-      establishmentId: 1,
-      establishmentName: 'Cafe Delight',
-      ownerName: 'Alice Johnson',
-    },
-    {
-      establishmentId: 2,
-      establishmentName: 'Bistro Central',
-      ownerName: 'Bob Smith',
-    },
-    {
-      establishmentId: 3,
-      establishmentName: 'The Foodie Spot',
-      ownerName: 'Carol White',
-    },
-    {
-      establishmentId: 4,
-      establishmentName: 'Gourmet Kitchen',
-      ownerName: 'David Brown',
-    },
-  ];
+  establishments: Establishment[] = [];
 
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
+    this.loadPendingEstablishments();
+  }
+
+  loadPendingEstablishments(): void {
     this.adminService.getAllPendingEstablishments().subscribe({
-      next: (Response) => {
-        console.log(Response);
+      next: (response) => {
+        console.log(response);
+        this.establishments = response;
       },
-      error: (Error) => {
-        console.log(Error);
+      error: (error) => {
+        console.error('Error fetching establishments:', error);
       },
     });
   }
 
-  processEstablishmentRegistration($event: MouseEvent, estID: number) {
+  processEstablishmentRegistration($event: MouseEvent, estID: string) {
     const buttonText = ($event.target as HTMLButtonElement).innerText;
-    this.adminService.proccessEstablishment(buttonText, estID);
+    this.adminService.proccessEstablishment(buttonText, estID).subscribe({
+      next: (response) => {
+        this.loadPendingEstablishments();
+      },
+      error: (error) => {
+        console.error('Error processing establishment:', error);
+      },
+    });
   }
 }

@@ -45,14 +45,14 @@ export class EstablishmentRegisterComponent {
 
   constructor(private fb: FormBuilder) {
     this.establishmentRegister = fb.group({
-      establishmentPhoto: [],
-      establishmentName: ['', Validators.required],
-      establishmentCategory: [[], Validators.required],
-      establishmentPrice: ['', Validators.required],
-      establishmentAddress: ['', Validators.required],
-      establishmentCity: ['', Validators.required],
-      establishmentTags: [[], Validators.required],
-      establishmentPostalCode: [
+      photo: [],
+      name: ['', Validators.required],
+      category: [[], Validators.required],
+      priceCategory: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      tags: [[], Validators.required],
+      postalCode: [
         '',
         [Validators.required, Validators.pattern('^\\d{3} \\d{2}$')],
       ],
@@ -75,7 +75,7 @@ export class EstablishmentRegisterComponent {
     }
 
     this.establishmentRegister.patchValue({
-      establishmentCategory: this.establishmentCategory,
+      category: this.establishmentCategory,
     });
   }
 
@@ -97,7 +97,7 @@ export class EstablishmentRegisterComponent {
     }
 
     this.establishmentRegister.patchValue({
-      establishmentTags: this.establishmentTags,
+      tags: this.establishmentTags,
     });
   }
 
@@ -113,7 +113,7 @@ export class EstablishmentRegisterComponent {
         this.previewImage = reader.result as string;
 
         this.establishmentRegister.patchValue({
-          establishmentPhoto: formData,
+          photo: formData,
         });
       };
     }

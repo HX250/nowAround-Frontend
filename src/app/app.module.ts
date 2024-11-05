@@ -14,10 +14,12 @@ import { UserFeatureModuleModule } from './components/userFeature/user-feature-m
 import { AuthModule } from '@auth0/auth0-angular';
 import { EstFeatureModule } from './components/estabilishmentFeature/est-feature.module';
 import { AdminFeatureModule } from './components/adminFeature/admin-feature.module';
+import { MapFeatureModule } from './components/mapFeature/map-feature.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    MapFeatureModule,
     EstFeatureModule,
     AdminFeatureModule,
     SharedModule,
@@ -38,6 +40,7 @@ import { AdminFeatureModule } from './components/adminFeature/admin-feature.modu
       clientId: 'TWbSxEXDyHxzzPXExKOyRvGUPGlsh2Px',
       authorizationParams: {
         redirect_uri: window.location.origin,
+        audience: 'https://now-around-auth-api/',
       },
     }),
   ],

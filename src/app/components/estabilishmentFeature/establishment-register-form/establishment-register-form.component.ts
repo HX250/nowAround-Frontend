@@ -29,6 +29,7 @@ export class EstablishmentRegisterFormComponent {
 
     if (personalValid && establishmentValid) {
       const completeFormData = { personalInfo, establishmentInfo };
+
       this.estService
         .registerEstablishment(completeFormData)
         .pipe(take(1))

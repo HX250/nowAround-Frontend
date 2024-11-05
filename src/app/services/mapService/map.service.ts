@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class MapService {
   constructor(private http: HttpClient) {}
-
   getEstablishmentsInArea(pins: pins): Observable<any> {
     const params = new HttpParams()
       .set('northWestLat', pins.northWest.lat.toString())
@@ -19,7 +18,7 @@ export class MapService {
       .set('southEastLong', pins.southEast.lng.toString());
 
     return this.http.get<any>(
-      `${environment.API_END_POINT}Establishment/search/pins`,
+      `${environment.API_END_POINT}Establishment/search-area`,
       {
         params,
       },

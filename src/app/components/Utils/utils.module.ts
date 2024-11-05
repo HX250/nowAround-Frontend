@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { UserFeatureModuleModule } from '../userFeature/user-feature-module.module';
 import { SharedModule } from '../../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { MapFeatureModule } from '../mapFeature/map-feature.module';
 
 @NgModule({
   declarations: [HomePageComponent, LandingPageComponent],
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
     UserFeatureModuleModule,
     SharedModule,
     RouterModule,
+    MapFeatureModule,
   ],
   exports: [LandingPageComponent, HomePageComponent],
 })

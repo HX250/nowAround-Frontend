@@ -1,0 +1,78 @@
+<div class="relative h-full w-full rounded-t-xl bg-ang-orange md:rounded-none">
+  <div
+    class="absolute -top-1 left-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-ang-white md:-right-12 md:left-auto md:top-1/2 md:-translate-y-1/2 md:translate-x-0"
+  >
+    <button
+      (click)="toggleFilterWindow()"
+      class="h-16 w-16 rounded-full border-2 border-ang-white bg-ang-orange text-center"
+    >
+      <img
+        *ngIf="filterWindow"
+        src="../assets/icons/filter/close.png"
+        class="m-auto h-6 w-6"
+        alt=""
+        srcset=""
+      />
+      <img
+        *ngIf="!filterWindow"
+        src="../assets/icons/filter/filter.png"
+        class="m-auto h-8 w-8"
+        alt=""
+        srcset=""
+      />
+    </button>
+  </div>
+  <form
+    [formGroup]="filterForm"
+    class="flex h-full flex-col gap-3 overflow-y-scroll p-2"
+    *ngIf="filterWindow"
+  >
+    <div class="flex items-center gap-2">
+      <img
+        src="../assets/icons/filter/filter.png"
+        class="h-6 w-6"
+        alt=""
+        srcset=""
+      />
+      <h1 class="text-xl font-semibold">Filter by:</h1>
+    </div>
+    <div class="flex flex-col gap-1">
+      <label for="searchByName" class="font-semibold">Name:</label>
+      <input
+        formControlName="searchByName"
+        type="search"
+        name="searchByName"
+        id="searchByName"
+        class="rounded-md p-1"
+      />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label for="byPriceRange" class="font-semibold">Price range:</label>
+      <select
+        formControlName="byPriceRange"
+        name="byPriceRange"
+        id="byPriceRange"
+        class="rounded-md p-1.5"
+      >
+        <option value=""></option>
+        <option value="0">€</option>
+        <option value="1">€€</option>
+        <option value="2">€€€</option>
+      </select>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label for="byCategory" class="font-semibold">Category:</label>
+      <select
+        name="byCategory"
+        id="byCategory"
+        formControlName="byCategory"
+        class="rounded-md p-1.5"
+      >
+        <option *ngFor="let category of category" [value]="category">
+          {{ "CATEGORIES." + category | translate }}
+        </option>
+      </select>
+    </div>
+  </form>
+</div>

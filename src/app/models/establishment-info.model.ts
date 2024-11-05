@@ -1,10 +1,10 @@
 export interface establishmentInfo {
-  establishmentPhoto: FormData | null;
-  establishmentName: string;
-  establishmentCategory: string[];
-  establishmentPrize: string;
-  establishmentAddress: string;
-  establishmentCity: string;
-  establishmentTags: string[];
-  establishmentPostalCode: string;
+  photo: FormData | null;
+  name: string;
+  category: string[];
+  prize: string;
+  address: string;
+  city: string;
+  tags: string[];
+  postalCode: string;
 }
