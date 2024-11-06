@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MapComponent } from '../../mapFeature/map/map.component';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent {
+  @ViewChild(MapComponent) mapComponent!: MapComponent;
+
   isFilterWindowShown: boolean = true;
-  updateWindowBool($event: boolean) {
+  updateWindowBool() {
     this.isFilterWindowShown = !this.isFilterWindowShown;
   }
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  onFiltersChanged() {
+    this.mapComponent.updateFilteredMarkers();
   }
 }

@@ -1,9 +1,10 @@
 <div class="relative mt-14 flex h-[94.7svh] items-center justify-center">
   <app-filter
-    (updateFilterWindow)="updateWindowBool($event)"
+    (filtersChanged)="onFiltersChanged()"
+    (updateFilterWindow)="updateWindowBool()"
     class="absolute bottom-0 z-10 w-full px-8 transition-all md:left-0 md:h-[94.7svh] md:px-0"
     [ngClass]="{
-      'h-[45rem] md:w-96': isFilterWindowShown,
+      'h-4/5 md:w-96': isFilterWindowShown,
       'h-16 md:w-10': !isFilterWindowShown,
     }"
   ></app-filter>

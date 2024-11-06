@@ -84,6 +84,14 @@ export class MapComponent {
     });
   }
 
+  updateFilteredMarkers(): void {
+    this.removeAllMarkers();
+    const bounds = this.map?.getBounds();
+    if (bounds) {
+      this.callMapService(this.getCornersCords(bounds));
+    }
+  }
+
   extendBounds(bounds: any, bufferPercentage: number): mapboxgl.LngLatBounds {
     const latDiff = (bounds.getNorth() - bounds.getSouth()) * bufferPercentage;
     const lngDiff = (bounds.getEast() - bounds.getWest()) * bufferPercentage;
@@ -175,7 +183,7 @@ export class MapComponent {
     >
       <path d="M12 2C8.13 2 5 5.13 5 9c0 4.25 4.44 10.74 6.1 13.02.42.63 1.38.63 1.8 0C14.56 19.74 19 13.25 19 9c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
     </svg>
-    <p style="margin: 0 0 0 0; font-size: 14px; color: black; text-align: center;">${estName}</p>
+    <p  style="margin: 0 0 0 0; font-size: 14px; color: black; text-align: center;">${estName}</p>
   `;
 
     const marker = new mapboxgl.Marker(markerElement)

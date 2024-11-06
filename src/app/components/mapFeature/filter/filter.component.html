@@ -1,6 +1,6 @@
 <div class="relative h-full w-full rounded-t-xl bg-ang-orange md:rounded-none">
   <div
-    class="absolute -top-1 left-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-ang-white md:-right-12 md:left-auto md:top-1/2 md:-translate-y-1/2 md:translate-x-0"
+    class="absolute -top-1 left-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-ang-white md:-right-14 md:left-auto md:top-1/2 md:-translate-y-1/2 md:translate-x-0"
   >
     <button
       (click)="toggleFilterWindow()"
@@ -27,7 +27,7 @@
     class="flex h-full flex-col gap-3 overflow-y-scroll p-2"
     *ngIf="filterWindow"
   >
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 pt-6 sm:pt-0">
       <img
         src="../assets/icons/filter/filter.png"
         class="h-6 w-6"
@@ -69,10 +69,25 @@
         formControlName="byCategory"
         class="rounded-md p-1.5"
       >
+        <option value=""></option>
         <option *ngFor="let category of category" [value]="category">
           {{ "CATEGORIES." + category | translate }}
         </option>
       </select>
+    </div>
+    <p class="font-semibold">Tags:</p>
+    <div class="flex flex-wrap items-center justify-start gap-1">
+      <button
+        *ngFor="let tag of tags"
+        (click)="addTag(tag)"
+        [ngClass]="{
+          'bg-ang-orange text-white': chosenTags.includes(tag),
+          'bg-white text-ang-black': !chosenTags.includes(tag),
+        }"
+        class="h-16 w-[7rem] rounded-md border border-ang-orange px-1 py-0.5 text-sm"
+      >
+        {{ "TAGS." + tag | translate }}
+      </button>
     </div>
   </form>
 </div>

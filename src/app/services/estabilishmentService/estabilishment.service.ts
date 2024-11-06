@@ -12,8 +12,10 @@ export class EstabilishmentService {
   registerEstablishment(
     completeFormData: CompleteFormData,
   ): Observable<HttpResponse<any>> {
+    completeFormData.establishmentInfo.address =
+      completeFormData.establishmentInfo.address.replace(/\//g, '-');
     return this.http.post<any>(
-      `${environment.API_END_POINT}/Establishment`,
+      `${environment.API_END_POINT}/Establishmeent`,
       completeFormData,
       {
         observe: 'response',
