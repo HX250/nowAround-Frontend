@@ -60,7 +60,7 @@
             <p>{{ "PROFILE" | translate }}</p>
           </li>
           <li
-            *ngIf="!auth0.isAuthenticated$"
+            *ngIf="auth0.isAuthenticated$ | async"
             routerLinkActive="text-ang-orange"
             (click)="logout()"
             class="p-4 hover:cursor-pointer hover:text-ang-orange"
