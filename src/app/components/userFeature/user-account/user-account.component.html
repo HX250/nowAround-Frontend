@@ -1,9 +1,44 @@
-<div class="pt-16">
-  <p>user-account works!</p>
-  <div *ngIf="auth0.user$ | async as user">
-    <p>{{ user.nickname }}</p>
-    <p>{{ user.email }}</p>
+<section class="h-full min-h-[100svh] w-full overflow-hidden bg-ang-white">
+  <div class="flex flex-col">
+    <img
+      src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw5fHxjb3ZlcnxlbnwwfDB8fHwxNzEwNzQxNzY0fDA&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="User Cover"
+      class="h-60 w-full"
+    />
+    <div class="container mx-auto px-2">
+      <div
+        class="relative bottom-14 flex flex-col items-center border-b-2 border-ang-orange sm:bottom-0 sm:flex-row sm:items-start"
+        *ngIf="auth0.user$ | async as user"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw3fHxwZW9wbGV8ZW58MHwwfHx8MTcxMTExMTM4N3ww&ixlib=rb-4.0.3&q=80&w=1080"
+          alt="User Profile"
+          class="relative bottom-0 h-40 w-40 rounded-md outline outline-2 outline-offset-2 outline-ang-orange sm:bottom-[76px]"
+        />
+
+        <div
+          class="flex flex-col items-center justify-center gap-2 p-4 text-ang-black"
+        >
+          <h1 class="w-full text-left text-4xl">
+            {{ user.given_name }} {{ user.family_name }}
+          </h1>
+
+          <ul class="flex gap-4">
+            <li
+              [routerLink]="['/user-account/about']"
+              routerLinkActive="text-ang-orange"
+              class="cursor-pointer"
+            >
+              About
+            </li>
+            <li>Events</li>
+            <li>Calendar</li>
+            <li>Follows</li>
+          </ul>
+        </div>
+      </div>
+
+      <router-outlet></router-outlet>
+    </div>
   </div>
-</div>
-<button (click)="logAuth()">Click</button>
-<button (click)="getToken()">Token</button>
+</section>

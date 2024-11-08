@@ -12,6 +12,7 @@ import { EstablishmentRegisterFormComponent } from './components/estabilishmentF
 import { AdminPageComponent } from './components/adminFeature/admin-page/admin-page.component';
 import { adminGuard } from './services/guards/adminGuard/admin.guard';
 import { loginGuard } from './services/guards/loginGuard/login.guard';
+import { UserAccountAboutComponent } from './components/userFeature/user-account-about/user-account-about.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [authGuard] },
@@ -24,6 +25,7 @@ const routes: Routes = [
     path: 'user-account',
     component: UserAccountComponent,
     canActivate: [loginGuard],
+    children: [{ path: 'about', component: UserAccountAboutComponent }],
   },
   {
     path: 'establishment-register',
