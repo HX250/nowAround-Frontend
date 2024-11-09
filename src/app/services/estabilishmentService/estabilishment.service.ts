@@ -15,7 +15,7 @@ export class EstabilishmentService {
     completeFormData.establishmentInfo.address =
       completeFormData.establishmentInfo.address.replace(/\//g, '-');
     return this.http.post<any>(
-      `${environment.API_END_POINT}/Establishmeent`,
+      `${environment.API_END_POINT}/Establishment`,
       completeFormData,
       {
         observe: 'response',

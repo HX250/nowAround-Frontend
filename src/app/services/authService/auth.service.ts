@@ -28,7 +28,7 @@ export class CustomAuthService {
         console.error('Login error:', error);
       },
       complete: () => {
-        location.reload();
+        this.router.navigateByUrl('home-page');
       },
     });
   }

@@ -3,7 +3,7 @@
   (click)="closeRoleSelection()"
 >
   <div
-    class="relative flex h-fit w-fit flex-col gap-5 rounded-lg bg-ang-white p-6"
+    class="relative top-5 flex h-fit w-fit flex-col gap-5 rounded-lg bg-ang-white p-6 md:top-0"
   >
     <button
       (click)="closeModalWindow()"
@@ -18,7 +18,8 @@
       class="flex flex-col items-center justify-evenly gap-6 md:flex-row md:gap-10"
     >
       <div
-        class="flex h-full max-w-96 flex-col items-center justify-between rounded-md border border-ang-orange md:h-80"
+        *ngIf="!(auth.user$ | async)"
+        class="flex h-full w-full flex-col items-center justify-between rounded-md border border-ang-orange md:h-80 md:w-[340px]"
       >
         <h3
           class="flex h-16 w-full items-center justify-center border-b border-b-ang-orange text-ang-black"
@@ -38,13 +39,13 @@
         </ul>
         <button
           class="secondary-buttons m-4 border border-ang-orange"
-          (click)="guestAccountButton()"
+          routerLink="home-page"
         >
           {{ "roleSelectionPage-fc-button" | translate }}
         </button>
       </div>
       <div
-        class="flex h-full max-w-96 flex-col items-center justify-between rounded-md border border-ang-orange md:h-80"
+        class="flex h-full w-full flex-col items-center justify-between rounded-md border border-ang-orange md:h-80 md:w-[340px]"
       >
         <h3
           class="flex h-16 w-full items-center justify-center rounded-t-md border-b border-b-ang-orange bg-ang-orange text-ang-black"

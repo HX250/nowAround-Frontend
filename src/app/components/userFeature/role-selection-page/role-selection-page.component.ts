@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '@auth0/auth0-angular';
 import { CustomAuthService } from 'src/app/services/authService/auth.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class RoleSelectionPageComponent {
 
   constructor(
     private authServ: CustomAuthService,
-    private cookieService: CookieService,
+    public auth: AuthService,
   ) {}
 
   closeRoleSelection() {
@@ -26,11 +26,6 @@ export class RoleSelectionPageComponent {
   closeModalWindow() {
     this.windowShown = !this.windowShown;
     this.updatedWindowShown.emit(this.windowShown);
-  }
-
-  guestAccountButton() {
-    this.cookieService.set('role', 'guest');
-    window.location.reload();
   }
 
   loginWithRedirect(): void {

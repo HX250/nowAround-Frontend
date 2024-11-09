@@ -10,12 +10,12 @@ import { pins } from 'src/app/models/pins.model';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent {
-  map: mapboxgl.Map | undefined;
+  map!: mapboxgl.Map | undefined;
   private markers: { marker: mapboxgl.Marker; id: string }[] = [];
   style = 'mapbox://styles/mapbox/light-v11';
-  lastBounds: mapboxgl.LngLatBounds | null | undefined = null;
-  lat: number = 48.716385;
-  lng: number = 21.261074;
+  lastBounds: mapboxgl.LngLatBounds | null = null;
+  lat: number = 48.71847597430053;
+  lng: number = 21.259273191588672;
   bufferZone: number = 0.15;
 
   constructor(private mapService: MapService) {}
@@ -23,17 +23,7 @@ export class MapComponent {
   ngOnInit(): void {
     (mapboxgl as any).accessToken = environment.MAPBOX_TOKEN;
 
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-        this.initializeMap();
-      },
-      (error) => {
-        console.error('Geolocation error: ', error);
-        this.initializeMap();
-      },
-    );
+    this.setUserLocation();
   }
 
   initializeMap(): void {
@@ -82,6 +72,20 @@ export class MapComponent {
     this.map.on('zoom', () => {
       this.checkZoomLevel();
     });
+  }
+
+  setUserLocation(): void {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+        this.initializeMap();
+      },
+      (error) => {
+        console.error('Geolocation error: ', error);
+        this.initializeMap();
+      },
+    );
   }
 
   updateFilteredMarkers(): void {

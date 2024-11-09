@@ -23,7 +23,7 @@ export class MapService {
       .set('southEastLat', pins.southEast.lat.toString())
       .set('southEastLong', pins.southEast.lng.toString())
       .set('name', this.filterParams.name)
-      //.set('priceRange', this.filterParams.byPriceRange)
+      .set('priceRange', this.filterParams.byPriceRange)
       .set('categoryName', this.filterParams.categoryName)
       .set('tagNames', this.filterParams.tagNames.join(','));
 

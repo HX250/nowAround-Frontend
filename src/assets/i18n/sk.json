@@ -6,20 +6,20 @@
   "LOG OUT": "Odhlásiť sa",
 
   "landingPage-heading": "Objavte najlepšie udalosti vo vašom okolí",
-  "landingPage-info": "nowAround je vaša aplikácia, ktorá vám umožní nájsť a zažiť najnovšie udalosti, ponuky a aktivity, ktoré sa dejú okolo vás.",
+  "landingPage-info": "nowAround je vaša aplikácia, ktorá vám umožní nájsť a zažiť najnovšie udalosti, ponuky a aktivity, ktoré sa dejú okolo vás",
   "landingPage-getStarted": "Začať",
-  "landingPage-learnMore": "Dozvedieť sa viac",
+  "landingPage-learnMore": "Ako to funguje?",
 
   "landingPage-firstSectionHeader": "Ako nájsť zaujímavé udalosti a aktivity vo svojom okolí?",
 
   "landingPage-firstCardHeader": "Vyberte si lokalitu",
-  "landingPage-firstCardText": "Ľahko si vyberte svoju aktuálnu polohu alebo akúkoľvek oblasť vášho záujmu, v ktorej chcete vidieť čo sa deje nablízku.",
+  "landingPage-firstCardText": "Ľahko si vyberte svoju aktuálnu polohu alebo akúkoľvek oblasť vášho záujmu, v ktorej chcete vidieť čo sa deje nablízku",
 
   "landingPage-secondCardHeader": "Vyberte si miesto záujmu",
-  "landingPage-secondCardText": "Prehliadnite si rôzne zariadenia, ako sú reštaurácie, bary, kaviarne, divadlá a podobne.",
+  "landingPage-secondCardText": "Prehliadnite si rôzne zariadenia, ako sú reštaurácie, bary, kaviarne, divadlá a podobne",
 
   "landingPage-thirdCardHeader": "Užite si svoj čas",
-  "landingPage-thirdCardText": "Zdieľajte vzrušujúce udalosti s priateľmi, plánujte skupinové výlety a spravte zo svojho dňa čo najviac.",
+  "landingPage-thirdCardText": "Zdieľajte vzrušujúce udalosti s priateľmi, plánujte skupinové výlety a spravte zo svojho dňa čo najviac",
 
   "landingPage-secondSectionHeader": "Zažite to najlepšie zo svojho mesta s nowAround",
   "landingPage-secondSectionInfo": "nowAround poskytuje pohodlný spôsob, ako byť informovaný o nadchádzajúcich udalostiach, denných menu a aktivitách v miestnych zariadeniach. Vďaka funkciám zdieľania na sociálnych sieťach môžete jednoducho zdieľať svoje záujmy s priateľmi a plánovať skupinové aktivity.",
@@ -30,14 +30,14 @@
 
   "landingPage-secondSectionButton": "Prihlásiť sa",
 
-  "landingPage-thirdSectionHeader": "Objavte udalosti a aktivity v okolí",
-  "landingPage-thirdSectionText": "Zostaňte v spojení s aplikáciou NowAround a nikdy nezmeškáte miestne udalosti.",
+  "landingPage-thirdSectionHeader": "Nikdy nezmeškajte miestne udalosti",
+  "landingPage-thirdSectionText": "Zostaňte v spojení s aplikáciou NowAround a nikdy nezmeškáte miestne udalosti",
 
   "roleSelectionPage-fc-firstCard": "Hosť",
   "roleSelectionPage-fc-firstListItem": "Limitovaný prístup",
   "roleSelectionPage-fc-secondListItem": "Žiadne skupinové plánovanie",
   "roleSelectionPage-fc-thirdListItem": "Jednoduché prehliadanie",
-  "roleSelectionPage-fc-button": "Pokračovať ako hosť",
+  "roleSelectionPage-fc-button": "Hosťovský účet",
   "roleSelectionPage-estText": "Chcete si zaregistrovať svoj podnik?",
   "roleSelectionPage-estRedirect": "Zaregistruj teraz",
 
@@ -48,7 +48,7 @@
   "roleSelectionPage-sc-fourthListItem": "Upozornenia",
   "roleSelectionPage-sc-button": "nowAround účet",
 
-  "footer-menuBarEvents": "Události",
+  "footer-menuBarEvents": "Udalosti",
   "footer-menuBarMenus": "Menu",
   "footer-menuBarActivities": "Aktivity",
   "footer-menuBarShare": "Zdieľajte",
@@ -94,7 +94,7 @@
   "establishmentReg-personalInfoError-emailFormat": "Neplatný formát emailu.",
   "establishmentReg-personalInfoError-phoneNumberReq": "Telefonné číslo je povinné.",
   "establishmentReg-personalInfoError-phoneNumberFromat": "Neplatný formát telefonného čísla",
-  "establishmentReg-reqFooter": "* - je povinné",
+  "establishmentReg-reqFooter": "* - povinné",
 
   "establishmentReg-estRegForm-estName": "Názov podniku*",
   "establishmentReg-estRegForm-tags": "Vyberte tags*",
@@ -155,5 +155,11 @@
 
   "popUp-estRegisterHeader": "Registrácia odoslaná!",
   "popUp-estRegisterMess": "Náš tím poskytnuté informácie čoskoro skontroluje. Na adresu <span class='text-ang-orange font-semibold'>{{email}}</span> dostanete e-mailové upozornenie o stave vašej registrácie.",
-  "popUp-estRegisterFooter": "Ďakujeme vám za registráciu! Tešíme sa na spoluprácu."
+  "popUp-estRegisterFooter": "Ďakujeme vám za registráciu! Tešíme sa na spoluprácu.",
+
+  "filter-heading": "Filtrovať podľa:",
+  "filter-name": "Názvu:",
+  "filter-byPrice": "Cennovej dostupnosti:",
+  "filter-byCategory": "kategórie:",
+  "filter-byTags": "Tagov:"
 }

@@ -19,7 +19,6 @@ export class AdminPageComponent implements OnInit {
   loadPendingEstablishments(): void {
     this.adminService.getAllPendingEstablishments().subscribe({
       next: (response) => {
-        console.log(response);
         this.establishments = response;
       },
       error: (error) => {

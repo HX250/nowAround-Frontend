@@ -34,10 +34,12 @@
         alt=""
         srcset=""
       />
-      <h1 class="text-xl font-semibold">Filter by:</h1>
+      <h1 class="text-xl font-semibold">{{ "filter-heading" | translate }}</h1>
     </div>
     <div class="flex flex-col gap-1">
-      <label for="searchByName" class="font-semibold">Name:</label>
+      <label for="searchByName" class="font-semibold">{{
+        "filter-name" | translate
+      }}</label>
       <input
         formControlName="searchByName"
         type="search"
@@ -47,44 +49,67 @@
       />
     </div>
     <div class="flex flex-col gap-1">
-      <label for="byPriceRange" class="font-semibold">Price range:</label>
-      <select
-        formControlName="byPriceRange"
-        name="byPriceRange"
-        id="byPriceRange"
-        class="rounded-md p-1.5 shadow-md"
-      >
-        <option value=""></option>
-        <option value="0">€</option>
-        <option value="1">€€</option>
-        <option value="2">€€€</option>
-      </select>
+      <label for="byPriceRange" class="font-semibold">{{
+        "filter-byPrice" | translate
+      }}</label>
+      <div class="relative flex items-center">
+        <select
+          formControlName="byPriceRange"
+          name="byPriceRange"
+          id="byPriceRange"
+          class="w-full rounded-md p-1.5 shadow-md"
+        >
+          <option value="0">€</option>
+          <option value="1">€€</option>
+          <option value="2">€€€</option>
+        </select>
+        <button
+          *ngIf="filterForm.get('byPriceRange')?.value"
+          type="button"
+          (click)="filterForm.patchValue({ byPriceRange: '' })"
+          class="absolute right-7 text-gray-500 hover:text-gray-700"
+        >
+          X
+        </button>
+      </div>
     </div>
 
     <div class="flex flex-col gap-1">
-      <label for="byCategory" class="font-semibold">Category:</label>
-      <select
-        name="byCategory"
-        id="byCategory"
-        formControlName="byCategory"
-        class="rounded-md p-1.5 shadow-md"
-      >
-        <option value=""></option>
-        <option *ngFor="let category of category" [value]="category">
-          {{ "CATEGORIES." + category | translate }}
-        </option>
-      </select>
+      <label for="byCategory" class="font-semibold">{{
+        "filter-byCategory" | translate
+      }}</label>
+      <div class="relative flex items-center">
+        <select
+          name="byCategory"
+          id="byCategory"
+          formControlName="byCategory"
+          class="w-full rounded-md p-1.5 shadow-md"
+        >
+          <option *ngFor="let category of category" [value]="category">
+            {{ "CATEGORIES." + category | translate }}
+          </option>
+        </select>
+        <button
+          *ngIf="filterForm.get('byCategory')?.value"
+          type="button"
+          (click)="filterForm.patchValue({ byCategory: '' })"
+          class="absolute right-7 text-gray-500 hover:text-gray-700"
+        >
+          X
+        </button>
+      </div>
     </div>
-    <p class="font-semibold">Tags:</p>
+    <p class="font-semibold">{{ "filter-byTags" | translate }}</p>
     <div class="flex flex-wrap items-center justify-start gap-1">
       <button
         *ngFor="let tag of tags"
         (click)="addTag(tag)"
+        type="button"
         [ngClass]="{
           'bg-ang-orange text-white': chosenTags.includes(tag),
           'bg-white text-ang-black': !chosenTags.includes(tag),
         }"
-        class="h-16 w-[7rem] rounded-md border border-ang-orange px-1 py-0.5 text-sm shadow-md"
+        class="h-16 w-[7rem] rounded-md border border-ang-orange px-1 py-0.5 text-center text-sm shadow-md"
       >
         {{ "TAGS." + tag | translate }}
       </button>

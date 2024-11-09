@@ -6,22 +6,22 @@
   "LOG OUT": "Log out",
 
   "landingPage-heading": "Discover the best events near you",
-  "landingPage-info": "nowAround is your go-to app for finding and experiencing the latest events, menus, and activities happening around you.",
+  "landingPage-info": "nowAround is your go-to app for finding and experiencing the latest events, menus, and activities happening around you",
   "landingPage-getStarted": "Get started",
-  "landingPage-learnMore": "Learn more",
+  "landingPage-learnMore": "How does it work?",
 
   "landingPage-firstSectionHeader": "How to find exciting events and activities near you?",
 
   "landingPage-firstCardHeader": "Choose your location",
-  "landingPage-firstCardText": "Easily select your current location or any area of interest to see what's happening nearby.",
+  "landingPage-firstCardText": "Easily select your current location or any area of interest to see what's happening nearby",
 
   "landingPage-secondCardHeader": "Pick a place of interest",
-  "landingPage-secondCardText": "Browse through a variety of establishments like restaurants, bars, cafes, theaters, and more.",
+  "landingPage-secondCardText": "Browse through a variety of establishments like restaurants, bars, cafes, theaters, and more",
 
   "landingPage-thirdCardHeader": "Enjoy your time",
-  "landingPage-thirdCardText": "Share exciting events with friends, plan group outings, and make the most of your day.",
+  "landingPage-thirdCardText": "Share exciting events with friends, plan group outings, and make the most of your day",
 
-  "landingPage-secondSectionHeader": "Experience the best of your city with nowAround",
+  "landingPage-secondSectionHeader": "Make the most of your city with nowAround",
   "landingPage-secondSectionInfo": "nowAround provides a convenient way to stay updated on upcoming events, daily menus, and activities at local establishments. With social sharing features, you can easily share your interests with friends and plan group activities.",
 
   "landingPage-secondSectionListFirst": "With nowAround stay informed about upcoming events in your area",
@@ -30,14 +30,14 @@
 
   "landingPage-secondSectionButton": "Sign up",
 
-  "landingPage-thirdSectionHeader": "Discover events and activities nearby",
-  "landingPage-thirdSectionText": "Stay connected with the NowAround app and never miss out on local happenings.",
+  "landingPage-thirdSectionHeader": "Never miss out on local events",
+  "landingPage-thirdSectionText": "Stay connected with the NowAround app and never miss out on local happenings",
 
   "roleSelectionPage-fc-firstCard": "Guest account",
   "roleSelectionPage-fc-firstListItem": "Limited access",
   "roleSelectionPage-fc-secondListItem": "No group planning",
   "roleSelectionPage-fc-thirdListItem": "Basic browsing",
-  "roleSelectionPage-fc-button": "Continue as a guest",
+  "roleSelectionPage-fc-button": "Guest account",
   "roleSelectionPage-estText": "Do you want to register an estabilishment?",
   "roleSelectionPage-estRedirect": "Register now",
 
@@ -94,7 +94,7 @@
   "establishmentReg-personalInfoError-emailFormat": "Invalid email format.",
   "establishmentReg-personalInfoError-phoneNumberReq": "Phone number is required.",
   "establishmentReg-personalInfoError-phoneNumberFromat": "Invalid phone number format.",
-  "establishmentReg-reqFooter": "* - is required",
+  "establishmentReg-reqFooter": "* - required",
 
   "establishmentReg-estRegForm-estName": "Establishment name*",
   "establishmentReg-estRegForm-tags": "Select tags*",
@@ -155,5 +155,11 @@
 
   "popUp-estRegisterHeader": "Registration Submitted!",
   "popUp-estRegisterMess": "Our team will review the provided information shortly. You will receive an email notification at <span class='text-ang-orange font-semibold'>{{email}}</span> regarding the status of your registration.",
-  "popUp-estRegisterFooter": "Thank you for your submission! We look forward to working with you."
+  "popUp-estRegisterFooter": "Thank you for your submission! We look forward to working with you.",
+
+  "filter-heading": "Filter by:",
+  "filter-name": "Name:",
+  "filter-byPrice": "Price range:",
+  "filter-byCategory": "Category:",
+  "filter-byTags": "Tags:"
 }

@@ -16,6 +16,7 @@ export const loginGuard = () => {
       if (cookie.get('role') && isAuth) {
         return true;
       } else {
+        router.navigateByUrl('');
         customAuth.loginWithRedirect();
         return false;
       }

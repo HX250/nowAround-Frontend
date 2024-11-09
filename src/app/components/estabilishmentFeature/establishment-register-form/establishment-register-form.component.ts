@@ -34,12 +34,8 @@ export class EstablishmentRegisterFormComponent {
         .registerEstablishment(completeFormData)
         .pipe(take(1))
         .subscribe({
-          next: (response) => {
-            console.log('Success:', response);
-          },
-          error: (error) => {
-            console.error('Error:', error);
-          },
+          next: (response) => {},
+          error: (error) => {},
           complete: () => {
             this.estEmail = completeFormData.personalInfo.email;
             this.popUpHidden = false;

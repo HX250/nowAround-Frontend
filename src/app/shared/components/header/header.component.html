@@ -35,12 +35,13 @@
           <li
             [routerLinkActiveOptions]="{ exact: true }"
             routerLinkActive="text-ang-orange"
-            routerLink="home-page"
+            routerLink=""
             class="p-4 hover:cursor-pointer hover:text-ang-orange"
           >
             <p>{{ "HOME" | translate }}</p>
           </li>
           <li
+            routerLink="home-page"
             routerLinkActive="text-ang-orange"
             class="p-4 hover:cursor-pointer hover:text-ang-orange"
           >
@@ -48,12 +49,7 @@
           </li>
           <li
             routerLinkActive="text-ang-orange"
-            class="p-4 hover:cursor-pointer hover:text-ang-orange"
-          >
-            <p>{{ "DISCOVER" | translate }}</p>
-          </li>
-          <li
-            routerLinkActive="text-ang-orange"
+            routerLink="/user-account"
             class="p-4 hover:cursor-pointer hover:text-ang-orange"
           >
             <p>{{ "PROFILE" | translate }}</p>

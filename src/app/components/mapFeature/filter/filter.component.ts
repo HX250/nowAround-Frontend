@@ -1,4 +1,10 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MapService } from 'src/app/services/mapService/map.service';
 
@@ -6,6 +12,7 @@ import { MapService } from 'src/app/services/mapService/map.service';
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterComponent implements OnInit {
   @Output() filtersChanged = new EventEmitter<any>();
@@ -66,8 +73,8 @@ export class FilterComponent implements OnInit {
   updateFilterParams(values: any): void {
     this.mapService.filterParams = {
       name: values.searchByName || '',
-      byPriceRange: values.byPriceRange || null,
-      categoryName: values.byCategory || null,
+      byPriceRange: values.byPriceRange || '',
+      categoryName: values.byCategory || '',
       tagNames: values.byTag || [],
     };
   }
@@ -87,5 +94,9 @@ export class FilterComponent implements OnInit {
     this.filterForm.patchValue({
       byTag: this.chosenTags,
     });
+  }
+
+  get f() {
+    return this.filterForm.controls;
   }
 }
