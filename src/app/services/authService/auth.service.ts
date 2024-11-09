@@ -27,9 +27,7 @@ export class CustomAuthService {
       error: (error) => {
         console.error('Login error:', error);
       },
-      complete: () => {
-        this.router.navigateByUrl('home-page');
-      },
+      complete: () => {},
     });
   }
 
@@ -59,6 +57,11 @@ export class CustomAuthService {
     const namespace = 'https://now-around-auth-api/roles';
     const role = decodedToken[namespace][0];
     this.cookieService.set('role', role);
+    if (role !== 'Admin') {
+      this.router.navigateByUrl('home-page');
+    } else {
+      window.location.reload();
+    }
   }
 
   loadAuthority() {

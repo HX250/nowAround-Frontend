@@ -15,23 +15,21 @@ export class MapService {
     categoryName: '',
     tagNames: [] as string[],
   };
-  //
-  getEstablishmentsInArea(pins: pins): Observable<any> {
-    const params = new HttpParams()
-      .set('northWestLat', pins.northWest.lat.toString())
-      .set('northWestLong', pins.northWest.lng.toString())
-      .set('southEastLat', pins.southEast.lat.toString())
-      .set('southEastLong', pins.southEast.lng.toString())
-      .set('name', this.filterParams.name)
-      .set('priceRange', this.filterParams.byPriceRange)
-      .set('categoryName', this.filterParams.categoryName)
-      .set('tagNames', this.filterParams.tagNames.join(','));
 
-    return this.http.get<any>(
-      `${environment.API_END_POINT}Establishment/search-area`,
-      {
-        params,
-      },
-    );
+  getEstablishmentsInArea(pins: pins): Observable<any> {
+    const encodedTags = this.filterParams.tagNames.join('%2C%20');
+
+    const url =
+      `${environment.API_END_POINT}Establishment/search-area` +
+      `?northWestLat=${pins.northWest.lat}` +
+      `&northWestLong=${pins.northWest.lng}` +
+      `&southEastLat=${pins.southEast.lat}` +
+      `&southEastLong=${pins.southEast.lng}` +
+      `&name=${this.filterParams.name || ''}` +
+      `&priceRange=${this.filterParams.byPriceRange || ''}` +
+      `&categoryName=${this.filterParams.categoryName || ''}` +
+      `&tagNames=${encodedTags}`;
+
+    return this.http.get<any>(url);
   }
 }
