@@ -14,6 +14,17 @@ export class AdminService {
     private auth: AuthService,
   ) {}
 
+  getUserStatistics() {
+    return this.setHeaders().pipe(
+      switchMap((headers) => {
+        return this.http.get<any>(
+          `${environment.API_END_POINT}monthlystatistic/2024`,
+          { headers, responseType: 'json' },
+        );
+      }),
+    );
+  }
+
   getAllPendingEstablishments(): Observable<Establishment[]> {
     return this.setHeaders().pipe(
       switchMap((headers) => {

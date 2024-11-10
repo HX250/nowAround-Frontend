@@ -26,7 +26,7 @@ export class MapService {
       `&southEastLat=${pins.southEast.lat}` +
       `&southEastLong=${pins.southEast.lng}` +
       `&name=${this.filterParams.name || ''}` +
-      `&priceRange=${this.filterParams.byPriceRange || ''}` +
+      `&priceCategory=${this.filterParams.byPriceRange || ''}` +
       `&categoryName=${this.filterParams.categoryName || ''}` +
       `&tagNames=${encodedTags}`;
 
