@@ -53,10 +53,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "nowAroundFrontEnd:build:production"
+              "browserTarget": "nowAroundFrontEnd:build:production"
             },
             "development": {
-              "buildTarget": "nowAroundFrontEnd:build:development"
+              "browserTarget": "nowAroundFrontEnd:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -64,7 +64,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "nowAroundFrontEnd:build"
+            "browserTarget": "nowAroundFrontEnd:build"
           }
         },
         "test": {
