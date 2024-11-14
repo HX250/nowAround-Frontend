@@ -1,0 +1,165 @@
+{
+  "HOME": "Home",
+  "MAPS": "Maps",
+  "DISCOVER": "Discover",
+  "PROFILE": "Account",
+  "LOG OUT": "Log out",
+
+  "landingPage-heading": "Discover the best events near you",
+  "landingPage-info": "nowAround is your go-to app for finding and experiencing the latest events, menus, and activities happening around you",
+  "landingPage-getStarted": "Get started",
+  "landingPage-learnMore": "How does it work?",
+
+  "landingPage-firstSectionHeader": "How to find exciting events and activities near you?",
+
+  "landingPage-firstCardHeader": "Choose your location",
+  "landingPage-firstCardText": "Easily select your current location or any area of interest to see what's happening nearby",
+
+  "landingPage-secondCardHeader": "Pick a place of interest",
+  "landingPage-secondCardText": "Browse through a variety of establishments like restaurants, bars, cafes, theaters, and more",
+
+  "landingPage-thirdCardHeader": "Enjoy your time",
+  "landingPage-thirdCardText": "Share exciting events with friends, plan group outings, and make the most of your day",
+
+  "landingPage-secondSectionHeader": "Make the most of your city with nowAround",
+  "landingPage-secondSectionInfo": "nowAround provides a convenient way to stay updated on upcoming events, daily menus, and activities at local establishments. With social sharing features, you can easily share your interests with friends and plan group activities.",
+
+  "landingPage-secondSectionListFirst": "With nowAround stay informed about upcoming events in your area",
+  "landingPage-secondSectionListSecond": "Explore daily menus and activities at local establishments",
+  "landingPage-secondSectionListThird": "Plan group activities and invite friends to join",
+
+  "landingPage-secondSectionButton": "Sign up",
+
+  "landingPage-thirdSectionHeader": "Never miss out on local events",
+  "landingPage-thirdSectionText": "Stay connected with the NowAround app and never miss out on local happenings",
+
+  "roleSelectionPage-fc-firstCard": "Guest account",
+  "roleSelectionPage-fc-firstListItem": "Limited access",
+  "roleSelectionPage-fc-secondListItem": "No group planning",
+  "roleSelectionPage-fc-thirdListItem": "Basic browsing",
+  "roleSelectionPage-fc-button": "Guest account",
+  "roleSelectionPage-estText": "Do you want to register an estabilishment?",
+  "roleSelectionPage-estRedirect": "Register now",
+
+  "roleSelectionPage-sc-secondCard": "nowAround account",
+  "roleSelectionPage-sc-firstListItem": "Full access",
+  "roleSelectionPage-sc-secondListItem": "Enhanced sharing",
+  "roleSelectionPage-sc-thirdListItem": "Group planning",
+  "roleSelectionPage-sc-fourthListItem": "Notifications and updates",
+  "roleSelectionPage-sc-button": "nowAround account",
+
+  "footer-menuBarEvents": "Events",
+  "footer-menuBarMenus": "Menus",
+  "footer-menuBarActivities": "Activities",
+  "footer-menuBarShare": "Share",
+  "footer-menuBarFriends": "Friends",
+
+  "loginPage-email": "Email",
+  "loginPage-password": "Password",
+  "loginPage-forgot": "Forgot password?",
+  "loginPage-remember": "Remember me",
+  "loginPage-logButton": "Log in",
+  "loginPage-bottomTextFist": "New to nowAround?",
+  "loginPage-bottomTextSecond": "Create an account",
+
+  "registerPage-firstName": "First name*",
+  "registerPage-lastName": "Last name*",
+  "registerPage-password": "Password*",
+  "registerPage-repeatPassword": "Repeat password*",
+  "registerPage-registerButton": "Register",
+  "registerPage-registerText": "Already have an account?",
+  "registerPage-backToLoginButton": "Go to log in",
+
+  "registerPageErrorValid-nameValidation": "Name cannot contain special characters or numbers (!,#,$)",
+  "registerPageErrorValid-emailValidation": "Invalid email type",
+  "registerPageErrorValid-passwordUpper": "Password needs to contain atleast one uppercase",
+  "registerPageErrorValid-passwordLower": "Password needs to contain at least one lowercase letter",
+  "registerPageErrorValid-passwordLength": "Password needs to have atleast 6 characters",
+  "registerPageErrorValid-repeatPassword": "Passwords do not match.",
+  "registerPage-registerError": "Please fill out required fields *",
+
+  "establishmentReg-form-stepOne": "Step 1: Personal information",
+  "establishmentReg-form-stepTwo": "Step 2: Establishment information",
+  "establishmentReg-form-registerButton": "Register establishment",
+  "establishmentReg-form-logInInfo": "Already have an estabilishment?",
+  "establishmentReg-form-loginButton": "Log in",
+
+  "establishmentReg-personalInfo-firstName": "First name*",
+  "establishmentReg-personalInfo-lastName": "Last name*",
+  "establishmentReg-personalInfo-phoneNumber": "Phone Number*",
+
+  "establishmentReg-personalInfoError-firstName": "First name is required.",
+  "establishmentReg-personalInfoError-lastName": "Last name is required.",
+  "establishmentReg-personalInfoError-emailReq": "Email is required.",
+  "establishmentReg-personalInfoError-emailFormat": "Invalid email format.",
+  "establishmentReg-personalInfoError-phoneNumberReq": "Phone number is required.",
+  "establishmentReg-personalInfoError-phoneNumberFromat": "Invalid phone number format.",
+  "establishmentReg-reqFooter": "* - required",
+
+  "establishmentReg-estRegForm-estName": "Establishment name*",
+  "establishmentReg-estRegForm-tags": "Select tags*",
+  "establishmentReg-estRegForm-city": "City*",
+  "establishmentReg-estRegForm-address": "Address*",
+  "establishmentReg-estRegForm-postalCode": "Postal code*",
+  "establishmentReg-estRegForm-priceRange€": "€: Affordable options.",
+  "establishmentReg-estRegForm-priceRange€€": "€€: Mid-range options.",
+  "establishmentReg-estRegForm-priceRange€€€": "€€€: Higher-end options.",
+
+  "Select category*": "Select category*",
+  "Select price*": "Select price range*",
+  "CATEGORIES": {
+    "CAFE": "Cafe",
+    "BAR": "Bar",
+    "NIGHTCLUB": "Nightclub",
+    "MUSEUM": "Museum",
+    "ART_GALLERY": "Art gallery",
+    "FESTIVAL": "Festival",
+    "PARK": "Park",
+    "GYM": "Gym",
+    "CINEMA": "Cinema",
+    "RESTAURANT": "Restaurant",
+    "THEATRE": "Theatre"
+  },
+  "TAGS": {
+    "PET_FRIENDLY": "Pet-friendly",
+    "OUTDOOR_SEATING": "Outdoor seating",
+    "WIFI_AVAILABLE": "Wi-Fi available",
+    "RESERVATIONS_ACCEPTED": "Reservations accepted",
+    "WHEELCHAIR_ACCESSIBLE": "Wheelchair accessible",
+    "LIVE_ENTERTAINMENT": "Live entertainment",
+    "TAKEOUT_AVAILABLE": "Takeout available",
+    "PARKING_AVAILABLE": "Parking available",
+    "FAMILY_FRIENDLY": "Family-friendly",
+    "DAILY_SPECIALS": "Daily specials",
+    "BAR_SERVICE": "Bar service",
+    "LIVE_SPORTS_VIEWING": "Live Sports viewing",
+    "EVENT_HOSTING": "Event hosting",
+    "SMOKING_AREA": "Smoking area",
+    "NON_SMOKING": "Non-Smoking area"
+  },
+
+  "establishmentReg-estRegFormError-estName": "Establishment name is required.",
+  "establishmentReg-estRegFormError-priceRange": "Price range is required.",
+  "establishmentReg-estRegFormError-city": "City is required.",
+  "establishmentReg-estRegFormError-address": "Address is required.",
+  "establishmentReg-estRegFormError-postalCode": "Postal code is required.",
+  "establishmentReg-estRegFormError-postalCodeRegex": "Invalid postal code format.",
+
+  "catError": {
+    "maxCat": "Can select only 3 categories"
+  },
+
+  "tagError": {
+    "maxTags": "You can only select up to 5 tags"
+  },
+
+  "popUp-estRegisterHeader": "Registration Submitted!",
+  "popUp-estRegisterMess": "Our team will review the provided information shortly. You will receive an email notification at <span class='text-ang-orange font-semibold'>{{email}}</span> regarding the status of your registration.",
+  "popUp-estRegisterFooter": "Thank you for your submission! We look forward to working with you.",
+
+  "filter-heading": "Filter by:",
+  "filter-name": "Name:",
+  "filter-byPrice": "Price range:",
+  "filter-byCategory": "Category:",
+  "filter-byTags": "Tags:"
+}

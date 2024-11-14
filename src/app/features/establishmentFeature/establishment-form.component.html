@@ -1,0 +1,38 @@
+<div class="flex min-h-[100svh] items-center justify-center px-2 py-20">
+  <div
+    class="flex w-full flex-col items-center justify-center gap-8 text-ang-black"
+  >
+    <div class="w-full max-w-[50rem] p-5">
+      <h1 class="pb-5 text-lg font-bold text-ang-orange sm:text-xl">
+        {{ "establishmentReg-form-stepOne" | translate }}
+      </h1>
+      <app-establishment-form-personal-info></app-establishment-form-personal-info>
+    </div>
+    <div class="w-full max-w-[50rem] p-5">
+      <h1 class="pb-5 text-lg font-bold text-ang-orange sm:text-xl">
+        {{ "establishmentReg-form-stepTwo" | translate }}
+      </h1>
+      <app-establishment-form-est-info></app-establishment-form-est-info>
+    </div>
+    <p *ngIf="error" class="text-red-600">Please fill all required fields</p>
+    <button (click)="registerEstablishment()" class="primary-buttons">
+      {{ "establishmentReg-form-registerButton" | translate }}
+    </button>
+    <!--<p class="text-center">
+      {{ "establishmentReg-form-logInInfo" | translate
+      }}<span
+        class="font-bold text-ang-orange hover:cursor-pointer hover:opacity-70"
+        routerLink="/establishment-login"
+      >
+        {{ "establishmentReg-form-loginButton" | translate }}</span
+      >
+    </p>-->
+    <app-pop-up
+      [title]="'popUp-estRegisterHeader' | translate"
+      [message]="'popUp-estRegisterMess' | translate: { email: estEmail }"
+      [footerMessage]="'popUp-estRegisterFooter' | translate"
+      *ngIf="!popUpHidden"
+      class="fixed top-0 z-50 h-full w-full"
+    ></app-pop-up>
+  </div>
+</div>

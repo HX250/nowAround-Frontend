@@ -1,0 +1,60 @@
+<section class="h-full min-h-[100svh] w-full overflow-hidden bg-ang-white">
+  <div class="flex flex-col">
+    <div
+      class="flex h-60 w-full items-center justify-center border-2 border-b-ang-orange"
+    >
+      <img src="userProfile/image-.png" alt="User Cover" class="h-16 w-16" />
+    </div>
+    <div class="container mx-auto px-2">
+      <div
+        class="relative bottom-14 flex flex-col items-center border-b-2 border-ang-orange sm:bottom-0 sm:flex-row sm:items-start"
+        *ngIf="auth0.user$ | async as user"
+      >
+        <img
+          src="userProfile/user.png"
+          alt="User Profile"
+          class="relative bottom-0 h-40 w-40 rounded-md bg-ang-white p-2 outline outline-2 outline-ang-orange sm:bottom-[76px]"
+        />
+
+        <div
+          class="flex w-full flex-col items-center justify-between gap-2 p-4 text-ang-black sm:flex-row"
+        >
+          <div class="flex flex-col gap-2">
+            <h1 class="w-full text-center text-4xl sm:text-left">
+              {{ user.given_name }} {{ user.family_name }}
+            </h1>
+
+            <ul class="flex gap-4">
+              <li
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="['/user-account/news']"
+                routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
+                class="cursor-pointer"
+              >
+                News
+              </li>
+              <li
+                [routerLink]="['/user-account/about']"
+                routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
+                class="cursor-pointer"
+              >
+                About
+              </li>
+              <li>Calendar</li>
+              <li>Following</li>
+            </ul>
+          </div>
+          <button>
+            <img
+              src="userProfile/edit.png"
+              alt="Edit profile button"
+              class="h-8 w-8 transition-all hover:scale-110"
+            />
+          </button>
+        </div>
+      </div>
+
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</section>

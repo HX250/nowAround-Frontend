@@ -1,6 +1,46 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { importProvidersFrom } from '@angular/core';
+import { AuthModule } from '@auth0/auth0-angular';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
+import { routes } from './app/app.routes';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, '/i18n/', '.json');
+}
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    importProvidersFrom(BrowserAnimationsModule),
+    provideHttpClient(),
+    importProvidersFrom(
+      AuthModule.forRoot({
+        domain: 'dev-1xh8kfmlma5zrj2z.us.auth0.com',
+        clientId: 'TWbSxEXDyHxzzPXExKOyRvGUPGlsh2Px',
+        authorizationParams: {
+          redirect_uri: window.location.origin,
+          audience: 'https://now-around-auth-api/',
+        },
+      }),
+    ),
+    importProvidersFrom(
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient],
+        },
+      }),
+    ),
+
+    importProvidersFrom(
+      RouterModule.forRoot(routes, {
+        scrollPositionRestoration: 'enabled',
+      }),
+    ),
+  ],
+});

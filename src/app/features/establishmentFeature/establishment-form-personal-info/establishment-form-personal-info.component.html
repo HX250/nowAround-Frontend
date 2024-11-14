@@ -1,0 +1,96 @@
+<div>
+  <form [formGroup]="registerForm" class="flex flex-col gap-5">
+    <div class="flex flex-col gap-5 sm:flex-row">
+      <div class="flex w-full flex-col">
+        <label for="firstName" class="font-semibold">{{
+          "establishmentReg-personalInfo-firstName" | translate
+        }}</label>
+        <input
+          placeholder="John"
+          id="firstName"
+          formControlName="firstName"
+          class="rounded-md border border-ang-orange p-1"
+        />
+        <div
+          *ngIf="
+            f['firstName'].invalid &&
+            (f['firstName'].dirty || f['firstName'].touched)
+          "
+        >
+          <div *ngIf="f['firstName'].errors?.['required']" class="text-red-600">
+            {{ "establishmentReg-personalInfoError-firstName" | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="flex w-full flex-col">
+        <label for="lastName" class="font-semibold">{{
+          "establishmentReg-personalInfo-lastName" | translate
+        }}</label>
+        <input
+          placeholder="Doe"
+          id="lastName"
+          formControlName="lastName"
+          class="rounded-md border border-ang-orange p-1"
+        />
+        <div
+          *ngIf="
+            f['lastName'].invalid &&
+            (f['lastName'].dirty || f['lastName'].touched)
+          "
+        >
+          <div *ngIf="f['lastName'].errors?.['required']" class="text-red-600">
+            {{ "establishmentReg-personalInfoError-lastName" | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <label for="email" class="font-semibold">Email*</label>
+      <input
+        placeholder="JohnDoe@email.eu"
+        id="email"
+        formControlName="email"
+        class="rounded-md border border-ang-orange p-1"
+      />
+      <div
+        *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)"
+      >
+        <div *ngIf="f['email'].errors?.['required']" class="text-red-600">
+          {{ "establishmentReg-personalInfoError-emailReq" | translate }}
+        </div>
+        <div *ngIf="f['email'].errors?.['email']" class="text-red-600">
+          {{ "establishmentReg-personalInfoError-emailFormat" | translate }}
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="flex flex-col">
+      <label for="phoneNumber" class="font-semibold">{{
+        "establishmentReg-personalInfo-phoneNumber" | translate
+      }}</label>
+      <input
+        id="phoneNumber"
+        formControlName="phoneNumber"
+        class="rounded-md border border-ang-orange p-1"
+      />
+      <div
+        *ngIf="
+          f['phoneNumber'].invalid &&
+          (f['phoneNumber'].dirty || f['phoneNumber'].touched)
+        "
+      >
+        <div *ngIf="f['phoneNumber'].errors?.['required']" class="text-red-600">
+          {{ "establishmentReg-personalInfoError-phoneNumberReq" | translate }}
+        </div>
+        <div *ngIf="f['phoneNumber'].errors?.['pattern']" class="text-red-600">
+          {{
+            "establishmentReg-personalInfoError-phoneNumberFromat" | translate
+          }}
+        </div>
+      </div>
+    </div>-->
+  </form>
+  <p class="pt-6 text-right">{{ "establishmentReg-reqFooter" | translate }}</p>
+</div>

@@ -1,0 +1,250 @@
+<div class="flex flex-col gap-5">
+  <form
+    class="flex flex-col gap-5 text-ang-black"
+    [formGroup]="establishmentRegister"
+  >
+    <div class="flex flex-col gap-6 sm:flex-row">
+      <label
+        for="photo"
+        class="flex h-32 w-full items-center justify-center border-2 border-ang-orange bg-ang-black bg-opacity-10 sm:h-40 sm:w-48 sm:rounded-full"
+      >
+        <img
+          *ngIf="previewImage; else defaultImage"
+          [src]="previewImage"
+          class="h-full w-full object-cover sm:rounded-full"
+          alt="Uploaded Image"
+        />
+        <ng-template #defaultImage>
+          <img
+            src="establishmentForm/gallery.png"
+            width="64px"
+            height="64px"
+            alt="Default Placeholder"
+          />
+        </ng-template>
+      </label>
+      <input
+        (change)="onFileChange($event)"
+        class="hidden"
+        type="file"
+        id="photo"
+        formControlName="photo"
+      />
+      <div class="flex w-full flex-col gap-4">
+        <div class="flex flex-col">
+          <label for="name" class="font-semibold">{{
+            "establishmentReg-estRegForm-estName" | translate
+          }}</label>
+          <input
+            placeholder="Penzión slnečnica"
+            type="text"
+            class="rounded-md border border-ang-orange p-1"
+            id="name"
+            formControlName="name"
+          />
+        </div>
+        <div
+          *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)"
+        >
+          <div *ngIf="f['name'].errors?.['required']" class="text-red-600">
+            {{ "establishmentReg-estRegFormError-estName" | translate }}
+          </div>
+        </div>
+        <div class="flex flex-col gap-4 sm:flex-row">
+          <div class="w-full">
+            <label for="category" class="font-semibold">{{
+              "Select category*" | translate
+            }}</label>
+            <select
+              #categorySelect
+              class="w-full rounded-lg border border-ang-orange p-1"
+              (change)="addCategory(categorySelect.value)"
+              name="category"
+              id="category"
+              formControlName="category"
+            >
+              <option *ngFor="let category of category" [value]="category">
+                {{ "CATEGORIES." + category | translate }}
+              </option>
+            </select>
+            <p *ngIf="catError" class="py-1 text-red-600">
+              {{ "catError." + catError | translate }}
+            </p>
+            <div class="flex flex-col gap-1">
+              <div
+                *ngFor="let category of establishmentCategory"
+                class="flex justify-between"
+              >
+                <p>{{ "CATEGORIES." + category | translate }}</p>
+                <button (click)="removeCategory(category)">X</button>
+              </div>
+            </div>
+          </div>
+          <div class="w-full">
+            <div
+              class="relative flex flex-row-reverse items-center justify-between"
+            >
+              <div class="has-tooltip group w-fit">
+                <span
+                  class="tooltip invisible absolute left-0 z-50 -mt-24 w-max rounded border bg-ang-white p-2 text-ang-black shadow-lg group-hover:visible"
+                >
+                  <ul>
+                    <li>
+                      {{
+                        "establishmentReg-estRegForm-priceRange€" | translate
+                      }}
+                    </li>
+                    <li>
+                      {{
+                        "establishmentReg-estRegForm-priceRange€€" | translate
+                      }}
+                    </li>
+                    <li>
+                      {{
+                        "establishmentReg-estRegForm-priceRange€€€" | translate
+                      }}
+                    </li>
+                  </ul></span
+                >
+                <img
+                  src="establishmentForm/i.png"
+                  alt=""
+                  srcset=""
+                  class="h-6 w-6"
+                />
+              </div>
+              <label for="price" class="font-semibold">{{
+                "Select price*" | translate
+              }}</label>
+            </div>
+            <select
+              class="w-full rounded-lg border border-ang-orange p-1"
+              name="price"
+              id="price"
+              formControlName="priceCategory"
+            >
+              <option value="0">€</option>
+              <option value="1">€€</option>
+              <option value="2">€€€</option>
+            </select>
+            <div
+              *ngIf="
+                f['priceCategory'].invalid &&
+                (f['priceCategory'].dirty || f['priceCategory'].touched)
+              "
+            >
+              <div
+                *ngIf="f['priceCategory'].errors?.['required']"
+                class="text-red-600"
+              >
+                {{ "establishmentReg-estRegFormError-priceRange" | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <h1 class="font-semibold">
+        {{ "establishmentReg-estRegForm-tags" | translate }}
+      </h1>
+      <div
+        class="flex flex-wrap items-center justify-center gap-5 lg:justify-between"
+      >
+        <button
+          (click)="addTag(tag)"
+          *ngFor="let tag of tags"
+          [ngClass]="{
+            'bg-ang-orange text-white': establishmentTags.includes(tag),
+            'bg-white text-ang-black': !establishmentTags.includes(tag),
+          }"
+          class="h-20 w-[7.5rem] rounded-md border border-ang-orange px-1 py-0.5 text-sm sm:w-32"
+        >
+          {{ "TAGS." + tag | translate }}
+        </button>
+      </div>
+    </div>
+    <p *ngIf="tagError" class="text-center text-red-600">
+      {{ "tagError." + tagError | translate }}
+    </p>
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-6 sm:flex-row">
+        <div class="flex w-full flex-col">
+          <label for="city" class="font-semibold">{{
+            "establishmentReg-estRegForm-city" | translate
+          }}</label>
+          <input
+            placeholder="Košice"
+            type="text"
+            class="rounded-md border border-ang-orange p-1"
+            id="city"
+            formControlName="city"
+          />
+          <div
+            *ngIf="f['city'].invalid && (f['city'].dirty || f['city'].touched)"
+          >
+            <div *ngIf="f['city'].errors?.['required']" class="text-red-600">
+              {{ "establishmentReg-estRegFormError-city" | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="flex w-full flex-col">
+          <label for="address" class="font-semibold">{{
+            "establishmentReg-estRegForm-address" | translate
+          }}</label>
+          <input
+            placeholder="Hlavná 123"
+            type="text"
+            class="rounded-md border border-ang-orange p-1"
+            id="address"
+            formControlName="address"
+          />
+          <div
+            *ngIf="
+              f['address'].invalid &&
+              (f['address'].dirty || f['address'].touched)
+            "
+          >
+            <div *ngIf="f['address'].errors?.['required']" class="text-red-600">
+              {{ "establishmentReg-estRegFormError-address" | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex w-full flex-col">
+        <label for="postalCode" class="font-semibold">{{
+          "establishmentReg-estRegForm-postalCode" | translate
+        }}</label>
+        <input
+          placeholder="040 00"
+          type="text"
+          class="w-full rounded-md border border-ang-orange p-1 sm:max-w-52"
+          id="postalCode"
+          formControlName="postalCode"
+        />
+        <div
+          *ngIf="
+            f['postalCode'].invalid &&
+            (f['postalCode'].dirty || f['postalCode'].touched)
+          "
+        >
+          <div
+            *ngIf="f['postalCode'].errors?.['required']"
+            class="text-red-600"
+          >
+            {{ "establishmentReg-estRegFormError-postalCode" | translate }}
+          </div>
+          <div *ngIf="f['postalCode'].errors?.['pattern']" class="text-red-600">
+            <p>
+              {{
+                "establishmentReg-estRegFormError-postalCodeRegex" | translate
+              }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <p class="pt-6 text-right">{{ "establishmentReg-reqFooter" | translate }}</p>
+</div>

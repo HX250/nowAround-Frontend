@@ -1,0 +1,156 @@
+<div class="flex w-full flex-col justify-center bg-ang-white">
+  <div class="relative h-screen w-full overflow-hidden brightness-50">
+    <div
+      *ngFor="let image of images; let i = index"
+      [@slideAnimation]="getState(i)"
+      [ngStyle]="{ 'background-image': image }"
+      class="absolute left-0 top-0 z-10 h-full w-full bg-cover bg-center bg-no-repeat"
+    ></div>
+  </div>
+  <div class="absolute w-full px-2">
+    <div class="container m-auto flex items-center">
+      <div class="z-10 flex max-w-[750px] flex-col gap-4">
+        <h1
+          class="text-5xl font-bold text-ang-orange drop-shadow-lg sm:text-6xl"
+        >
+          {{ "landingPage-heading" | translate }}
+        </h1>
+        <p class="text-ang-white">
+          {{ "landingPage-info" | translate }}
+        </p>
+        <div class="flex flex-col gap-4 sm:flex-row">
+          <button class="primary-buttons" (click)="showRoleWindow()">
+            {{ "landingPage-getStarted" | translate }}
+          </button>
+
+          <button class="secondary-buttons" (click)="scroll(target)">
+            {{ "landingPage-learnMore" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="px-4 text-ang-black" #target>
+  <div
+    class="container m-auto flex min-h-[80svh] flex-col items-center justify-evenly gap-8 pt-20 sm:pt-0"
+  >
+    <div>
+      <h2 class="text-center">
+        {{ "landingPage-firstSectionHeader" | translate }}
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 gap-14 sm:grid-cols-3">
+      <div
+        class="flex flex-col items-center gap-3 text-center transition-all hover:scale-110"
+      >
+        <img
+          src="/landing/infoSection/markerIcon.png"
+          alt="footerLogo"
+          class="h-28 w-28 sm:h-32 sm:w-32"
+        />
+        <h3>
+          {{ "landingPage-firstCardHeader" | translate }}
+        </h3>
+        <p>
+          {{ "landingPage-firstCardText" | translate }}
+        </p>
+      </div>
+      <div
+        class="flex flex-col items-center gap-3 text-center transition-all hover:scale-110"
+      >
+        <img
+          src="/landing/infoSection/houseIcon.png"
+          alt="footerLogo"
+          class="h-28 w-28 sm:h-32 sm:w-32"
+        />
+        <h3>
+          {{ "landingPage-secondCardHeader" | translate }}
+        </h3>
+        <p>
+          {{ "landingPage-secondCardText" | translate }}
+        </p>
+      </div>
+      <div
+        class="flex flex-col items-center gap-3 text-center transition-all hover:scale-110"
+      >
+        <img
+          src="/landing/infoSection/enjoyIcon.png"
+          alt="footerLogo"
+          class="h-28 w-28 sm:h-32 sm:w-32"
+        />
+        <h3>
+          {{ "landingPage-thirdCardHeader" | translate }}
+        </h3>
+        <p>
+          {{ "landingPage-thirdCardText" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="px-4 py-20 text-ang-black">
+  <div
+    class="container m-auto flex flex-col justify-between gap-10 lg:flex-row"
+  >
+    <div class="flex flex-col justify-between gap-6 text-ang-black lg:w-1/2">
+      <h2>
+        {{ "landingPage-secondSectionHeader" | translate }}
+      </h2>
+      <p>
+        {{ "landingPage-secondSectionInfo" | translate }}
+      </p>
+      <div class="flex flex-col gap-6">
+        <p>
+          {{ "landingPage-secondSectionListFirst" | translate }}
+        </p>
+        <p>
+          {{ "landingPage-secondSectionListSecond" | translate }}
+        </p>
+        <p>
+          {{ "landingPage-secondSectionListThird" | translate }}
+        </p>
+      </div>
+      <button class="primary-buttons max-w-60" (click)="loginWithRedirect()">
+        {{ "landingPage-secondSectionButton" | translate }}
+      </button>
+    </div>
+    <img
+      src="/landing/infoSection/havingFun.jpg"
+      alt="footerLogo"
+      class="h-auto w-full rounded-sm shadow-lg lg:w-1/2"
+    />
+  </div>
+</section>
+<section class="px-4 pb-20 text-ang-black sm:pt-20">
+  <div
+    class="container m-auto flex flex-col justify-between gap-10 lg:flex-row"
+  >
+    <div class="flex flex-col gap-4">
+      <h2>{{ "landingPage-thirdSectionHeader" | translate }}</h2>
+      <p>
+        {{ "landingPage-thirdSectionText" | translate }}
+      </p>
+    </div>
+    <div class="flex justify-evenly gap-10">
+      <img
+        src="/landing/downloadSection/androidDownload.png"
+        alt="footerLogo"
+        class="h-12 w-12 hover:cursor-pointer sm:h-16 sm:w-16"
+      />
+      <img
+        src="/landing/downloadSection/iosDownload.png"
+        alt="footerLogo"
+        class="h-12 w-12 hover:cursor-pointer sm:h-16 sm:w-16"
+      />
+    </div>
+  </div>
+</section>
+<app-role-selection
+  *ngIf="shownRoleWindow"
+  [windowShown]="shownRoleWindow"
+  (updatedWindowShown)="updateWindowBool($event)"
+  (closeWindowWhenClickOutside)="updateWindowBool($event)"
+  class="fixed top-0 z-50 h-full w-full"
+></app-role-selection>
+<app-scroll-up-arrow></app-scroll-up-arrow>

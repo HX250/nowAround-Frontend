@@ -1,0 +1,165 @@
+{
+  "HOME": "Domov",
+  "MAPS": "Mapy",
+  "DISCOVER": "Objavuj",
+  "PROFILE": "Účet",
+  "LOG OUT": "Odhlásiť sa",
+
+  "landingPage-heading": "Objavte najlepšie udalosti vo vašom okolí",
+  "landingPage-info": "nowAround je vaša aplikácia, ktorá vám umožní nájsť a zažiť najnovšie udalosti, ponuky a aktivity, ktoré sa dejú okolo vás",
+  "landingPage-getStarted": "Začať",
+  "landingPage-learnMore": "Ako to funguje?",
+
+  "landingPage-firstSectionHeader": "Ako nájsť zaujímavé udalosti a aktivity vo svojom okolí?",
+
+  "landingPage-firstCardHeader": "Vyberte si lokalitu",
+  "landingPage-firstCardText": "Ľahko si vyberte svoju aktuálnu polohu alebo akúkoľvek oblasť vášho záujmu, v ktorej chcete vidieť čo sa deje nablízku",
+
+  "landingPage-secondCardHeader": "Vyberte si miesto záujmu",
+  "landingPage-secondCardText": "Prehliadnite si rôzne zariadenia, ako sú reštaurácie, bary, kaviarne, divadlá a podobne",
+
+  "landingPage-thirdCardHeader": "Užite si svoj čas",
+  "landingPage-thirdCardText": "Zdieľajte vzrušujúce udalosti s priateľmi, plánujte skupinové výlety a spravte zo svojho dňa čo najviac",
+
+  "landingPage-secondSectionHeader": "Zažite to najlepšie zo svojho mesta s nowAround",
+  "landingPage-secondSectionInfo": "nowAround poskytuje pohodlný spôsob, ako byť informovaný o nadchádzajúcich udalostiach, denných menu a aktivitách v miestnych zariadeniach. Vďaka funkciám zdieľania na sociálnych sieťach môžete jednoducho zdieľať svoje záujmy s priateľmi a plánovať skupinové aktivity.",
+
+  "landingPage-secondSectionListFirst": "Budťe informovaní o nadchádzajúcich udalostiach vo vašej oblasti",
+  "landingPage-secondSectionListSecond": "Preskúmajte denné menu a aktivity v miestnych zariadeniach",
+  "landingPage-secondSectionListThird": "Plánujte skupinové aktivity a pozvite priateľov, aby sa pridali",
+
+  "landingPage-secondSectionButton": "Prihlásiť sa",
+
+  "landingPage-thirdSectionHeader": "Nikdy nezmeškajte miestne udalosti",
+  "landingPage-thirdSectionText": "Zostaňte v spojení s aplikáciou NowAround a nikdy nezmeškáte miestne udalosti",
+
+  "roleSelectionPage-fc-firstCard": "Hosť",
+  "roleSelectionPage-fc-firstListItem": "Limitovaný prístup",
+  "roleSelectionPage-fc-secondListItem": "Žiadne skupinové plánovanie",
+  "roleSelectionPage-fc-thirdListItem": "Jednoduché prehliadanie",
+  "roleSelectionPage-fc-button": "Hosťovský účet",
+  "roleSelectionPage-estText": "Chcete si zaregistrovať svoj podnik?",
+  "roleSelectionPage-estRedirect": "Zaregistruj teraz",
+
+  "roleSelectionPage-sc-secondCard": "nowAround účet",
+  "roleSelectionPage-sc-firstListItem": "Plný prístup",
+  "roleSelectionPage-sc-secondListItem": "Personalizované vyhľadávanie",
+  "roleSelectionPage-sc-thirdListItem": "Spoločné plánovanie",
+  "roleSelectionPage-sc-fourthListItem": "Upozornenia",
+  "roleSelectionPage-sc-button": "nowAround účet",
+
+  "footer-menuBarEvents": "Udalosti",
+  "footer-menuBarMenus": "Menu",
+  "footer-menuBarActivities": "Aktivity",
+  "footer-menuBarShare": "Zdieľajte",
+  "footer-menuBarFriends": "Priatelia",
+
+  "loginPage-email": "Email",
+  "loginPage-password": "Heslo",
+  "loginPage-forgot": "Zabudnuté heslo",
+  "loginPage-remember": "Zapamätať",
+  "loginPage-logButton": "Prihlásiť",
+  "loginPage-bottomTextFist": "Nový na nowAround?",
+  "loginPage-bottomTextSecond": "Vytvor si účet",
+
+  "registerPage-firstName": "Krstné meno*",
+  "registerPage-lastName": "Priezvisko*",
+  "registerPage-password": "Heslo*",
+  "registerPage-repeatPassword": "Zopkaovať heslo*",
+  "registerPage-registerButton": "Registrácia",
+  "registerPage-registerText": "Už máte účet?",
+  "registerPage-backToLoginButton": "Prihlásiť sa",
+
+  "registerPageErrorValid-nameValidation": "Meno nemôže obsahovať špeciálne symboly alebo čísla (!,#,$)",
+  "registerPageErrorValid-emailValidation": "Neplatný formát emailu",
+  "registerPageErrorValid-passwordUpper": "Heslo musí obsahovať minimálne jedno veľké písmeno",
+  "registerPageErrorValid-passwordLower": "Heslo musí obsahovať minimálne jedno malé písmeno",
+  "registerPageErrorValid-passwordLength": "Heslo musí obsahovať minimálne jedno 6 písmen",
+  "registerPageErrorValid-repeatPassword": "Hesla sa nezhodujú",
+  "registerPage-registerError": "Vyplnťe všetky poždavonané polia *",
+
+  "establishmentReg-form-stepOne": "Krok 1: Osobné informácie",
+  "establishmentReg-form-stepTwo": "Krok 2: Informácie podniku",
+  "establishmentReg-form-registerButton": "Zaregistrovať podnik",
+  "establishmentReg-form-logInInfo": "Už máte vytvorený podnik?",
+  "establishmentReg-form-loginButton": "Prihlásiť sa",
+
+  "establishmentReg-personalInfo-firstName": "Krstné meno*",
+  "establishmentReg-personalInfo-lastName": "Priezvisko*",
+  "establishmentReg-personalInfo-phoneNumber": "Telefonné číslo*",
+
+  "establishmentReg-personalInfoError-firstName": "Krstné meno je povinné.",
+  "establishmentReg-personalInfoError-lastName": "Priezvisko je povinné.",
+  "establishmentReg-personalInfoError-emailReq": "Email je povinný.",
+  "establishmentReg-personalInfoError-emailFormat": "Neplatný formát emailu.",
+  "establishmentReg-personalInfoError-phoneNumberReq": "Telefonné číslo je povinné.",
+  "establishmentReg-personalInfoError-phoneNumberFromat": "Neplatný formát telefonného čísla",
+  "establishmentReg-reqFooter": "* - povinné",
+
+  "establishmentReg-estRegForm-estName": "Názov podniku*",
+  "establishmentReg-estRegForm-tags": "Vyberte tags*",
+  "establishmentReg-estRegForm-city": "Mesto*",
+  "establishmentReg-estRegForm-address": "Adresa*",
+  "establishmentReg-estRegForm-postalCode": "PSČ*",
+  "establishmentReg-estRegForm-priceRange€": "€: Dostupné možnosti.",
+  "establishmentReg-estRegForm-priceRange€€": "€€: Možnosti strednej kategórie.",
+  "establishmentReg-estRegForm-priceRange€€€": "€€€: Možnosti vyššej kategórie.",
+
+  "Select category*": "Vyberte kategóriu*",
+  "Select price*": "Vyberte rozsah cien*",
+  "CATEGORIES": {
+    "CAFE": "Kaviareň",
+    "BAR": "Bar",
+    "NIGHTCLUB": "Nočný klub",
+    "MUSEUM": "Múzeum",
+    "ART_GALLERY": "Galéria",
+    "FESTIVAL": "Festival",
+    "PARK": "Park",
+    "GYM": "Posilňovňa",
+    "CINEMA": "Kino",
+    "RESTAURANT": "Reštaurácia",
+    "THEATRE": "Divadlo"
+  },
+  "TAGS": {
+    "PET_FRIENDLY": "Vhodné pre domácich miláčikov",
+    "OUTDOOR_SEATING": "Sedenie vonku",
+    "WIFI_AVAILABLE": "Dostupné Wi-Fi",
+    "RESERVATIONS_ACCEPTED": "Prijímanie rezervácií",
+    "WHEELCHAIR_ACCESSIBLE": "Prístupné pre vozíčkárov",
+    "LIVE_ENTERTAINMENT": "Živá zábava",
+    "TAKEOUT_AVAILABLE": "Možnosť vyzdvihnutia",
+    "PARKING_AVAILABLE": "Parkovanie k dispozícii",
+    "FAMILY_FRIENDLY": "Vhodné pre rodiny",
+    "DAILY_SPECIALS": "Denné špeciály",
+    "BAR_SERVICE": "Obsluha pri bare",
+    "LIVE_SPORTS_VIEWING": "Sledovanie živých športov",
+    "EVENT_HOSTING": "Organizovanie podujatí",
+    "SMOKING_AREA": "Fajčiarska zóna",
+    "NON_SMOKING": "Nefajčiarska zóna"
+  },
+
+  "establishmentReg-estRegFormError-estName": "Názov podniku je povinný.",
+  "establishmentReg-estRegFormError-priceRange": "Cennový rozsah je povinný.",
+  "establishmentReg-estRegFormError-city": "Mesto je povinné.",
+  "establishmentReg-estRegFormError-address": "Adresa je povinná.",
+  "establishmentReg-estRegFormError-postalCode": "PSČ je povinné.",
+  "establishmentReg-estRegFormError-postalCodeRegex": "Neplatný formát PSČ.",
+
+  "catError": {
+    "maxCat": "Maximálny počet kategórií je 3"
+  },
+
+  "tagError": {
+    "maxTags": "Maximalný počet tagov je 5"
+  },
+
+  "popUp-estRegisterHeader": "Registrácia odoslaná!",
+  "popUp-estRegisterMess": "Náš tím poskytnuté informácie čoskoro skontroluje. Na adresu <span class='text-ang-orange font-semibold'>{{email}}</span> dostanete e-mailové upozornenie o stave vašej registrácie.",
+  "popUp-estRegisterFooter": "Ďakujeme vám za registráciu! Tešíme sa na spoluprácu.",
+
+  "filter-heading": "Filtrovať podľa:",
+  "filter-name": "Názvu:",
+  "filter-byPrice": "Cennovej dostupnosti:",
+  "filter-byCategory": "kategórie:",
+  "filter-byTags": "Tagov:"
+}

@@ -1,0 +1,84 @@
+<div
+  class="flex h-full w-full items-center justify-center bg-ang-black bg-opacity-60 px-6"
+  (click)="closeRoleSelection()"
+>
+  <div
+    class="relative top-5 flex h-fit w-fit flex-col gap-5 rounded-lg bg-ang-white p-6 md:top-0"
+  >
+    <button
+      (click)="closeModalWindow()"
+      class="absolute -right-5 -top-5 rounded-full bg-ang-orange px-2 py-2 transition-all hover:scale-110"
+    >
+      <span
+        class="material-symbols-outlined flex items-center justify-center text-ang-black"
+        >close</span
+      >
+    </button>
+    <div
+      class="flex flex-col items-center justify-evenly gap-6 md:flex-row md:gap-10"
+    >
+      <div
+        *ngIf="!(auth.user$ | async)"
+        class="flex h-full w-full flex-col items-center justify-between rounded-md border border-ang-orange md:h-80 md:w-[340px]"
+      >
+        <h3
+          class="flex h-16 w-full items-center justify-center border-b border-b-ang-orange text-ang-black"
+        >
+          {{ "roleSelectionPage-fc-firstCard" | translate }}
+        </h3>
+        <ul class="flex flex-col px-2 py-4">
+          <li>
+            <p>{{ "roleSelectionPage-fc-firstListItem" | translate }}</p>
+          </li>
+          <li>
+            <p>{{ "roleSelectionPage-fc-secondListItem" | translate }}</p>
+          </li>
+          <li>
+            <p>{{ "roleSelectionPage-fc-thirdListItem" | translate }}</p>
+          </li>
+        </ul>
+        <button
+          class="secondary-buttons m-4 border border-ang-orange"
+          routerLink="home-page"
+        >
+          {{ "roleSelectionPage-fc-button" | translate }}
+        </button>
+      </div>
+      <div
+        class="flex h-full w-full flex-col items-center justify-between rounded-md border border-ang-orange md:h-80 md:w-[340px]"
+      >
+        <h3
+          class="flex h-16 w-full items-center justify-center rounded-t-md border-b border-b-ang-orange bg-ang-orange text-ang-black"
+        >
+          {{ "roleSelectionPage-sc-secondCard" | translate }}
+        </h3>
+        <ul class="flex flex-col px-2 py-4">
+          <li>
+            <p>{{ "roleSelectionPage-sc-firstListItem" | translate }}</p>
+          </li>
+          <li>
+            <p>{{ "roleSelectionPage-sc-secondListItem" | translate }}</p>
+          </li>
+          <li>
+            <p>{{ "roleSelectionPage-sc-thirdListItem" | translate }}</p>
+          </li>
+          <li>
+            <p>{{ "roleSelectionPage-sc-fourthListItem" | translate }}</p>
+          </li>
+        </ul>
+        <button class="primary-buttons m-4" (click)="loginWithRedirect()">
+          {{ "roleSelectionPage-sc-button" | translate }}
+        </button>
+      </div>
+    </div>
+    <p class="text-center">
+      {{ "roleSelectionPage-estText" | translate
+      }}<span
+        class="font-bold text-ang-orange hover:cursor-pointer hover:opacity-70"
+        routerLink="/establishment-register"
+      >
+        {{ "roleSelectionPage-estRedirect" | translate }}</span
+      >
+    </p>
+  </div>
+</div>
