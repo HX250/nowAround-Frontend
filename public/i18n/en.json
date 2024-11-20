@@ -161,5 +161,6 @@
   "filter-name": "Name:",
   "filter-byPrice": "Price range:",
   "filter-byCategory": "Category:",
-  "filter-byTags": "Tags:"
+  "filter-byTags": "Tags:",
+  "establishmentMarks-error": "No establishments have been found"
 }

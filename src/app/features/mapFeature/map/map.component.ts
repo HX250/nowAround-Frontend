@@ -3,17 +3,17 @@ import * as mapboxgl from 'mapbox-gl';
 import { MapService } from '../../../core/services/map/map.service';
 import { environment } from '../../../../environments/environment.prod';
 import { pins } from '../models/pins.model';
-
+import { AlertService } from '../../../core/services/alert/alert.service';
 
 @Component({
   selector: 'app-map',
   standalone: true,
   imports: [],
   templateUrl: './map.component.html',
-  styleUrl: './map.component.css'
+  styleUrl: './map.component.css',
 })
-export class MapComponent implements OnInit{
- map!: mapboxgl.Map | undefined;
+export class MapComponent implements OnInit {
+  map!: mapboxgl.Map | undefined;
   private markers: { marker: mapboxgl.Marker; id: string }[] = [];
   style = 'mapbox://styles/mapbox/light-v11';
   lastBounds: mapboxgl.LngLatBounds | null = null;
@@ -21,7 +21,10 @@ export class MapComponent implements OnInit{
   lng: number = 21.259273191588672;
   bufferZone: number = 0.15;
 
-  constructor(private mapService: MapService) {}
+  constructor(
+    private mapService: MapService,
+    private alertService: AlertService,
+  ) {}
 
   ngOnInit(): void {
     this.setUserLocation();
@@ -33,6 +36,7 @@ export class MapComponent implements OnInit{
       container: 'map',
       style: this.style,
       zoom: 16,
+      attributionControl: false,
       center: [this.lng, this.lat],
     });
 
@@ -162,7 +166,7 @@ export class MapComponent implements OnInit{
         );
       },
       error: (error) => {
-        console.error('Error fetching establishments', error);
+        this.alertService.showAlert('establishmentMarks-error');
       },
     });
   }

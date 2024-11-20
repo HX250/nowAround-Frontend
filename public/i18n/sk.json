@@ -161,5 +161,6 @@
   "filter-name": "Názvu:",
   "filter-byPrice": "Cennovej dostupnosti:",
   "filter-byCategory": "kategórie:",
-  "filter-byTags": "Tagov:"
+  "filter-byTags": "Tagov:",
+  "establishmentMarks-error": "Neboli nájdene žiadne podniky"
 }

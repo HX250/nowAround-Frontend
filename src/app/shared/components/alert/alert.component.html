@@ -1,1 +1,12 @@
-<p>alert works!</p>
+<div
+  [ngClass]="{
+    'h-12': alertState?.isShown,
+    'h-0 border-t-0': !alertState?.isShown,
+  }"
+  class="mx-2 flex items-center justify-center rounded-lg border-t-2 border-t-red-600 bg-red-300 text-ang-black transition-all"
+  role="alert"
+>
+  <div class="text-center text-base font-semibold sm:text-lg">
+    {{ alertState?.message }}
+  </div>
+</div>
