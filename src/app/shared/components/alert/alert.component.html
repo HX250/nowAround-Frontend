@@ -1,12 +1,19 @@
 <div
   [ngClass]="{
-    'h-12': alertState?.isShown,
-    'h-0 border-t-0': !alertState?.isShown,
+    'border-l-ang-redAlert h-12 border-l-4': alertState?.isShown,
+    'h-0 border-l-0': !alertState?.isShown,
   }"
-  class="mx-2 flex items-center justify-center rounded-lg border-t-2 border-t-red-600 bg-red-300 text-ang-black transition-all"
+  class="mx-2 flex items-center justify-start gap-4 bg-ang-white pl-4 transition-all"
   role="alert"
 >
-  <div class="text-center text-base font-semibold sm:text-lg">
+  <img
+    *ngIf="alertState?.isShown"
+    src="alert/remove.png"
+    class="h-6 w-6"
+    alt=""
+    srcset=""
+  />
+  <div class="text-ang-redAlert text-center text-sm font-semibold sm:text-lg">
     {{ alertState?.message }}
   </div>
 </div>

@@ -15,11 +15,12 @@ export class AlertService {
   });
   alertState$ = this.alertSubject.asObservable();
 
+  removeAlert() {
+    this.alertSubject.next({ isShown: false, message: '' });
+  }
+
   showAlert(message: string) {
     const translatedMessage = this.translate.instant(message);
     this.alertSubject.next({ isShown: true, message: translatedMessage });
-    setTimeout(() => {
-      this.alertSubject.next({ isShown: false, message: '' });
-    }, 3000);
   }
 }

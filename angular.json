@@ -24,7 +24,10 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"],
+            "styles": [
+              "src/styles.css",
+              "https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -81,7 +84,10 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"],
+            "styles": [
+              "src/styles.css",
+              "https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css"
+            ],
             "scripts": []
           }
         }

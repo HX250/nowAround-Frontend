@@ -13,7 +13,7 @@ import { AlertService } from '../../../core/services/alert/alert.service';
   styleUrl: './map.component.css',
 })
 export class MapComponent implements OnInit {
-  map!: mapboxgl.Map | undefined;
+  map!: mapboxgl.Map;
   private markers: { marker: mapboxgl.Marker; id: string }[] = [];
   style = 'mapbox://styles/mapbox/light-v11';
   lastBounds: mapboxgl.LngLatBounds | null = null;
@@ -141,6 +141,7 @@ export class MapComponent implements OnInit {
   }
 
   callMapService(boundaryPins: pins) {
+    this.alertService.removeAlert();
     this.mapService.getEstablishmentsInArea(boundaryPins).subscribe({
       next: (Response) => {
         Response.forEach(

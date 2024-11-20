@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { AlertComponent } from './shared/components/alert/alert.component';
-import { TranslateModule } from '@ngx-translate/core';
 import { AlertService } from './core/services/alert/alert.service';
-import { NgClass, NgIf } from '@angular/common';
 import { alertState } from './shared/components/alert/model/alert-state.model';
 
 @Component({

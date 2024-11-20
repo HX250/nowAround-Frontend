@@ -8,6 +8,7 @@ module.exports = {
           orange: "hsl(var(--color-orange) / <alpha-value>)",
           white: "hsl(var(--color-white) / <alpha-value>)",
           black: "hsl(var(--color-black) / <alpha-value>)",
+          redAlert: "hsl(var(--color-redAlert) / <alpha-value>)",
         },
       },
     },
