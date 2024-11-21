@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { jwtDecode } from 'jwt-decode';
-import { CookieService } from 'ngx-cookie-service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +12,12 @@ export class CustomAuthService {
   adminAuthorities: boolean = false;
   establishmentAuthorities: boolean = false;
 
+  private roleSubject = new BehaviorSubject<string>('');
+  roleState$ = this.roleSubject.asObservable();
+
   constructor(
     private auth: AuthService,
-    private cookieService: CookieService,
-    private router: Router
+    private router: Router,
   ) {
     this.loadAuthority();
   }
@@ -56,23 +58,45 @@ export class CustomAuthService {
 
   setRole(decodedToken: any) {
     const namespace = 'https://now-around-auth-api/roles';
-    const role = decodedToken[namespace][0];
-    this.cookieService.set('role', role);
-    if (role !== 'Admin') {
-      this.router.navigateByUrl('home-page');
+    const role = decodedToken[namespace]?.[0] || null;
+
+    if (role) {
+      this.roleSubject.next(role);
+    }
+
+    if (role === 'Admin') {
+      this.adminAuthorities = true;
+      this.router.navigateByUrl('/admin-page');
+    } else if (role === 'Establishment') {
+      this.establishmentAuthorities = true;
+      this.router.navigateByUrl('/establishment-page');
     } else {
-      window.location.reload();
+      this.router.navigateByUrl('home-page');
     }
   }
 
   loadAuthority() {
-    const authVal = this.cookieService.get('role');
-    if (authVal === 'Admin') {
-      this.adminAuthorities = true;
-      this.router.navigateByUrl('/admin-page');
-    } else if (authVal === 'Establishment') {
-      this.establishmentAuthorities = true;
-      this.router.navigateByUrl('/establishment-page');
-    }
+    this.roleState$.subscribe((role) => {
+      if (!role) {
+        return;
+      }
+      this.adminAuthorities = role === 'Admin';
+      this.establishmentAuthorities = role === 'Establishment';
+      console.log(role);
+
+      if (role === 'Admin') {
+        this.router.navigateByUrl('/admin-page');
+      } else if (role === 'Establishment') {
+        this.router.navigateByUrl('/establishment-page');
+      } else {
+        this.router.navigateByUrl('home-page');
+      }
+    });
+  }
+
+  resetRoleState(): void {
+    this.roleSubject.next('');
+    this.adminAuthorities = false;
+    this.establishmentAuthorities = false;
   }
 }

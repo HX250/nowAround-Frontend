@@ -1,23 +1,25 @@
 import { inject } from '@angular/core';
-import { CanActivateFn } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
-import { map } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 import { CustomAuthService } from '../../services/auth/auth.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  const customAuth = inject(CustomAuthService);
   const authServ = inject(AuthService);
-  const cookie = inject(CookieService);
+  const customAuth = inject(CustomAuthService);
 
   return authServ.isAuthenticated$.pipe(
-    map((isAuth) => {
-      if (cookie.get('role') && isAuth) {
-        return true;
-      } else {
-        customAuth.loginWithRedirect();
-        return false;
-      }
-    }),
+    switchMap((isAuth) =>
+      customAuth.roleState$.pipe(
+        map((role) => {
+          if (role === 'User' && isAuth) {
+            return true;
+          } else {
+            customAuth.loginWithRedirect();
+            return false;
+          }
+        }),
+      ),
+    ),
   );
 };

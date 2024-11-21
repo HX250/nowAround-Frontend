@@ -26,7 +26,7 @@ export class HeaderComponent {
     private translate: TranslateService,
     private cookieService: CookieService,
     public authServ: CustomAuthService,
-    public auth0: AuthService
+    public auth0: AuthService,
   ) {
     this.translate.addLangs(['en', 'sk']);
     this.translate.setDefaultLang('en');
@@ -64,9 +64,8 @@ export class HeaderComponent {
     this.auth0.logout({
       logoutParams: { returnTo: window.location.origin },
     });
-    this.cookieService.deleteAll();
-    this.authServ.adminAuthorities = false;
-    this.authServ.establishmentAuthorities = false;
+
+    this.authServ.resetRoleState();
   }
 
   @HostListener('document:click', ['$event'])
