@@ -1,6 +1,6 @@
 <div class="px-4 text-ang-black">
   <div
-    *ngIf="!authServ.adminAuthorities"
+    *ngIf="(role$ | async) !== 'Admin'"
     class="container m-auto flex h-fit flex-col items-center justify-between gap-4 border-b-2 border-ang-black pb-6 sm:flex-row"
   >
     <div class="flex items-center gap-2">
