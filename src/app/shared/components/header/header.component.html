@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <div *ngIf="!authServ.adminAuthorities">
+    <div *ngIf="(role$ | async) !== 'Admin'">
       <div
         class="block pt-6 hover:cursor-pointer md:hidden"
         (click)="showNavBar()"
@@ -77,7 +77,7 @@
       </nav>
     </div>
 
-    <div *ngIf="authServ.adminAuthorities">
+    <div *ngIf="(role$ | async) === 'Admin'">
       <ul
         class="flex flex-col justify-center gap-2 text-xl text-ang-black md:flex-row md:items-center lg:gap-4"
       >

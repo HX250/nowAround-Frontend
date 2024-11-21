@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
-import { map, switchMap } from 'rxjs';
+import { map } from 'rxjs';
 import { CustomAuthService } from '../../services/auth/auth.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
@@ -9,17 +9,13 @@ export const authGuard: CanActivateFn = (route, state) => {
   const customAuth = inject(CustomAuthService);
 
   return authServ.isAuthenticated$.pipe(
-    switchMap((isAuth) =>
-      customAuth.roleState$.pipe(
-        map((role) => {
-          if (role === 'User' && isAuth) {
-            return true;
-          } else {
-            customAuth.loginWithRedirect();
-            return false;
-          }
-        }),
-      ),
-    ),
+    map((isAuth) => {
+      if (isAuth) {
+        return true;
+      } else {
+        customAuth.loginWithRedirect();
+        return false;
+      }
+    }),
   );
 };

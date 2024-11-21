@@ -6,6 +6,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLinkActive, RouterModule } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -32,9 +33,11 @@ export class HeaderComponent {
     this.translate.setDefaultLang('en');
   }
   languageSet: string = '0';
+  role$!: Observable<string>;
   isNavBarShown: boolean = false;
 
   ngOnInit(): void {
+    this.role$ = this.authServ.roleState$;
     const storedLang = this.cookieService.get('lang');
     if (storedLang) {
       this.languageSet = storedLang;
