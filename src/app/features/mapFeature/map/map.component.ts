@@ -4,6 +4,7 @@ import { MapService } from '../../../core/services/map/map.service';
 import { environment } from '../../../../environments/environment.prod';
 import { pins } from '../models/pins.model';
 import { AlertService } from '../../../core/services/alert/alert.service';
+import { marker } from '../models/marker.model';
 
 @Component({
   selector: 'app-map',
@@ -144,27 +145,23 @@ export class MapComponent implements OnInit {
     this.alertService.removeAlert();
     this.mapService.getEstablishmentsInArea(boundaryPins).subscribe({
       next: (Response) => {
-        Response.forEach(
-          (Response: {
-            auth0Id: string;
-            name: string;
-            longitude: number;
-            latitude: number;
-          }) => {
-            if (
-              !this.markers.find(
-                (markerObj) => markerObj.id === Response.auth0Id,
-              )
-            ) {
-              this.addCustomMarker(
-                Response.auth0Id,
-                Response.name,
-                Response.longitude,
-                Response.latitude,
-              );
-            }
-          },
-        );
+        if (!Response || Response.length === 0) {
+          this.alertService.showAlert('establishmentMarks-error');
+          return;
+        }
+
+        Response.forEach((Response) => {
+          if (
+            !this.markers.find((markerObj) => markerObj.id === Response.auth0Id)
+          ) {
+            this.addCustomMarker(
+              Response.auth0Id,
+              Response.name,
+              Response.longitude,
+              Response.latitude,
+            );
+          }
+        });
       },
       error: (error) => {
         this.alertService.showAlert('establishmentMarks-error');
@@ -204,11 +201,16 @@ export class MapComponent implements OnInit {
     this.markers.push({ marker, id });
 
     markerElement.addEventListener('click', () => {
-      this.showSmallEstablishment(id);
+      this.showSmallEstablishment(id, long, lat);
     });
   }
 
-  showSmallEstablishment(establishmentID: string) {
+  showSmallEstablishment(establishmentID: string, long: number, lat: number) {
+    this.map.flyTo({
+      center: [long, lat],
+      zoom: 17,
+      essential: true,
+    });
     console.log(establishmentID);
   }
 

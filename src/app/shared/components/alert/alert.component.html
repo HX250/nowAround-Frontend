@@ -1,9 +1,9 @@
 <div
   [ngClass]="{
-    'border-l-ang-redAlert h-12 border-l-4': alertState?.isShown,
+    'h-12 border-l-4 border-l-ang-redAlert': alertState?.isShown,
     'h-0 border-l-0': !alertState?.isShown,
   }"
-  class="mx-2 flex items-center justify-start gap-4 bg-ang-white pl-4 transition-all"
+  class="mx-2 flex items-center justify-start gap-4 bg-ang-black pl-4 transition-all"
   role="alert"
 >
   <img
@@ -13,7 +13,7 @@
     alt=""
     srcset=""
   />
-  <div class="text-ang-redAlert text-center text-sm font-semibold sm:text-lg">
+  <div class="text-center text-sm font-semibold text-ang-redAlert sm:text-lg">
     {{ alertState?.message }}
   </div>
 </div>

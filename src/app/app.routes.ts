@@ -3,15 +3,17 @@ import { NotFoundComponent } from './features/notFoundFeature/not-found.componen
 import { LandingFeatureComponent } from './features/landingFeature/landing-feature.component';
 import { authGuard } from './core/guards/authGuard/auth.guard';
 import { adminGuard } from './core/guards/adminGuard/admin.guard';
+import { roleGuard } from './core/guards/roleGuard/role.guard';
 
 export const routes: Routes = [
-  { path: '', component: LandingFeatureComponent },
+  { path: '', component: LandingFeatureComponent, canActivate: [roleGuard] },
   {
     path: 'home-page',
     loadChildren: () =>
       import('./features/home-page/home-routing.module').then(
         (mod) => mod.homeRoutingModule,
       ),
+    canActivate: [roleGuard],
   },
   {
     path: 'user-account',

@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 export class CustomAuthService {
   token: string = '';
   private readonly ROLE_KEY = 'userRole';
+
   private roleSubject = new BehaviorSubject<string>(this.getStoredRole() || '');
   roleState$ = this.roleSubject.asObservable();
 

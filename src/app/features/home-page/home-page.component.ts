@@ -13,7 +13,6 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class HomePageComponent {
   @ViewChild(MapComponent) mapComponent!: MapComponent;
-
   isFilterWindowShown: boolean = true;
   updateWindowBool() {
     this.isFilterWindowShown = !this.isFilterWindowShown;

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.prod';
 import { pins } from '../../../features/mapFeature/models/pins.model';
+import { marker } from '../../../features/mapFeature/models/marker.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class MapService {
     tagNames: [] as string[],
   };
 
-  getEstablishmentsInArea(pins: pins): Observable<any> {
+  getEstablishmentsInArea(pins: pins): Observable<marker[]> {
     const encodedTags = this.filterParams.tagNames.join('%2C%20');
 
     const url =
@@ -30,6 +31,6 @@ export class MapService {
       `&categoryName=${this.filterParams.categoryName || ''}` +
       `&tagNames=${encodedTags}`;
 
-    return this.http.get<any>(url);
+    return this.http.get<marker[]>(url);
   }
 }

@@ -54,10 +54,10 @@
         <tbody class="text-ang-black">
           <tr *ngFor="let est of establishments">
             <td class="w-1/3 px-4 py-3 text-left">
-              {{ est.auth0Id }}
+              {{ est.establishmentID }}
             </td>
             <td class="w-1/3 px-4 py-3 text-left">
-              {{ est.name }}
+              {{ est.establishmentName }}
             </td>
             <td class="px-4 py-3 text-left">{{ est.ownerName }}</td>
             <td class="px-4 py-3 text-left">
@@ -65,7 +65,10 @@
                 <button
                   class="text-green-500"
                   (click)="
-                    processEstablishmentRegistration($event, est.auth0Id)
+                    processEstablishmentRegistration(
+                      $event,
+                      est.establishmentID
+                    )
                   "
                 >
                   Accept
@@ -74,7 +77,10 @@
                 <button
                   class="text-red-500"
                   (click)="
-                    processEstablishmentRegistration($event, est.auth0Id)
+                    processEstablishmentRegistration(
+                      $event,
+                      est.establishmentID
+                    )
                   "
                 >
                   Reject

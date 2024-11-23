@@ -10,10 +10,10 @@ import {
   PointElement,
   Title,
 } from 'chart.js';
-import { adminEstablishment } from '../models/admin-est.model';
 import { adminStats } from '../models/admin-statistics.model';
 import { AdminService } from '../../../core/services/admin/admin.service';
 import { NgFor } from '@angular/common';
+import { adminReq } from '../models/admin-est-req.model';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -23,7 +23,7 @@ import { NgFor } from '@angular/common';
   styleUrl: './admin-dashboard.component.css',
 })
 export class AdminDashboardComponent implements OnInit {
-  establishments: adminEstablishment[] = [];
+  establishments: adminReq[] = [];
   adminStats: adminStats[] = [];
   public chart: any;
 
@@ -37,7 +37,6 @@ export class AdminDashboardComponent implements OnInit {
     this.adminService.getUserStatistics().subscribe({
       next: (Response: any) => {
         this.adminStats = Response;
-        console.log(this.adminStats);
         this.createFirstChart();
       },
       error: (Error: any) => {
@@ -49,7 +48,7 @@ export class AdminDashboardComponent implements OnInit {
   loadPendingEstablishments(): void {
     this.adminService.getAllPendingEstablishments().subscribe({
       next: (response) => {
-        this.establishments = response;
+        this.establishments = Array.isArray(response) ? response : [];
       },
       error: (error) => {
         console.error('Error fetching establishments:', error);

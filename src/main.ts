@@ -1,6 +1,10 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { importProvidersFrom } from '@angular/core';
 import { AuthModule } from '@auth0/auth0-angular';
@@ -8,6 +12,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { routes } from './app/app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { headersInterceptor } from './app/core/interceptors/headers.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/i18n/', '.json');
@@ -16,7 +21,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(BrowserAnimationsModule),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([headersInterceptor])),
     importProvidersFrom(
       AuthModule.forRoot({
         domain: 'dev-1xh8kfmlma5zrj2z.us.auth0.com',
@@ -36,7 +41,6 @@ bootstrapApplication(AppComponent, {
         },
       }),
     ),
-
     importProvidersFrom(
       RouterModule.forRoot(routes, {
         scrollPositionRestoration: 'enabled',
