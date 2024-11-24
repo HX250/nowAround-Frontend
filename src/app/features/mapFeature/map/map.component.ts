@@ -201,16 +201,29 @@ export class MapComponent implements OnInit {
     this.markers.push({ marker, id });
 
     markerElement.addEventListener('click', () => {
-      this.showSmallEstablishment(id, long, lat);
+      this.showSmallEstablishment(marker, id, estName, long, lat);
     });
   }
 
-  showSmallEstablishment(establishmentID: string, long: number, lat: number) {
+  showSmallEstablishment(
+    marker: any,
+    establishmentID: string,
+    estName: string,
+    long: number,
+    lat: number,
+  ) {
     this.map.flyTo({
       center: [long, lat],
       zoom: 17,
       essential: true,
     });
+    marker.setPopup(
+      new mapboxgl.Popup({
+        offset: 25,
+        focusAfterOpen: false,
+        className: 'w-fit',
+      }).setHTML(`<h3>${estName}</h3>`),
+    );
     console.log(establishmentID);
   }
 
