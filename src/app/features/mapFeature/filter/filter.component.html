@@ -1,12 +1,10 @@
-<div
-  class="relative h-full w-full rounded-t-xl border-r-2 border-r-ang-orange bg-ang-white md:rounded-none"
->
+<div class="relative h-full w-full rounded-t-xl bg-ang-orange md:rounded-none">
   <div
     class="absolute -top-1 left-1/2 flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full md:-right-9 md:left-auto md:top-1/2 md:-translate-y-1/2 md:translate-x-0"
   >
     <button
       (click)="toggleFilterWindow()"
-      class="h-16 w-16 rounded-full border-2 border-ang-orange bg-ang-white text-center"
+      class="h-16 w-16 rounded-full border-4 border-ang-white bg-ang-orange text-center"
     >
       <img
         *ngIf="filterWindow"
@@ -14,8 +12,7 @@
         class="m-auto h-6 w-6"
         alt=""
         srcset=""
-      />
-      <img
+      /><img
         *ngIf="!filterWindow"
         src="mapIcons/filter.png"
         class="m-auto h-8 w-8"
@@ -27,24 +24,19 @@
   @if (filterWindow) {
     <div class="flex items-center gap-2 p-2 pt-6">
       <img src="mapIcons/filter.png" class="h-6 w-6" alt="" srcset="" />
-      <h1 class="text-xl font-semibold text-ang-orange">
-        {{ "filter-heading" | translate }}
-      </h1>
+      <h1 class="text-xl font-semibold">{{ "filter-heading" | translate }}</h1>
     </div>
-    <form
-      [formGroup]="filterForm"
-      class="flex h-full flex-col gap-3 overflow-y-scroll p-2 text-ang-black"
-    >
+    <form [formGroup]="filterForm" class="flex h-full flex-col gap-3 p-2">
       <div class="flex flex-col gap-1">
         <label for="searchByName" class="font-semibold">{{
           "filter-name" | translate
-        }}</label>
-        <input
+        }}</label
+        ><input
           formControlName="searchByName"
           type="search"
           name="searchByName"
           id="searchByName"
-          class="rounded-md border-2 border-ang-orange p-1 shadow-md"
+          class="rounded-md p-1 shadow-md"
         />
       </div>
       <div class="flex flex-col gap-1">
@@ -56,13 +48,12 @@
             formControlName="byPriceRange"
             name="byPriceRange"
             id="byPriceRange"
-            class="w-full rounded-md border-2 border-ang-orange p-1.5 shadow-md"
+            class="w-full rounded-md p-1.5 shadow-md"
           >
             <option value="0">€</option>
             <option value="1">€€</option>
-            <option value="2">€€€</option>
-          </select>
-          <button
+            <option value="2">€€€</option></select
+          ><button
             *ngIf="filterForm.get('byPriceRange')?.value"
             type="button"
             (click)="filterForm.patchValue({ byPriceRange: '' })"
@@ -72,7 +63,6 @@
           </button>
         </div>
       </div>
-
       <div class="flex flex-col gap-1">
         <label for="byCategory" class="font-semibold">{{
           "filter-byCategory" | translate
@@ -82,13 +72,12 @@
             name="byCategory"
             id="byCategory"
             formControlName="byCategory"
-            class="w-full rounded-md border-2 border-ang-orange p-1.5 shadow-md"
+            class="w-full rounded-md p-1.5 shadow-md"
           >
             <option *ngFor="let category of category" [value]="category">
               {{ "CATEGORIES." + category | translate }}
-            </option>
-          </select>
-          <button
+            </option></select
+          ><button
             *ngIf="filterForm.get('byCategory')?.value"
             type="button"
             (click)="filterForm.patchValue({ byCategory: '' })"
@@ -99,19 +88,19 @@
         </div>
       </div>
       <p class="font-semibold">{{ "filter-byTags" | translate }}</p>
-      <div class="flex flex-wrap justify-start gap-1" *ngFor="let tag of tags">
-        <input type="checkbox" id="{{ tag }}" />
-        <label
-          for="{{ tag }}"
-          class="text-sm font-semibold"
-          [ngClass]="{
-            'text-ang-orange': chosenTags.includes(tag),
-            'text-ang-black': !chosenTags.includes(tag),
-          }"
+      <div class="flex flex-wrap items-center justify-start gap-1 pr-0 md:pr-3">
+        <button
+          *ngFor="let tag of tags"
           (click)="addTag(tag)"
+          type="button"
+          [ngClass]="{
+            'bg-ang-orange text-white': chosenTags.includes(tag),
+            'bg-white text-ang-black': !chosenTags.includes(tag),
+          }"
+          class="rounded-md border border-ang-orange px-2 py-1.5 text-center text-sm shadow-md"
         >
-          {{ "TAGS." + tag | translate }}</label
-        >
+          {{ "TAGS." + tag | translate }}
+        </button>
       </div>
     </form>
   }

@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { PopUpComponent } from '../../shared/components/pop-up/pop-up.component';
+import { PopUpComponent } from '../../../shared/components/pop-up/pop-up.component';
 import { EstablishmentFormPersonalInfoComponent } from './establishment-form-personal-info/establishment-form-personal-info.component';
-import { EstabilishmentService } from '../../core/services/establishment/establishment.service';
+import { EstabilishmentService } from '../../../core/services/establishment/establishment.service';
 import { take } from 'rxjs';
 import { EstablishmentFormEstInfoComponent } from './establishment-form-est-info/establishment-form-est-info.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -50,7 +50,6 @@ export class EstablishmentFormComponent {
           complete: () => {
             this.estEmail = completeFormData.personalInfo.email;
             this.popUpHidden = false;
-            console.log('Request completed.');
           },
         });
     } else {

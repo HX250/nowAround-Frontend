@@ -146,7 +146,7 @@ export class MapComponent implements OnInit {
     this.mapService.getEstablishmentsInArea(boundaryPins).subscribe({
       next: (Response) => {
         if (!Response || Response.length === 0) {
-          this.alertService.showAlert('establishmentMarks-error');
+          this.alertService.showAlert('establishmentMarks-error', false);
           return;
         }
 
@@ -164,7 +164,7 @@ export class MapComponent implements OnInit {
         });
       },
       error: (error) => {
-        this.alertService.showAlert('establishmentMarks-error');
+        this.alertService.showAlert('establishmentMarks-error', false);
       },
     });
   }

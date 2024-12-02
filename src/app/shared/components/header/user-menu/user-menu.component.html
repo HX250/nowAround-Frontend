@@ -1,0 +1,26 @@
+<ul
+  class="flex flex-col gap-2 text-xl text-ang-black md:flex-row md:items-center lg:gap-4"
+>
+  <li
+    [routerLink]="['/']"
+    [routerLinkActive]="['text-ang-orange']"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="p-4 hover:cursor-pointer hover:text-ang-orange"
+  >
+    <p>{{ "HOME" | translate }}</p>
+  </li>
+  <li
+    [routerLink]="['/home-page']"
+    [routerLinkActive]="['text-ang-orange']"
+    class="p-4 hover:cursor-pointer hover:text-ang-orange"
+  >
+    <p>{{ "MAPS" | translate }}</p>
+  </li>
+  <li
+    [routerLink]="['/user-account']"
+    [routerLinkActive]="['text-ang-orange']"
+    class="p-4 hover:cursor-pointer hover:text-ang-orange"
+  >
+    <p>{{ "PROFILE" | translate }}</p>
+  </li>
+</ul>

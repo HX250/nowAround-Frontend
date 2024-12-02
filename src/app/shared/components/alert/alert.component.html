@@ -1,19 +1,29 @@
 <div
   [ngClass]="{
-    'h-12 border-l-4 border-l-ang-redAlert': alertState?.isShown,
-    'h-0 border-l-0': !alertState?.isShown,
+    'border-ang-greenAlert text-ang-greenAlert h-12 border-l-4 bg-green-50':
+      alertState.isShown && alertState.status,
+    'h-12 border-l-4 border-ang-redAlert bg-red-100 text-ang-redAlert':
+      alertState.isShown && !alertState.status,
+    'h-0 border-l-0': !alertState.isShown,
   }"
-  class="mx-2 flex items-center justify-start gap-4 bg-ang-black pl-4 transition-all"
+  class="mx-2 flex items-center justify-start gap-4 pl-4 transition-all"
   role="alert"
 >
   <img
-    *ngIf="alertState?.isShown"
+    *ngIf="alertState?.isShown && alertState.status"
+    src="alert/check.png"
+    class="h-6 w-6"
+    alt=""
+    srcset=""
+  />
+  <img
+    *ngIf="alertState?.isShown && !alertState.status"
     src="alert/remove.png"
     class="h-6 w-6"
     alt=""
     srcset=""
   />
-  <div class="text-center text-sm font-semibold text-ang-redAlert sm:text-lg">
-    {{ alertState?.message }}
+  <div class="text-center text-sm font-semibold sm:text-lg">
+    {{ alertState.message }}
   </div>
 </div>

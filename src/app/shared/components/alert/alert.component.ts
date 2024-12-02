@@ -1,6 +1,7 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { alertState } from './model/alert-state.model';
+import { AlertService } from '../../../core/services/alert/alert.service';
 
 @Component({
   selector: 'app-alert',
@@ -10,5 +11,17 @@ import { alertState } from './model/alert-state.model';
   styleUrl: './alert.component.css',
 })
 export class AlertComponent {
-  @Input() alertState: alertState | undefined;
+  alertState: alertState = {
+    isShown: undefined,
+    message: '',
+    status: undefined,
+  };
+
+  constructor(private alertService: AlertService) {}
+
+  ngOnInit(): void {
+    this.alertService.alertState$.subscribe((state) => {
+      this.alertState = state;
+    });
+  }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { AlertComponent } from './shared/components/alert/alert.component';
@@ -14,13 +14,4 @@ import { alertState } from './shared/components/alert/model/alert-state.model';
 })
 export class AppComponent {
   title = 'nowAroundFE';
-
-  alertState: alertState = { isShown: false, message: '' };
-
-  constructor(private alertService: AlertService) {}
-  ngOnInit() {
-    this.alertService.alertState$.subscribe((state) => {
-      this.alertState = state;
-    });
-  }
 }

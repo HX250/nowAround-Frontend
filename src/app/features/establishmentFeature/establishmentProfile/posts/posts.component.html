@@ -1,0 +1,19 @@
+<div class="pt-4">
+  <div *ngIf="postList?.length == 0; else showItems">
+    <p class="pt-4 text-center text-xl">Establishment havent added any posts</p>
+  </div>
+  <ng-template #showItems>
+    <div *ngFor="let post of postList">
+      @if (post.photo) {
+        <img [src]="post.photo" alt="Post image" />
+      }
+      <h2>{{ post.headline }}</h2>
+      <p>
+        <em>{{ post.date | date: "mediumDate" }}</em>
+      </p>
+      <p>{{ post.body }}</p>
+
+      <span>{{ post.interests }} interests</span>
+    </div>
+  </ng-template>
+</div>

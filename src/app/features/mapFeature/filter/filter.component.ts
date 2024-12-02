@@ -9,11 +9,11 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [CommonModule, TranslateModule, ReactiveFormsModule],
   templateUrl: './filter.component.html',
-  styleUrl: './filter.component.css'
+  styleUrl: './filter.component.css',
 })
 export class FilterComponent {
   @Output() filtersChanged = new EventEmitter<any>();
-
+  @Output() updateFilterWindow = new EventEmitter<boolean>();
   filterWindow: boolean = true;
   category: string[] = [
     'CAFE',
@@ -46,7 +46,6 @@ export class FilterComponent {
   ];
   chosenTags: string[] = [];
 
-  @Output() updateFilterWindow = new EventEmitter<boolean>();
   filterForm: FormGroup;
 
   constructor(

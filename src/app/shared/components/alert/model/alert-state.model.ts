@@ -1,4 +1,5 @@
 export interface alertState {
-  isShown: boolean;
+  isShown?: boolean;
   message: string;
+  status?: boolean;
 }

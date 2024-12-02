@@ -1,0 +1,14 @@
+<div class="pt-4">
+  <div *ngIf="infoList?.length == 0; else showItems">
+    <p class="pt-4 text-center text-xl">Establishment havent added any posts</p>
+  </div>
+  <ng-template #showItems>
+    <div *ngFor="let info of infoList">
+      <p>{{ info.address }}</p>
+      <p>{{ info.city }}</p>
+      <p>{{ info.postal }}</p>
+      <p>{{ info.openingHoursVal }}</p>
+      <span>{{ info.socials }} </span>
+    </div>
+  </ng-template>
+</div>

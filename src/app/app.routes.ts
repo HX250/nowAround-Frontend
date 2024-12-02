@@ -32,7 +32,7 @@ export const routes: Routes = [
     canActivate: [adminGuard],
   },
   {
-    path: 'establishment-register',
+    path: 'establishment',
     loadChildren: () =>
       import(
         './features/establishmentFeature/establishment-routing.module'

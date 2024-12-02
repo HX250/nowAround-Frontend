@@ -13,7 +13,7 @@ export const adminGuard: CanActivateFn = (route, state) => {
     switchMap((isAuth) =>
       customAuth.roleState$.pipe(
         map((role) => {
-          if ((role === 'Admin' || role === 'Establishment') && isAuth) {
+          if (role === 'Admin' && isAuth) {
             return true;
           } else {
             router.navigateByUrl('/');

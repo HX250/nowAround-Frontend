@@ -1,0 +1,24 @@
+<div class="pt-4">
+  <div *ngIf="tabList?.length == 0; else showItems">
+    <p class="pt-4 text-center text-xl">Establishment doesnt have an menu</p>
+  </div>
+  tab
+  <ng-template #showItems>
+    <div
+      *ngFor="let tab of tabList"
+      class="flex w-full items-center justify-between"
+    >
+      <div class="flex">
+        @if (tab.photo) {
+          <img [src]="tab.photo" alt="Post image" />
+        }
+        <div class="flex flex-col">
+          <h3>{{ tab.title }}</h3>
+          <p>{{ tab.description }}</p>
+        </div>
+      </div>
+
+      <span class="text-right">{{ tab.price }}</span>
+    </div>
+  </ng-template>
+</div>

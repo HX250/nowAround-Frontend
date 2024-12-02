@@ -10,85 +10,58 @@
       </div>
     </div>
 
-    <div *ngIf="(role$ | async) !== 'Admin'">
-      <div
-        class="block pt-6 hover:cursor-pointer md:hidden"
-        (click)="showNavBar()"
+    <div
+      class="block pt-6 hover:cursor-pointer md:hidden"
+      (click)="showNavBar()"
+    >
+      <span
+        [ngClass]="{
+          'w-2': isNavBarShown,
+          'after:w-2': isNavBarShown,
+          'before:w-2': isNavBarShown,
+        }"
+        class="relative block h-1.5 w-11 rounded-lg bg-ang-orange transition-all delay-[180ms] ease-in-out before:absolute before:-top-3 before:left-0 before:block before:h-1.5 before:w-11 before:rounded-lg before:bg-ang-orange before:transition-all before:delay-[260ms] before:content-[''] after:absolute after:left-0 after:top-3 after:block after:h-1.5 after:w-11 after:rounded-lg after:bg-ang-orange after:transition-all after:delay-100 after:content-[''] hover:cursor-pointer"
       >
-        <span
-          [ngClass]="{
-            'w-2': isNavBarShown,
-            'after:w-2': isNavBarShown,
-            'before:w-2': isNavBarShown,
-          }"
-          class="relative block h-1.5 w-11 rounded-lg bg-ang-orange transition-all delay-[180ms] ease-in-out before:absolute before:-top-3 before:left-0 before:block before:h-1.5 before:w-11 before:rounded-lg before:bg-ang-orange before:transition-all before:delay-[260ms] before:content-[''] after:absolute after:left-0 after:top-3 after:block after:h-1.5 after:w-11 after:rounded-lg after:bg-ang-orange after:transition-all after:delay-100 after:content-[''] hover:cursor-pointer"
-        >
-        </span>
-      </div>
-      <nav
-        class="absolute right-0 top-14 w-full bg-ang-white bg-opacity-85 text-right md:static md:block md:w-fit md:bg-transparent"
-        [ngClass]="{ hidden: !isNavBarShown }"
-      >
-        <ul
-          class="flex flex-col justify-center gap-2 text-xl text-ang-black md:flex-row md:items-center lg:gap-4"
-        >
-          <li
-            [routerLinkActiveOptions]="{ exact: true }"
-            routerLinkActive="text-ang-orange"
-            routerLink=""
-            class="p-4 hover:cursor-pointer hover:text-ang-orange"
-          >
-            <p>{{ "HOME" | translate }}</p>
-          </li>
-          <li
-            routerLink="/home-page"
-            routerLinkActive="text-ang-orange"
-            class="p-4 hover:cursor-pointer hover:text-ang-orange"
-          >
-            <p>{{ "MAPS" | translate }}</p>
-          </li>
-          <li
-            routerLinkActive="text-ang-orange"
-            routerLink="/user-account"
-            class="p-4 hover:cursor-pointer hover:text-ang-orange"
-          >
-            <p>{{ "PROFILE" | translate }}</p>
-          </li>
-          <li
-            *ngIf="auth0.isAuthenticated$ | async"
-            routerLinkActive="text-ang-orange"
-            (click)="logout()"
-            class="p-4 hover:cursor-pointer hover:text-ang-orange"
-          >
-            <p>{{ "LOG OUT" | translate }}</p>
-          </li>
-          <li class="p-4">
-            <select
-              name="languageSet"
-              [(ngModel)]="languageSet"
-              (ngModelChange)="changeLang($event)"
-              class="rounded-md bg-ang-orange px-3 py-1 font-semibold"
-            >
-              <option value="0" class="bg-ang-white">EN</option>
-              <option value="1" class="bg-ang-white">SK</option>
-            </select>
-          </li>
-        </ul>
-      </nav>
+      </span>
     </div>
-
-    <div *ngIf="(role$ | async) === 'Admin'">
+    <nav
+      class="absolute right-0 top-14 w-full bg-ang-white bg-opacity-85 text-right md:static md:flex md:w-fit md:items-center md:bg-transparent"
+      [ngClass]="{ hidden: !isNavBarShown }"
+    >
+      @switch (role$ | async) {
+        @case ("Admin") {
+          <app-admin-menu></app-admin-menu>
+        }
+        @case ("Establishment") {
+          <app-establishment-menu></app-establishment-menu>
+        }
+        @default {
+          <app-user-menu></app-user-menu>
+        }
+      }
       <ul
         class="flex flex-col justify-center gap-2 text-xl text-ang-black md:flex-row md:items-center lg:gap-4"
       >
         <li
+          *ngIf="auth0.isAuthenticated$ | async"
           routerLinkActive="text-ang-orange"
           (click)="logout()"
           class="p-4 hover:cursor-pointer hover:text-ang-orange"
         >
           <p>{{ "LOG OUT" | translate }}</p>
         </li>
+        <li class="p-4">
+          <select
+            name="languageSet"
+            [(ngModel)]="languageSet"
+            (ngModelChange)="changeLang($event)"
+            class="rounded-md bg-ang-orange px-3 py-1 font-semibold"
+          >
+            <option value="0" class="bg-ang-white">EN</option>
+            <option value="1" class="bg-ang-white">SK</option>
+          </select>
+        </li>
       </ul>
-    </div>
+    </nav>
   </div>
 </div>

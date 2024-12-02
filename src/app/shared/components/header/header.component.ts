@@ -3,21 +3,23 @@ import { CustomAuthService } from '../../../core/services/auth/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '@auth0/auth0-angular';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLinkActive, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
+import { UserMenuComponent } from './user-menu/user-menu.component';
+import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+import { EstablishmentMenuComponent } from './establishment-menu/establishment-menu.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
-    NgIf,
     FormsModule,
-    RouterLinkActive,
     CommonModule,
     TranslateModule,
-    RouterModule,
+    UserMenuComponent,
+    AdminMenuComponent,
+    EstablishmentMenuComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',

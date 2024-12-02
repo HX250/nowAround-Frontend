@@ -1,29 +1,27 @@
-<div class="px-4 text-ang-black">
+<div class="bg-ang-white px-4 text-ang-black">
   <div
-    *ngIf="(role$ | async) !== 'Admin'"
-    class="container m-auto flex h-fit flex-col items-center justify-between gap-4 border-b-2 border-ang-black pb-6 sm:flex-row"
+    class="container m-auto flex flex-col items-center justify-between gap-4 border-t-2 border-ang-black py-6 md:flex-row"
   >
     <div class="flex items-center gap-2">
       <img src="/logo/logo.png" alt="footerLogo" class="h-8 w-8" />
       <p>nowAround</p>
     </div>
-    <ul class="flex flex-col gap-4 sm:flex-row">
-      <li class="hover:cursor-pointer hover:text-ang-orange">
-        {{ "footer-menuBarEvents" | translate }}
-      </li>
-      <li class="hover:cursor-pointer hover:text-ang-orange">
-        {{ "footer-menuBarMenus" | translate }}
-      </li>
-      <li class="hover:cursor-pointer hover:text-ang-orange">
-        {{ "footer-menuBarActivities" | translate }}
-      </li>
-      <li class="hover:cursor-pointer hover:text-ang-orange">
-        {{ "footer-menuBarShare" | translate }}
-      </li>
-      <li class="hover:cursor-pointer hover:text-ang-orange">
-        {{ "footer-menuBarFriends" | translate }}
-      </li>
-    </ul>
+    <div class="flex flex-col items-center gap-2 md:flex-row">
+      <p class="text-center font-semibold text-ang-orange">
+        © 2024 NowAround. All rights reserved.
+      </p>
+      <ul class="flex flex-col gap-4 md:flex-row">
+        <li class="hover:cursor-pointer hover:text-ang-orange">
+          Privacy Policy
+        </li>
+        <li class="hover:cursor-pointer hover:text-ang-orange">
+          Terms of Service
+        </li>
+        <li class="hover:cursor-pointer hover:text-ang-orange">
+          Cookies Settings
+        </li>
+      </ul>
+    </div>
     <div class="flex gap-3">
       <img
         src="/landing/downloadSection/androidDownload.png"
@@ -38,21 +36,5 @@
         class="h-6 w-6"
       />
     </div>
-  </div>
-  <div
-    class="flex flex-col-reverse items-center justify-center gap-4 py-6 sm:flex-row"
-  >
-    <p class="text-center font-semibold text-ang-orange">
-      © 2024 NowAround. All rights reserved.
-    </p>
-    <ul class="flex flex-col gap-4 sm:flex-row">
-      <li class="hover:cursor-pointer hover:text-ang-orange">Privacy Policy</li>
-      <li class="hover:cursor-pointer hover:text-ang-orange">
-        Terms of Service
-      </li>
-      <li class="hover:cursor-pointer hover:text-ang-orange">
-        Cookies Settings
-      </li>
-    </ul>
   </div>
 </div>
