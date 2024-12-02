@@ -9,8 +9,11 @@ export const roleGuard: CanActivateFn = (route, state) => {
 
   return customAuth.roleState$.pipe(
     map((role) => {
-      if (role === 'Admin' || role === 'Establishment') {
+      if (role === 'Admin') {
         router.navigateByUrl('admin-page');
+        return false;
+      } else if (role === 'Establishment') {
+        router.navigateByUrl('establishment');
         return false;
       } else {
         return true;
