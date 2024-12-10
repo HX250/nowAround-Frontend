@@ -3,6 +3,8 @@ export interface estInfo {
   city: string;
   postal: string;
   socials?: string[];
-  openingHoursVal?: string[];
+  openingHoursVal?: Record<string, string>;
   openingHours?: boolean;
+  lng: number;
+  lat: number;
 }

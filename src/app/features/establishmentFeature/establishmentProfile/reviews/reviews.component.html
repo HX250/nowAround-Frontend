@@ -1,0 +1,69 @@
+<div class="pt-4">
+  <div *ngIf="!reviewList; else showItems">
+    <p class="pt-4 text-center text-xl sm:pt-0">
+      Establishment doesn't have any reviews
+    </p>
+  </div>
+
+  <ng-template #showItems>
+    <div
+      class="flex flex-col-reverse items-center justify-between gap-8 sm:flex-row sm:items-start"
+    >
+      <div class="flex w-full flex-col gap-4">
+        <div
+          class="flex w-full flex-col gap-4"
+          *ngIf="(auth.roleState$ | async) === 'User'"
+        >
+          <textarea
+            name="userReview"
+            id="userReview"
+            placeholder="Let others know what you think!"
+            class="rounded-md border border-ang-orange p-2"
+            [(ngModel)]="userReview"
+          ></textarea>
+          <button
+            class="primary-buttons w-fit place-self-end"
+            (click)="sendReview()"
+          >
+            Send
+          </button>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div
+            *ngFor="let review of reviewList?.review"
+            class="flex items-center justify-between rounded-md border border-ang-orange p-2 shadow-md"
+          >
+            <div class="flex flex-col gap-2">
+              <div>
+                <h3 class="text-lg font-bold text-ang-orange">
+                  {{ review.username }}
+                </h3>
+                <p class="text-sm text-gray-600">{{ review.stars }} Stars</p>
+              </div>
+              <p class="text-md">{{ review.reviewText }}</p>
+            </div>
+            <div *ngIf="(auth.roleState$ | async) === 'Admin'">
+              <button>Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex w-full max-w-80 flex-col gap-4">
+        <span class="font-bold">Rating Distribution:</span>
+        <div *ngFor="let star of getStarKeys()">
+          <div class="flex items-center gap-2">
+            <span>{{ star }} Stars:</span>
+            <div class="relative h-2 flex-1 rounded bg-gray-200">
+              <div
+                class="h-full rounded bg-ang-orange"
+                [style.width.%]="getRatingPercentage(star)"
+              ></div>
+            </div>
+            <span>{{ reviewList!.overallStars[star] || 0 }} votes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

@@ -1,4 +1,4 @@
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { CustomAuthService } from '../../../core/services/auth/auth.service';
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [TranslateModule, NgIf, CommonModule],
+  imports: [TranslateModule, CommonModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
 })

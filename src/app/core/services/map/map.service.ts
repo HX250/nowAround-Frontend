@@ -21,7 +21,7 @@ export class MapService {
     const encodedTags = this.filterParams.tagNames.join('%2C%20');
 
     const url =
-      `${environment.API_END_POINT}Establishment/search-area` +
+      `${environment.API_END_POINT}Establishment/search` +
       `?northWestLat=${pins.northWest.lat}` +
       `&northWestLong=${pins.northWest.lng}` +
       `&southEastLat=${pins.southEast.lat}` +

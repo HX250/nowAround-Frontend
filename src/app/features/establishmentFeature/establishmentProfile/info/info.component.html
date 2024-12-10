@@ -1,14 +1,54 @@
-<div class="pt-4">
-  <div *ngIf="infoList?.length == 0; else showItems">
-    <p class="pt-4 text-center text-xl">Establishment havent added any posts</p>
-  </div>
-  <ng-template #showItems>
-    <div *ngFor="let info of infoList">
-      <p>{{ info.address }}</p>
-      <p>{{ info.city }}</p>
-      <p>{{ info.postal }}</p>
-      <p>{{ info.openingHoursVal }}</p>
-      <span>{{ info.socials }} </span>
+<div
+  class="z-10 flex h-full w-full items-center justify-center bg-ang-black bg-opacity-60 md:px-6"
+  (click)="closeModal()"
+>
+  <div
+    class="relative top-0 flex h-full w-full flex-col gap-5 overflow-y-scroll rounded-lg bg-ang-white md:top-5 md:h-fit md:w-fit md:overflow-y-visible"
+    (click)="stopPropagation($event)"
+  >
+    <button
+      (click)="closeModal()"
+      class="absolute -right-0 -top-0 z-50 w-10 rounded-bl-lg bg-ang-orange p-2 transition-all hover:scale-110 md:-right-5 md:-top-5 md:rounded-full"
+    >
+      <span class="flex items-center justify-center text-ang-black">X</span>
+    </button>
+
+    <div
+      class="z-40 flex flex-col items-center gap-4 pb-2 pt-12 sm:flex-row sm:p-4"
+    >
+      <div *ngIf="!infoList; else showItems">
+        <p class="pt-4 text-center text-xl">
+          Establishment hasn't added any posts
+        </p>
+      </div>
+      <ng-template #showItems>
+        <div class="map" id="map" style="height: 20rem; width: 20rem"></div>
+        <div class="flex flex-col gap-3 text-ang-black">
+          <p class="font-semibold">Opening hours:</p>
+          <div class="flex w-80 flex-col gap-1">
+            <div
+              *ngFor="let entry of infoList?.openingHoursVal | daySort"
+              class="flex w-full justify-between"
+            >
+              <p>{{ entry.key }} :</p>
+              <p>{{ entry.value }}</p>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <p>{{ infoList?.city }}</p>
+            <p>{{ infoList?.address }}</p>
+            <p>{{ infoList?.postal }}</p>
+          </div>
+          <div class="flex gap-3">
+            <img
+              *ngFor="let social of infoList?.socials"
+              [src]="social"
+              alt=""
+              class="h-8 w-8 rounded-full border border-ang-orange"
+            />
+          </div>
+        </div>
+      </ng-template>
     </div>
-  </ng-template>
+  </div>
 </div>

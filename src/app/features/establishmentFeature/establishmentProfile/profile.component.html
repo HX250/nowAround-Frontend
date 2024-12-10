@@ -1,72 +1,98 @@
 <section class="h-full min-h-[100svh] w-full overflow-hidden bg-ang-white">
   <div class="flex flex-col">
-    <div
-      class="flex h-60 w-full items-center justify-center border-2 border-b-ang-orange transition-all hover:cursor-pointer hover:bg-ang-black hover:bg-opacity-40"
-    >
-      <img src="userProfile/image-.png" alt="User Cover" class="h-16 w-16" />
-    </div>
-    <div class="container mx-auto px-2">
+    @if (estProfile) {
       <div
-        class="relative bottom-14 flex flex-col items-center border-b-2 border-ang-orange sm:bottom-0 sm:flex-row sm:items-start"
-        *ngIf="estProfile"
+        class="flex h-60 w-full items-center justify-center border-2 border-b-ang-orange transition-all hover:cursor-pointer hover:bg-ang-black hover:bg-opacity-40"
       >
-        <img
-          [src]="[estProfile.photo]"
-          alt="User Profile"
-          class="relative bottom-0 h-40 w-40 rounded-md bg-ang-white p-2 outline outline-2 outline-ang-orange sm:bottom-[76px]"
-        />
-
-        <div
-          class="flex w-full flex-col items-center justify-between gap-2 p-4 text-ang-black sm:flex-row"
-        >
-          <div class="flex flex-col items-center gap-2 sm:items-start">
-            <h1 class="w-full text-center text-3xl sm:text-left">
-              {{ estProfile.name }}
-            </h1>
-
-            <ul class="flex gap-4">
-              <li
-                [routerLink]="['posts']"
-                routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
-                class="cursor-pointer"
-              >
-                Posts
-              </li>
-              <li
-                *ngIf="tabLink"
-                [routerLink]="['tabs']"
-                routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
-                class="cursor-pointer"
-              >
-                Menu
-              </li>
-              <li
-                [routerLink]="['info']"
-                routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
-                class="cursor-pointer"
-              >
-                Info
-              </li>
-            </ul>
-          </div>
-          @if (isLoggedIn) {
-            <button>
-              <img
-                src="userProfile/edit.png"
-                alt="Edit profile button"
-                class="h-8 w-8 transition-all hover:scale-110"
-              />
-            </button>
-          } @else {
-            <div class="flex gap-4">
-              <button>Follow</button>
-              <button>Settings</button>
-            </div>
-          }
-        </div>
+        <img src="userProfile/image-.png" alt="User Cover" class="h-16 w-16" />
       </div>
+      <div class="container mx-auto px-2">
+        <div
+          class="relative bottom-14 flex flex-col items-center border-b-2 border-ang-orange sm:bottom-0 sm:flex-row sm:items-start"
+        >
+          <img
+            [src]="[estProfile.photo]"
+            alt="User Profile"
+            class="relative bottom-0 h-40 w-40 rounded-md bg-ang-white p-2 outline outline-2 outline-ang-orange sm:bottom-[76px]"
+          />
 
-      <router-outlet></router-outlet>
-    </div>
+          <div
+            class="flex w-full flex-col items-center justify-between gap-2 p-4 text-ang-black sm:flex-row"
+          >
+            <div class="flex flex-col items-center gap-2 sm:items-start">
+              <h1 class="w-full text-center text-3xl sm:text-left">
+                {{ estProfile.name }}
+              </h1>
+
+              <ul class="flex gap-4">
+                <li
+                  [routerLink]="['posts']"
+                  routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
+                  class="cursor-pointer hover:text-ang-orange"
+                >
+                  Posts
+                </li>
+                @if (tabLink) {
+                  <li
+                    [routerLink]="['tabs']"
+                    routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
+                    class="cursor-pointer hover:text-ang-orange"
+                  >
+                    Menu
+                  </li>
+                } @else {
+                  <li
+                    [routerLink]="['tabs']"
+                    routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
+                    class="cursor-pointer hover:text-ang-orange"
+                  >
+                    Events
+                  </li>
+                }
+                <li
+                  [routerLink]="['reviews']"
+                  routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
+                  class="cursor-pointer hover:text-ang-orange"
+                >
+                  Reviews
+                </li>
+                <li
+                  (click)="openWindow()"
+                  class="cursor-pointer hover:text-ang-orange"
+                >
+                  Info
+                </li>
+              </ul>
+            </div>
+            @if (isLoggedIn) {
+              <button (click)="openEditWindow()">
+                <img
+                  src="userProfile/edit.png"
+                  alt="Edit profile button"
+                  class="h-8 w-8 transition-all hover:scale-110"
+                />
+              </button>
+            } @else {
+              <div class="flex gap-4">
+                <button>Follow</button>
+                <button>Settings</button>
+              </div>
+            }
+          </div>
+        </div>
+
+        <router-outlet></router-outlet>
+      </div>
+      <app-establishment-edit
+        *ngIf="editWindow()"
+        (close)="closeEditWindow()"
+        class="fixed top-0 z-50 h-full w-full"
+      ></app-establishment-edit>
+      <app-info
+        *ngIf="isWindowShown()"
+        (close)="closeWindow()"
+        class="fixed top-0 z-50 h-full w-full"
+      ></app-info>
+    }
   </div>
 </section>

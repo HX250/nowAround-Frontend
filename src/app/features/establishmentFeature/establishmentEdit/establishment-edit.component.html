@@ -1,0 +1,19 @@
+<div
+  class="z-10 flex h-full w-full items-center justify-center bg-ang-black bg-opacity-60 md:px-6"
+  (click)="closeModal()"
+>
+  <div
+    class="relative top-0 flex h-full w-full flex-col gap-5 overflow-y-scroll rounded-lg bg-ang-white md:top-5 md:h-fit md:w-fit md:overflow-y-visible"
+    (click)="stopPropagation($event)"
+  >
+    <button
+      (click)="closeModal()"
+      class="absolute -right-0 -top-0 z-50 w-10 rounded-bl-lg bg-ang-orange p-2 transition-all hover:scale-110 md:-right-5 md:-top-5 md:rounded-full"
+    >
+      <span class="flex items-center justify-center text-ang-black">X</span>
+    </button>
+    <div
+      class="z-40 flex flex-col items-center gap-4 pb-2 pt-12 sm:flex-row sm:p-4"
+    ></div>
+  </div>
+</div>

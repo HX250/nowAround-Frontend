@@ -4,7 +4,7 @@ import { EstablishmentFormComponent } from './establishmentForm/establishment-fo
 import { ProfileComponent } from './establishmentProfile/profile.component';
 import { PostsComponent } from './establishmentProfile/posts/posts.component';
 import { TabsComponent } from './establishmentProfile/tabs/tabs.component';
-import { InfoComponent } from './establishmentProfile/info/info.component';
+import { ReviewsComponent } from './establishmentProfile/reviews/reviews.component';
 
 const routes: Routes = [
   {
@@ -22,8 +22,8 @@ const routes: Routes = [
         component: TabsComponent,
       },
       {
-        path: 'info',
-        component: InfoComponent,
+        path: 'reviews',
+        component: ReviewsComponent,
       },
     ],
   },

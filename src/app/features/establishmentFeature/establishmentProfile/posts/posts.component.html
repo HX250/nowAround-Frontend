@@ -1,19 +1,41 @@
-<div class="pt-4">
+<div>
   <div *ngIf="postList?.length == 0; else showItems">
     <p class="pt-4 text-center text-xl">Establishment havent added any posts</p>
   </div>
   <ng-template #showItems>
-    <div *ngFor="let post of postList">
-      @if (post.photo) {
-        <img [src]="post.photo" alt="Post image" />
-      }
-      <h2>{{ post.headline }}</h2>
-      <p>
-        <em>{{ post.date | date: "mediumDate" }}</em>
-      </p>
-      <p>{{ post.body }}</p>
+    <div class="flex gap-2 pt-4">
+      <input
+        type="search"
+        class="h-8 w-full rounded-lg border border-ang-orange p-1"
+      />
+      <button>Search</button>
+    </div>
+    <div
+      class="flex flex-wrap items-center justify-center gap-4 py-4 md:justify-evenly xl:justify-between"
+    >
+      <div
+        *ngFor="let post of postList"
+        class="row-span-2 flex max-h-[30rem] w-full max-w-96 flex-col gap-2 rounded-md border border-ang-orange"
+      >
+        @if (post.photo) {
+          <img
+            [src]="post.photo"
+            alt="Post image"
+            class="h-96 w-96 rounded-t-md"
+          />
+        }
+        <div class="flex flex-col justify-between pl-1">
+          <div>
+            <h2 class="text-xl">{{ post.headline }}</h2>
+            <p class="text-sm">
+              {{ post.date | date: "mediumDate" }}
+            </p>
+          </div>
+          <p class="text-base">{{ post.body }}</p>
 
-      <span>{{ post.interests }} interests</span>
+          <span class="text-sm">{{ post.interests }} interests</span>
+        </div>
+      </div>
     </div>
   </ng-template>
 </div>
