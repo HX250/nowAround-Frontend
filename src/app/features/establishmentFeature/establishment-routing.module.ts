@@ -8,7 +8,11 @@ import { ReviewsComponent } from './establishmentProfile/reviews/reviews.compone
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'register-form',
+    component: EstablishmentFormComponent,
+  },
+  {
+    path: ':id',
     component: ProfileComponent,
 
     children: [
@@ -26,10 +30,6 @@ const routes: Routes = [
         component: ReviewsComponent,
       },
     ],
-  },
-  {
-    path: 'register-form',
-    component: EstablishmentFormComponent,
   },
 ];
 

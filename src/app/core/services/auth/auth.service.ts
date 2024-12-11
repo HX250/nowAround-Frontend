@@ -48,7 +48,10 @@ export class CustomAuthService {
         this.getToken();
       },
       error: (error) => {
-        this.alert.showAlert('Login window has been closed', false);
+        this.alert.showAlert(
+          'Login window has been closed, please try again!',
+          false,
+        );
       },
       complete: () => {},
     });

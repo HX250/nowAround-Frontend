@@ -4,6 +4,7 @@ import { review } from '../../models/profile/completeReview.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CustomAuthService } from '../../../../core/services/auth/auth.service';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-reviews',
@@ -15,25 +16,37 @@ import { CustomAuthService } from '../../../../core/services/auth/auth.service';
 export class ReviewsComponent implements OnInit {
   reviewList: review | undefined = undefined;
   userReview: string = '';
+  estID?: string = '';
 
   constructor(
     private estServ: EstabilishmentService,
-    public auth: CustomAuthService,
+    public customAuth: CustomAuthService,
+    public auth: AuthService,
   ) {}
 
   ngOnInit(): void {
-    const profile = this.estServ.getProfile();
-    this.reviewList = profile?.reviews;
-    console.log(this.reviewList);
+    this.loadPreviewData();
     this.estServ.estProfileState$.subscribe((Response) => {
-      console.log(Response);
+      this.estID = Response?.genericInformation.authId;
     });
   }
+
+  private loadPreviewData(): void {
+    const profile = this.estServ.getProfile();
+    this.reviewList = profile?.reviews;
+  }
+
   sendReview() {
-    console.log(this.userReview);
+    this.auth.user$.subscribe((Response) => {
+      this.estServ
+        .sendReview(this.estID, this.userReview, Response?.sub)
+        .subscribe();
+    });
   }
   getStarKeys(): string[] {
-    return Object.keys(this.reviewList?.overallStars || {});
+    return this.reviewList?.overallStars
+      ? Object.keys(this.reviewList.overallStars)
+      : [];
   }
 
   getRatingPercentage(star: string): number {

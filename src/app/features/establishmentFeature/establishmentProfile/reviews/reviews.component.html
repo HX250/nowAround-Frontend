@@ -12,7 +12,7 @@
       <div class="flex w-full flex-col gap-4">
         <div
           class="flex w-full flex-col gap-4"
-          *ngIf="(auth.roleState$ | async) === 'User'"
+          *ngIf="(customAuth.roleState$ | async) === 'User'"
         >
           <textarea
             name="userReview"
@@ -43,7 +43,7 @@
               </div>
               <p class="text-md">{{ review.reviewText }}</p>
             </div>
-            <div *ngIf="(auth.roleState$ | async) === 'Admin'">
+            <div *ngIf="(customAuth.roleState$ | async) === 'Admin'">
               <button>Remove</button>
             </div>
           </div>

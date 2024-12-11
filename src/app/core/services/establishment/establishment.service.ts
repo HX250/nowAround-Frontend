@@ -28,6 +28,15 @@ export class EstabilishmentService {
     return this.estProfileSubject.value;
   }
 
+  sendReview(
+    estId?: string,
+    review?: string,
+    userId?: string,
+  ): Observable<any> {
+    const payload = { estId, review, userId };
+    return this.http.post('/api/reviews', payload);
+  }
+
   setTestProfile(estId: string): Observable<establishmentProfile | null> {
     return this.http
       .get<establishmentProfile>(
@@ -50,9 +59,7 @@ export class EstabilishmentService {
       );
   }
 
-  registerEstablishment(
-    completeFormData: CompleteFormData,
-  ): Observable<HttpResponse<any>> {
+  registerEstablishment(completeFormData: CompleteFormData): Observable<any> {
     completeFormData.establishmentInfo.address =
       completeFormData.establishmentInfo.address.replace(/\//g, '-');
     return this.http.post<any>(

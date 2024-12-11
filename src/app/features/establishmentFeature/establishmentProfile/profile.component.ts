@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import {
+  ActivatedRoute,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { CustomAuthService } from '../../../core/services/auth/auth.service';
 import { EstabilishmentService } from '../../../core/services/establishment/establishment.service';
@@ -27,17 +32,20 @@ export class ProfileComponent implements OnInit {
   isLoggedIn: boolean = false;
   estProfile?: profile = undefined;
   tabLink?: boolean = false;
+  establishmentID: string = '';
 
   constructor(
     public auth0: AuthService,
     private customAuth: CustomAuthService,
     private estServ: EstabilishmentService,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
     this.getRole();
 
-    this.estServ.setTestProfile('testingEstID').subscribe();
+    this.establishmentID = this.route.snapshot.paramMap.get('id') || '';
+    this.estServ.setTestProfile(this.establishmentID).subscribe();
 
     this.estServ.estProfileState$.subscribe((profile) => {
       this.estProfile = profile?.genericInformation ?? undefined;
@@ -63,6 +71,7 @@ export class ProfileComponent implements OnInit {
   closeEditWindow() {
     this.editWindow.set(false);
   }
+
   getRole() {
     this.customAuth.roleState$.subscribe((role) => {
       if (role === 'Establishment') {

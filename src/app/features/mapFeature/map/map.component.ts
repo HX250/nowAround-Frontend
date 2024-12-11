@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { MapService } from '../../../core/services/map/map.service';
 import { environment } from '../../../../environments/environment.prod';
 import { pins } from '../models/pins.model';
 import { AlertService } from '../../../core/services/alert/alert.service';
-import { marker } from '../models/marker.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -25,6 +25,8 @@ export class MapComponent implements OnInit {
   constructor(
     private mapService: MapService,
     private alertService: AlertService,
+    private router: Router,
+    private renderer: Renderer2,
   ) {}
 
   ngOnInit(): void {
@@ -217,14 +219,34 @@ export class MapComponent implements OnInit {
       zoom: 17,
       essential: true,
     });
+
+    const popupContent = this.renderer.createElement('div');
+    const title = this.renderer.createElement('h3');
+    const button = this.renderer.createElement('button');
+
+    title.innerText = estName;
+    button.innerText = 'Navigate';
+
+    this.renderer.listen(button, 'click', () =>
+      this.navigateToEst(establishmentID),
+    );
+
+    this.renderer.appendChild(popupContent, title);
+    this.renderer.appendChild(popupContent, button);
+
     marker.setPopup(
       new mapboxgl.Popup({
         offset: 25,
         focusAfterOpen: false,
         className: 'w-fit',
-      }).setHTML(`<h3>${estName}</h3>`),
+      }).setDOMContent(popupContent),
     );
     console.log(establishmentID);
+  }
+
+  navigateToEst(establishmentID: string) {
+    console.log('Navigating to establishment:', establishmentID);
+    this.router.navigate([`/establishment/${establishmentID}`]);
   }
 
   removeAllMarkers(): void {
