@@ -10,7 +10,7 @@ on:
 
 env:
   APP_LOCATION: "/"
-  OUTPUT_LOCATION: "/dist/now-around-fe"
+  OUTPUT_LOCATION: "/dist/now-around-fe/browser"
 
 jobs:
   build_and_deploy:
