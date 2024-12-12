@@ -1,0 +1,31 @@
+{
+  "routing": {
+    "routes": [
+      {
+        "route": "/home-page/*",
+        "serve": "/index.html",
+        "statusCode": 200
+      },
+      {
+        "route": "/user-account/*",
+        "serve": "/index.html",
+        "statusCode": 200
+      },
+      {
+        "route": "/admin-page/*",
+        "serve": "/index.html",
+        "statusCode": 200
+      },
+      {
+        "route": "/establishment/*",
+        "serve": "/index.html",
+        "statusCode": 200
+      },
+      {
+        "route": "/*",
+        "serve": "/index.html",
+        "statusCode": 200
+      }
+    ]
+  }
+}
