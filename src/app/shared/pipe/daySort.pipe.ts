@@ -6,22 +6,28 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DaySortPipe implements PipeTransform {
   transform(
-    value: Record<string, string> | undefined,
+    value: Record<string, any> | undefined,
   ): { key: string; value: string }[] {
     if (!value) return [];
 
     const daysOrder = [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday',
+      'monday',
+      'tuesday',
+      'wednesday',
+      'thursday',
+      'friday',
+      'saturday',
+      'sunday',
     ];
 
-    return Object.entries(value)
-      .map(([key, val]) => ({ key, value: val }))
-      .sort((a, b) => daysOrder.indexOf(a.key) - daysOrder.indexOf(b.key));
+    const dayEntries = Object.entries(value)
+      .filter(([key]) => daysOrder.includes(key.toLowerCase()))
+      .map(([key, val]) => ({ key, value: val }));
+
+    return dayEntries.sort(
+      (a, b) =>
+        daysOrder.indexOf(a.key.toLowerCase()) -
+        daysOrder.indexOf(b.key.toLowerCase()),
+    );
   }
 }

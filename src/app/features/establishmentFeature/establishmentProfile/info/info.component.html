@@ -27,7 +27,7 @@
           <p class="font-semibold">Opening hours:</p>
           <div class="flex w-80 flex-col gap-1">
             <div
-              *ngFor="let entry of infoList?.openingHoursVal | daySort"
+              *ngFor="let entry of infoList?.businessHours | daySort"
               class="flex w-full justify-between"
             >
               <p>{{ entry.key }} :</p>
@@ -35,17 +35,7 @@
             </div>
           </div>
           <div class="flex gap-3">
-            <p>{{ infoList?.city }}</p>
             <p>{{ infoList?.address }}</p>
-            <p>{{ infoList?.postal }}</p>
-          </div>
-          <div class="flex gap-3">
-            <img
-              *ngFor="let social of infoList?.socials"
-              [src]="social"
-              alt=""
-              class="h-8 w-8 rounded-full border border-ang-orange"
-            />
           </div>
         </div>
       </ng-template>

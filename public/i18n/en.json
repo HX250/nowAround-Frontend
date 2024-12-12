@@ -162,5 +162,11 @@
   "filter-byPrice": "Price range:",
   "filter-byCategory": "Category:",
   "filter-byTags": "Tags:",
-  "establishmentMarks-error": "No establishments have been found"
+  "establishmentMarks-error": "No establishments have been found",
+
+  "establishmentProfileNav-Post": "Posts",
+  "establishmentProfileNav-Menu": "Menu",
+  "establishmentProfileNav-Event": "Events",
+  "establishmentProfileNav-Rev": "Reviews",
+  "establishmentProfileNav-Info": "Info"
 }

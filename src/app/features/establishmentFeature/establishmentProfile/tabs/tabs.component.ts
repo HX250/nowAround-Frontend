@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { tabs } from '../../models/profile/tabs.model';
+import { Menu } from '../../models/profile/menu.model';
 import { EstabilishmentService } from '../../../../core/services/establishment/establishment.service';
 import { CommonModule } from '@angular/common';
 
@@ -11,12 +11,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './tabs.component.css',
 })
 export class TabsComponent {
-  tabList: tabs[] = [];
+  tabList: Menu[] = [];
 
   constructor(private estServ: EstabilishmentService) {}
 
   ngOnInit(): void {
     const profile = this.estServ.getProfile();
-    this.tabList = profile?.tabs || [];
+    console.log(profile);
+
+    this.tabList = profile?.menus || [];
+    console.log(this.tabList);
   }
 }

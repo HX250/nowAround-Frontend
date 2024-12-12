@@ -1,13 +1,14 @@
-import { estInfo } from './estInfo.model';
+import { locationInfo } from './estInfo.model';
 import { posts } from './posts.model';
 import { profile } from './profile.model';
-import { review } from './completeReview.model';
-import { tabs } from './tabs.model';
+import { ratingStatistic } from './completeReview.model';
+import { Menu } from './menu.model';
 
 export interface establishmentProfile {
+  authId: string;
   genericInformation: profile;
   posts: posts[];
-  tabs: tabs[];
-  estInfo: estInfo;
-  reviews: review;
+  menus: Menu[];
+  locationInfo: locationInfo;
+  ratingStatistic: ratingStatistic;
 }

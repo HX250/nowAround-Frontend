@@ -31,17 +31,22 @@
 
         <div class="flex flex-col gap-4">
           <div
-            *ngFor="let review of reviewList?.review"
+            *ngFor="let review of reviewList?.reviews"
             class="flex items-center justify-between rounded-md border border-ang-orange p-2 shadow-md"
           >
             <div class="flex flex-col gap-2">
               <div>
-                <h3 class="text-lg font-bold text-ang-orange">
-                  {{ review.username }}
-                </h3>
-                <p class="text-sm text-gray-600">{{ review.stars }} Stars</p>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg font-bold text-ang-orange">
+                    {{ review.fullname }}
+                  </h3>
+                  <p class="text-sm text-ang-black">
+                    {{ review.createdAt | date: "mediumDate" }}
+                  </p>
+                </div>
+                <p class="text-sm text-gray-600">{{ review.rating }} Stars</p>
               </div>
-              <p class="text-md">{{ review.reviewText }}</p>
+              <p class="text-md">{{ review.body }}</p>
             </div>
             <div *ngIf="(customAuth.roleState$ | async) === 'Admin'">
               <button>Remove</button>
@@ -53,14 +58,14 @@
         <span class="font-bold">Rating Distribution:</span>
         <div *ngFor="let star of getStarKeys()">
           <div class="flex items-center gap-2">
-            <span>{{ star }} Stars:</span>
+            <span>{{ star }}:</span>
             <div class="relative h-2 flex-1 rounded bg-gray-200">
               <div
                 class="h-full rounded bg-ang-orange"
                 [style.width.%]="getRatingPercentage(star)"
               ></div>
             </div>
-            <span>{{ reviewList!.overallStars[star] || 0 }} votes</span>
+            <span>{{ reviewList![star] || 0 }} votes</span>
           </div>
         </div>
       </div>

@@ -17,9 +17,9 @@
         *ngFor="let post of postList"
         class="row-span-2 flex max-h-[30rem] w-full max-w-96 flex-col gap-2 rounded-md border border-ang-orange"
       >
-        @if (post.photo) {
+        @if (post.imageUrl) {
           <img
-            [src]="post.photo"
+            [src]="post.imageUrl"
             alt="Post image"
             class="h-96 w-96 rounded-t-md"
           />
@@ -28,12 +28,12 @@
           <div>
             <h2 class="text-xl">{{ post.headline }}</h2>
             <p class="text-sm">
-              {{ post.date | date: "mediumDate" }}
+              {{ post.createdAt | date: "mediumDate" }}
             </p>
           </div>
           <p class="text-base">{{ post.body }}</p>
 
-          <span class="text-sm">{{ post.interests }} interests</span>
+          <span class="text-sm">{{ post.userLikes.length }} interests</span>
         </div>
       </div>
     </div>

@@ -1,10 +1,6 @@
-export interface estInfo {
+export interface locationInfo {
   address: string;
-  city: string;
-  postal: string;
-  socials?: string[];
-  openingHoursVal?: Record<string, string>;
-  openingHours?: boolean;
-  lng: number;
+  businessHours?: Record<string, string>;
+  long: number;
   lat: number;
 }

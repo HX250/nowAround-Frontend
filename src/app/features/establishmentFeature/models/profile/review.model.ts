@@ -1,6 +1,7 @@
-export interface IndividualReview {
-  userId: string;
-  username: string;
-  stars: number;
-  reviewText: string;
+export interface review {
+  userAuth0Id: string;
+  fullname: string;
+  rating: number;
+  body: string;
+  createdAt: Date;
 }

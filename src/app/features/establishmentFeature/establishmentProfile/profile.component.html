@@ -10,19 +10,36 @@
         <div
           class="relative bottom-14 flex flex-col items-center border-b-2 border-ang-orange sm:bottom-0 sm:flex-row sm:items-start"
         >
-          <img
-            [src]="[estProfile.photo]"
-            alt="User Profile"
-            class="relative bottom-0 h-40 w-40 rounded-md bg-ang-white p-2 outline outline-2 outline-ang-orange sm:bottom-[76px]"
-          />
-
           <div
             class="flex w-full flex-col items-center justify-between gap-2 p-4 text-ang-black sm:flex-row"
           >
-            <div class="flex flex-col items-center gap-2 sm:items-start">
-              <h1 class="w-full text-center text-3xl sm:text-left">
-                {{ estProfile.name }}
-              </h1>
+            <img
+              [src]="[estProfile.photo]"
+              alt="User Profile"
+              class="absolute -top-16 bottom-0 h-40 w-40 rounded-md bg-ang-white p-2 outline outline-2 outline-ang-orange"
+            />
+            <div
+              class="flex h-fit min-h-24 flex-col items-center gap-2 sm:items-start sm:pl-44"
+            >
+              <div
+                class="flex flex-col items-center gap-4 pt-28 sm:items-start sm:pt-0 xl:flex-row xl:items-center"
+              >
+                <h1
+                  class="w-full text-center text-2xl sm:text-left xl:text-3xl"
+                >
+                  {{ estProfile.name }}
+                </h1>
+                <div
+                  class="flex flex-row justify-center gap-1 xl:justify-start"
+                >
+                  <p
+                    *ngFor="let category of estProfile.categories"
+                    class="rounded-md bg-ang-orange bg-opacity-80 px-2 text-sm text-ang-black transition-all hover:scale-110"
+                  >
+                    {{ "CATEGORIES." + category | translate }}
+                  </p>
+                </div>
+              </div>
 
               <ul class="flex gap-4">
                 <li
@@ -30,7 +47,7 @@
                   routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
                   class="cursor-pointer hover:text-ang-orange"
                 >
-                  Posts
+                  {{ "establishmentProfileNav-Post" | translate }}
                 </li>
                 @if (tabLink) {
                   <li
@@ -38,7 +55,7 @@
                     routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
                     class="cursor-pointer hover:text-ang-orange"
                   >
-                    Menu
+                    {{ "establishmentProfileNav-Menu" | translate }}
                   </li>
                 } @else {
                   <li
@@ -46,7 +63,7 @@
                     routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
                     class="cursor-pointer hover:text-ang-orange"
                   >
-                    Events
+                    {{ "establishmentProfileNav-Event" | translate }}
                   </li>
                 }
                 <li
@@ -54,13 +71,13 @@
                   routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
                   class="cursor-pointer hover:text-ang-orange"
                 >
-                  Reviews
+                  {{ "establishmentProfileNav-Rev" | translate }}
                 </li>
                 <li
                   (click)="openWindow()"
                   class="cursor-pointer hover:text-ang-orange"
                 >
-                  Info
+                  {{ "establishmentProfileNav-Info" | translate }}
                 </li>
               </ul>
             </div>

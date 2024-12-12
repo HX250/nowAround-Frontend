@@ -5,7 +5,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { estInfo } from '../../models/profile/estInfo.model';
+import { locationInfo } from '../../models/profile/estInfo.model';
 import { EstabilishmentService } from '../../../../core/services/establishment/establishment.service';
 import { CommonModule } from '@angular/common';
 import mapboxgl from 'mapbox-gl';
@@ -21,7 +21,7 @@ import { DaySortPipe } from '../../../../shared/pipe/daySort.pipe';
 })
 export class InfoComponent implements OnInit, AfterViewInit {
   @Output() close = new EventEmitter<void>();
-  infoList?: estInfo = undefined;
+  infoList?: locationInfo = undefined;
   map!: mapboxgl.Map;
   style = 'mapbox://styles/mapbox/light-v11';
   lat?: number;
@@ -35,11 +35,12 @@ export class InfoComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     const profile = this.estServ.getProfile();
-    this.infoList = profile?.estInfo || undefined;
+    this.infoList = profile?.locationInfo || undefined;
+    console.log(this.infoList);
 
     if (this.infoList) {
       this.lat = this.infoList.lat;
-      this.lng = this.infoList.lng;
+      this.lng = this.infoList.long;
     }
   }
 
@@ -57,7 +58,7 @@ export class InfoComponent implements OnInit, AfterViewInit {
       style: this.style,
       zoom: 16,
       attributionControl: false,
-      center: [this.lat!, this.lng!],
+      center: [this.lng!, this.lat!],
     });
 
     const markerElement = document.createElement('div');
@@ -79,7 +80,7 @@ export class InfoComponent implements OnInit, AfterViewInit {
   `;
 
     const marker = new mapboxgl.Marker(markerElement)
-      .setLngLat([this.lat!, this.lng!])
+      .setLngLat([this.lng!, this.lat!])
       .addTo(this.map!);
   }
 }

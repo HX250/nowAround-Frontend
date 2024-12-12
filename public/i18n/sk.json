@@ -162,5 +162,11 @@
   "filter-byPrice": "Cennovej dostupnosti:",
   "filter-byCategory": "Kategórie:",
   "filter-byTags": "Tagov:",
-  "establishmentMarks-error": "Neboli nájdene žiadne podniky"
+  "establishmentMarks-error": "Neboli nájdene žiadne podniky",
+
+  "establishmentProfileNav-Post": "Príspevky",
+  "establishmentProfileNav-Menu": "Menu",
+  "establishmentProfileNav-Event": "Udalosti",
+  "establishmentProfileNav-Rev": "Recenzie",
+  "establishmentProfileNav-Info": "Informácie"
 }

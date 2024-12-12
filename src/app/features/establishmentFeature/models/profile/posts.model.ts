@@ -1,7 +1,7 @@
 export interface posts {
-  photo?: string;
+  imageUrl?: string;
   headline: string;
-  date: Date;
+  createdAt: Date;
   body: string;
-  interests: number;
+  userLikes: string[];
 }

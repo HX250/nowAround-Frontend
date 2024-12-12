@@ -169,6 +169,7 @@ export class MapComponent implements OnInit {
         this.alertService.showAlert('establishmentMarks-error', false);
       },
     });
+    this.addCustomMarker('asd', 'asdasd', this.lng, this.lat);
   }
 
   addCustomMarker(
