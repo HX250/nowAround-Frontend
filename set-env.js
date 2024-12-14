@@ -1,26 +1,12 @@
 const fs = require("fs");
-const path = require("path");
-const successColor = "\x1b[32m%s\x1b[0m";
-const checkSign = "\u{2705}";
-const dotenv = require("dotenv").config({ path: "src/.env" });
+const prodEnvPath = "./src/environments/environment.prod.ts";
 
-const envFile = `export const environment = {
-    API_END_POINT: '${process.env.API_END_POINT}',
-    MAPBOX_TOKEN: '${process.env.MAPBOX_TOKEN}',
-};
-`;
-const targetPath = path.join(
-  __dirname,
-  "./src/environments/environment.prod.ts",
-);
-fs.writeFile(targetPath, envFile, (err) => {
-  if (err) {
-    console.error(err);
-    throw err;
-  } else {
-    console.log(
-      successColor,
-      `${checkSign} Successfully generated environment.prod.ts`,
-    );
-  }
-});
+const backendApiUrl = process.env.BACKEND_API_URL;
+const mapboxAccessToken = process.env.MAPBOX_ACCESS_TOKEN;
+
+const content = fs
+  .readFileSync(prodEnvPath, "utf-8")
+  .replace("YOUR_BACKEND_API_URL", backendApiUrl)
+  .replace("YOUR_MAPBOX_ACCESS_TOKEN", mapboxAccessToken);
+
+fs.writeFileSync(prodEnvPath, content);

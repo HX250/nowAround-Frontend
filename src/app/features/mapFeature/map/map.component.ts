@@ -1,10 +1,11 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { MapService } from '../../../core/services/map/map.service';
-import { environment } from '../../../../environments/environment.prod';
+
 import { pins } from '../models/pins.model';
 import { AlertService } from '../../../core/services/alert/alert.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-map',
