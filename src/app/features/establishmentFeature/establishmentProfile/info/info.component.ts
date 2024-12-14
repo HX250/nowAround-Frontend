@@ -9,7 +9,7 @@ import { locationInfo } from '../../models/profile/estInfo.model';
 import { EstabilishmentService } from '../../../../core/services/establishment/establishment.service';
 import { CommonModule } from '@angular/common';
 import mapboxgl from 'mapbox-gl';
-import { environment } from '../../../../../environments/environment.prod';
+import { environment } from '../../../../../environments/environment.dev';
 import { DaySortPipe } from '../../../../shared/pipe/daySort.pipe';
 
 @Component({

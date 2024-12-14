@@ -11,11 +11,6 @@ import { environment } from '../environments/environment.prod';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'nowAroundFE';
-
-  ngOnInit() {
-    console.log('API Endpoint:', environment.API_END_POINT);
-    console.log('Mapbox Token:', environment.MAPBOX_TOKEN);
-  }
 }

@@ -5,7 +5,7 @@ import { MapService } from '../../../core/services/map/map.service';
 import { pins } from '../models/pins.model';
 import { AlertService } from '../../../core/services/alert/alert.service';
 import { Router } from '@angular/router';
-import { environment } from '../../../../environments/environment.prod';
+import { environment } from '../../../../environments/environment.dev';
 
 @Component({
   selector: 'app-map',
