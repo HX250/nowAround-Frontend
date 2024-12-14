@@ -6,7 +6,7 @@ const mapboxAccessToken = process.env.MAPBOX_ACCESS_TOKEN;
 
 const content = fs
   .readFileSync(prodEnvPath, "utf-8")
-  .replace("YOUR_BACKEND_API_URL", backendApiUrl)
-  .replace("YOUR_MAPBOX_ACCESS_TOKEN", mapboxAccessToken);
+  .replace("API_END_POINT", backendApiUrl)
+  .replace("MAPBOX_TOKEN", mapboxAccessToken);
 
 fs.writeFileSync(prodEnvPath, content);
