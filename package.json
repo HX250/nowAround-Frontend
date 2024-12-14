@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "prebuild": "node -r dotenv/config set-env.js",
+    "prebuild": "node set-env.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -24,6 +24,7 @@
     "@ngx-translate/http-loader": "^16.0.0",
     "@types/mapbox-gl": "^3.4.1",
     "chart.js": "^4.4.6",
+    "dotenv": "^16.4.7",
     "jwt-decode": "^4.0.0",
     "mapbox-gl": "^3.8.0",
     "ngx-cookie-service": "^18.0.0",
