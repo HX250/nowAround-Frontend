@@ -28,6 +28,14 @@ export class EstabilishmentService {
     return this.estProfileSubject.value;
   }
 
+  returnSpecificProfileInfo<T>(
+    infoPart: keyof establishmentProfile,
+  ): Observable<T | undefined> {
+    return this.estProfileState$.pipe(
+      map((profile) => (profile ? (profile[infoPart] as T) : undefined)),
+    );
+  }
+
   sendReview(
     estId?: string,
     review?: string,

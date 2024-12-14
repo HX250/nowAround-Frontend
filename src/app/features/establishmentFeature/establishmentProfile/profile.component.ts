@@ -45,13 +45,31 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRole();
+    this.saveProfile();
+    this.getProfileData();
+  }
 
+  getRole() {
+    this.customAuth.roleState$.subscribe((role) => {
+      if (role === 'Establishment') {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    });
+  }
+
+  saveProfile() {
     this.establishmentID = this.route.snapshot.paramMap.get('id') || '';
     this.estServ.setTestProfile(this.establishmentID).subscribe();
+  }
 
-    this.estServ.estProfileState$.subscribe((profile) => {
-      this.estProfile = profile?.genericInformation ?? undefined;
-    });
+  getProfileData() {
+    this.estServ
+      .returnSpecificProfileInfo<profile>('genericInformation')
+      .subscribe((Response) => {
+        this.estProfile = Response;
+      });
   }
 
   checkTab() {
@@ -71,15 +89,5 @@ export class ProfileComponent implements OnInit {
   }
   closeEditWindow() {
     this.editWindow.set(false);
-  }
-
-  getRole() {
-    this.customAuth.roleState$.subscribe((role) => {
-      if (role === 'Establishment') {
-        this.isLoggedIn = true;
-      } else {
-        this.isLoggedIn = false;
-      }
-    });
   }
 }

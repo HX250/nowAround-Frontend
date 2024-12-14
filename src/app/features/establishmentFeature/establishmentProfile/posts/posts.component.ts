@@ -11,12 +11,19 @@ import { EstabilishmentService } from '../../../../core/services/establishment/e
   styleUrl: './posts.component.css',
 })
 export class PostsComponent implements OnInit {
-  postList: posts[] = [];
+  postList?: posts[] = [];
 
   constructor(private estServ: EstabilishmentService) {}
 
   ngOnInit(): void {
-    const profile = this.estServ.getProfile();
-    this.postList = profile?.posts || [];
+    this.getProfileData();
+  }
+
+  getProfileData() {
+    this.estServ
+      .returnSpecificProfileInfo<posts[]>('posts')
+      .subscribe((Response) => {
+        this.postList = Response;
+      });
   }
 }

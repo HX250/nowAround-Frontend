@@ -11,15 +11,19 @@ import { CommonModule } from '@angular/common';
   styleUrl: './tabs.component.css',
 })
 export class TabsComponent {
-  tabList: Menu[] = [];
+  tabList?: Menu[] = [];
 
   constructor(private estServ: EstabilishmentService) {}
 
   ngOnInit(): void {
-    const profile = this.estServ.getProfile();
-    console.log(profile);
+    this.getProfileData();
+  }
 
-    this.tabList = profile?.menus || [];
-    console.log(this.tabList);
+  getProfileData() {
+    this.estServ
+      .returnSpecificProfileInfo<Menu[]>('menus')
+      .subscribe((Response) => {
+        this.tabList = Response;
+      });
   }
 }

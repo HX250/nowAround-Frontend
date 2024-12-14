@@ -29,15 +29,19 @@ export class InfoComponent implements OnInit, AfterViewInit {
 
   constructor(private estServ: EstabilishmentService) {}
 
-  ngAfterViewInit(): void {
-    this.initializeMap();
+  ngOnInit(): void {
+    this.getProfileData();
+    this.assignLocation();
   }
 
-  ngOnInit(): void {
-    const profile = this.estServ.getProfile();
-    this.infoList = profile?.locationInfo || undefined;
-    console.log(this.infoList);
-
+  getProfileData() {
+    this.estServ
+      .returnSpecificProfileInfo<locationInfo>('locationInfo')
+      .subscribe((Response) => {
+        this.infoList = Response;
+      });
+  }
+  assignLocation() {
     if (this.infoList) {
       this.lat = this.infoList.lat;
       this.lng = this.infoList.long;
@@ -49,6 +53,10 @@ export class InfoComponent implements OnInit, AfterViewInit {
   }
   stopPropagation(event: Event) {
     event.stopPropagation();
+  }
+
+  ngAfterViewInit(): void {
+    this.initializeMap();
   }
 
   initializeMap(): void {

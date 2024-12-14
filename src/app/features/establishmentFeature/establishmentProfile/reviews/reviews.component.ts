@@ -25,18 +25,22 @@ export class ReviewsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadPreviewData();
+    this.getProfileData();
+    this.getProfileId();
+  }
+
+  getProfileData() {
+    this.estServ
+      .returnSpecificProfileInfo<ratingStatistic>('ratingStatistic')
+      .subscribe((Response) => {
+        this.reviewList = Response;
+      });
+  }
+
+  getProfileId() {
     this.estServ.estProfileState$.subscribe((Response) => {
       this.estID = Response?.authId;
     });
-  }
-
-  private loadPreviewData(): void {
-    const profile = this.estServ.getProfile();
-
-    console.log(profile);
-    this.reviewList = profile?.ratingStatistic;
-    console.log(this.reviewList);
   }
 
   sendReview() {
@@ -44,7 +48,7 @@ export class ReviewsComponent implements OnInit {
       this.estServ
         .sendReview(this.estID, this.userReview, Response?.sub)
         .subscribe(() => {
-          this.loadPreviewData();
+          this.getProfileData();
         });
     });
   }
