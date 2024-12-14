@@ -1,12 +1,20 @@
 const fs = require("fs");
-const prodEnvPath = "./src/environments/environment.prod.ts";
+const path = require("path");
 
-const backendApiUrl = process.env.BACKEND_API_URL;
-const mapboxAccessToken = process.env.MAPBOX_ACCESS_TOKEN;
-
-const content = fs
-  .readFileSync(prodEnvPath, "utf-8")
-  .replace("API_END_POINT", backendApiUrl)
-  .replace("MAPBOX_TOKEN", mapboxAccessToken);
-
-fs.writeFileSync(prodEnvPath, content);
+const envFile = `export const environment = {
+    API_END_POINT: '${env.API_END_POINT}',
+    MAPBOX_TOKEN: '${env.MAPBOX_TOKEN}',
+};
+`;
+const targetPath = path.join(
+  __dirname,
+  "./src/environments/environment.prod.ts",
+);
+fs.writeFile(targetPath, envFile, (err) => {
+  if (err) {
+    console.error(err);
+    throw err;
+  } else {
+    console.log(` Successfully generated environment.prod.ts`);
+  }
+});
