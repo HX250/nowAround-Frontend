@@ -24,6 +24,7 @@
                 "input": "public"
               }
             ],
+            "allowedCommonJsDependencies": ["mapbox-gl"],
             "styles": [
               "src/styles.css",
               "https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css"

@@ -1,19 +1,26 @@
 const fs = require("fs");
+const path = require("path");
+const successColor = "\x1b[32m%s\x1b[0m";
+const checkSign = "\u{2705}";
+const dotenv = require("dotenv").config({ path: "src/.env" });
 
-const apiEndpoint = process.env.API_END_POINT || "";
-const mapboxToken = process.env.MAPBOX_TOKEN || "";
-
-const envConfigFile = `
-export const environment = {
-    production: true,
-    API_END_POINT: '${apiEndpoint}',
-    MAPBOX_TOKEN: '${mapboxToken}',
+const envFile = `export const environment = {
+    API_END_POINT: '${process.env.API_END_POINT}',
+    MAPBOX_TOKEN: '${process.env.MAPBOX_TOKEN}',
 };
 `;
-
-fs.writeFileSync(
+const targetPath = path.join(
+  __dirname,
   "./src/environments/environment.prod.ts",
-  envConfigFile,
-  "utf8",
 );
-console.log("Environment variables written successfully!");
+fs.writeFile(targetPath, envFile, (err) => {
+  if (err) {
+    console.error(err);
+    throw err;
+  } else {
+    console.log(
+      successColor,
+      `${checkSign} Successfully generated environment.prod.ts`,
+    );
+  }
+});
