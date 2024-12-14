@@ -3,7 +3,7 @@ const path = require("path");
 
 const envFilePath = path.join(
   __dirname,
-  "../src/environments/environment.prod.ts",
+  "./src/environments/environment.prod.ts",
 );
 
 let fileContent = fs.readFileSync(envFilePath, "utf8");
