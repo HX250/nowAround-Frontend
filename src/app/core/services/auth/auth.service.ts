@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { jwtDecode } from 'jwt-decode';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { AlertService } from '../alert/alert.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',

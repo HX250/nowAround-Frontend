@@ -1,9 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment.prod';
 import { adminReq } from '../../../features/adminFeature/models/admin-est-req.model';
+import { environment } from '../../../../environments/environment.dev';
 
 @Injectable({
   providedIn: 'root',
