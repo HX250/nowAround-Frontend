@@ -57,9 +57,10 @@
                   >
                     {{ "establishmentProfileNav-Menu" | translate }}
                   </li>
-                } @else {
+                }
+                @if (eventLink) {
                   <li
-                    [routerLink]="['tabs']"
+                    [routerLink]="['events']"
                     routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
                     class="cursor-pointer hover:text-ang-orange"
                   >

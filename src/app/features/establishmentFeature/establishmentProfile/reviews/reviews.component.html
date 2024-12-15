@@ -1,7 +1,7 @@
 <div class="pt-4">
   <div *ngIf="!reviewList; else showItems">
     <p class="pt-4 text-center text-xl sm:pt-0">
-      Establishment doesn't have any reviews
+      {{ "establishmentReview-Error" | translate }}
     </p>
   </div>
 
@@ -25,7 +25,7 @@
             class="primary-buttons w-fit place-self-end"
             (click)="sendReview()"
           >
-            Send
+            {{ "establishmentReview-Send" | translate }}
           </button>
         </div>
 
@@ -49,13 +49,15 @@
               <p class="text-md">{{ review.body }}</p>
             </div>
             <div *ngIf="(customAuth.roleState$ | async) === 'Admin'">
-              <button>Remove</button>
+              <button>{{ "establishmentReview-Remove" | translate }}</button>
             </div>
           </div>
         </div>
       </div>
       <div class="flex w-full max-w-80 flex-col gap-4">
-        <span class="font-bold">Rating Distribution:</span>
+        <span class="font-bold">{{
+          "establishmentReview-overallRating" | translate
+        }}</span>
         <div *ngFor="let star of getStarKeys()">
           <div class="flex items-center gap-2">
             <span>{{ star }}:</span>

@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit {
   isLoggedIn: boolean = false;
   estProfile?: profile = undefined;
   tabLink?: boolean = false;
+  eventLink: boolean = false;
   establishmentID: string = '';
 
   constructor(
@@ -46,6 +47,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.getRole();
     this.saveProfile();
+    this.checkTab();
     this.getProfileData();
   }
 
@@ -72,11 +74,17 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  checkTab() {
-    const targetCategories = ['Cafe', 'Restaurant', 'Bar'];
-    this.tabLink = this.estProfile?.categories?.some((category) =>
-      targetCategories.includes(category),
-    );
+  checkTab(): void {
+    this.estServ.returnSpecificProfileInfo<boolean>('menus').subscribe({
+      next: (response) => {
+        this.tabLink = response !== undefined && response;
+      },
+    });
+    this.estServ.returnSpecificProfileInfo<boolean>('events').subscribe({
+      next: (response) => {
+        this.eventLink = response !== undefined && response;
+      },
+    });
   }
   openWindow() {
     this.isWindowShown.set(true);

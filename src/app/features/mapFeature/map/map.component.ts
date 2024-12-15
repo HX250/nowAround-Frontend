@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { MapService } from '../../../core/services/map/map.service';
 
@@ -21,13 +21,12 @@ export class MapComponent implements OnInit {
   lastBounds: mapboxgl.LngLatBounds | null = null;
   lat: number = 48.71847597430053;
   lng: number = 21.259273191588672;
-  bufferZone: number = 0.15;
+  bufferZone: number = 0.3;
 
   constructor(
     private mapService: MapService,
     private alertService: AlertService,
     private router: Router,
-    private renderer: Renderer2,
   ) {}
 
   ngOnInit(): void {
@@ -152,18 +151,17 @@ export class MapComponent implements OnInit {
           this.alertService.showAlert('establishmentMarks-error', false);
           return;
         }
-
-        Response.forEach((Response) => {
-          if (
-            !this.markers.find((markerObj) => markerObj.id === Response.auth0Id)
-          ) {
-            this.addCustomMarker(
-              Response.auth0Id,
-              Response.name,
-              Response.longitude,
-              Response.latitude,
-            );
-          }
+        const newMarkers = Response.filter(
+          (res) =>
+            !this.markers.some((markerObj) => markerObj.id === res.auth0Id),
+        );
+        newMarkers.forEach((res) => {
+          this.addCustomMarker(
+            res.auth0Id,
+            res.name,
+            res.longitude,
+            res.latitude,
+          );
         });
       },
       error: (error) => {
@@ -222,27 +220,30 @@ export class MapComponent implements OnInit {
       essential: true,
     });
 
-    const popupContent = this.renderer.createElement('div');
-    const title = this.renderer.createElement('h3');
-    const button = this.renderer.createElement('button');
+    const popupHTML = `
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">${estName}</h3>
+      <p *ngFor='let '>${estName}</p>
+      <button class="bg-ang-orange text-white rounded-md px-4 py-2 hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300" id="navigate-btn">
+        Navigate
+      </button>
+  `;
 
-    title.innerText = estName;
-    button.innerText = 'Navigate';
+    const popup = new mapboxgl.Popup({
+      offset: 25,
+      focusAfterOpen: false,
+    }).setHTML(popupHTML);
 
-    this.renderer.listen(button, 'click', () =>
-      this.navigateToEst(establishmentID),
-    );
+    marker.setPopup(popup);
 
-    this.renderer.appendChild(popupContent, title);
-    this.renderer.appendChild(popupContent, button);
+    popup.on('open', () => {
+      const button = document.getElementById('navigate-btn');
+      if (button) {
+        button.addEventListener('click', () =>
+          this.navigateToEst(establishmentID),
+        );
+      }
+    });
 
-    marker.setPopup(
-      new mapboxgl.Popup({
-        offset: 25,
-        focusAfterOpen: false,
-        className: 'w-fit',
-      }).setDOMContent(popupContent),
-    );
     console.log(establishmentID);
   }
 

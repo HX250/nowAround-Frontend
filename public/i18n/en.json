@@ -164,9 +164,23 @@
   "filter-byTags": "Tags:",
   "establishmentMarks-error": "No establishments have been found",
 
+  "establishmentReview-Error": "Establishment doesn't have any reviews.",
+  "establishmentPost-Error": "Establishment doesn't have any posts.",
+  "establishmentEvent-Error": "Establishment doesn't have any events.",
+  "establishmentMenu-Error": "Establishment doesn't have a menu.",
+  "establishmentInfo-Error": "Establishment doesn't have info section.",
+
   "establishmentProfileNav-Post": "Posts",
   "establishmentProfileNav-Menu": "Menu",
   "establishmentProfileNav-Event": "Events",
   "establishmentProfileNav-Rev": "Reviews",
-  "establishmentProfileNav-Info": "Info"
+  "establishmentProfileNav-Info": "Info",
+
+  "establishmentProfile-Like": "Likes",
+
+  "establishmentReview-overallRating": "Overall rating:",
+  "establishmentReview-Send": "Send",
+  "establishmentReview-Remove": "Remove",
+
+  "establishmentInfo-openingHours": "Opening hours:"
 }

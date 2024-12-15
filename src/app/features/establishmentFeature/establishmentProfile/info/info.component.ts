@@ -11,11 +11,12 @@ import { CommonModule } from '@angular/common';
 import mapboxgl from 'mapbox-gl';
 import { environment } from '../../../../../environments/environment.dev';
 import { DaySortPipe } from '../../../../shared/pipe/daySort.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-info',
   standalone: true,
-  imports: [CommonModule, DaySortPipe],
+  imports: [CommonModule, DaySortPipe, TranslateModule],
   templateUrl: './info.component.html',
   styleUrl: './info.component.css',
 })

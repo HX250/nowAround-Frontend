@@ -1,6 +1,8 @@
 <div>
   <div *ngIf="postList?.length == 0; else showItems">
-    <p class="pt-4 text-center text-xl">Establishment havent added any posts</p>
+    <p class="pt-4 text-center text-xl">
+      {{ "establishmentPost-Error" | translate }}
+    </p>
   </div>
   <ng-template #showItems>
     <div class="flex gap-2 pt-4">
@@ -33,7 +35,10 @@
           </div>
           <p class="text-base">{{ post.body }}</p>
 
-          <span class="text-sm">{{ post.userLikes.length }} interests</span>
+          <span class="text-sm"
+            >{{ post.userLikes.length }}
+            {{ "establishmentProfile-Like" | translate }}</span
+          >
         </div>
       </div>
     </div>

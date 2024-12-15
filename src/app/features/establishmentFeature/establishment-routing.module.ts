@@ -26,6 +26,10 @@ const routes: Routes = [
         component: TabsComponent,
       },
       {
+        path: 'events',
+        component: TabsComponent,
+      },
+      {
         path: 'reviews',
         component: ReviewsComponent,
       },

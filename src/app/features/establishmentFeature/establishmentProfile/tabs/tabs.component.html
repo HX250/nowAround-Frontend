@@ -1,6 +1,8 @@
 <div class="pb-4 pt-4">
   <div *ngIf="tabList?.length === 0; else showItems">
-    <p class="pt-4 text-center text-xl">Establishment doesn't have a menu</p>
+    <p class="pt-4 text-center text-xl">
+      {{ "establishmentMenu-Error" | translate }}
+    </p>
   </div>
 
   <ng-template #showItems>
@@ -22,7 +24,9 @@
 
         <div class="flex flex-1 flex-col px-4">
           <h3 class="font-semibold text-ang-black">{{ item.name }}</h3>
-          <p class="text-sm text-gray-600">{{ item.description }}</p>
+          <p class="text-sm text-ang-black text-opacity-85">
+            {{ item.description }}
+          </p>
         </div>
         <span class="text-right font-bold">{{ item.price }}</span>
       </div>

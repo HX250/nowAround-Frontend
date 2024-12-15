@@ -18,13 +18,15 @@
     >
       <div *ngIf="!infoList; else showItems">
         <p class="pt-4 text-center text-xl">
-          Establishment hasn't added any posts
+          {{ "establishmentInfo-Error" | translate }}
         </p>
       </div>
       <ng-template #showItems>
         <div class="map" id="map" style="height: 20rem; width: 20rem"></div>
         <div class="flex flex-col gap-3 text-ang-black">
-          <p class="font-semibold">Opening hours:</p>
+          <p class="font-semibold">
+            {{ "establishmentInfo-openingHours" | translate }}
+          </p>
           <div class="flex w-80 flex-col gap-1">
             <div
               *ngFor="let entry of infoList?.businessHours | daySort"

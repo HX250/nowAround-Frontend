@@ -164,9 +164,23 @@
   "filter-byTags": "Tagov:",
   "establishmentMarks-error": "Neboli nájdene žiadne podniky",
 
+  "establishmentReview-Error": "Podnik nemá žiadne hodnotenia.",
+  "establishmentPost-Error": "Podnik nemá žiadne príspevky.",
+  "establishmentEvent-Error": "Podnik nemá žiadne akcie.",
+  "establishmentMenu-Error": "Podnik nemá žiadne menu.",
+  "establishmentInfo-Error": "Podnik nemá informačnú sekciu.",
+
   "establishmentProfileNav-Post": "Príspevky",
   "establishmentProfileNav-Menu": "Menu",
   "establishmentProfileNav-Event": "Udalosti",
   "establishmentProfileNav-Rev": "Recenzie",
-  "establishmentProfileNav-Info": "Informácie"
+  "establishmentProfileNav-Info": "Informácie",
+
+  "establishmentProfile-Like": "Páči sa mi to",
+
+  "establishmentReview-overallRating": "Celkové hodnotenie:",
+  "establishmentReview-Send": "Odoslať",
+  "establishmentReview-Remove": "Odstrániť",
+
+  "establishmentInfo-openingHours": "Otváracie hodiny:"
 }
