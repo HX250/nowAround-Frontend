@@ -80,7 +80,11 @@ export class CustomAuthService {
     if (role === 'Admin') {
       this.router.navigateByUrl('/admin-page');
     } else if (role === 'Establishment') {
-      this.router.navigateByUrl('/establishment');
+      let estId = undefined;
+      this.auth.user$.subscribe((response) => {
+        estId = response?.sub;
+        this.router.navigateByUrl(`/establishment/${estId}`);
+      });
     } else {
       this.router.navigateByUrl('home-page');
     }

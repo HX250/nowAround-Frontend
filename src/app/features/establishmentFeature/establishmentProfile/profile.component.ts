@@ -66,14 +66,6 @@ export class ProfileComponent implements OnInit {
     this.estServ.setTestProfile(this.establishmentID).subscribe();
   }
 
-  getProfileData() {
-    this.estServ
-      .returnSpecificProfileInfo<profile>('genericInformation')
-      .subscribe((Response) => {
-        this.estProfile = Response;
-      });
-  }
-
   checkTab(): void {
     this.estServ.returnSpecificProfileInfo<boolean>('menus').subscribe({
       next: (response) => {
@@ -86,6 +78,15 @@ export class ProfileComponent implements OnInit {
       },
     });
   }
+
+  getProfileData() {
+    this.estServ
+      .returnSpecificProfileInfo<profile>('genericInformation')
+      .subscribe((Response) => {
+        this.estProfile = Response;
+      });
+  }
+
   openWindow() {
     this.isWindowShown.set(true);
   }
