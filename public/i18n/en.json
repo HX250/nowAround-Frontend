@@ -182,5 +182,10 @@
   "establishmentReview-Send": "Send",
   "establishmentReview-Remove": "Remove",
 
-  "establishmentInfo-openingHours": "Opening hours:"
+  "establishmentInfo-openingHours": "Opening hours:",
+
+  "establishmentEdit-generalInfo": "Info",
+  "establishmentInfo-Posts": "Posts",
+  "establishmentInfo-Menu": "Menu",
+  "establishmentInfo-locationInfo": "Opening info"
 }

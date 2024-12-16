@@ -48,10 +48,12 @@ export class EstabilishmentService {
   setTestProfile(estId: string): Observable<establishmentProfile | null> {
     return this.http
       .get<establishmentProfile>(
-        `http://localhost:3000/getEstablishment?estId=${estId}`,
+        `${environment.API_END_POINT}Establishment/${estId}`,
       )
       .pipe(
         tap((response) => {
+          console.log(response);
+
           this.estProfileSubject.next(response);
         }),
         catchError((error) => {

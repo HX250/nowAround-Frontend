@@ -40,7 +40,7 @@ export class ReviewsComponent implements OnInit {
 
   getProfileId() {
     this.estServ.estProfileState$.subscribe((Response) => {
-      this.estID = Response?.authId;
+      this.estID = Response?.auth0Id;
     });
   }
 

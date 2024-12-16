@@ -3,7 +3,7 @@
   (click)="closeModal()"
 >
   <div
-    class="relative top-0 flex h-full w-full flex-col gap-5 overflow-y-scroll rounded-lg bg-ang-white md:top-5 md:h-fit md:w-fit md:overflow-y-visible"
+    class="relative top-0 flex h-full w-full flex-col gap-5 overflow-y-scroll rounded-lg bg-ang-white md:top-5 md:h-[40rem] md:w-96"
     (click)="stopPropagation($event)"
   >
     <button
@@ -12,8 +12,40 @@
     >
       <span class="flex items-center justify-center text-ang-black">X</span>
     </button>
-    <div
-      class="z-40 flex flex-col items-center gap-4 pb-2 pt-12 sm:flex-row sm:p-4"
-    ></div>
+    <div class="z-40 flex flex-col items-center gap-4 pb-2 pt-12 sm:p-4">
+      <nav>
+        <ul class="flex gap-4">
+          <li
+            class="cursor-pointer hover:text-ang-orange"
+            (click)="scrollTo(info)"
+          >
+            {{ "establishmentEdit-generalInfo" | translate }}
+          </li>
+          <li
+            class="cursor-pointer hover:text-ang-orange"
+            (click)="scrollTo(menu)"
+          >
+            {{ "establishmentInfo-Menu" | translate }}
+          </li>
+          <li
+            class="cursor-pointer hover:text-ang-orange"
+            (click)="scrollTo(location)"
+          >
+            {{ "establishmentInfo-locationInfo" | translate }}
+          </li>
+        </ul>
+      </nav>
+      <div>
+        <div #info>
+          <app-info></app-info>
+        </div>
+        <div #menu>
+          <app-menu></app-menu>
+        </div>
+        <div #location>
+          <app-location></app-location>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

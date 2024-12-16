@@ -182,5 +182,10 @@
   "establishmentReview-Send": "Odoslať",
   "establishmentReview-Remove": "Odstrániť",
 
-  "establishmentInfo-openingHours": "Otváracie hodiny:"
+  "establishmentInfo-openingHours": "Otváracie hodiny:",
+
+  "establishmentEdit-generalInfo": "Informácie",
+  "establishmentInfo-Posts": "Príspevky",
+  "establishmentInfo-Menu": "Menu",
+  "establishmentInfo-locationInfo": "Otváracie informácie"
 }

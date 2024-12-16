@@ -81,7 +81,7 @@ export class ProfileComponent implements OnInit {
 
   getProfileData() {
     this.estServ
-      .returnSpecificProfileInfo<profile>('genericInformation')
+      .returnSpecificProfileInfo<profile>('genericInfo')
       .subscribe((Response) => {
         this.estProfile = Response;
       });

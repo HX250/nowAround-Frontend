@@ -6,8 +6,8 @@ import { Menu } from './menu.model';
 import { Events } from './events.model';
 
 export interface establishmentProfile {
-  authId: string;
-  genericInformation: profile;
+  auth0Id: string;
+  genericInfo: profile;
   posts: posts[];
   menus: Menu[];
   events: Events[];
