@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
   tabLink?: boolean = false;
   eventLink: boolean = false;
   establishmentID: string = '';
+  previewImage: any;
 
   constructor(
     public auth0: AuthService,
@@ -85,6 +86,23 @@ export class ProfileComponent implements OnInit {
       .subscribe((Response) => {
         this.estProfile = Response;
       });
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.previewImage = reader.result as string;
+      };
+
+      reader.onerror = (error) => {
+        console.error('Error reading file:', error);
+      };
+    }
   }
 
   openWindow() {

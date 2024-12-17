@@ -60,7 +60,7 @@ export class CustomAuthService {
   getToken(): void {
     this.getAccessToken().subscribe({
       next: (response) => {
-        this.handleTokenResponse(response.id_token);
+        this.handleTokenResponse(response.access_token);
         this.handleRole(this.roleSubject.value);
       },
       error: (error) => {

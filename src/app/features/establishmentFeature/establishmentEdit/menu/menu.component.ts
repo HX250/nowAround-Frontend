@@ -5,8 +5,12 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  styleUrl: './menu.component.css',
 })
 export class MenuComponent {
+  hasMenu: boolean = false;
 
+  toggleMenu() {
+    this.hasMenu = !this.hasMenu;
+  }
 }

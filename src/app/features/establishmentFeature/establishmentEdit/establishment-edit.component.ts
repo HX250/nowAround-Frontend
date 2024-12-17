@@ -22,6 +22,7 @@ export class EstablishmentEditComponent {
   scrollTo(section: HTMLElement) {
     section.scrollIntoView();
   }
+
   @Output() close = new EventEmitter<void>();
 
   closeModal() {

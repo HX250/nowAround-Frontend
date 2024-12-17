@@ -1,0 +1,17 @@
+<div class="rounded-md border-2 p-2">
+  <div class="flex gap-4">
+    <h1 class="text-left text-xl font-semibold text-ang-orange">Menu</h1>
+    <label class="inline-flex cursor-pointer items-center">
+      <input
+        type="checkbox"
+        value=""
+        class="peer sr-only"
+        (click)="toggleMenu()"
+      />
+      <div
+        class="peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all after:content-[''] peer-checked:bg-ang-orange peer-checked:after:translate-x-full peer-focus:outline-none peer-focus:ring-4 rtl:peer-checked:after:-translate-x-full"
+      ></div>
+    </label>
+  </div>
+  @if (hasMenu) {}
+</div>
