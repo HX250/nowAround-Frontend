@@ -15,10 +15,22 @@
   </div>
 
   <ng-template #showItems>
-    <div *ngFor="let tab of tabList" class="border-b-2 border-ang-orange pb-4">
-      <h1 class="mb-4 text-2xl font-semibold text-ang-orange">
-        {{ tab.name }}
-      </h1>
+    <div
+      *ngFor="let tab of tabList; let i = index"
+      class="border-b-2 border-ang-orange pb-4"
+    >
+      <div class="flex items-center gap-4 pb-2">
+        <h1 class="text-2xl font-semibold text-ang-orange">
+          {{ tab.name }}
+        </h1>
+        <button
+          (click)="removeMenuItem(tab.name)"
+          *ngIf="isLoggedIn()"
+          class="flex h-6 w-6 items-center justify-center rounded-lg bg-ang-redAlert text-xl text-ang-white"
+        >
+          X
+        </button>
+      </div>
 
       <div
         *ngFor="let item of tab.menuItems"
@@ -39,7 +51,13 @@
         </div>
         <div class="flex gap-4">
           <span class="text-right font-bold">{{ item.price }}</span>
-          <span *ngIf="isLoggedIn()">X</span>
+          <button
+            (click)="removeMenuItem(tab.name, tab.menuItems[i])"
+            *ngIf="isLoggedIn()"
+            class="flex h-6 w-6 items-center justify-center rounded-lg bg-ang-redAlert text-xl text-ang-white"
+          >
+            X
+          </button>
         </div>
       </div>
     </div>

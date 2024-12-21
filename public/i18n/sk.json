@@ -176,6 +176,16 @@
   "establishmentProfileNav-Rev": "Recenzie",
   "establishmentProfileNav-Info": "Informácie",
 
+  "establishmentProfileInfo-OpeningHours": {
+    "monday": "Pondelok",
+    "tuesday": "Utorok",
+    "wednesday": "Streda",
+    "thursday": "Štvrtok",
+    "friday": "Piatok",
+    "saturday": "Sobota",
+    "sunday": "Nedeľa"
+  },
+
   "establishmentProfile-Like": "Páči sa mi to",
 
   "establishmentReview-overallRating": "Celkové hodnotenie:",

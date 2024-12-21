@@ -176,6 +176,16 @@
   "establishmentProfileNav-Rev": "Reviews",
   "establishmentProfileNav-Info": "Info",
 
+  "establishmentProfileInfo-OpeningHours": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
+  },
+
   "establishmentProfile-Like": "Likes",
 
   "establishmentReview-overallRating": "Overall rating:",

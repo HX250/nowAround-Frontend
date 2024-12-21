@@ -5,7 +5,10 @@ import { CompleteFormData } from '../../../features/establishmentFeature/models/
 import { establishmentProfile } from '../../../features/establishmentFeature/models/profile/estProfile.model';
 import { AlertService } from '../alert/alert.service';
 import { environment } from '../../../../environments/environment.dev';
-import { Menu } from '../../../features/establishmentFeature/models/profile/menu.model';
+import {
+  Menu,
+  MenuItem,
+} from '../../../features/establishmentFeature/models/profile/menu.model';
 
 @Injectable({
   providedIn: 'root',
@@ -71,7 +74,8 @@ export class EstabilishmentService {
       );
   }
 
-  addNewMenu(establishmentID: string, menuForm?: Menu[]): Observable<any> {
+  addNewMenu(menuForm?: Menu[]): Observable<any> {
+    console.log(this.estProfileSubject.value?.auth0Id);
     return this.http
       .put<any>('http://localhost:3000/addNewMenuItem', menuForm)
       .pipe(
@@ -82,6 +86,15 @@ export class EstabilishmentService {
           return true;
         }),
       );
+  }
+
+  removeMenuItem(menuName: string, tab?: MenuItem): Observable<any> {
+    const estId = this.estProfileSubject.value?.auth0Id;
+    const payload = { estId, menuName, tab };
+
+    return this.http.delete<any>('http://localhost:3000/removeMenuItem', {
+      body: payload,
+    });
   }
 
   registerEstablishment(completeFormData: CompleteFormData): Observable<any> {

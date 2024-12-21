@@ -1,5 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
-import { Menu } from '../../models/profile/menu.model';
+import { Menu, MenuItem } from '../../models/profile/menu.model';
 import { EstabilishmentService } from '../../../../core/services/establishment/establishment.service';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -34,7 +34,16 @@ export class TabsComponent {
         this.tabList = Response;
       });
   }
-
+  removeMenuItem(menuName: string, tab?: MenuItem) {
+    if (confirm('Really delete item?')) {
+      this.estServ.removeMenuItem(menuName, tab).subscribe();
+    }
+  }
+  getEstId() {
+    this.estServ.estProfileState$.subscribe((Response) => {
+      return Response?.auth0Id;
+    });
+  }
   addMenuCategory() {
     this.estServ.editMenu.set(true);
   }

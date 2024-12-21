@@ -26,8 +26,6 @@ export class EditMenuComponent implements OnInit {
     this.estServ.editMenu() ? true : false,
   );
 
-  establishmentID: string = '';
-
   constructor(
     private estServ: EstabilishmentService,
     private fb: FormBuilder,
@@ -61,11 +59,9 @@ export class EditMenuComponent implements OnInit {
     this.updatedMenuItems.emit();
     this.menuItems.clear();
     this.menuForm.reset();
-    this.estServ
-      .addNewMenu(this.establishmentID, this.newMenuCategory)
-      .subscribe((Response) => {
-        this.newMenuCategory = [];
-      });
+    this.estServ.addNewMenu(this.newMenuCategory).subscribe((Response) => {
+      this.newMenuCategory = [];
+    });
   }
 
   cancelAddMenuCategory() {
