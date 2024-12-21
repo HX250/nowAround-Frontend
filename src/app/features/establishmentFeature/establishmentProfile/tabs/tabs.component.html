@@ -1,3 +1,12 @@
+<div *ngIf="isLoggedIn()" class="flex w-full justify-end pt-2">
+  <button
+    (click)="addMenuCategory()"
+    class="flex h-6 w-6 items-center justify-center rounded-lg bg-ang-orange text-3xl"
+  >
+    +
+  </button>
+</div>
+<app-edit-menu (updatedMenuItems)="getProfileData()"></app-edit-menu>
 <div class="pb-4 pt-4">
   <div *ngIf="tabList?.length === 0; else showItems">
     <p class="pt-4 text-center text-xl">
@@ -28,7 +37,10 @@
             {{ item.description }}
           </p>
         </div>
-        <span class="text-right font-bold">{{ item.price }}</span>
+        <div class="flex gap-4">
+          <span class="text-right font-bold">{{ item.price }}</span>
+          <span *ngIf="isLoggedIn()">X</span>
+        </div>
       </div>
     </div>
   </ng-template>

@@ -3,18 +3,10 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { InfoComponent } from './info/info.component';
 import { LocationComponent } from './location/location.component';
-import { MenuComponent } from './menu/menu.component';
-
 @Component({
   selector: 'app-establishment-edit',
   standalone: true,
-  imports: [
-    RouterModule,
-    TranslateModule,
-    InfoComponent,
-    LocationComponent,
-    MenuComponent,
-  ],
+  imports: [RouterModule, TranslateModule, InfoComponent, LocationComponent],
   templateUrl: './establishment-edit.component.html',
   styleUrl: './establishment-edit.component.css',
 })

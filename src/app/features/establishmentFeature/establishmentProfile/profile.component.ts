@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import {
   ActivatedRoute,
   RouterLink,
@@ -31,7 +31,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class ProfileComponent implements OnInit {
   isWindowShown = signal(false);
   editWindow = signal(false);
-  isLoggedIn: boolean = false;
+  isLoggedIn = computed(() => (this.customAuth.estLogin() ? true : false));
   estProfile?: profile = undefined;
   tabLink?: boolean = false;
   eventLink: boolean = false;
@@ -46,20 +46,9 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getRole();
     this.saveProfile();
     this.checkTab();
     this.getProfileData();
-  }
-
-  getRole() {
-    this.customAuth.roleState$.subscribe((role) => {
-      if (role === 'Establishment') {
-        this.isLoggedIn = true;
-      } else {
-        this.isLoggedIn = false;
-      }
-    });
   }
 
   saveProfile() {

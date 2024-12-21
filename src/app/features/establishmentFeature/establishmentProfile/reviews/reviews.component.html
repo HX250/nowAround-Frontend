@@ -60,14 +60,16 @@
         }}</span>
         <div *ngFor="let star of getStarKeys()">
           <div class="flex items-center gap-2">
-            <span class="w-24">{{ star }}:</span>
+            <span class="w-24 text-2xl text-yellow-500">{{
+              star | starPipe
+            }}</span>
             <div class="relative h-2 flex-1 rounded bg-gray-200">
               <div
                 class="h-full rounded bg-ang-orange"
                 [style.width.%]="getRatingPercentage(star)"
               ></div>
             </div>
-            <span>{{ reviewList![star] || 0 }} votes</span>
+            <span>{{ reviewList![star] }} votes</span>
           </div>
         </div>
       </div>

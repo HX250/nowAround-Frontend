@@ -2,11 +2,7 @@
   <h1 class="text-left text-xl font-semibold text-ang-orange">
     Generic information
   </h1>
-  <form
-    (submit)="updateGenericInfo()"
-    [formGroup]="updatedGenericInfo"
-    class="flex flex-col gap-2"
-  >
+  <form [formGroup]="updatedGenericInfo" class="flex flex-col gap-2">
     <div class="flex flex-col gap-2">
       <label for="companyName">Establishment name:</label>
       <input
@@ -88,6 +84,5 @@
       <option value="1">€€</option>
       <option value="2">€€€</option>
     </select>
-    <button class="primary-buttons w-fit place-self-end">Update</button>
   </form>
 </div>

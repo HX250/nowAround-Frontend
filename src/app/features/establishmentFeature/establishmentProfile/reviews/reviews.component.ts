@@ -6,11 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { CustomAuthService } from '../../../../core/services/auth/auth.service';
 import { AuthService } from '@auth0/auth0-angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { StarPipe } from '../../../../shared/pipe/start.pipe';
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule],
+  imports: [CommonModule, FormsModule, TranslateModule, StarPipe],
   templateUrl: './reviews.component.html',
   styleUrls: ['./reviews.component.css'],
 })

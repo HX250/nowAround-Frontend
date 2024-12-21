@@ -23,12 +23,6 @@
           </li>
           <li
             class="cursor-pointer hover:text-ang-orange"
-            (click)="scrollTo(menu)"
-          >
-            {{ "establishmentInfo-Menu" | translate }}
-          </li>
-          <li
-            class="cursor-pointer hover:text-ang-orange"
             (click)="scrollTo(location)"
           >
             {{ "establishmentInfo-locationInfo" | translate }}
@@ -38,9 +32,6 @@
       <div class="w-full px-2 py-2 md:px-0">
         <div #info>
           <app-info></app-info>
-        </div>
-        <div #menu>
-          <app-menu></app-menu>
         </div>
         <div #location>
           <app-location></app-location>

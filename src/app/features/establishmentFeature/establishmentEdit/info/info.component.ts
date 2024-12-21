@@ -78,10 +78,6 @@ export class InfoComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateGenericInfo() {
-    console.log(this.updatedGenericInfo.value);
-  }
-
   addCategory(category: string) {
     if (this.establishmentCategory?.length === 3) {
       return;

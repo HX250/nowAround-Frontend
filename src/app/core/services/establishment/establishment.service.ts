@@ -1,10 +1,11 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 import { CompleteFormData } from '../../../features/establishmentFeature/models/form/complete-form-data.model';
 import { establishmentProfile } from '../../../features/establishmentFeature/models/profile/estProfile.model';
 import { AlertService } from '../alert/alert.service';
 import { environment } from '../../../../environments/environment.dev';
+import { Menu } from '../../../features/establishmentFeature/models/profile/menu.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class EstabilishmentService {
     null,
   );
   estProfileState$ = this.estProfileSubject.asObservable();
+  editMenu = signal(false);
 
   constructor(
     private http: HttpClient,
@@ -65,6 +67,19 @@ export class EstabilishmentService {
             false,
           );
           return of(null);
+        }),
+      );
+  }
+
+  addNewMenu(establishmentID: string, menuForm?: Menu[]): Observable<any> {
+    return this.http
+      .put<any>('http://localhost:3000/addNewMenuItem', menuForm)
+      .pipe(
+        map((Response) => {
+          this.alert.showAlert('Menu has been updated', true);
+          console.log(Response);
+
+          return true;
         }),
       );
   }
