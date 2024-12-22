@@ -43,16 +43,19 @@ export class EditMenuComponent implements OnInit {
   }
 
   submitNewMenuCategory() {
-    if (this.menuForm.valid) {
-      const newCategory: Menu = {
-        name: this.menuForm.value.name,
-        menuItems: this.menuItems.value,
-      };
-      if (this.newMenuCategory) {
-        this.newMenuCategory.push(newCategory);
-      }
-      this.updatedMenu();
+    if (this.menuForm.invalid) {
+      this.menuForm.markAllAsTouched();
+      return;
     }
+
+    const newCategory: Menu = {
+      name: this.menuForm.value.name,
+      menuItems: this.menuItems.value,
+    };
+    if (this.newMenuCategory) {
+      this.newMenuCategory.push(newCategory);
+    }
+    this.updatedMenu();
   }
 
   updatedMenu() {
@@ -72,7 +75,7 @@ export class EditMenuComponent implements OnInit {
     const menuItemForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', Validators.required],
+      price: ['', [Validators.required]],
     });
     this.menuItems.push(menuItemForm);
   }

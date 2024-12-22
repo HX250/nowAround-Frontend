@@ -1,70 +1,112 @@
-<div *ngIf="isAddingMenuCategory()" class="pb-4 pt-4">
-  <h2 class="text-center text-2xl">Add New Menu Category</h2>
+<div *ngIf="isAddingMenuCategory()">
+  <h2 class="py-4 text-center text-2xl">Add New Menu Category</h2>
   <form [formGroup]="menuForm" (ngSubmit)="submitNewMenuCategory()">
-    <div class="mb-4">
+    <div class="border-b border-b-ang-orange py-4">
       <label for="name" class="block">Category Name</label>
       <input
         type="text"
         id="name"
         formControlName="name"
-        class="w-full rounded border px-4 py-2"
+        class="rounded-md border border-ang-orange p-1"
         placeholder="Enter category name"
       />
+      <div
+        *ngIf="menuForm.get('name')?.invalid && menuForm.get('name')?.touched"
+        class="text-ang-redAlert"
+      >
+        Category name is required.
+      </div>
     </div>
 
-    <div formArrayName="menuItems">
+    <div formArrayName="menuItems" class="grid grid-cols-1 gap-4 pt-4">
       <div
         *ngFor="let menuItem of menuItems.controls; let i = index"
         [formGroupName]="i"
-        class="mb-4"
       >
-        <div class="flex flex-col">
-          <label for="name">Item Name</label>
-          <input
-            formControlName="name"
-            placeholder="Item name"
-            class="w-full rounded border px-4 py-2"
-          />
-          <label for="description">Description</label>
-          <textarea
-            formControlName="description"
-            placeholder="Description"
-            class="w-full rounded border px-4 py-2"
-          ></textarea>
-          <label for="price">Price</label>
-          <input
-            formControlName="price"
-            placeholder="Price"
-            class="w-full rounded border px-4 py-2"
-          />
+        <div class="flex flex-col gap-4 border-b border-b-ang-orange p-2">
+          <div class="flex w-full gap-4">
+            <div class="flex w-full flex-col">
+              <label for="name">Item Name</label>
+              <input
+                formControlName="name"
+                placeholder="Item name"
+                class="rounded-md border border-ang-orange p-1"
+              />
+              <div
+                *ngIf="
+                  menuItem.get('name')?.invalid && menuItem.get('name')?.touched
+                "
+                class="text-ang-redAlert"
+              >
+                Item name is required.
+              </div>
+            </div>
+            <div class="flex w-32 flex-col">
+              <label for="price">Price</label>
+              <input
+                formControlName="price"
+                placeholder="Price"
+                class="rounded-md border border-ang-orange p-1"
+              />
+              <div
+                *ngIf="
+                  menuItem.get('price')?.invalid &&
+                  menuItem.get('price')?.touched
+                "
+                class="text-ang-redAlert"
+              >
+                Price is required.
+              </div>
+            </div>
+          </div>
 
-          <button
-            type="button"
-            (click)="removeMenuItem(i)"
-            class="mt-2 text-red-500"
-          >
-            Remove Item
-          </button>
+          <div class="flex w-full flex-col">
+            <label for="description">Description</label>
+            <textarea
+              formControlName="description"
+              placeholder="Description"
+              class="rounded-md border border-ang-orange p-1"
+            ></textarea>
+            <div
+              *ngIf="
+                menuItem.get('description')?.invalid &&
+                menuItem.get('description')?.touched
+              "
+              class="text-ang-redAlert"
+            >
+              Description is required.
+            </div>
+          </div>
+
+          <div class="flex w-full justify-center pt-2">
+            <button
+              type="button"
+              (click)="removeMenuItem(i)"
+              class="w-fit rounded-md bg-ang-redAlert p-2 text-ang-white hover:opacity-90"
+            >
+              Remove Item
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
-    <button
-      type="button"
-      (click)="addMenuItem()"
-      class="rounded bg-green-500 px-4 py-2 text-white"
-    >
-      Add Menu Item
-    </button>
-
-    <div class="mt-4">
-      <button type="submit" class="rounded bg-ang-orange px-4 py-2 text-white">
-        Save Category
+    <div class="flex w-full items-center justify-center pt-2">
+      <button
+        type="button"
+        (click)="addMenuItem()"
+        class="flex h-6 w-6 items-center justify-center rounded-lg bg-ang-greenAlert text-xl text-ang-white transition-all hover:scale-110"
+      >
+        +
       </button>
+    </div>
+
+    <div class="flex w-full justify-center gap-2 pt-4">
+      <button type="submit" class="primary-buttons">Save Category</button>
       <button
         type="button"
         (click)="cancelAddMenuCategory()"
-        class="ml-2 rounded bg-gray-500 px-4 py-2 text-white"
+        class="secondary-buttons border-2"
       >
         Cancel
       </button>

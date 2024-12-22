@@ -13,6 +13,7 @@ import { profile } from '../models/profile/profile.model';
 import { InfoComponent } from './info/info.component';
 import { EstablishmentEditComponent } from '../establishmentEdit/establishment-edit.component';
 import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-profile',
   standalone: true,

@@ -1,7 +1,10 @@
-<div *ngIf="isLoggedIn()" class="flex w-full justify-end pt-2">
+<div
+  *ngIf="isLoggedIn() && !addNewMenu()"
+  class="flex w-full justify-center pt-2"
+>
   <button
     (click)="addMenuCategory()"
-    class="flex h-6 w-6 items-center justify-center rounded-lg bg-ang-orange text-3xl"
+    class="flex h-6 w-6 items-center justify-center rounded-lg bg-ang-orange text-3xl text-ang-white transition-all hover:scale-110"
   >
     +
   </button>
@@ -26,7 +29,7 @@
         <button
           (click)="removeMenuItem(tab.name)"
           *ngIf="isLoggedIn()"
-          class="flex h-6 w-6 items-center justify-center rounded-lg bg-ang-redAlert text-xl text-ang-white"
+          class="flex h-6 w-6 items-center justify-center rounded-lg bg-ang-redAlert text-xl text-ang-white transition-all hover:scale-110"
         >
           X
         </button>
@@ -54,7 +57,7 @@
           <button
             (click)="removeMenuItem(tab.name, tab.menuItems[i])"
             *ngIf="isLoggedIn()"
-            class="flex h-6 w-6 items-center justify-center rounded-lg bg-ang-redAlert text-xl text-ang-white"
+            class="flex h-6 w-6 items-center justify-center rounded-lg bg-ang-redAlert text-xl text-ang-white transition-all hover:scale-110"
           >
             X
           </button>

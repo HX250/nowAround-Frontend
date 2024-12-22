@@ -85,6 +85,14 @@ export class EstabilishmentService {
 
           return true;
         }),
+        catchError((error) => {
+          console.log(error);
+          this.alert.showAlert(
+            'There has been an error in uploading the mnenu, please try again',
+            false,
+          );
+          return of(null);
+        }),
       );
   }
 
