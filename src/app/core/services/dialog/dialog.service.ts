@@ -27,17 +27,16 @@ export class DialogService {
     message: string,
     firstButtonText: string,
     secondButtonText: string,
+    headlineParams?: { [key: string]: any },
   ) {
-    const translatedMessage = this.translate.instant(message);
-    const translatedHeadline = this.translate.instant(headline);
     this.dialogResultSubject.next(null);
     this.dialogSubject.next({
       isShown: true,
-      headline: translatedHeadline,
-      message: translatedMessage,
+      headline: this.translate.instant(headline, headlineParams),
+      message: this.translate.instant(message),
       buttons: {
-        firstButtonText: firstButtonText,
-        secondButtonText: secondButtonText,
+        firstButtonText: this.translate.instant(firstButtonText),
+        secondButtonText: this.translate.instant(secondButtonText),
       },
     });
   }

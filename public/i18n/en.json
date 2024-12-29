@@ -197,5 +197,11 @@
   "establishmentEdit-generalInfo": "Info",
   "establishmentInfo-Posts": "Posts",
   "establishmentInfo-Menu": "Menu",
-  "establishmentInfo-locationInfo": "Opening info"
+  "establishmentInfo-locationInfo": "Opening info",
+
+  "DELETE_MENU_ITEM": "Delete {{name}} menu item",
+  "DELETE_MENU_CATEGORY": "Delete {{name}} menu category",
+  "dialogRemoveItem-desc": "Are you sure you want to delete this item? This is irreversible.",
+  "dialogRemoveItem-accept": "Yes",
+  "dialogRemoveItem-decline": "No"
 }

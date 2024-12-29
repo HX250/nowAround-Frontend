@@ -197,5 +197,11 @@
   "establishmentEdit-generalInfo": "Informácie",
   "establishmentInfo-Posts": "Príspevky",
   "establishmentInfo-Menu": "Menu",
-  "establishmentInfo-locationInfo": "Otváracie informácie"
+  "establishmentInfo-locationInfo": "Otváracie informácie",
+
+  "DELETE_MENU_ITEM": "Vymazať {{name}} položku",
+  "DELETE_MENU_CATEGORY": "Vymazať {{name}} kategóriu",
+  "dialogRemoveItem-desc": "Naozaj chcete odstrániť túto položku? Táto akcia je nezvratná.",
+  "dialogRemoveItem-accept": "Ano",
+  "dialogRemoveItem-decline": "Nie"
 }

@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { DialogService } from '../../../core/services/dialog/dialog.service';
 import { dialog } from './model/dialog.mode';

@@ -4,7 +4,32 @@
       <div
         class="flex h-60 w-full items-center justify-center border-2 border-b-ang-orange transition-all hover:cursor-pointer hover:bg-ang-black hover:bg-opacity-40"
       >
-        <img src="userProfile/image-.png" alt="User Cover" class="h-16 w-16" />
+        <label
+          for="backgroundPreviewImage"
+          class="flex h-full w-full items-center justify-center bg-ang-black bg-opacity-10"
+        >
+          <img
+            *ngIf="backgroundPreviewImage; else defaultImage"
+            [src]="backgroundPreviewImage"
+            class="h-full w-full object-cover"
+            alt="Uploaded Image"
+          />
+          <ng-template #defaultImage>
+            <img
+              src="userProfile/image.png"
+              width="64px"
+              height="64px"
+              alt="Default Placeholder"
+            />
+          </ng-template>
+        </label>
+        <input
+          (change)="onFileChange($event, 'background')"
+          class="hidden"
+          type="file"
+          id="backgroundPreviewImage"
+          formControlName="backgroundPreviewImage"
+        />
       </div>
       <div class="container mx-auto px-2">
         <div
@@ -13,39 +38,35 @@
           <div
             class="flex w-full flex-col items-center justify-between gap-2 p-4 text-ang-black sm:flex-row"
           >
-            <!--<div>
+            <div
+              class="absolute -top-16 bottom-0 h-40 w-40 rounded-md bg-ang-white outline outline-2 outline-ang-orange"
+            >
               <label
-                for="photo"
-                class="flex h-32 w-full items-center justify-center border-2 border-ang-orange bg-ang-black bg-opacity-10 sm:h-40 sm:w-48 sm:rounded-full"
+                for="profilePreviewImage"
+                class="flex h-full w-full items-center justify-center bg-ang-black bg-opacity-10"
               >
                 <img
-                  *ngIf="previewImage; else defaultImage"
-                  [src]="previewImage"
-                  class="h-full w-full object-cover sm:rounded-full"
+                  *ngIf="profilePreviewImage; else defaultProfileImage"
+                  [src]="profilePreviewImage"
+                  class="h-full w-full object-cover"
                   alt="Uploaded Image"
                 />
-                <ng-template #defaultImage>
+                <ng-template #defaultProfileImage>
                   <img
-                    [src]="[estProfile.photo]"
-                    width="64px"
-                    height="64px"
+                    src="userProfile/image.png"
+                    class="h-full w-full"
                     alt="Default Placeholder"
                   />
                 </ng-template>
               </label>
               <input
-                (change)="onFileChange($event)"
+                (change)="onFileChange($event, 'profile')"
                 class="hidden"
                 type="file"
-                id="photo"
-                formControlName="photo"
+                id="profilePreviewImage"
+                formControlName="profilePreviewImage"
               />
-            </div>-->
-            <img
-              [src]="[estProfile.photo]"
-              alt="User Profile"
-              class="absolute -top-16 bottom-0 h-40 w-40 rounded-md bg-ang-white p-2 outline outline-2 outline-ang-orange"
-            />
+            </div>
             <div
               class="flex h-fit min-h-24 flex-col items-center gap-2 sm:items-start sm:pl-44"
             >

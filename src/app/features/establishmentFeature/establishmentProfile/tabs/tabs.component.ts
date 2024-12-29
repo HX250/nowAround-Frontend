@@ -38,19 +38,21 @@ export class TabsComponent {
       });
   }
   removeMenuItem(menuName: string, tab?: MenuItem) {
+    const tabName = tab ? tab?.name : menuName;
+    const translationKey = tab ? 'DELETE_MENU_ITEM' : 'DELETE_MENU_CATEGORY';
     this.dialog.showDialog(
-      'Delete ' +
-        (tab ? tab?.name + ' menu item' : menuName + ' menu category'),
-      'Are you sure you want to delete this menu item? This is irreversible.',
-      'Yes',
-      'No',
+      translationKey,
+      'dialogRemoveItem-desc',
+      'dialogRemoveItem-accept',
+      'dialogRemoveItem-decline',
+      { name: tabName },
     );
 
     const subscription = this.dialog.dialogResult$.subscribe((result) => {
       if (result !== null) {
         console.log('Dialog result:', result);
         if (result) {
-          console.log('Item successfully deleted');
+          this.estServ.removeMenuItem(menuName, tab).subscribe();
           subscription.unsubscribe();
         } else {
           console.log('Item deletion cancelled');
