@@ -1,0 +1,55 @@
+<div
+  class="z-10 flex h-full w-full items-center justify-center bg-ang-black bg-opacity-60 md:px-6"
+  (click)="closeModal()"
+>
+  <div
+    class="relative top-0 flex h-full w-full flex-col items-center justify-between gap-8 rounded-lg bg-ang-white p-8 sm:top-5 sm:h-fit sm:w-fit sm:overflow-y-visible"
+    (click)="stopPropagation($event)"
+  >
+    <button
+      (click)="closeModal()"
+      class="absolute -right-0 -top-0 z-50 w-10 rounded-bl-lg bg-ang-orange p-2 transition-all hover:scale-110 md:-right-5 md:-top-5 md:rounded-full"
+    >
+      <span class="flex items-center justify-center text-ang-black">X</span>
+    </button>
+    @if (!isEditing()) {
+      <h2 class="text-center">Add new:</h2>
+      <div class="flex flex-col gap-6 sm:flex-row">
+        <div
+          (click)="addPost()"
+          class="flex max-w-64 flex-col items-center gap-2 rounded-md bg-ang-orange px-6 py-4 transition-all hover:scale-110 hover:cursor-pointer"
+        >
+          <img class="h-24 w-24" src="addEst/post.png" alt="Bonnie image" />
+          <h5 class="mb-1 text-xl font-semibold">Post</h5>
+          <p class="text-sm">
+            Share your ideas, stories, or updates with your audience. Posts are
+            great for engaging users and keeping them informed.
+          </p>
+        </div>
+        <div
+          (click)="addEvent()"
+          class="flex max-w-64 flex-col items-center gap-2 rounded-md bg-ang-orange px-6 py-4 transition-all hover:scale-110 hover:cursor-pointer"
+        >
+          <img class="h-24 w-24" src="addEst/event.png" alt="Bonnie image" />
+          <h5 class="mb-1 text-xl font-semibold">Event</h5>
+          <p class="text-sm">
+            Share details of upcoming events. Perfect for meetups, celebrations,
+            or other occasions.
+          </p>
+        </div>
+        <div
+          (click)="addMenu()"
+          class="flex max-w-64 flex-col items-center gap-2 rounded-md bg-ang-orange px-6 py-4 transition-all hover:scale-110 hover:cursor-pointer"
+        >
+          <img class="h-24 w-24" src="addEst/menu.png" alt="Bonnie image" />
+          <h5 class="mb-1 text-xl font-semibold">Menu</h5>
+          <p class="text-sm">
+            Create and manage your menu items. Highlight your dishes to attract
+            customers and simplify orders.
+          </p>
+        </div>
+      </div>
+    }
+    <app-menu (updatedMenuItems)="getProfileData()"></app-menu>
+  </div>
+</div>

@@ -6,19 +6,20 @@ import {
   Output,
 } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Menu } from '../../../models/profile/menu.model';
-import { EstabilishmentService } from '../../../../../core/services/establishment/establishment.service';
+
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Menu } from '../../models/profile/menu.model';
+import { EstabilishmentService } from '../../../../core/services/establishment/establishment.service';
 
 @Component({
-  selector: 'app-edit-menu',
+  selector: 'app-menu',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './edit-menu.component.html',
-  styleUrls: ['./edit-menu.component.css'],
+  templateUrl: './menu.component.html',
+  styleUrl: './menu.component.css',
 })
-export class EditMenuComponent implements OnInit {
+export class MenuComponent {
   @Output() updatedMenuItems = new EventEmitter();
   newMenuCategory?: Menu[] = [];
   menuForm!: FormGroup;

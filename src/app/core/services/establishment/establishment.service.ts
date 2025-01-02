@@ -19,6 +19,8 @@ export class EstabilishmentService {
   );
   estProfileState$ = this.estProfileSubject.asObservable();
   editMenu = signal(false);
+  addPost = signal(false);
+  addEvent = signal(false);
 
   testEstProfile: establishmentProfile = {
     auth0Id: 'auth0|123456789',
@@ -150,6 +152,9 @@ export class EstabilishmentService {
     return this.estProfileSubject.value;
   }
 
+  /**
+   * Profile specific calls
+   */
   returnSpecificProfileInfo<T>(
     infoPart: keyof establishmentProfile,
   ): Observable<T | undefined> {
@@ -158,18 +163,11 @@ export class EstabilishmentService {
     );
   }
 
-  sendReview(
-    estId?: string,
-    review?: string,
-    userId?: string,
-  ): Observable<any> {
-    const payload = { estId, review, userId };
-    return this.http.post('/api/reviews', payload);
-  }
-
   setTestProfile(estId: string): Observable<establishmentProfile | null> {
     return this.http
-      .get<establishmentProfile>(`${environment.API_END_POINT}profile/${estId}`)
+      .get<establishmentProfile>(
+        `${environment.API_END_POINT}Establishent/profile/${estId}`,
+      )
       .pipe(
         tap((response) => {
           console.log(response);
@@ -188,6 +186,20 @@ export class EstabilishmentService {
         }),
       );
   }
+  /* END OF PROFILE */
+
+  /**
+   * Review specific calls
+   */
+  sendReview(
+    estId?: string,
+    review?: string,
+    userId?: string,
+  ): Observable<any> {
+    const payload = { estId, review, userId };
+    return this.http.post('/api/reviews', payload);
+  }
+  /* END OF REVIEW */
 
   addNewMenu(menuForm?: Menu[]): Observable<any> {
     console.log(this.estProfileSubject.value?.auth0Id);
@@ -211,6 +223,9 @@ export class EstabilishmentService {
       );
   }
 
+  /**
+   * Menu specific calls
+   */
   removeMenuItem(menuName: string, tab?: MenuItem): Observable<any> {
     const estId = this.estProfileSubject.value?.auth0Id;
     const payload = { estId, menuName, tab };
@@ -236,7 +251,19 @@ export class EstabilishmentService {
         }),
       );
   }
+  /* END OF MENU */
 
+  /**
+   * Image specific calls
+   */
+  uploadImage(formData: FormData): Observable<any> {
+    return this.http.post('http://localhost:3000/uploadImage', formData);
+  }
+  /* END OF IMAGE */
+
+  /**
+   * Register establishment specific calls
+   */
   registerEstablishment(completeFormData: CompleteFormData): Observable<any> {
     completeFormData.establishmentInfo.address =
       completeFormData.establishmentInfo.address.replace(/\//g, '-');
@@ -248,4 +275,5 @@ export class EstabilishmentService {
       },
     );
   }
+  /* END OF REGISTER */
 }

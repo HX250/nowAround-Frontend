@@ -13,6 +13,7 @@ import { profile } from '../models/profile/profile.model';
 import { InfoComponent } from './info/info.component';
 import { EstablishmentEditComponent } from '../establishmentEdit/establishment-edit.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { AddComponent } from '../addEventPostMenu/add.component';
 
 @Component({
   selector: 'app-profile',
@@ -25,6 +26,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,
     InfoComponent,
     EstablishmentEditComponent,
+    AddComponent,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
@@ -32,6 +34,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class ProfileComponent implements OnInit {
   isWindowShown = signal(false);
   editWindow = signal(false);
+  addWindow = signal(false);
   isLoggedIn = computed(() => (this.customAuth.estLogin() ? true : false));
   estProfile?: profile = undefined;
   tabLink?: boolean = false;
@@ -133,5 +136,11 @@ export class ProfileComponent implements OnInit {
   }
   closeEditWindow() {
     this.editWindow.set(false);
+  }
+  openAddWindow() {
+    this.addWindow.set(true);
+  }
+  closeAddWindow() {
+    this.addWindow.set(false);
   }
 }

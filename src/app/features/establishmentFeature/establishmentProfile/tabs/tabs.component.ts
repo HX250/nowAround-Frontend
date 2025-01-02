@@ -4,14 +4,13 @@ import { EstabilishmentService } from '../../../../core/services/establishment/e
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { CustomAuthService } from '../../../../core/services/auth/auth.service';
-import { EditMenuComponent } from './edit-menu/edit-menu.component';
 import { DialogService } from '../../../../core/services/dialog/dialog.service';
-import { take } from 'rxjs';
+import { ImageService } from '../../../../core/services/image/image.service';
 
 @Component({
   selector: 'app-tabs',
   standalone: true,
-  imports: [CommonModule, TranslateModule, EditMenuComponent],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.css'],
 })
@@ -19,11 +18,13 @@ export class TabsComponent {
   tabList?: Menu[] = [];
   isLoggedIn = computed(() => (this.customAuth.estLogin() ? true : false));
   addNewMenu = computed(() => (this.estServ.editMenu() ? true : false));
+  menuImg: any;
 
   constructor(
     private estServ: EstabilishmentService,
     private customAuth: CustomAuthService,
     private dialog: DialogService,
+    private imgService: ImageService,
   ) {}
 
   ngOnInit(): void {
@@ -62,12 +63,13 @@ export class TabsComponent {
     });
   }
 
+  uploadImg(event: any, where: string) {
+    this.imgService.onFileChange(event, where);
+  }
+
   getEstId() {
     this.estServ.estProfileState$.subscribe((Response) => {
       return Response?.auth0Id;
     });
-  }
-  addMenuCategory() {
-    this.estServ.editMenu.set(true);
   }
 }

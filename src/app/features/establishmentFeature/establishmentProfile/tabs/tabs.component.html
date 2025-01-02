@@ -1,15 +1,5 @@
-<div
-  *ngIf="isLoggedIn() && !addNewMenu()"
-  class="flex w-full justify-center pt-2"
->
-  <button
-    (click)="addMenuCategory()"
-    class="flex h-6 w-6 items-center justify-center rounded-lg bg-ang-orange text-3xl text-ang-white transition-all hover:scale-110"
-  >
-    +
-  </button>
-</div>
-<app-edit-menu (updatedMenuItems)="getProfileData()"></app-edit-menu>
+<div *ngIf="isLoggedIn()" class="flex w-full justify-center pt-2"></div>
+
 <div class="pb-4 pt-4">
   <div *ngIf="tabList?.length === 0; else showItems">
     <p class="pt-4 text-center text-xl">
@@ -39,13 +29,31 @@
         *ngFor="let item of tab.menuItems"
         class="mb-4 flex w-full items-center justify-between"
       >
-        <img
-          *ngIf="item.url"
-          [src]="item.url"
-          alt="Menu item image"
-          class="h-14 w-14 object-cover"
+        <label
+          for="menuImg"
+          class="flex items-center justify-center bg-ang-black bg-opacity-10"
+        >
+          <img
+            *ngIf="menuImg; else defaultProfileImage"
+            [src]="menuImg"
+            class="h-14 w-14 object-cover"
+            alt="Uploaded Image"
+          />
+          <ng-template #defaultProfileImage>
+            <img
+              src="userProfile/image.png"
+              class="h-14 w-14"
+              alt="Default Placeholder"
+            />
+          </ng-template>
+        </label>
+        <input
+          (change)="uploadImg($event, 'profile')"
+          class="hidden"
+          type="file"
+          id="menuImg"
+          formControlName="menuImg"
         />
-
         <div class="flex flex-1 flex-col px-4">
           <h3 class="font-semibold text-ang-black">{{ item.name }}</h3>
           <p class="text-sm text-ang-black text-opacity-85">

@@ -79,7 +79,7 @@
                   {{ estProfile.name }}
                 </h1>
                 <div
-                  class="flex flex-row justify-center gap-1 xl:justify-start"
+                  class="flex flex-row flex-wrap justify-center gap-1 sm:flex-nowrap xl:justify-start"
                 >
                   <p
                     *ngFor="let category of estProfile.categories"
@@ -90,7 +90,7 @@
                 </div>
               </div>
 
-              <ul class="flex gap-4">
+              <ul class="flex flex-col items-center gap-4 sm:flex-row">
                 <li
                   [routerLink]="['posts']"
                   routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
@@ -132,13 +132,22 @@
               </ul>
             </div>
             @if (isLoggedIn()) {
-              <button (click)="openEditWindow()">
-                <img
-                  src="userProfile/edit.png"
-                  alt="Edit profile button"
-                  class="h-8 w-8 transition-all hover:scale-110"
-                />
-              </button>
+              <div class="flex gap-6">
+                <button (click)="openAddWindow()">
+                  <img
+                    src="userProfile/plus.png"
+                    alt="Edit profile button"
+                    class="h-8 w-8 transition-all hover:scale-110"
+                  />
+                </button>
+                <button (click)="openEditWindow()">
+                  <img
+                    src="userProfile/edit.png"
+                    alt="Edit profile button"
+                    class="h-8 w-8 transition-all hover:scale-110"
+                  />
+                </button>
+              </div>
             } @else {
               <div class="flex gap-4">
                 <button>Follow</button>
@@ -150,6 +159,11 @@
 
         <router-outlet></router-outlet>
       </div>
+      <app-add
+        *ngIf="addWindow()"
+        (close)="closeAddWindow()"
+        class="fixed top-0 z-50 h-full w-full"
+      ></app-add>
       <app-establishment-edit
         *ngIf="editWindow()"
         (close)="closeEditWindow()"
