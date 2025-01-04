@@ -23,8 +23,6 @@ export class ImageService {
       }
 
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('location', where);
 
       formData.forEach((value, key) => {
         console.log(key, value);
@@ -34,16 +32,35 @@ export class ImageService {
     }
   }
 
+  imageValidator(
+    file: File,
+  ): { invalidFileType?: boolean; fileSizeExceeded?: boolean } | null {
+    const errors: { [key: string]: boolean } = {};
+
+    if (!this.validateFileType(file)) {
+      errors['invalidFileType'] = true;
+    }
+
+    if (!this.validateFileSize(file)) {
+      errors['fileSizeExceeded'] = true;
+    }
+
+    return Object.keys(errors).length > 0 ? errors : null;
+  }
+
+  validateFileType(file: File): boolean {
+    const allowedTypes = ['image/jpeg', 'image/png'];
+    return allowedTypes.includes(file.type);
+  }
+
+  // Validate image size (max 5MB)
+  validateFileSize(file: File): boolean {
+    const maxSizeInMB = 5;
+    const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
+    return file.size <= maxSizeInBytes;
+  }
+
   sendToBackend(formData: FormData) {
-    this.estServ.uploadImage(formData).subscribe({
-      next: (response) => {
-        console.log('Upload successful:', response);
-        alert('Image uploaded successfully!');
-      },
-      error: (error) => {
-        console.error('Upload failed:', error);
-        alert('Failed to upload the image. Please try again.');
-      },
-    });
+    this.estServ.uploadImage(formData).subscribe();
   }
 }

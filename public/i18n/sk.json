@@ -203,5 +203,25 @@
   "DELETE_MENU_CATEGORY": "Vymazať {{name}} kategóriu",
   "dialogRemoveItem-desc": "Naozaj chcete odstrániť túto položku? Táto akcia je nezvratná.",
   "dialogRemoveItem-accept": "Ano",
-  "dialogRemoveItem-decline": "Nie"
+  "dialogRemoveItem-decline": "Nie",
+
+  "establishmentAdd-addPost": "Príspevok",
+  "establishmentAdd-addMenu": "Menu",
+  "establishmentAdd-addEvent": "Udalosti",
+
+  "establishmentAdd-postDesc": "Zdieľajte svoje nápady, príbehy alebo novinky so svojím publikom. Príspevky sú skvelé na zapojenie používateľov a ich informovanie.",
+  "establishmentAdd-menuDesc": "Vytvorte a spravujte položky v menu. Zvýraznite svoje jedlá, aby ste prilákali zákazníkov a zjednodušili objednávanie.",
+  "establishmentAdd-eventDesc": "Zdieľajte podrobnosti o nadchádzajúcich udalostiach. Ideálne pre stretnutia, oslavy alebo iné príležitosti.",
+
+  "establishmentAddPost-headline": "Pridať príspevok",
+  "establishmentAddPost-postHeadline": "Nadpis",
+  "establishmentAddPost-eventDesc": "Text príspevku",
+
+  "establishmentAddPostError-imgFileType": "Sú povolené iba formáty JPEG a PNG",
+  "establishmentAddPostError-imgFileSize": "Veľkosť súboru nesmie presiahnuť 5 MB",
+  "establishmentAddPostError-title": "Nadpis je povinný",
+  "establishmentAddPostError-body": "Popis príspevku je povinný",
+
+  "utils-submitButton": "Odoslať",
+  "utils-cancelButton": "Zrušiť"
 }

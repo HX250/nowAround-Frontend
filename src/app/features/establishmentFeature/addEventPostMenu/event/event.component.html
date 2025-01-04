@@ -1,1 +1,164 @@
-<p>event works!</p>
+<div class="max-h-[50rem] overflow-y-scroll">
+  <h2 class="py-4 text-center text-2xl">
+    {{ "establishmentAddPost-headline" | translate }}
+  </h2>
+  <form
+    (ngSubmit)="submitPost()"
+    class="flex w-[30rem] flex-col gap-4"
+    [formGroup]="eventForm"
+    novalidate
+  >
+    <div class="flex w-full items-center justify-center">
+      <label for="image">
+        <img
+          *ngIf="eventImg; else defaultEventImage"
+          [src]="eventImg"
+          class="w-full object-cover"
+          alt="Uploaded Image"
+        />
+        <ng-template #defaultEventImage>
+          <div class="text-center">
+            <svg
+              class="mx-auto h-12 w-12 text-gray-400"
+              stroke="currentColor"
+              fill="none"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+            >
+              <path
+                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <p class="mt-1 text-sm text-gray-600">Click to upload image</p>
+          </div>
+        </ng-template>
+      </label>
+      <input
+        (change)="uploadImg($event)"
+        class="hidden"
+        type="file"
+        id="image"
+        formControlName="image"
+      />
+    </div>
+    <span
+      *ngIf="eventForm.get('image')?.hasError('required')"
+      class="text-sm text-ang-redAlert"
+      >Image is required.</span
+    >
+    <span
+      *ngIf="eventForm.get('image')?.hasError('invalidFileType')"
+      class="text-sm text-ang-redAlert"
+      >Only JPEG and PNG are allowed.</span
+    >
+    <span
+      *ngIf="eventForm.get('image')?.hasError('fileSizeExceeded')"
+      class="text-sm text-ang-redAlert"
+      >File size must be less than 5MB.</span
+    >
+    <div class="flex flex-col gap-1">
+      <label for="title">Title</label>
+      <input
+        class="h-8 w-full rounded-lg border border-ang-orange p-1"
+        type="text"
+        id="title"
+        formControlName="title"
+      />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label for="body">Description</label>
+      <textarea
+        class="h-8 w-full rounded-lg border border-ang-orange p-1"
+        id="body"
+        formControlName="body"
+      ></textarea>
+    </div>
+    <div class="flex flex-col gap-1">
+      <label for="dateOfEvent">Date of event</label>
+      <input
+        class="h-8 w-full rounded-lg border border-ang-orange p-1"
+        type="date"
+        id="dateOfEvent"
+        formControlName="dateOfEvent"
+      />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label for="timeOfEvent">Time of event</label>
+      <input
+        class="h-8 w-full rounded-lg border border-ang-orange p-1"
+        type="time"
+        id="timeOfEvent"
+        formControlName="timeOfEvent"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label for="location">Location</label>
+      <input
+        class="h-8 w-full rounded-lg border border-ang-orange p-1"
+        type="text"
+        id="location"
+        formControlName="location"
+      />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label for="eventDuration">Event duration</label>
+      <input
+        class="h-8 w-full rounded-lg border border-ang-orange p-1"
+        type="text"
+        id="eventDuration"
+        formControlName="eventDuration"
+      />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label for="price">Price</label>
+      <input
+        class="h-8 w-full rounded-lg border border-ang-orange p-1"
+        type="number"
+        id="price"
+        formControlName="price"
+      />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label for="maxParticipants">max Participants</label>
+      <select
+        class="h-8 w-full rounded-lg border border-ang-orange p-1"
+        id="maxParticipants"
+        formControlName="maxParticipants"
+      >
+        <option
+          *ngFor="let participants of maxParticipants"
+          [value]="participants"
+        >
+          {{ participants }}
+        </option>
+      </select>
+    </div>
+    <div class="flex flex-col gap-1">
+      <label for="category">Category</label>
+      <select
+        class="h-8 w-full rounded-lg border border-ang-orange p-1"
+        id="category"
+        formControlName="eventCategory"
+      >
+        <option *ngFor="let category of eventCategories" [value]="category">
+          {{ category }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" class="primary-buttons">
+      {{ "utils-submitButton" | translate }}
+    </button>
+    <button
+      type="button"
+      (click)="cancelAddingEvent()"
+      class="secondary-buttons border-2"
+    >
+      {{ "utils-cancelButton" | translate }}
+    </button>
+  </form>
+</div>

@@ -203,5 +203,25 @@
   "DELETE_MENU_CATEGORY": "Delete {{name}} menu category",
   "dialogRemoveItem-desc": "Are you sure you want to delete this item? This is irreversible.",
   "dialogRemoveItem-accept": "Yes",
-  "dialogRemoveItem-decline": "No"
+  "dialogRemoveItem-decline": "No",
+
+  "establishmentAdd-addPost": "Post",
+  "establishmentAdd-addMenu": "Menu",
+  "establishmentAdd-addEvent": "Event",
+
+  "establishmentAdd-postDesc": "Share your ideas, stories, or updates with your audience. Posts are great for engaging users and keeping them informed.",
+  "establishmentAdd-menuDesc": "Create and manage your menu items. Highlight your dishes to attract customers and simplify orders.",
+  "establishmentAdd-eventDesc": "Share details of upcoming events. Perfect for meetups, celebrations, or other occasions.",
+
+  "establishmentAddPost-headline": "Add new post",
+  "establishmentAddPost-postHeadline": "Title",
+  "establishmentAddPost-eventDesc": "Post description",
+
+  "establishmentAddPostError-imgFileType": "Only JPEG and PNG formats are allowed",
+  "establishmentAddPostError-imgFileSize": "File size must not exceed 5MB",
+  "establishmentAddPostError-title": "Title is required",
+  "establishmentAddPostError-body": "Post description is required",
+
+  "utils-submitButton": "Submit",
+  "utils-cancelButton": "Cancel"
 }

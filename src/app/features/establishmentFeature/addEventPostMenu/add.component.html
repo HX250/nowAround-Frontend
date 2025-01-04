@@ -3,7 +3,7 @@
   (click)="closeModal()"
 >
   <div
-    class="relative top-0 flex h-full w-full flex-col items-center justify-between gap-8 rounded-lg bg-ang-white p-8 sm:top-5 sm:h-fit sm:w-fit sm:overflow-y-visible"
+    class="relative top-0 flex h-full w-full flex-col items-center justify-evenly gap-8 rounded-lg bg-ang-white p-8 sm:top-5 sm:h-fit sm:w-fit sm:overflow-y-visible"
     (click)="stopPropagation($event)"
   >
     <button
@@ -20,10 +20,11 @@
           class="flex max-w-64 flex-col items-center gap-2 rounded-md bg-ang-orange px-6 py-4 transition-all hover:scale-110 hover:cursor-pointer"
         >
           <img class="h-24 w-24" src="addEst/post.png" alt="Bonnie image" />
-          <h5 class="mb-1 text-xl font-semibold">Post</h5>
+          <h5 class="mb-1 text-xl font-semibold">
+            {{ "establishmentAdd-addPost" | translate }}
+          </h5>
           <p class="text-sm">
-            Share your ideas, stories, or updates with your audience. Posts are
-            great for engaging users and keeping them informed.
+            {{ "establishmentAdd-postDesc" | translate }}
           </p>
         </div>
         <div
@@ -31,10 +32,11 @@
           class="flex max-w-64 flex-col items-center gap-2 rounded-md bg-ang-orange px-6 py-4 transition-all hover:scale-110 hover:cursor-pointer"
         >
           <img class="h-24 w-24" src="addEst/event.png" alt="Bonnie image" />
-          <h5 class="mb-1 text-xl font-semibold">Event</h5>
+          <h5 class="mb-1 text-xl font-semibold">
+            {{ "establishmentAdd-addEvent" | translate }}
+          </h5>
           <p class="text-sm">
-            Share details of upcoming events. Perfect for meetups, celebrations,
-            or other occasions.
+            {{ "establishmentAdd-eventDesc" | translate }}
           </p>
         </div>
         <div
@@ -42,14 +44,20 @@
           class="flex max-w-64 flex-col items-center gap-2 rounded-md bg-ang-orange px-6 py-4 transition-all hover:scale-110 hover:cursor-pointer"
         >
           <img class="h-24 w-24" src="addEst/menu.png" alt="Bonnie image" />
-          <h5 class="mb-1 text-xl font-semibold">Menu</h5>
+          <h5 class="mb-1 text-xl font-semibold">
+            {{ "establishmentAdd-addMenu" | translate }}
+          </h5>
           <p class="text-sm">
-            Create and manage your menu items. Highlight your dishes to attract
-            customers and simplify orders.
+            {{ "establishmentAdd-menuDesc" | translate }}
           </p>
         </div>
       </div>
     }
-    <app-menu (updatedMenuItems)="getProfileData()"></app-menu>
+    <app-menu
+      *ngIf="isAddingMenu()"
+      (updatedMenuItems)="getProfileData()"
+    ></app-menu>
+    <app-event *ngIf="isAddingEvent()"></app-event>
+    <app-post *ngIf="isAddingPost()"></app-post>
   </div>
 </div>

@@ -2,11 +2,21 @@ import { Component, computed, EventEmitter, Output } from '@angular/core';
 import { EstabilishmentService } from '../../../core/services/establishment/establishment.service';
 import { MenuComponent } from './menu/menu.component';
 import { Menu } from '../models/profile/menu.model';
+import { TranslateModule } from '@ngx-translate/core';
+import { EventComponent } from './event/event.component';
+import { PostComponent } from './post/post.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add',
   standalone: true,
-  imports: [MenuComponent],
+  imports: [
+    MenuComponent,
+    TranslateModule,
+    EventComponent,
+    PostComponent,
+    CommonModule,
+  ],
   templateUrl: './add.component.html',
   styleUrl: './add.component.css',
 })
@@ -17,6 +27,9 @@ export class AddComponent {
       ? true
       : false,
   );
+  isAddingEvent = computed(() => (this.estServ.addEvent() ? true : false));
+  isAddingPost = computed(() => (this.estServ.addPost() ? true : false));
+  isAddingMenu = computed(() => (this.estServ.editMenu() ? true : false));
 
   constructor(private estServ: EstabilishmentService) {}
 

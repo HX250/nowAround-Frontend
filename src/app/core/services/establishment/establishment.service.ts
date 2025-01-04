@@ -9,6 +9,7 @@ import {
   Menu,
   MenuItem,
 } from '../../../features/establishmentFeature/models/profile/menu.model';
+import { EventCategory } from '../../../features/establishmentFeature/models/profile/events.model';
 
 @Injectable({
   providedIn: 'root',
@@ -87,17 +88,28 @@ export class EstabilishmentService {
     ],
     events: [
       {
-        name: 'Wine Tasting Night',
-        date: new Date('2024-01-15'),
-        description: 'Explore a curated selection of wines with our sommelier.',
+        imageUrl: 'https://example.com/wine-tasting.jpg', // Optional, added for illustration
+        title: 'Wine Tasting Night',
+        body: 'Explore a curated selection of wines with our sommelier.',
+        dateOfEvent: new Date('2024-01-15'),
+        interests: ['Wine', 'Tasting', 'Gourmet'],
+        price: 50, // Assumed price
         location: 'The Gourmet Spot, Main Hall',
+        maxParticipants: '50', // Assumed max participants
+        eventDuration: 3, // Assumed duration in hours
+        eventCategory: EventCategory.Food,
       },
       {
-        name: 'Cooking Workshop',
-        date: new Date('2024-02-10'),
-        description:
-          'Learn to cook authentic Italian dishes with our head chef.',
+        imageUrl: 'https://example.com/cooking-workshop.jpg', // Optional, added for illustration
+        title: 'Cooking Workshop',
+        body: 'Learn to cook authentic Italian dishes with our head chef.',
+        dateOfEvent: new Date('2024-02-10'),
+        interests: ['Cooking', 'Italian Cuisine', 'Hands-On Experience'],
+        price: 75, // Assumed price
         location: 'The Gourmet Spot, Kitchen Studio',
+        maxParticipants: '20', // Assumed max participants
+        eventDuration: 4, // Assumed duration in hours
+        eventCategory: EventCategory.Food,
       },
     ],
     locationInfo: {
@@ -152,7 +164,7 @@ export class EstabilishmentService {
     return this.estProfileSubject.value;
   }
 
-  /**
+  /*
    * Profile specific calls
    */
   returnSpecificProfileInfo<T>(
@@ -186,9 +198,11 @@ export class EstabilishmentService {
         }),
       );
   }
-  /* END OF PROFILE */
-
   /**
+   * !END OF PROFILE
+   */
+
+  /*
    * Review specific calls
    */
   sendReview(
@@ -199,7 +213,27 @@ export class EstabilishmentService {
     const payload = { estId, review, userId };
     return this.http.post('/api/reviews', payload);
   }
-  /* END OF REVIEW */
+  /**
+   * ! END OF REVIEW
+   */
+
+  /*
+   * Post specific calls
+   */
+  uploadPost(formData: FormData): Observable<any> {
+    return this.http.post('http://localhost:3000/uploadPost', formData).pipe(
+      map((Response) => {
+        console.log(Response);
+      }),
+    );
+  }
+  /**
+   * ! END OF POST
+   */
+
+  /*
+   * Menu specific calls
+   */
 
   addNewMenu(menuForm?: Menu[]): Observable<any> {
     console.log(this.estProfileSubject.value?.auth0Id);
@@ -223,9 +257,6 @@ export class EstabilishmentService {
       );
   }
 
-  /**
-   * Menu specific calls
-   */
   removeMenuItem(menuName: string, tab?: MenuItem): Observable<any> {
     const estId = this.estProfileSubject.value?.auth0Id;
     const payload = { estId, menuName, tab };
@@ -251,17 +282,54 @@ export class EstabilishmentService {
         }),
       );
   }
-  /* END OF MENU */
-
   /**
+   * !END OF MENU
+   */
+
+  /*
+   * Event specific calls
+   */
+  uploadEvent(eventForm: FormData): Observable<any> {
+    return this.http.post('http://localhost:3000/uploadEvent', eventForm).pipe(
+      map((Response) => {
+        this.alert.showAlert('Event has been added', true);
+      }),
+      catchError((error) => {
+        console.log(error);
+        this.alert.showAlert(
+          'There has been an error in adding the event, please try again',
+          false,
+        );
+        return of(null);
+      }),
+    );
+  }
+  /**
+   * ! END OF EVENT
+   */
+  /*
    * Image specific calls
    */
   uploadImage(formData: FormData): Observable<any> {
-    return this.http.post('http://localhost:3000/uploadImage', formData);
+    return this.http.post('http://localhost:3000/uploadImage', formData).pipe(
+      map((Response) => {
+        this.alert.showAlert('Image has been uploaded', true);
+      }),
+      catchError((error) => {
+        console.log(error);
+        this.alert.showAlert(
+          'Image couldnt be uploaded, please try again',
+          false,
+        );
+        return of(null);
+      }),
+    );
   }
-  /* END OF IMAGE */
-
   /**
+   * ! END OF IMAGE
+   */
+
+  /*
    * Register establishment specific calls
    */
   registerEstablishment(completeFormData: CompleteFormData): Observable<any> {
@@ -275,5 +343,7 @@ export class EstabilishmentService {
       },
     );
   }
-  /* END OF REGISTER */
+  /**
+   * ! END OF REGISTER
+   */
 }

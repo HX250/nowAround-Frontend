@@ -23,9 +23,6 @@ export class MenuComponent {
   @Output() updatedMenuItems = new EventEmitter();
   newMenuCategory?: Menu[] = [];
   menuForm!: FormGroup;
-  isAddingMenuCategory = computed(() =>
-    this.estServ.editMenu() ? true : false,
-  );
 
   constructor(
     private estServ: EstabilishmentService,
