@@ -1,10 +1,10 @@
-<div class="max-h-[50rem] overflow-y-scroll">
+<div class="max-h-[50rem] w-full overflow-y-scroll">
   <h2 class="py-4 text-center text-2xl">
     {{ "establishmentAddPost-headline" | translate }}
   </h2>
   <form
     (ngSubmit)="submitPost()"
-    class="flex w-[30rem] flex-col gap-4"
+    class="flex w-full flex-col gap-4"
     [formGroup]="eventForm"
     novalidate
   >
@@ -32,7 +32,9 @@
                 stroke-linejoin="round"
               />
             </svg>
-            <p class="mt-1 text-sm text-gray-600">Click to upload image</p>
+            <p class="mt-1 text-sm text-gray-600">
+              {{ "establishmentAdd-uploadImg" | translate }}
+            </p>
           </div>
         </ng-template>
       </label>
@@ -45,85 +47,138 @@
       />
     </div>
     <span
-      *ngIf="eventForm.get('image')?.hasError('required')"
-      class="text-sm text-ang-redAlert"
-      >Image is required.</span
-    >
-    <span
       *ngIf="eventForm.get('image')?.hasError('invalidFileType')"
       class="text-sm text-ang-redAlert"
-      >Only JPEG and PNG are allowed.</span
+      >{{ "establishmentAddPostError-imgFileType" | translate }}</span
     >
     <span
       *ngIf="eventForm.get('image')?.hasError('fileSizeExceeded')"
       class="text-sm text-ang-redAlert"
-      >File size must be less than 5MB.</span
+      >{{ "establishmentAddPostError-imgFileSize" | translate }}</span
     >
     <div class="flex flex-col gap-1">
-      <label for="title">Title</label>
+      <label for="title">{{ "establishmentAddEvent-title" | translate }}</label>
       <input
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
         type="text"
         id="title"
         formControlName="title"
       />
+      <span
+        *ngIf="f['title'].invalid && f['title'].touched"
+        class="text-red-500"
+      >
+        {{ "establishmentAddPostError-title" | translate }}
+      </span>
     </div>
     <div class="flex flex-col gap-1">
-      <label for="body">Description</label>
+      <label for="body">{{
+        "establishmentAddEvent-description" | translate
+      }}</label>
       <textarea
-        class="h-8 w-full rounded-lg border border-ang-orange p-1"
+        class="w-full rounded-lg border border-ang-orange p-1"
         id="body"
         formControlName="body"
       ></textarea>
+      <span *ngIf="f['body'].invalid && f['body'].touched" class="text-red-500">
+        {{ "establishmentAddEventError-description" | translate }}
+      </span>
     </div>
     <div class="flex flex-col gap-1">
-      <label for="dateOfEvent">Date of event</label>
+      <label for="dateOfEvent">{{
+        "establishmentAddEvent-dateOfEvent" | translate
+      }}</label>
       <input
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
         type="date"
         id="dateOfEvent"
         formControlName="dateOfEvent"
       />
+      <span
+        *ngIf="f['dateOfEvent'].invalid && f['dateOfEvent'].touched"
+        class="text-red-500"
+      >
+        {{ "establishmentAddEventError-dateOfEvent" | translate }}
+      </span>
+      <span
+        *ngIf="
+          f['dateOfEvent'].hasError('pastDate') && f['dateOfEvent'].touched
+        "
+        class="text-red-500"
+      >
+        {{ "establishmentAddEventError-pastEvenet" | translate }}
+      </span>
     </div>
     <div class="flex flex-col gap-1">
-      <label for="timeOfEvent">Time of event</label>
+      <label for="timeOfEvent">{{
+        "establishmentAddEvent-timeOfEvent" | translate
+      }}</label>
       <input
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
         type="time"
         id="timeOfEvent"
         formControlName="timeOfEvent"
       />
+      <span
+        *ngIf="f['timeOfEvent'].invalid && f['timeOfEvent'].touched"
+        class="text-red-500"
+      >
+        {{ "establishmentAddEventError-timeOfTime" | translate }}
+      </span>
     </div>
-
     <div class="flex flex-col gap-1">
-      <label for="location">Location</label>
+      <label for="location">{{
+        "establishmentAddEvent-location" | translate
+      }}</label>
       <input
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
         type="text"
         id="location"
         formControlName="location"
       />
+      <span
+        *ngIf="f['location'].invalid && f['location'].touched"
+        class="text-red-500"
+      >
+        {{ "establishmentAddEventError-location" | translate }}
+      </span>
     </div>
     <div class="flex flex-col gap-1">
-      <label for="eventDuration">Event duration</label>
+      <label for="eventDuration">{{
+        "establishmentAddEvent-eventDuration" | translate
+      }}</label>
       <input
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
-        type="text"
+        type="number"
         id="eventDuration"
         formControlName="eventDuration"
       />
+      <span
+        *ngIf="f['eventDuration'].invalid && f['eventDuration'].touched"
+        class="text-red-500"
+      >
+        {{ "establishmentAddEventError-eventDuration" | translate }}
+      </span>
     </div>
     <div class="flex flex-col gap-1">
-      <label for="price">Price</label>
+      <label for="price">{{ "establishmentAddEvent-price" | translate }}</label>
       <input
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
         type="number"
         id="price"
         formControlName="price"
       />
+      <span
+        *ngIf="f['price'].invalid && f['price'].touched"
+        class="text-red-500"
+      >
+        {{ "establishmentAddEventError-price" | translate }}
+      </span>
     </div>
     <div class="flex flex-col gap-1">
-      <label for="maxParticipants">max Participants</label>
+      <label for="maxParticipants">{{
+        "establishmentAddEvent-maxParticipants" | translate
+      }}</label>
       <select
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
         id="maxParticipants"
@@ -136,9 +191,17 @@
           {{ participants }}
         </option>
       </select>
+      <span
+        *ngIf="f['maxParticipants'].invalid && f['maxParticipants'].touched"
+        class="text-red-500"
+      >
+        {{ "establishmentAddEventError-maxParticipants" | translate }}
+      </span>
     </div>
     <div class="flex flex-col gap-1">
-      <label for="category">Category</label>
+      <label for="category">{{
+        "establishmentAddEvent-eventCategory" | translate
+      }}</label>
       <select
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
         id="category"
@@ -148,6 +211,12 @@
           {{ category }}
         </option>
       </select>
+      <span
+        *ngIf="f['eventCategory'].invalid && f['eventCategory'].touched"
+        class="text-red-500"
+      >
+        {{ "establishmentAddEventError-eventCategory" | translate }}
+      </span>
     </div>
 
     <button type="submit" class="primary-buttons">

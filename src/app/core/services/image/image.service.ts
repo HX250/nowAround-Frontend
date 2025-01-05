@@ -32,10 +32,13 @@ export class ImageService {
     }
   }
 
-  imageValidator(
-    file: File,
-  ): { invalidFileType?: boolean; fileSizeExceeded?: boolean } | null {
+  imageValidator(file: File): {
+    invalidFileType?: boolean;
+    fileSizeExceeded?: boolean;
+    required?: boolean;
+  } | null {
     const errors: { [key: string]: boolean } = {};
+    console.log(file);
 
     if (!this.validateFileType(file)) {
       errors['invalidFileType'] = true;
@@ -53,7 +56,6 @@ export class ImageService {
     return allowedTypes.includes(file.type);
   }
 
-  // Validate image size (max 5MB)
   validateFileSize(file: File): boolean {
     const maxSizeInMB = 5;
     const maxSizeInBytes = maxSizeInMB * 1024 * 1024;

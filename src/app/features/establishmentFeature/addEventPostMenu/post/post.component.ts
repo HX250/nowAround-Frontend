@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { ImageService } from '../../../../core/services/image/image.service';
 
 @Component({
   selector: 'app-post',
@@ -23,6 +24,7 @@ export class PostComponent implements OnInit {
   constructor(
     private estServ: EstabilishmentService,
     private fb: FormBuilder,
+    private imgServ: ImageService,
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class PostComponent implements OnInit {
 
   buildForm() {
     this.postForm = this.fb.group({
-      image: [File],
+      image: [File, Validators.required],
       headline: ['', Validators.required],
       createAt: [new Date()],
       body: ['', Validators.required],
@@ -43,14 +45,10 @@ export class PostComponent implements OnInit {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
 
-      const allowedTypes = ['image/jpeg', 'image/png'];
-      if (!allowedTypes.includes(file.type)) {
-        this.postForm.get('image')?.setErrors({ invalidFileType: true });
-        return;
-      }
+      const validationErrors = this.imgServ.imageValidator(file);
 
-      if (file.size > 5 * 1024 * 1024) {
-        this.postForm.get('image')?.setErrors({ fileSizeExceeded: true });
+      if (validationErrors) {
+        this.postForm.get('image')?.setErrors(validationErrors);
         return;
       }
 
@@ -66,15 +64,16 @@ export class PostComponent implements OnInit {
   }
 
   submitPost() {
+    if (this.postForm.invalid) {
+      this.postForm.markAllAsTouched();
+      return;
+    }
     const formData = new FormData();
 
     const formValue = this.postForm.value;
     const imageFile = formValue.image;
 
-    if (formValue.image) {
-      formData.append('image', imageFile);
-    }
-
+    formData.append('image', imageFile);
     formData.append('headline', formValue.headline);
     formData.append('createAt', formValue.createAt.toISOString());
     formData.append('body', formValue.body);

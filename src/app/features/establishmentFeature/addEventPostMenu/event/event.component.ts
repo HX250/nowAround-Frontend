@@ -3,9 +3,11 @@ import { EstabilishmentService } from '../../../../core/services/establishment/e
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import {
@@ -40,16 +42,16 @@ export class EventComponent implements OnInit {
 
   buildForm() {
     this.eventForm = this.fb.group({
-      image: [File],
+      image: [File, Validators.required],
       title: ['', Validators.required],
       body: ['', Validators.required],
-      dateOfEvent: [new Date()],
-      timeOfEvent: [],
+      dateOfEvent: ['', [Validators.required, this.futureDateValidator]],
+      timeOfEvent: ['', Validators.required],
       interests: ['', Validators.required],
-      price: [0, Validators.required],
+      price: ['', Validators.required],
       location: ['', Validators.required],
-      maxParticipants: [0, Validators.required],
-      eventDuration: [0, Validators.required],
+      maxParticipants: ['', Validators.required],
+      eventDuration: ['', Validators.required],
       eventCategory: ['', Validators.required],
     });
   }
@@ -61,11 +63,17 @@ export class EventComponent implements OnInit {
     });
   }
 
+  futureDateValidator(control: AbstractControl): ValidationErrors | null {
+    if (!control.value) return null;
+    const currentDate = new Date().toISOString().split('T')[0];
+    const inputDate = new Date(control.value).toISOString().split('T')[0];
+    return inputDate >= currentDate ? null : { pastDate: true };
+  }
+
   uploadImg(event: any) {
     const file = event.target.files[0];
 
     const validationErrors = this.imgServ.imageValidator(file);
-    console.log(validationErrors);
 
     if (validationErrors) {
       this.eventForm.get('image')?.setErrors(validationErrors);
@@ -82,6 +90,10 @@ export class EventComponent implements OnInit {
   }
 
   submitPost() {
+    if (this.eventForm.invalid) {
+      this.eventForm.markAllAsTouched();
+      return;
+    }
     const formData = new FormData();
 
     const formValue = this.eventForm.value;
@@ -107,5 +119,9 @@ export class EventComponent implements OnInit {
 
   cancelAddingEvent() {
     this.estServ.addEvent.set(false);
+  }
+
+  get f() {
+    return this.eventForm.controls;
   }
 }

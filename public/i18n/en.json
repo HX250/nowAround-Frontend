@@ -212,6 +212,7 @@
   "establishmentAdd-postDesc": "Share your ideas, stories, or updates with your audience. Posts are great for engaging users and keeping them informed.",
   "establishmentAdd-menuDesc": "Create and manage your menu items. Highlight your dishes to attract customers and simplify orders.",
   "establishmentAdd-eventDesc": "Share details of upcoming events. Perfect for meetups, celebrations, or other occasions.",
+  "establishmentAdd-uploadImg": "Click to upload image",
 
   "establishmentAddPost-headline": "Add new post",
   "establishmentAddPost-postHeadline": "Title",
@@ -221,6 +222,27 @@
   "establishmentAddPostError-imgFileSize": "File size must not exceed 5MB",
   "establishmentAddPostError-title": "Title is required",
   "establishmentAddPostError-body": "Post description is required",
+
+  "establishmentAddEvent-title": "Event Title",
+  "establishmentAddEvent-description": "Event Description",
+  "establishmentAddEvent-dateOfEvent": "Event Date",
+  "establishmentAddEvent-timeOfEvent": "Event Time",
+  "establishmentAddEvent-location": "Event Location",
+  "establishmentAddEvent-eventDuration": "Event Duration",
+  "establishmentAddEvent-price": "Entry Fee",
+  "establishmentAddEvent-maxParticipants": "Maximum Number of Participants",
+  "establishmentAddEvent-eventCategory": "Event Categories",
+  "establishmentAddEvent-interests": "Interest",
+
+  "establishmentAddEventError-description": "Event description is required",
+  "establishmentAddEventError-dateOfEvent": " Date of event is required",
+  "establishmentAddEventError-pastEvenet": " Date cannot be in the past",
+  "establishmentAddEventError-timeOfTime": "Time of event is required",
+  "establishmentAddEventError-location": "Location of event is required",
+  "establishmentAddEventError-eventDuration": "Event duration is required",
+  "establishmentAddEventError-price": "Price is required",
+  "establishmentAddEventError-maxParticipants": "Max participants is required",
+  "establishmentAddEventError-eventCategory": "Event category is required",
 
   "utils-submitButton": "Submit",
   "utils-cancelButton": "Cancel"

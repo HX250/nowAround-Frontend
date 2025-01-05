@@ -32,7 +32,9 @@
                 stroke-linejoin="round"
               />
             </svg>
-            <p class="mt-1 text-sm text-gray-600">Click to upload image</p>
+            <p class="mt-1 text-sm text-gray-600">
+              {{ "establishmentAdd-uploadImg" | translate }}
+            </p>
           </div>
         </ng-template>
       </label>
@@ -44,18 +46,16 @@
         formControlName="image"
       />
     </div>
-    <div
-      *ngIf="postForm.controls['image'].errors?.['invalidFileType']"
-      class="text-red-500"
+    <span
+      *ngIf="postForm.get('image')?.hasError('invalidFileType')"
+      class="text-sm text-ang-redAlert"
+      >{{ "establishmentAddPostError-imgFileType" | translate }}</span
     >
-      {{ "establishmentAddPostError-imgFileType" | translate }}
-    </div>
-    <div
-      *ngIf="postForm.controls['image'].errors?.['fileSizeExceeded']"
-      class="text-red-500"
+    <span
+      *ngIf="postForm.get('image')?.hasError('fileSizeExceeded')"
+      class="text-sm text-ang-redAlert"
+      >{{ "establishmentAddPostError-imgFileSize" | translate }}</span
     >
-      {{ "establishmentAddPostError-imgFileSize" | translate }}
-    </div>
 
     <div class="flex flex-col gap-1">
       <label for="headline">{{
@@ -67,7 +67,7 @@
         formControlName="headline"
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
       />
-      <div
+      <span
         *ngIf="
           postForm.controls['headline'].invalid &&
           postForm.controls['headline'].touched
@@ -75,7 +75,7 @@
         class="text-red-500"
       >
         {{ "establishmentAddPostError-title" | translate }}
-      </div>
+      </span>
     </div>
 
     <div class="flex flex-col gap-1">
@@ -88,17 +88,17 @@
         formControlName="body"
         class="h-16 w-full rounded-lg border border-ang-orange p-1"
       ></textarea>
-      <div
+      <span
         *ngIf="
           postForm.controls['body'].invalid && postForm.controls['body'].touched
         "
         class="text-red-500"
       >
         {{ "establishmentAddPostError-body" | translate }}
-      </div>
+      </span>
     </div>
 
-    <button type="submit" [disabled]="postForm.invalid" class="primary-buttons">
+    <button type="submit" class="primary-buttons">
       {{ "utils-submitButton" | translate }}
     </button>
     <button
