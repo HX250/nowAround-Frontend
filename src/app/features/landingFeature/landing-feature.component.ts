@@ -11,7 +11,6 @@ import { ScrollUpArrowComponent } from '../../shared/components/scroll-up-arrow/
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { RoleSelectionComponent } from './role-selection/role-selection.component';
-import { AlertComponent } from '../../shared/components/alert/alert.component';
 
 @Component({
   selector: 'app-landing-feature',

@@ -4,32 +4,6 @@
     [formGroup]="establishmentRegister"
   >
     <div class="flex flex-col gap-6 sm:flex-row">
-      <label
-        for="photo"
-        class="flex h-32 w-full items-center justify-center border-2 border-ang-orange bg-ang-black bg-opacity-10 sm:h-40 sm:w-48 sm:rounded-full"
-      >
-        <img
-          *ngIf="previewImage; else defaultImage"
-          [src]="previewImage"
-          class="h-full w-full object-cover sm:rounded-full"
-          alt="Uploaded Image"
-        />
-        <ng-template #defaultImage>
-          <img
-            src="establishmentForm/gallery.png"
-            width="64px"
-            height="64px"
-            alt="Default Placeholder"
-          />
-        </ng-template>
-      </label>
-      <input
-        (change)="onFileChange($event)"
-        class="hidden"
-        type="file"
-        id="photo"
-        formControlName="photo"
-      />
       <div class="flex w-full flex-col gap-4">
         <div class="flex flex-col">
           <label for="name" class="font-semibold">{{

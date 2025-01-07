@@ -1,3 +1,5 @@
+<div *ngIf="isLoggedIn()" class="flex w-full justify-center pt-2"></div>
+
 <div class="pb-4 pt-4">
   <div *ngIf="tabList?.length === 0; else showItems">
     <p class="pt-4 text-center text-xl">
@@ -6,29 +8,68 @@
   </div>
 
   <ng-template #showItems>
-    <div *ngFor="let tab of tabList" class="border-b-2 border-ang-orange pb-4">
-      <h1 class="mb-4 text-2xl font-semibold text-ang-orange">
-        {{ tab.name }}
-      </h1>
+    <div
+      *ngFor="let tab of tabList; let i = index"
+      class="border-b-2 border-ang-orange pb-4"
+    >
+      <div class="flex items-center gap-4 pb-2">
+        <h1 class="text-2xl font-semibold text-ang-orange">
+          {{ tab.name }}
+        </h1>
+        <button
+          (click)="removeMenuItem(tab.name)"
+          *ngIf="isLoggedIn()"
+          class="flex h-6 w-6 items-center justify-center rounded-lg bg-ang-redAlert text-xl text-ang-white transition-all hover:scale-110"
+        >
+          X
+        </button>
+      </div>
 
       <div
         *ngFor="let item of tab.menuItems"
         class="mb-4 flex w-full items-center justify-between"
       >
-        <img
-          *ngIf="item.url"
-          [src]="item.url"
-          alt="Menu item image"
-          class="h-14 w-14 object-cover"
+        <label
+          for="menuImg"
+          class="flex items-center justify-center bg-ang-black bg-opacity-10"
+        >
+          <img
+            *ngIf="menuImg; else defaultProfileImage"
+            [src]="menuImg"
+            class="h-14 w-14 object-cover"
+            alt="Uploaded Image"
+          />
+          <ng-template #defaultProfileImage>
+            <img
+              src="userProfile/image.png"
+              class="h-14 w-14"
+              alt="Default Placeholder"
+            />
+          </ng-template>
+        </label>
+        <input
+          (change)="uploadImg($event, 'profile')"
+          class="hidden"
+          type="file"
+          id="menuImg"
+          formControlName="menuImg"
         />
-
         <div class="flex flex-1 flex-col px-4">
           <h3 class="font-semibold text-ang-black">{{ item.name }}</h3>
           <p class="text-sm text-ang-black text-opacity-85">
             {{ item.description }}
           </p>
         </div>
-        <span class="text-right font-bold">{{ item.price }}</span>
+        <div class="flex gap-4">
+          <span class="text-right font-bold">{{ item.price }}</span>
+          <button
+            (click)="removeMenuItem(tab.name, tab.menuItems[i])"
+            *ngIf="isLoggedIn()"
+            class="flex h-6 w-6 items-center justify-center rounded-lg bg-ang-redAlert text-xl text-ang-white transition-all hover:scale-110"
+          >
+            X
+          </button>
+        </div>
       </div>
     </div>
   </ng-template>

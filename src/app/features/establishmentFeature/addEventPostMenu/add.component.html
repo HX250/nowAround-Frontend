@@ -1,0 +1,63 @@
+<div
+  class="z-10 flex h-full w-full items-center justify-center bg-ang-black bg-opacity-60 md:px-6"
+  (click)="closeModal()"
+>
+  <div
+    class="relative top-0 flex h-full w-full flex-col items-center justify-evenly gap-8 rounded-lg bg-ang-white px-4 py-8 sm:top-5 sm:h-fit sm:w-fit sm:overflow-y-visible"
+    (click)="stopPropagation($event)"
+  >
+    <button
+      (click)="closeModal()"
+      class="absolute -right-0 -top-0 z-50 w-10 rounded-bl-lg bg-ang-orange p-2 transition-all hover:scale-110 md:-right-5 md:-top-5 md:rounded-full"
+    >
+      <span class="flex items-center justify-center text-ang-black">X</span>
+    </button>
+    @if (!isEditing()) {
+      <h2 class="text-center">Add new:</h2>
+      <div class="flex flex-col gap-6 sm:flex-row">
+        <div
+          (click)="addPost()"
+          class="flex max-w-64 flex-col items-center gap-2 rounded-md bg-ang-orange px-6 py-4 transition-all hover:scale-110 hover:cursor-pointer"
+        >
+          <img class="h-24 w-24" src="addEst/post.png" alt="Bonnie image" />
+          <h5 class="mb-1 text-xl font-semibold">
+            {{ "establishmentAdd-addPost" | translate }}
+          </h5>
+          <p class="text-sm">
+            {{ "establishmentAdd-postDesc" | translate }}
+          </p>
+        </div>
+        <div
+          (click)="addEvent()"
+          class="flex max-w-64 flex-col items-center gap-2 rounded-md bg-ang-orange px-6 py-4 transition-all hover:scale-110 hover:cursor-pointer"
+        >
+          <img class="h-24 w-24" src="addEst/event.png" alt="Bonnie image" />
+          <h5 class="mb-1 text-xl font-semibold">
+            {{ "establishmentAdd-addEvent" | translate }}
+          </h5>
+          <p class="text-sm">
+            {{ "establishmentAdd-eventDesc" | translate }}
+          </p>
+        </div>
+        <div
+          (click)="addMenu()"
+          class="flex max-w-64 flex-col items-center gap-2 rounded-md bg-ang-orange px-6 py-4 transition-all hover:scale-110 hover:cursor-pointer"
+        >
+          <img class="h-24 w-24" src="addEst/menu.png" alt="Bonnie image" />
+          <h5 class="mb-1 text-xl font-semibold">
+            {{ "establishmentAdd-addMenu" | translate }}
+          </h5>
+          <p class="text-sm">
+            {{ "establishmentAdd-menuDesc" | translate }}
+          </p>
+        </div>
+      </div>
+    }
+    <app-menu
+      *ngIf="isAddingMenu()"
+      (updatedMenuItems)="getProfileData()"
+    ></app-menu>
+    <app-event *ngIf="isAddingEvent()"></app-event>
+    <app-post *ngIf="isAddingPost()"></app-post>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<div class="max-h-[50rem] overflow-y-scroll">
+  <h2 class="py-4 text-center text-2xl">
+    {{ "establishmentAddPost-headline" | translate }}
+  </h2>
+  <form
+    (ngSubmit)="submitPost()"
+    class="flex w-96 flex-col gap-4"
+    [formGroup]="postForm"
+    novalidate
+  >
+    <div class="flex w-full items-center justify-center">
+      <label for="image">
+        <img
+          *ngIf="postImg; else defaultProfileImage"
+          [src]="postImg"
+          class="h-96 w-96 object-cover"
+          alt="Uploaded Image"
+        />
+        <ng-template #defaultProfileImage>
+          <div class="text-center">
+            <svg
+              class="mx-auto h-12 w-12 text-gray-400"
+              stroke="currentColor"
+              fill="none"
+              viewBox="0 0 48 48"
+              aria-hidden="true"
+            >
+              <path
+                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <p class="mt-1 text-sm text-gray-600">
+              {{ "establishmentAdd-uploadImg" | translate }}
+            </p>
+          </div>
+        </ng-template>
+      </label>
+      <input
+        (change)="uploadImg($event)"
+        class="hidden"
+        type="file"
+        id="image"
+        formControlName="image"
+      />
+    </div>
+    <span
+      *ngIf="postForm.get('image')?.hasError('invalidFileType')"
+      class="text-sm text-ang-redAlert"
+      >{{ "establishmentAddPostError-imgFileType" | translate }}</span
+    >
+    <span
+      *ngIf="postForm.get('image')?.hasError('fileSizeExceeded')"
+      class="text-sm text-ang-redAlert"
+      >{{ "establishmentAddPostError-imgFileSize" | translate }}</span
+    >
+
+    <div class="flex flex-col gap-1">
+      <label for="headline">{{
+        "establishmentAddPost-postHeadline" | translate
+      }}</label>
+      <input
+        id="headline"
+        type="text"
+        formControlName="headline"
+        class="h-8 w-full rounded-lg border border-ang-orange p-1"
+      />
+      <span
+        *ngIf="
+          postForm.controls['headline'].invalid &&
+          postForm.controls['headline'].touched
+        "
+        class="text-red-500"
+      >
+        {{ "establishmentAddPostError-title" | translate }}
+      </span>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label for="postBody">{{
+        "establishmentAddPost-eventDesc" | translate
+      }}</label>
+      <textarea
+        name="postBody"
+        id="postBody"
+        formControlName="body"
+        class="h-16 w-full rounded-lg border border-ang-orange p-1"
+      ></textarea>
+      <span
+        *ngIf="
+          postForm.controls['body'].invalid && postForm.controls['body'].touched
+        "
+        class="text-red-500"
+      >
+        {{ "establishmentAddPostError-body" | translate }}
+      </span>
+    </div>
+
+    <button type="submit" class="primary-buttons">
+      {{ "utils-submitButton" | translate }}
+    </button>
+    <button
+      type="button"
+      (click)="cancelAddingPost()"
+      class="secondary-buttons border-2"
+    >
+      {{ "utils-cancelButton" | translate }}
+    </button>
+  </form>
+</div>

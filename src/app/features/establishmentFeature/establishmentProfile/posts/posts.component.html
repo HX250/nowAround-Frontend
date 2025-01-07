@@ -1,5 +1,5 @@
 <div>
-  <div *ngIf="postList?.length == 0; else showItems">
+  <div *ngIf="postList.length == 0; else showItems">
     <p class="pt-4 text-center text-xl">
       {{ "establishmentPost-Error" | translate }}
     </p>
@@ -13,19 +13,17 @@
       <button>Search</button>
     </div>
     <div
-      class="flex flex-wrap items-center justify-center gap-4 py-4 md:justify-evenly xl:justify-between"
+      class="flex flex-wrap items-center justify-center gap-4 py-4 md:justify-start"
     >
       <div
         *ngFor="let post of postList"
         class="row-span-2 flex max-h-[30rem] w-full max-w-96 flex-col gap-2 rounded-md border border-ang-orange"
       >
-        @if (post.imageUrl) {
-          <img
-            [src]="post.imageUrl"
-            alt="Post image"
-            class="h-96 w-96 rounded-t-md"
-          />
-        }
+        <img
+          [src]="post.pictureUrl"
+          alt="Post image"
+          class="h-96 w-96 rounded-t-md"
+        />
         <div class="flex flex-col justify-between pl-1">
           <div>
             <h2 class="text-xl">{{ post.headline }}</h2>
@@ -36,10 +34,17 @@
           <p class="text-base">{{ post.body }}</p>
 
           <span class="text-sm"
-            >{{ post.userLikes.length }}
+            >{{ post.likes.length }}
             {{ "establishmentProfile-Like" | translate }}</span
           >
         </div>
+        <button
+          class="primary-buttons"
+          *ngIf="isLoggedIn()"
+          (click)="deletePost(post.id)"
+        >
+          Delete
+        </button>
       </div>
     </div>
   </ng-template>

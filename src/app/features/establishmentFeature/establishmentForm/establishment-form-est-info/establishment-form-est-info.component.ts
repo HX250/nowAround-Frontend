@@ -50,11 +50,9 @@ export class EstablishmentFormEstInfoComponent {
   establishmentCategory: string[] = [];
   catError: string = '';
   tagError: string = '';
-  previewImage: any;
 
   constructor(private fb: FormBuilder) {
     this.establishmentRegister = fb.group({
-      photo: [],
       name: ['', Validators.required],
       category: [[], Validators.required],
       priceCategory: ['', Validators.required],
@@ -108,24 +106,6 @@ export class EstablishmentFormEstInfoComponent {
     this.establishmentRegister.patchValue({
       tags: this.establishmentTags,
     });
-  }
-
-  onFileChange(event: any) {
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      const formData = new FormData();
-      formData.append('file', file);
-
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.previewImage = reader.result as string;
-
-        this.establishmentRegister.patchValue({
-          photo: formData,
-        });
-      };
-    }
   }
 
   get f() {

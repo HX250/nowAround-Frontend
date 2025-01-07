@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import {
   ActivatedRoute,
   RouterLink,
@@ -13,6 +13,8 @@ import { profile } from '../models/profile/profile.model';
 import { InfoComponent } from './info/info.component';
 import { EstablishmentEditComponent } from '../establishmentEdit/establishment-edit.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { AddComponent } from '../addEventPostMenu/add.component';
+
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -24,6 +26,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,
     InfoComponent,
     EstablishmentEditComponent,
+    AddComponent,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
@@ -31,11 +34,14 @@ import { TranslateModule } from '@ngx-translate/core';
 export class ProfileComponent implements OnInit {
   isWindowShown = signal(false);
   editWindow = signal(false);
-  isLoggedIn: boolean = false;
+  addWindow = signal(false);
+  isLoggedIn = computed(() => (this.customAuth.estLogin() ? true : false));
   estProfile?: profile = undefined;
   tabLink?: boolean = false;
   eventLink: boolean = false;
   establishmentID: string = '';
+  backgroundPreviewImage: any;
+  profilePreviewImage: any;
 
   constructor(
     public auth0: AuthService,
@@ -45,20 +51,9 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getRole();
     this.saveProfile();
     this.checkTab();
     this.getProfileData();
-  }
-
-  getRole() {
-    this.customAuth.roleState$.subscribe((role) => {
-      if (role === 'Establishment') {
-        this.isLoggedIn = true;
-      } else {
-        this.isLoggedIn = false;
-      }
-    });
   }
 
   saveProfile() {
@@ -81,10 +76,53 @@ export class ProfileComponent implements OnInit {
 
   getProfileData() {
     this.estServ
-      .returnSpecificProfileInfo<profile>('genericInformation')
+      .returnSpecificProfileInfo<profile>('genericInfo')
       .subscribe((Response) => {
         this.estProfile = Response;
       });
+  }
+
+  onFileChange(event: any, where: string) {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+
+      const allowedTypes = ['image/jpeg', 'image/png'];
+      if (!allowedTypes.includes(file.type)) {
+        alert('Only JPEG and PNG formats are allowed.');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size must not exceed 5MB.');
+        return;
+      }
+
+      const previewReader = new FileReader();
+      previewReader.onload = () => {
+        const dataUrl = previewReader.result as string;
+        if (where === 'profile') {
+          this.profilePreviewImage = dataUrl;
+        } else if (where === 'background') {
+          this.backgroundPreviewImage = dataUrl;
+        }
+      };
+
+      const binaryReader = new FileReader();
+      binaryReader.onload = () => {
+        const arrayBuffer = binaryReader.result as ArrayBuffer;
+        const binaryString = Array.from(new Uint8Array(arrayBuffer))
+          .map((byte) => byte.toString(2).padStart(8, '0'))
+          .join(' ');
+        console.log(binaryString);
+      };
+
+      previewReader.onerror = binaryReader.onerror = (error) => {
+        console.error('Error reading file:', error);
+        alert('Failed to load the file. Please try again.');
+      };
+
+      previewReader.readAsDataURL(file);
+      binaryReader.readAsArrayBuffer(file);
+    }
   }
 
   openWindow() {
@@ -98,5 +136,11 @@ export class ProfileComponent implements OnInit {
   }
   closeEditWindow() {
     this.editWindow.set(false);
+  }
+  openAddWindow() {
+    this.addWindow.set(true);
+  }
+  closeAddWindow() {
+    this.addWindow.set(false);
   }
 }

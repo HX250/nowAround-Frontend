@@ -32,7 +32,13 @@
               *ngFor="let entry of infoList?.businessHours | daySort"
               class="flex w-full justify-between"
             >
-              <p>{{ entry.key }} :</p>
+              <p>
+                {{
+                  "establishmentProfileInfo-OpeningHours." + entry.key
+                    | translate
+                }}
+                :
+              </p>
               <p>{{ entry.value }}</p>
             </div>
           </div>

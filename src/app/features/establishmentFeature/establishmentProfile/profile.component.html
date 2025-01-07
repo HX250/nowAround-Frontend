@@ -4,7 +4,32 @@
       <div
         class="flex h-60 w-full items-center justify-center border-2 border-b-ang-orange transition-all hover:cursor-pointer hover:bg-ang-black hover:bg-opacity-40"
       >
-        <img src="userProfile/image-.png" alt="User Cover" class="h-16 w-16" />
+        <label
+          for="backgroundPreviewImage"
+          class="flex h-full w-full items-center justify-center bg-ang-black bg-opacity-10"
+        >
+          <img
+            *ngIf="backgroundPreviewImage; else defaultImage"
+            [src]="backgroundPreviewImage"
+            class="h-full w-full object-cover"
+            alt="Uploaded Image"
+          />
+          <ng-template #defaultImage>
+            <img
+              src="userProfile/image.png"
+              width="64px"
+              height="64px"
+              alt="Default Placeholder"
+            />
+          </ng-template>
+        </label>
+        <input
+          (change)="onFileChange($event, 'background')"
+          class="hidden"
+          type="file"
+          id="backgroundPreviewImage"
+          formControlName="backgroundPreviewImage"
+        />
       </div>
       <div class="container mx-auto px-2">
         <div
@@ -13,11 +38,35 @@
           <div
             class="flex w-full flex-col items-center justify-between gap-2 p-4 text-ang-black sm:flex-row"
           >
-            <img
-              [src]="[estProfile.photo]"
-              alt="User Profile"
-              class="absolute -top-16 bottom-0 h-40 w-40 rounded-md bg-ang-white p-2 outline outline-2 outline-ang-orange"
-            />
+            <div
+              class="absolute -top-16 bottom-0 h-40 w-40 rounded-md bg-ang-white outline outline-2 outline-ang-orange"
+            >
+              <label
+                for="profilePreviewImage"
+                class="flex h-full w-full items-center justify-center bg-ang-black bg-opacity-10"
+              >
+                <img
+                  *ngIf="profilePreviewImage; else defaultProfileImage"
+                  [src]="profilePreviewImage"
+                  class="h-full w-full object-cover"
+                  alt="Uploaded Image"
+                />
+                <ng-template #defaultProfileImage>
+                  <img
+                    src="userProfile/image.png"
+                    class="h-full w-full"
+                    alt="Default Placeholder"
+                  />
+                </ng-template>
+              </label>
+              <input
+                (change)="onFileChange($event, 'profile')"
+                class="hidden"
+                type="file"
+                id="profilePreviewImage"
+                formControlName="profilePreviewImage"
+              />
+            </div>
             <div
               class="flex h-fit min-h-24 flex-col items-center gap-2 sm:items-start sm:pl-44"
             >
@@ -30,7 +79,7 @@
                   {{ estProfile.name }}
                 </h1>
                 <div
-                  class="flex flex-row justify-center gap-1 xl:justify-start"
+                  class="flex flex-row flex-wrap justify-center gap-1 sm:flex-nowrap xl:justify-start"
                 >
                   <p
                     *ngFor="let category of estProfile.categories"
@@ -41,7 +90,7 @@
                 </div>
               </div>
 
-              <ul class="flex gap-4">
+              <ul class="flex flex-col items-center gap-4 sm:flex-row">
                 <li
                   [routerLink]="['posts']"
                   routerLinkActive="text-ang-orange border-b-2 border-ang-orange"
@@ -82,14 +131,23 @@
                 </li>
               </ul>
             </div>
-            @if (isLoggedIn) {
-              <button (click)="openEditWindow()">
-                <img
-                  src="userProfile/edit.png"
-                  alt="Edit profile button"
-                  class="h-8 w-8 transition-all hover:scale-110"
-                />
-              </button>
+            @if (isLoggedIn()) {
+              <div class="flex gap-6">
+                <button (click)="openAddWindow()">
+                  <img
+                    src="userProfile/plus.png"
+                    alt="Edit profile button"
+                    class="h-8 w-8 transition-all hover:scale-110"
+                  />
+                </button>
+                <button (click)="openEditWindow()">
+                  <img
+                    src="userProfile/edit.png"
+                    alt="Edit profile button"
+                    class="h-8 w-8 transition-all hover:scale-110"
+                  />
+                </button>
+              </div>
             } @else {
               <div class="flex gap-4">
                 <button>Follow</button>
@@ -101,6 +159,11 @@
 
         <router-outlet></router-outlet>
       </div>
+      <app-add
+        *ngIf="addWindow()"
+        (close)="closeAddWindow()"
+        class="fixed top-0 z-50 h-full w-full"
+      ></app-add>
       <app-establishment-edit
         *ngIf="editWindow()"
         (close)="closeEditWindow()"

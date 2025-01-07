@@ -168,7 +168,12 @@ export class MapComponent implements OnInit {
         this.alertService.showAlert('establishmentMarks-error', false);
       },
     });
-    this.addCustomMarker('asd', 'asdasd', this.lng, this.lat);
+    this.addCustomMarker(
+      'auth0|6719413321911e8a1a607b29',
+      'asdasd',
+      this.lng,
+      this.lat,
+    );
   }
 
   addCustomMarker(

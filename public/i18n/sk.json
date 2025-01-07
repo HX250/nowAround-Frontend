@@ -176,11 +176,74 @@
   "establishmentProfileNav-Rev": "Recenzie",
   "establishmentProfileNav-Info": "Informácie",
 
+  "establishmentProfileInfo-OpeningHours": {
+    "monday": "Pondelok",
+    "tuesday": "Utorok",
+    "wednesday": "Streda",
+    "thursday": "Štvrtok",
+    "friday": "Piatok",
+    "saturday": "Sobota",
+    "sunday": "Nedeľa"
+  },
+
   "establishmentProfile-Like": "Páči sa mi to",
 
   "establishmentReview-overallRating": "Celkové hodnotenie:",
   "establishmentReview-Send": "Odoslať",
   "establishmentReview-Remove": "Odstrániť",
 
-  "establishmentInfo-openingHours": "Otváracie hodiny:"
+  "establishmentInfo-openingHours": "Otváracie hodiny:",
+
+  "establishmentEdit-generalInfo": "Informácie",
+  "establishmentInfo-Posts": "Príspevky",
+  "establishmentInfo-Menu": "Menu",
+  "establishmentInfo-locationInfo": "Otváracie informácie",
+
+  "DELETE_MENU_ITEM": "Vymazať {{name}} položku",
+  "DELETE_MENU_CATEGORY": "Vymazať {{name}} kategóriu",
+  "dialogRemoveItem-desc": "Naozaj chcete odstrániť túto položku? Táto akcia je nezvratná.",
+  "dialogRemoveItem-accept": "Ano",
+  "dialogRemoveItem-decline": "Nie",
+
+  "establishmentAdd-addPost": "Príspevok",
+  "establishmentAdd-addMenu": "Menu",
+  "establishmentAdd-addEvent": "Udalosti",
+
+  "establishmentAdd-postDesc": "Zdieľajte svoje nápady, príbehy alebo novinky so svojím publikom. Príspevky sú skvelé na zapojenie používateľov a ich informovanie.",
+  "establishmentAdd-menuDesc": "Vytvorte a spravujte položky v menu. Zvýraznite svoje jedlá, aby ste prilákali zákazníkov a zjednodušili objednávanie.",
+  "establishmentAdd-eventDesc": "Zdieľajte podrobnosti o nadchádzajúcich udalostiach. Ideálne pre stretnutia, oslavy alebo iné príležitosti.",
+  "establishmentAdd-uploadImg": "Klikni pre pridanie obrázku",
+
+  "establishmentAddPost-headline": "Pridať príspevok",
+  "establishmentAddPost-postHeadline": "Nadpis",
+  "establishmentAddPost-eventDesc": "Text príspevku",
+
+  "establishmentAddPostError-imgFileType": "Sú povolené iba formáty JPEG a PNG",
+  "establishmentAddPostError-imgFileSize": "Veľkosť súboru nesmie presiahnuť 5 MB",
+  "establishmentAddPostError-title": "Nadpis je povinný",
+  "establishmentAddPostError-body": "Popis príspevku je povinný",
+
+  "establishmentAddEvent-title": "Nadpis udalosti",
+  "establishmentAddEvent-description": "Popis udalosti",
+  "establishmentAddEvent-dateOfEvent": "Dátum udalosti",
+  "establishmentAddEvent-timeOfEvent": "Dlžka udalosti",
+  "establishmentAddEvent-location": "Miesto konania udalosti",
+  "establishmentAddEvent-eventDuration": "Dlžka udalosti",
+  "establishmentAddEvent-price": "Cena vstupu",
+  "establishmentAddEvent-maxParticipants": "Maximalný počet účastníkov",
+  "establishmentAddEvent-eventCategory": "Kategórie udalostí",
+  "establishmentAddEvent-interests": "Záujem",
+
+  "establishmentAddEventError-description": "Popis udalosti je povinný",
+  "establishmentAddEventError-dateOfEvent": "Dátum udalosti je povinný",
+  "establishmentAddEventError-pastEvenet": "Dátum udalosti nemôže byť v minulosti",
+  "establishmentAddEventError-timeOfTime": "Čas udalosti je povinný",
+  "establishmentAddEventError-location": "Miesto udalosti je povinné",
+  "establishmentAddEventError-eventDuration": "Dĺžka trvania události je povinná",
+  "establishmentAddEventError-price": "Cena udalosti je povinná",
+  "establishmentAddEventError-maxParticipants": "Maximalný počet je povinný",
+  "establishmentAddEventError-eventCategory": "Kategória udalosti je povinná",
+
+  "utils-submitButton": "Odoslať",
+  "utils-cancelButton": "Zrušiť"
 }
