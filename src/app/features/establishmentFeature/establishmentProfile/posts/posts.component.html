@@ -1,5 +1,5 @@
 <div>
-  <div *ngIf="postList?.length == 0; else showItems">
+  <div *ngIf="postList.length == 0; else showItems">
     <p class="pt-4 text-center text-xl">
       {{ "establishmentPost-Error" | translate }}
     </p>
@@ -20,7 +20,7 @@
         class="row-span-2 flex max-h-[30rem] w-full max-w-96 flex-col gap-2 rounded-md border border-ang-orange"
       >
         <img
-          [src]="post.imageUrl"
+          [src]="post.pictureUrl"
           alt="Post image"
           class="h-96 w-96 rounded-t-md"
         />
@@ -34,10 +34,17 @@
           <p class="text-base">{{ post.body }}</p>
 
           <span class="text-sm"
-            >{{ post.userLikes.length }}
+            >{{ post.likes.length }}
             {{ "establishmentProfile-Like" | translate }}</span
           >
         </div>
+        <button
+          class="primary-buttons"
+          *ngIf="isLoggedIn()"
+          (click)="deletePost(post.id)"
+        >
+          Delete
+        </button>
       </div>
     </div>
   </ng-template>

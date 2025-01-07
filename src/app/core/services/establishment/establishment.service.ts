@@ -35,17 +35,19 @@ export class EstabilishmentService {
     },
     posts: [
       {
-        imageUrl: 'https://example.com/post1.jpg',
+        id: '1',
+        pictureUrl: 'https://example.com/post1.jpg',
         headline: 'Grand Opening!',
         createdAt: new Date('2023-06-15'),
         body: 'Come celebrate our grand opening with us. Enjoy 20% off all menu items!',
-        userLikes: ['auth0|user1', 'auth0|user2'],
+        likes: ['auth0|user1', 'auth0|user2'],
       },
       {
+        id: '2',
         headline: 'Live Music Every Friday',
         createdAt: new Date('2023-06-20'),
         body: 'Join us every Friday for live performances by local artists.',
-        userLikes: ['auth0|user3'],
+        likes: ['auth0|user3'],
       },
     ],
     menus: [
@@ -178,7 +180,7 @@ export class EstabilishmentService {
   setTestProfile(estId: string): Observable<establishmentProfile | null> {
     return this.http
       .get<establishmentProfile>(
-        `${environment.API_END_POINT}Establishent/profile/${estId}`,
+        `${environment.API_END_POINT}Establishment/profile/${estId}`,
       )
       .pipe(
         tap((response) => {
@@ -221,12 +223,39 @@ export class EstabilishmentService {
    * Post specific calls
    */
   uploadPost(formData: FormData): Observable<any> {
-    return this.http.post('http://localhost:3000/uploadPost', formData).pipe(
+    return this.http.post(`${environment.API_END_POINT}Post`, formData).pipe(
       map((Response) => {
+        this.alert.showAlert('Post created succsefully', true);
         console.log(Response);
+      }),
+      catchError((error) => {
+        console.log(error);
+        this.alert.showAlert(
+          'There has been an error in uploading the post, please try again',
+          false,
+        );
+        return of(null);
       }),
     );
   }
+
+  deletePost(postId: string): Observable<any> {
+    return this.http.delete(`${environment.API_END_POINT}Post/${postId}`).pipe(
+      map((Response) => {
+        this.alert.showAlert('Post deleted succsefully', true);
+        console.log(Response);
+      }),
+      catchError((error) => {
+        console.log(error);
+        this.alert.showAlert(
+          'There has been an error in deleting the post, please try again',
+          false,
+        );
+        return of(null);
+      }),
+    );
+  }
+
   /**
    * ! END OF POST
    */
@@ -249,7 +278,7 @@ export class EstabilishmentService {
         catchError((error) => {
           console.log(error);
           this.alert.showAlert(
-            'There has been an error in uploading the mnenu, please try again',
+            'There has been an error in uploading the menu, please try again',
             false,
           );
           return of(null);
@@ -311,19 +340,25 @@ export class EstabilishmentService {
    * Image specific calls
    */
   uploadImage(formData: FormData): Observable<any> {
-    return this.http.post('http://localhost:3000/uploadImage', formData).pipe(
-      map((Response) => {
-        this.alert.showAlert('Image has been uploaded', true);
-      }),
-      catchError((error) => {
-        console.log(error);
-        this.alert.showAlert(
-          'Image couldnt be uploaded, please try again',
-          false,
-        );
-        return of(null);
-      }),
-    );
+    const id = 0;
+    const type = 'profile-picture';
+    return this.http
+      .post(`${environment.API_END_POINT}Storage/upload/${type}`, formData)
+      .pipe(
+        map((Response) => {
+          console.log(Response);
+
+          this.alert.showAlert('Image has been uploaded', true);
+        }),
+        catchError((error) => {
+          console.log(error);
+          this.alert.showAlert(
+            'Image couldnt be uploaded, please try again',
+            false,
+          );
+          return of(null);
+        }),
+      );
   }
   /**
    * ! END OF IMAGE

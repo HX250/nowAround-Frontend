@@ -13,7 +13,7 @@
         <img
           *ngIf="postImg; else defaultProfileImage"
           [src]="postImg"
-          class="w-full object-cover"
+          class="h-96 w-96 object-cover"
           alt="Uploaded Image"
         />
         <ng-template #defaultProfileImage>
