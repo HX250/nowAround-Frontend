@@ -204,6 +204,7 @@
   "dialogRemoveItem-desc": "Naozaj chcete odstrániť túto položku? Táto akcia je nezvratná.",
   "dialogRemoveItem-accept": "Ano",
   "dialogRemoveItem-decline": "Nie",
+  "dialogRemovePost": "Odstánenie príspevku",
 
   "establishmentAdd-addPost": "Príspevok",
   "establishmentAdd-addMenu": "Menu",

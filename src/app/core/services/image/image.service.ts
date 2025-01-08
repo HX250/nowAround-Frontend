@@ -1,34 +1,41 @@
 import { Injectable } from '@angular/core';
 import { EstabilishmentService } from '../establishment/establishment.service';
+import { AlertService } from '../alert/alert.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ImageService {
-  constructor(private estServ: EstabilishmentService) {}
+  constructor(
+    private estServ: EstabilishmentService,
+    private alertService: AlertService,
+  ) {}
 
-  onFileChange(event: any, where: string) {
+  onFileChange(event: any, where?: string) {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
 
       const allowedTypes = ['image/jpeg', 'image/png'];
       if (!allowedTypes.includes(file.type)) {
-        alert('Only JPEG and PNG formats are allowed.');
+        this.alertService.showAlert(
+          'establishmentAddPostError-imgFileType',
+          false,
+        );
         return;
       }
 
       if (file.size > 5 * 1024 * 1024) {
-        alert('File size must not exceed 5MB.');
+        this.alertService.showAlert(
+          'establishmentAddPostError-imgFileSize',
+          false,
+        );
         return;
       }
 
       const formData = new FormData();
+      formData.append('Picture', file);
 
-      formData.forEach((value, key) => {
-        console.log(key, value);
-      });
-
-      this.sendToBackend(formData);
+      this.sendToBackend(formData, where);
     }
   }
 
@@ -62,7 +69,7 @@ export class ImageService {
     return file.size <= maxSizeInBytes;
   }
 
-  sendToBackend(formData: FormData) {
-    this.estServ.uploadImage(formData).subscribe();
+  sendToBackend(formData: FormData, where?: string) {
+    this.estServ.uploadImage(formData, where).subscribe();
   }
 }

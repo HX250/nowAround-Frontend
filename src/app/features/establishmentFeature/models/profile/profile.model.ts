@@ -1,5 +1,6 @@
 export interface profile {
-  photo?: string;
+  profilePictureUrl?: string;
+  backgroundPictureUrl?: string;
   name: string;
   tags: string[];
   categories: string[];

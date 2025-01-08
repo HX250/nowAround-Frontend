@@ -77,9 +77,7 @@ export class PostComponent implements OnInit {
 
     formData.append('Picture', imageFile);
     formData.append('headline', formValue.headline);
-    //  formData.append('createAt', formValue.createAt.toISOString());
     formData.append('body', formValue.body);
-    //formData.append('likes', formValue.likes.toString());
 
     this.estServ.uploadPost(formData).subscribe();
   }

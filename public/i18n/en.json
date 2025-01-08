@@ -204,6 +204,7 @@
   "dialogRemoveItem-desc": "Are you sure you want to delete this item? This is irreversible.",
   "dialogRemoveItem-accept": "Yes",
   "dialogRemoveItem-decline": "No",
+  "dialogRemovePost": "Post deletion",
 
   "establishmentAdd-addPost": "Post",
   "establishmentAdd-addMenu": "Menu",
