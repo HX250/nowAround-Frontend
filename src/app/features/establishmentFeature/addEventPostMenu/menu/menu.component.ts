@@ -2,6 +2,7 @@ import {
   Component,
   computed,
   EventEmitter,
+  Input,
   OnInit,
   Output,
 } from '@angular/core';
@@ -21,8 +22,8 @@ import { EstabilishmentService } from '../../../../core/services/establishment/e
 })
 export class MenuComponent {
   @Output() updatedMenuItems = new EventEmitter();
-  newMenuCategory?: Menu[] = [];
   menuForm!: FormGroup;
+  @Input() oldMenu?: Menu;
 
   constructor(
     private estServ: EstabilishmentService,
@@ -34,10 +35,25 @@ export class MenuComponent {
   }
 
   buildForm() {
-    this.menuForm = this.fb.group({
-      name: ['', Validators.required],
-      menuItems: this.fb.array([]),
-    });
+    if (this.oldMenu) {
+      this.menuForm = this.fb.group({
+        name: [this.oldMenu.name, Validators.required],
+        menuItems: this.fb.array(
+          this.oldMenu.menuItems.map((item) =>
+            this.fb.group({
+              name: [item.name, Validators.required],
+              description: [item.description, Validators.required],
+              price: [item.price, [Validators.required]],
+            }),
+          ),
+        ),
+      });
+    } else {
+      this.menuForm = this.fb.group({
+        name: ['', Validators.required],
+        menuItems: this.fb.array([]),
+      });
+    }
   }
 
   submitNewMenuCategory() {
@@ -50,19 +66,14 @@ export class MenuComponent {
       name: this.menuForm.value.name,
       menuItems: this.menuItems.value,
     };
-    if (this.newMenuCategory) {
-      this.newMenuCategory.push(newCategory);
-    }
-    this.updatedMenu();
+    this.updatedMenu(newCategory);
   }
 
-  updatedMenu() {
+  updatedMenu(menu: Menu) {
     this.updatedMenuItems.emit();
     this.menuItems.clear();
     this.menuForm.reset();
-    this.estServ.addNewMenu(this.newMenuCategory).subscribe((Response) => {
-      this.newMenuCategory = [];
-    });
+    this.estServ.addNewMenu(menu).subscribe();
   }
 
   cancelAddMenuCategory() {

@@ -9,8 +9,8 @@
           class="flex h-full w-full items-center justify-center bg-ang-black bg-opacity-10"
         >
           <img
-            *ngIf="backgroundPreviewImage; else defaultImage"
-            [src]="backgroundPreviewImage"
+            *ngIf="estProfile.backgroundPictureUrl; else defaultImage"
+            [src]="estProfile.backgroundPictureUrl"
             class="h-full w-full object-cover"
             alt="Uploaded Image"
           />
@@ -24,7 +24,7 @@
           </ng-template>
         </label>
         <input
-          (change)="onFileChange($event, 'background')"
+          (change)="onFileChange($event, 'background-picture')"
           class="hidden"
           type="file"
           id="backgroundPreviewImage"
@@ -46,8 +46,8 @@
                 class="flex h-full w-full items-center justify-center bg-ang-black bg-opacity-10"
               >
                 <img
-                  *ngIf="profilePreviewImage; else defaultProfileImage"
-                  [src]="profilePreviewImage"
+                  *ngIf="estProfile.profilePictureUrl; else defaultProfileImage"
+                  [src]="estProfile.profilePictureUrl"
                   class="h-full w-full object-cover"
                   alt="Uploaded Image"
                 />
@@ -60,7 +60,7 @@
                 </ng-template>
               </label>
               <input
-                (change)="onFileChange($event, 'profile')"
+                (change)="onFileChange($event, 'profile-picture')"
                 class="hidden"
                 type="file"
                 id="profilePreviewImage"

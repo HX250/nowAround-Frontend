@@ -17,13 +17,21 @@
     >
       <div
         *ngFor="let post of postList"
-        class="row-span-2 flex max-h-[30rem] w-full max-w-96 flex-col gap-2 rounded-md border border-ang-orange"
+        class="relative row-span-2 flex max-h-[30rem] w-full max-w-96 flex-col gap-2 rounded-md border border-ang-orange"
       >
         <img
+          *ngIf="post.pictureUrl; else defaultPicutre"
           [src]="post.pictureUrl"
           alt="Post image"
           class="h-96 w-96 rounded-t-md"
         />
+        <ng-template #defaultPicutre>
+          <img
+            src="/logo/logo.png"
+            alt="Post image"
+            class="h-96 w-96 rounded-t-md"
+          />
+        </ng-template>
         <div class="flex flex-col justify-between pl-1">
           <div>
             <h2 class="text-xl">{{ post.headline }}</h2>
@@ -37,14 +45,14 @@
             >{{ post.likes.length }}
             {{ "establishmentProfile-Like" | translate }}</span
           >
+          <button
+            class="absolute right-2 top-2 transition-all hover:scale-125"
+            *ngIf="isLoggedIn()"
+            (click)="deletePost(post.id)"
+          >
+            <img src="/icons/bin.png" class="h-6 w-6" alt="" />
+          </button>
         </div>
-        <button
-          class="primary-buttons"
-          *ngIf="isLoggedIn()"
-          (click)="deletePost(post.id)"
-        >
-          Delete
-        </button>
       </div>
     </div>
   </ng-template>

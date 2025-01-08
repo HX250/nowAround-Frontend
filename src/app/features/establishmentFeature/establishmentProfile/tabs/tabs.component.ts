@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { Menu, MenuItem } from '../../models/profile/menu.model';
 import { EstabilishmentService } from '../../../../core/services/establishment/establishment.service';
 import { CommonModule } from '@angular/common';
@@ -6,19 +6,21 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CustomAuthService } from '../../../../core/services/auth/auth.service';
 import { DialogService } from '../../../../core/services/dialog/dialog.service';
 import { ImageService } from '../../../../core/services/image/image.service';
+import { MenuComponent } from '../../addEventPostMenu/menu/menu.component';
 
 @Component({
   selector: 'app-tabs',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, MenuComponent],
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.css'],
 })
 export class TabsComponent {
   tabList?: Menu[] = [];
   isLoggedIn = computed(() => (this.customAuth.estLogin() ? true : false));
-  addNewMenu = computed(() => (this.estServ.editMenu() ? true : false));
+  isAddingNewMenu: boolean = false;
   menuImg: any;
+  currentCategory: string | null = null;
 
   constructor(
     private estServ: EstabilishmentService,
@@ -38,6 +40,17 @@ export class TabsComponent {
         this.tabList = Response;
       });
   }
+
+  addMenuItem(categoryName: string) {
+    if (this.isAddingNewMenu && this.currentCategory === categoryName) {
+      this.isAddingNewMenu = false;
+      this.currentCategory = null;
+    } else {
+      this.isAddingNewMenu = true;
+      this.currentCategory = categoryName;
+    }
+  }
+
   removeMenuItem(menuName: string, tab?: MenuItem) {
     const tabName = tab ? tab?.name : menuName;
     const translationKey = tab ? 'DELETE_MENU_ITEM' : 'DELETE_MENU_CATEGORY';
@@ -50,6 +63,7 @@ export class TabsComponent {
     );
 
     const subscription = this.dialog.dialogResult$.subscribe((result) => {
+      console.log('Dialog result:', result);
       if (result !== null) {
         console.log('Dialog result:', result);
         if (result) {

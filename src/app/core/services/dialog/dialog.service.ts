@@ -40,7 +40,6 @@ export class DialogService {
       },
     });
   }
-
   confirmDialog() {
     this.dialogResultSubject.next(true);
     this.removeDialog();
