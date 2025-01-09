@@ -41,19 +41,24 @@ export class EventComponent implements OnInit {
   }
 
   buildForm() {
-    this.eventForm = this.fb.group({
-      image: [File, Validators.required],
-      title: ['', Validators.required],
-      body: ['', Validators.required],
-      dateOfEvent: ['', [Validators.required, this.futureDateValidator]],
-      timeOfEvent: ['', Validators.required],
-      interests: ['', Validators.required],
-      price: ['', Validators.required],
-      location: ['', Validators.required],
-      maxParticipants: ['', Validators.required],
-      eventDuration: ['', Validators.required],
-      eventCategory: ['', Validators.required],
-    });
+    this.eventForm = this.fb.group(
+      {
+        image: [File, Validators.required],
+        title: ['', Validators.required],
+        body: ['', Validators.required],
+        startDateOfEvent: ['', [Validators.required, this.futureDateValidator]],
+        startTimeOfEvent: ['', Validators.required],
+        endDateOfEvent: ['', [Validators.required, this.futureDateValidator]],
+        endTimeOfEvent: ['', Validators.required],
+        interests: ['', Validators.required],
+        price: ['', Validators.required],
+        location: ['', Validators.required],
+        maxParticipants: ['', Validators.required],
+        eventDuration: ['', Validators.required],
+        eventCategory: ['', Validators.required],
+      },
+      { validators: this.endAfterStartValidator },
+    );
   }
 
   getLocation() {
@@ -61,6 +66,22 @@ export class EventComponent implements OnInit {
       const location = estProfile?.locationInfo?.address || '';
       this.eventForm.patchValue({ location });
     });
+  }
+
+  endAfterStartValidator(control: AbstractControl): ValidationErrors | null {
+    const startDate = control.get('startDateOfEvent')?.value;
+    const startTime = control.get('startTimeOfEvent')?.value;
+    const endDate = control.get('endDateOfEvent')?.value;
+    const endTime = control.get('endTimeOfEvent')?.value;
+
+    if (!startDate || !startTime || !endDate || !endTime) {
+      return null;
+    }
+
+    const startDateTime = new Date(`${startDate}T${startTime}`);
+    const endDateTime = new Date(`${endDate}T${endTime}`);
+
+    return endDateTime >= startDateTime ? null : { endBeforeStart: true };
   }
 
   futureDateValidator(control: AbstractControl): ValidationErrors | null {
@@ -102,10 +123,12 @@ export class EventComponent implements OnInit {
     if (formValue.image) {
       formData.append('image', imageFile);
     }
-
     formData.append('title', formValue.title);
     formData.append('body', formValue.body);
-    formData.append('dateOfEvent', formValue.dateOfEvent);
+    formData.append('startDateOfEvent', formValue.startDateOfEvent);
+    formData.append('startTimeOfEvent', formValue.startTimeOfEvent);
+    formData.append('endTimeOfEvent', formValue.endTimeOfEvent);
+    formData.append('endDateOfEvent', formValue.endDateOfEvent);
     formData.append('interests', formValue.interests);
     formData.append('price', formValue.price.toString());
     formData.append('location', formValue.location);

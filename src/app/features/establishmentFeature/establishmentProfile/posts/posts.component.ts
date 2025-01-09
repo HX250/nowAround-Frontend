@@ -26,13 +26,6 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProfileData();
-    this.loadImages();
-  }
-
-  loadImages() {
-    for (let i = 0; i <= this.postList.length; i++) {
-      console.log(this.postList[i].pictureUrl);
-    }
   }
 
   getProfileData() {
@@ -40,7 +33,6 @@ export class PostsComponent implements OnInit {
       .returnSpecificProfileInfo<posts[]>('posts')
       .subscribe((Response) => {
         this.postList = Response ?? [];
-        console.log(this.postList);
       });
   }
 

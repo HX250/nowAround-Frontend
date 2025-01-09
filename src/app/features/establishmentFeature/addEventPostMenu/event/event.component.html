@@ -1,4 +1,4 @@
-<div class="max-h-[50rem] w-full overflow-y-scroll">
+<div class="max-h-[35rem] overflow-y-scroll">
   <h2 class="py-4 text-center text-2xl">
     {{ "establishmentAddPost-headline" | translate }}
   </h2>
@@ -84,48 +84,101 @@
         {{ "establishmentAddEventError-description" | translate }}
       </span>
     </div>
-    <div class="flex flex-col gap-1">
-      <label for="dateOfEvent">{{
-        "establishmentAddEvent-dateOfEvent" | translate
-      }}</label>
-      <input
-        class="h-8 w-full rounded-lg border border-ang-orange p-1"
-        type="date"
-        id="dateOfEvent"
-        formControlName="dateOfEvent"
-      />
-      <span
-        *ngIf="f['dateOfEvent'].invalid && f['dateOfEvent'].touched"
-        class="text-red-500"
-      >
-        {{ "establishmentAddEventError-dateOfEvent" | translate }}
-      </span>
-      <span
-        *ngIf="
-          f['dateOfEvent'].hasError('pastDate') && f['dateOfEvent'].touched
-        "
-        class="text-red-500"
-      >
-        {{ "establishmentAddEventError-pastEvenet" | translate }}
-      </span>
+    <div class="flex gap-4">
+      <div class="flex gap-2">
+        <div class="flex flex-col gap-1">
+          <label for="startDateOfEvent">{{
+            "establishmentAddEvent-startDateOfEvent" | translate
+          }}</label>
+          <div class="flex items-center justify-center gap-2">
+            <input
+              class="h-8 w-full rounded-lg border border-ang-orange p-1"
+              type="date"
+              id="startDateOfEvent"
+              formControlName="startDateOfEvent"
+            />
+            <input
+              class="h-8 w-full rounded-lg border border-ang-orange p-1"
+              type="time"
+              id="startTimeOfEvent"
+              formControlName="startTimeOfEvent"
+            />
+          </div>
+          <span
+            *ngIf="
+              f['startDateOfEvent'].invalid && f['startDateOfEvent'].touched
+            "
+            class="text-red-500"
+          >
+            {{ "establishmentAddEventError-dateOfEvent" | translate }}
+          </span>
+          <span
+            *ngIf="
+              f['startDateOfEvent'].hasError('pastDate') &&
+              f['startDateOfEvent'].touched
+            "
+            class="text-red-500"
+          >
+            {{ "establishmentAddEventError-pastEvenet" | translate }}
+          </span>
+          <span
+            *ngIf="
+              f['startTimeOfEvent'].invalid && f['startTimeOfEvent'].touched
+            "
+            class="text-red-500"
+          >
+            {{ "establishmentAddEventError-timeOfTime" | translate }}
+          </span>
+        </div>
+      </div>
+      <p>-</p>
+      <div class="flex gap-2">
+        <div class="flex flex-col gap-1">
+          <label for="endDateOfEvent">{{
+            "establishmentAddEvent-endDateOfEvent" | translate
+          }}</label>
+          <div class="flex items-center justify-center gap-2">
+            <input
+              class="h-8 w-full rounded-lg border border-ang-orange p-1"
+              type="date"
+              id="endDateOfEvent"
+              formControlName="endDateOfEvent"
+            />
+
+            <input
+              class="h-8 w-full rounded-lg border border-ang-orange p-1"
+              type="time"
+              id="endTimeOfEvent"
+              formControlName="endTimeOfEvent"
+            />
+          </div>
+          <span
+            *ngIf="f['endDateOfEvent'].invalid && f['endDateOfEvent'].touched"
+            class="text-red-500"
+          >
+            {{ "establishmentAddEventError-dateOfEvent" | translate }}
+          </span>
+          <span
+            *ngIf="
+              f['endDateOfEvent'].hasError('pastDate') &&
+              f['endDateOfEvent'].touched
+            "
+            class="text-red-500"
+          >
+            {{ "establishmentAddEventError-pastEvenet" | translate }}
+          </span>
+          <span
+            *ngIf="f['endTimeOfEvent'].invalid && f['endTimeOfEvent'].touched"
+            class="text-red-500"
+          >
+            {{ "establishmentAddEventError-timeOfTime" | translate }}
+          </span>
+        </div>
+      </div>
     </div>
-    <div class="flex flex-col gap-1">
-      <label for="timeOfEvent">{{
-        "establishmentAddEvent-timeOfEvent" | translate
-      }}</label>
-      <input
-        class="h-8 w-full rounded-lg border border-ang-orange p-1"
-        type="time"
-        id="timeOfEvent"
-        formControlName="timeOfEvent"
-      />
-      <span
-        *ngIf="f['timeOfEvent'].invalid && f['timeOfEvent'].touched"
-        class="text-red-500"
-      >
-        {{ "establishmentAddEventError-timeOfTime" | translate }}
-      </span>
-    </div>
+    <span *ngIf="eventForm.errors?.['endBeforeStart']" class="text-red-500">
+      {{ "establishmentAddEventError-endBeforeStart" | translate }}
+    </span>
     <div class="flex flex-col gap-1">
       <label for="location">{{
         "establishmentAddEvent-location" | translate

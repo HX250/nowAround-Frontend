@@ -31,7 +31,6 @@ function shouldIntercept(url: string): boolean {
     'Establishment/register-status',
     'Establishment/menu',
     'Post',
-    'Establishment/',
   ];
   return targetUrls.some((targetUrl) => url.includes(targetUrl));
 }

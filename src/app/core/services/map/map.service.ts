@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment.prod';
 import { pins } from '../../../features/mapFeature/models/pins.model';
 import { marker } from '../../../features/mapFeature/models/marker.model';
+import { environment } from '../../../../environments/environment.dev';
 
 @Injectable({
   providedIn: 'root',

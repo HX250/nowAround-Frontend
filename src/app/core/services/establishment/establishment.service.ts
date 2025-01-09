@@ -5,10 +5,7 @@ import { CompleteFormData } from '../../../features/establishmentFeature/models/
 import { establishmentProfile } from '../../../features/establishmentFeature/models/profile/estProfile.model';
 import { AlertService } from '../alert/alert.service';
 import { environment } from '../../../../environments/environment.dev';
-import {
-  Menu,
-  MenuItem,
-} from '../../../features/establishmentFeature/models/profile/menu.model';
+import { Menu } from '../../../features/establishmentFeature/models/profile/menu.model';
 
 @Injectable({
   providedIn: 'root',
@@ -46,15 +43,14 @@ export class EstabilishmentService {
     );
   }
 
-  setTestProfile(estId: string): Observable<establishmentProfile | null> {
+  setTestProfile(estId: string): Observable<establishmentProfile | any> {
     return this.http
       .get<establishmentProfile>(
         `${environment.API_END_POINT}Establishment/profile/${estId}`,
       )
       .pipe(
-        tap((response) => {
+        map((response) => {
           console.log(response);
-
           this.estProfileSubject.next(response);
         }),
         catchError((error) => {
@@ -135,7 +131,6 @@ export class EstabilishmentService {
    */
 
   addNewMenu(menuForm?: Menu): Observable<any> {
-    console.log(this.estProfileSubject.value?.auth0Id);
     return this.http
       .post<any>(`${environment.API_END_POINT}Establishment/menu`, menuForm)
       .pipe(
@@ -156,21 +151,63 @@ export class EstabilishmentService {
       );
   }
 
-  //removeMenuCategory(categoryId : string): Observable<any> {}
-  //menu/{menuId}
-  //menu/menuItem/{menuItemId}
-
-  removeMenuItem(menuName: string, tab?: MenuItem): Observable<any> {
-    const estId = this.estProfileSubject.value?.auth0Id;
-    const payload = { estId, menuName, tab };
-
+  updateMenuItems(menu: Menu) {
     return this.http
-      .delete<any>('http://localhost:3000/removeMenuItem', {
-        body: payload,
-      })
+      .put<any>(`${environment.API_END_POINT}Establishment/menu`, menu)
       .pipe(
         map((Response) => {
           this.alert.showAlert('Menu has been updated', true);
+          console.log(Response);
+          return true;
+        }),
+        catchError((error) => {
+          console.log(error);
+          this.alert.showAlert(
+            'There has been an error in uploading the menu, please try again',
+            false,
+          );
+          return of(null);
+        }),
+      );
+  }
+
+  removeMenuCategory(categoryId: string): Observable<any> {
+    return this.http
+      .delete<any>(
+        `${environment.API_END_POINT}Establishment/menu/${categoryId}`,
+        {
+          body: categoryId,
+        },
+      )
+      .pipe(
+        map((Response) => {
+          this.alert.showAlert('Menu category has been deleted', true);
+          console.log(Response);
+
+          return true;
+        }),
+        catchError((error) => {
+          console.log(error);
+          this.alert.showAlert(
+            'There has been an error in updating the mnenu, please try again',
+            false,
+          );
+          return of(null);
+        }),
+      );
+  }
+
+  removeMenuItem(tabId: string): Observable<any> {
+    return this.http
+      .delete<any>(
+        `${environment.API_END_POINT}Establishment/menu/item/${tabId}`,
+        {
+          body: tabId,
+        },
+      )
+      .pipe(
+        map((Response) => {
+          this.alert.showAlert('Menu item has been updated', true);
           console.log(Response);
 
           return true;
@@ -253,4 +290,11 @@ export class EstabilishmentService {
   /**
    * ! END OF REGISTER
    */
+
+  private handleError(operation = 'operation', result?: any) {
+    return (error: any): Observable<any> => {
+      this.alert.showAlert(`${operation} failed, please try again.`, false);
+      return of(result);
+    };
+  }
 }

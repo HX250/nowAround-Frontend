@@ -88,6 +88,8 @@ export class CustomAuthService {
       let estId = undefined;
       this.auth.user$.subscribe((response) => {
         estId = response?.sub;
+        console.log(estId);
+        this.router.navigateByUrl('/');
         this.router.navigateByUrl(`/establishment/${estId}`);
       });
     } else {

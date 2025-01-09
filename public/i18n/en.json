@@ -224,13 +224,13 @@
   "establishmentAddPostError-title": "Title is required",
   "establishmentAddPostError-body": "Post description is required",
 
-  "establishmentAddEvent-title": "Event Title",
-  "establishmentAddEvent-description": "Event Description",
-  "establishmentAddEvent-dateOfEvent": "Event Date",
-  "establishmentAddEvent-timeOfEvent": "Event Time",
-  "establishmentAddEvent-location": "Event Location",
-  "establishmentAddEvent-eventDuration": "Event Duration",
-  "establishmentAddEvent-price": "Entry Fee",
+  "establishmentAddEvent-title": "Event title",
+  "establishmentAddEvent-description": "Event description",
+  "establishmentAddEvent-startDateOfEvent": "Start of event",
+  "establishmentAddEvent-endDateOfEvent": "End of event",
+  "establishmentAddEvent-location": "Event location",
+  "establishmentAddEvent-eventDuration": "Event duration",
+  "establishmentAddEvent-price": "Entry fee",
   "establishmentAddEvent-maxParticipants": "Maximum Number of Participants",
   "establishmentAddEvent-eventCategory": "Event Categories",
   "establishmentAddEvent-interests": "Interest",
@@ -244,6 +244,7 @@
   "establishmentAddEventError-price": "Price is required",
   "establishmentAddEventError-maxParticipants": "Max participants is required",
   "establishmentAddEventError-eventCategory": "Event category is required",
+  "establishmentAddEventError-endBeforeStart": "End cant start before it ends",
 
   "utils-submitButton": "Submit",
   "utils-cancelButton": "Cancel"

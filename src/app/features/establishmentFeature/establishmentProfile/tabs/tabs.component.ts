@@ -31,6 +31,7 @@ export class TabsComponent {
 
   ngOnInit(): void {
     this.getProfileData();
+    console.log(this.tabList);
   }
 
   getProfileData() {
@@ -51,23 +52,41 @@ export class TabsComponent {
     }
   }
 
-  removeMenuItem(menuName: string, tab?: MenuItem) {
-    const tabName = tab ? tab?.name : menuName;
-    const translationKey = tab ? 'DELETE_MENU_ITEM' : 'DELETE_MENU_CATEGORY';
+  removeMenuCategory(menuCategory: Menu) {
     this.dialog.showDialog(
-      translationKey,
+      'DELETE_MENU_CATEGORY',
       'dialogRemoveItem-desc',
       'dialogRemoveItem-accept',
       'dialogRemoveItem-decline',
-      { name: tabName },
+      { name: menuCategory?.name },
     );
 
     const subscription = this.dialog.dialogResult$.subscribe((result) => {
-      console.log('Dialog result:', result);
       if (result !== null) {
-        console.log('Dialog result:', result);
         if (result) {
-          this.estServ.removeMenuItem(menuName, tab).subscribe();
+          this.estServ.removeMenuCategory(menuCategory.id).subscribe();
+          subscription.unsubscribe();
+        } else {
+          console.log('Item deletion cancelled');
+          subscription.unsubscribe();
+        }
+      }
+    });
+  }
+
+  removeMenuItem(tab?: MenuItem) {
+    this.dialog.showDialog(
+      'DELETE_MENU_ITEM',
+      'dialogRemoveItem-desc',
+      'dialogRemoveItem-accept',
+      'dialogRemoveItem-decline',
+      { name: tab?.name },
+    );
+
+    const subscription = this.dialog.dialogResult$.subscribe((result) => {
+      if (result !== null) {
+        if (result) {
+          this.estServ.removeMenuItem(tab!.id).subscribe();
           subscription.unsubscribe();
         } else {
           console.log('Item deletion cancelled');

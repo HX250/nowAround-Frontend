@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, OnInit, signal } from '@angular/core';
 import {
   ActivatedRoute,
+  Router,
   RouterLink,
   RouterLinkActive,
   RouterOutlet,
@@ -50,17 +51,36 @@ export class ProfileComponent implements OnInit {
     private estServ: EstabilishmentService,
     private route: ActivatedRoute,
     private imgService: ImageService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
-    this.saveProfile();
+    setTimeout(() => {
+      this.saveProfile();
+    }, 5000);
     this.checkTab();
     this.getProfileData();
   }
 
   saveProfile() {
-    this.establishmentID = this.route.snapshot.paramMap.get('id') || '';
-    this.estServ.setTestProfile(this.establishmentID).subscribe();
+    const handleLoggedIn = () => {
+      console.log('Logged in');
+      this.auth0.user$.subscribe((response) => {
+        const establishmentID = response?.sub || '';
+        console.log(establishmentID);
+
+        this.estServ.setTestProfile(establishmentID).subscribe();
+      });
+    };
+
+    const handleNotLoggedIn = () => {
+      console.log('Not logged in');
+      const establishmentID = this.route.snapshot.paramMap.get('id') || '';
+      console.log(establishmentID);
+      this.estServ.setTestProfile(establishmentID).subscribe();
+    };
+
+    this.isLoggedIn() ? handleLoggedIn() : handleNotLoggedIn();
   }
 
   checkTab(): void {

@@ -226,8 +226,8 @@
 
   "establishmentAddEvent-title": "Nadpis udalosti",
   "establishmentAddEvent-description": "Popis udalosti",
-  "establishmentAddEvent-dateOfEvent": "Dátum udalosti",
-  "establishmentAddEvent-timeOfEvent": "Dlžka udalosti",
+  "establishmentAddEvent-startDateOfEvent": "Začiatok podujatia",
+  "establishmentAddEvent-endDateOfEvent": "Koniec podujatia",
   "establishmentAddEvent-location": "Miesto konania udalosti",
   "establishmentAddEvent-eventDuration": "Dlžka udalosti",
   "establishmentAddEvent-price": "Cena vstupu",
@@ -244,6 +244,7 @@
   "establishmentAddEventError-price": "Cena udalosti je povinná",
   "establishmentAddEventError-maxParticipants": "Maximalný počet je povinný",
   "establishmentAddEventError-eventCategory": "Kategória udalosti je povinná",
+  "establishmentAddEventError-endBeforeStart": "Podujatie nemôže začínať skôr ako skončí",
 
   "utils-submitButton": "Odoslať",
   "utils-cancelButton": "Zrušiť"

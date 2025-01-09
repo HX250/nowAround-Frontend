@@ -26,7 +26,7 @@
           }
         </button>
         <button
-          (click)="removeMenuItem(tab.name)"
+          (click)="removeMenuCategory(tab)"
           *ngIf="isLoggedIn()"
           class="transition-all hover:scale-110"
         >
@@ -59,6 +59,7 @@
             </ng-template>
           </label>
           <input
+            *ngIf="isLoggedIn()"
             (change)="uploadImg($event, 'profile')"
             class="hidden"
             type="file"
@@ -72,9 +73,9 @@
             </p>
           </div>
           <div class="flex gap-4">
-            <span class="text-right font-bold">{{ item.price }}</span>
+            <span class="text-right font-bold">{{ item.price }} €</span>
             <button
-              (click)="removeMenuItem(tab.name, tab.menuItems[i])"
+              (click)="removeMenuItem(item)"
               *ngIf="isLoggedIn()"
               class="transition-all hover:scale-110"
             >

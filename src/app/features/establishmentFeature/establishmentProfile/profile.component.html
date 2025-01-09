@@ -24,6 +24,7 @@
           </ng-template>
         </label>
         <input
+          *ngIf="isLoggedIn()"
           (change)="onFileChange($event, 'background-picture')"
           class="hidden"
           type="file"
@@ -60,6 +61,7 @@
                 </ng-template>
               </label>
               <input
+                *ngIf="isLoggedIn()"
                 (change)="onFileChange($event, 'profile-picture')"
                 class="hidden"
                 type="file"

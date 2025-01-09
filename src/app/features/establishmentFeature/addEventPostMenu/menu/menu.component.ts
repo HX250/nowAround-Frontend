@@ -41,6 +41,7 @@ export class MenuComponent {
         menuItems: this.fb.array(
           this.oldMenu.menuItems.map((item) =>
             this.fb.group({
+              id: [item.id],
               name: [item.name, Validators.required],
               description: [item.description, Validators.required],
               price: [item.price, [Validators.required]],
@@ -63,6 +64,7 @@ export class MenuComponent {
     }
 
     const newCategory: Menu = {
+      id: this.oldMenu?.id || '',
       name: this.menuForm.value.name,
       menuItems: this.menuItems.value,
     };
@@ -71,9 +73,13 @@ export class MenuComponent {
 
   updatedMenu(menu: Menu) {
     this.updatedMenuItems.emit();
-    this.menuItems.clear();
-    this.menuForm.reset();
-    this.estServ.addNewMenu(menu).subscribe();
+    if (this.oldMenu) {
+      this.estServ.updateMenuItems(menu).subscribe();
+    } else {
+      this.menuItems.clear();
+      this.menuForm.reset();
+      this.estServ.addNewMenu(menu).subscribe();
+    }
   }
 
   cancelAddMenuCategory() {

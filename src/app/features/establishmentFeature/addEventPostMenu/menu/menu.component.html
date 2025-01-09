@@ -1,4 +1,4 @@
-<div class="max-h-[50rem] overflow-y-scroll">
+<div class="max-h-[35rem] overflow-y-scroll">
   <h2 class="py-4 text-center text-2xl">Add New Menu Category</h2>
   <form [formGroup]="menuForm" (ngSubmit)="submitNewMenuCategory()">
     <div class="border-b border-b-ang-orange py-4">
@@ -79,17 +79,15 @@
             </div>
           </div>
 
-          @if (!oldMenu) {
-            <div class="flex w-full justify-center pt-2">
-              <button
-                type="button"
-                (click)="removeMenuItem(i)"
-                class="w-fit rounded-md bg-ang-redAlert p-2 text-ang-white hover:opacity-90"
-              >
-                Remove Item
-              </button>
-            </div>
-          }
+          <div class="flex w-full justify-center pt-2">
+            <button
+              type="button"
+              (click)="removeMenuItem(i)"
+              class="w-fit rounded-md bg-ang-redAlert p-2 text-ang-white hover:opacity-90"
+            >
+              Remove Item
+            </button>
+          </div>
         </div>
       </div>
     </div>
