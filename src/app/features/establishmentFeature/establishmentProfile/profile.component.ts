@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.saveProfile();
-    }, 5000);
+    }, 3000);
     this.checkTab();
     this.getProfileData();
   }
@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit {
       this.auth0.user$.subscribe((response) => {
         const establishmentID = response?.sub || '';
         console.log(establishmentID);
-
+        this.router.navigateByUrl(`establishment/${establishmentID}`);
         this.estServ.setTestProfile(establishmentID).subscribe();
       });
     };

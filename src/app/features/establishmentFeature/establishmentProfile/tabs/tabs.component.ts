@@ -96,8 +96,8 @@ export class TabsComponent {
     });
   }
 
-  uploadImg(event: any, where: string) {
-    this.imgService.onFileChange(event, where);
+  uploadImg(event: any, menuId: string) {
+    this.imgService.onFileChange(event, `/menu/item/image/${menuId}`);
   }
 
   getEstId() {

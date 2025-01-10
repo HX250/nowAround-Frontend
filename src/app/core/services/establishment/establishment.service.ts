@@ -43,6 +43,21 @@ export class EstabilishmentService {
     );
   }
 
+  changeSpecificProfileInfo<T>(
+    infoPart: keyof establishmentProfile,
+    newValue: T,
+  ): Observable<establishmentProfile | undefined> {
+    return this.estProfileState$.pipe(
+      map((profile) => {
+        if (profile) {
+          const updatedProfile = { ...profile, [infoPart]: newValue };
+          return updatedProfile;
+        }
+        return undefined;
+      }),
+    );
+  }
+
   setTestProfile(estId: string): Observable<establishmentProfile | any> {
     return this.http
       .get<establishmentProfile>(
@@ -90,8 +105,7 @@ export class EstabilishmentService {
     return this.http.post(`${environment.API_END_POINT}Post`, formData).pipe(
       map((Response) => {
         this.alert.showAlert('Post created succsefully', true);
-        window.location.reload();
-        console.log(Response);
+        this.changeSpecificProfileInfo('posts', Response);
       }),
       catchError((error) => {
         console.log(error);
@@ -108,7 +122,6 @@ export class EstabilishmentService {
     return this.http.delete(`${environment.API_END_POINT}Post/${postId}`).pipe(
       map((Response) => {
         this.alert.showAlert('Post deleted succsefully', true);
-        window.location.reload();
         console.log(Response);
       }),
       catchError((error) => {
@@ -230,7 +243,7 @@ export class EstabilishmentService {
    * Event specific calls
    */
   uploadEvent(eventForm: FormData): Observable<any> {
-    return this.http.post('http://localhost:3000/uploadEvent', eventForm).pipe(
+    return this.http.post(`${environment.API_END_POINT}Event`, eventForm).pipe(
       map((Response) => {
         this.alert.showAlert('Event has been added', true);
       }),
@@ -250,9 +263,11 @@ export class EstabilishmentService {
   /*
    * Image specific calls
    */
+  //Establishment/menu/item/image/{menuItemId}
+  //Establishment/image/
   uploadImage(formData: FormData, where?: string): Observable<any> {
     return this.http
-      .put(`${environment.API_END_POINT}Establishment/${where}`, formData)
+      .put(`${environment.API_END_POINT}/Establishment${where}`, formData)
       .pipe(
         map((Response) => {
           console.log(Response);

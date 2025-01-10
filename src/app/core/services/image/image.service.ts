@@ -33,7 +33,7 @@ export class ImageService {
       }
 
       const formData = new FormData();
-      formData.append('Picture', file);
+      formData.append('picture', file);
 
       this.sendToBackend(formData, where);
     }

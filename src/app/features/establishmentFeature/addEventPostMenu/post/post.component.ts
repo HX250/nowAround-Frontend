@@ -73,12 +73,13 @@ export class PostComponent implements OnInit {
     const formValue = this.postForm.value;
     const imageFile = formValue.image;
 
-    console.log(imageFile);
-
     formData.append('Picture', imageFile);
     formData.append('headline', formValue.headline);
     formData.append('body', formValue.body);
 
+    this.uploadPost(formData);
+  }
+  uploadPost(formData: FormData) {
     this.estServ.uploadPost(formData).subscribe();
   }
 

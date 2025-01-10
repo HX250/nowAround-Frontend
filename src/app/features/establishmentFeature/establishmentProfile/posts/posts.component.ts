@@ -5,6 +5,7 @@ import { EstabilishmentService } from '../../../../core/services/establishment/e
 import { TranslateModule } from '@ngx-translate/core';
 import { CustomAuthService } from '../../../../core/services/auth/auth.service';
 import { DialogService } from '../../../../core/services/dialog/dialog.service';
+import { interval, takeWhile } from 'rxjs';
 
 @Component({
   selector: 'app-posts',
@@ -26,6 +27,16 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProfileData();
+    this.updatePosts();
+  }
+  updatePosts() {
+    interval(8000)
+      .pipe(takeWhile(() => !stop))
+      .subscribe(() => {
+        console.log('Updatol som');
+
+        this.getProfileData();
+      });
   }
 
   getProfileData() {

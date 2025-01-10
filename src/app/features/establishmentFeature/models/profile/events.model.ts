@@ -1,13 +1,13 @@
 export interface Events {
+  id: string;
   imageUrl?: string;
   title: string;
   body: string;
   dateOfEvent: Date;
-  interests: string[];
+  interestedUsers: string[];
   price: number;
   location: string;
   maxParticipants: string;
-  eventDuration: number;
   eventCategory: EventCategory;
 }
 

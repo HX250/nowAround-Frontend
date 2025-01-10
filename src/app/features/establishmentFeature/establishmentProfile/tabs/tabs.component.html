@@ -60,7 +60,7 @@
           </label>
           <input
             *ngIf="isLoggedIn()"
-            (change)="uploadImg($event, 'profile')"
+            (change)="uploadImg($event, item.id)"
             class="hidden"
             type="file"
             id="menuImg"

@@ -6,7 +6,6 @@
     (ngSubmit)="submitPost()"
     class="flex w-full flex-col gap-4"
     [formGroup]="eventForm"
-    novalidate
   >
     <div class="flex w-full items-center justify-center">
       <label for="image">
@@ -197,19 +196,14 @@
       </span>
     </div>
     <div class="flex flex-col gap-1">
-      <label for="eventDuration">{{
-        "establishmentAddEvent-eventDuration" | translate
-      }}</label>
+      <label for="eventDuration">City</label>
       <input
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
-        type="number"
-        id="eventDuration"
-        formControlName="eventDuration"
+        type="text"
+        id="city"
+        formControlName="city"
       />
-      <span
-        *ngIf="f['eventDuration'].invalid && f['eventDuration'].touched"
-        class="text-red-500"
-      >
+      <span *ngIf="f['city'].invalid && f['city'].touched" class="text-red-500">
         {{ "establishmentAddEventError-eventDuration" | translate }}
       </span>
     </div>

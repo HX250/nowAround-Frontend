@@ -6,6 +6,7 @@ import { PostsComponent } from './establishmentProfile/posts/posts.component';
 import { TabsComponent } from './establishmentProfile/tabs/tabs.component';
 import { ReviewsComponent } from './establishmentProfile/reviews/reviews.component';
 import { EventsComponent } from './establishmentProfile/events/events.component';
+import { NotFoundComponent } from '../notFoundFeature/not-found.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
       },
     ],
   },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

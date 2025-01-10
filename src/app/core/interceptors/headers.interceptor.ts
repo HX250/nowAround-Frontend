@@ -30,7 +30,10 @@ function shouldIntercept(url: string): boolean {
     'monthlystatistic/2024',
     'Establishment/register-status',
     'Establishment/menu',
+    'Establishment/menu/item/image',
+    'Establishment/image',
     'Post',
+    'Event',
   ];
   return targetUrls.some((targetUrl) => url.includes(targetUrl));
 }

@@ -25,7 +25,7 @@
         </label>
         <input
           *ngIf="isLoggedIn()"
-          (change)="onFileChange($event, 'background-picture')"
+          (change)="onFileChange($event, '/image/background-picture')"
           class="hidden"
           type="file"
           id="backgroundPreviewImage"
@@ -62,7 +62,7 @@
               </label>
               <input
                 *ngIf="isLoggedIn()"
-                (change)="onFileChange($event, 'profile-picture')"
+                (change)="onFileChange($event, '/image/profile-picture')"
                 class="hidden"
                 type="file"
                 id="profilePreviewImage"
@@ -75,13 +75,11 @@
               <div
                 class="flex flex-col items-center gap-4 pt-28 sm:items-start sm:pt-0 xl:flex-row xl:items-center"
               >
-                <h1
-                  class="w-full text-center text-2xl sm:text-left xl:text-3xl"
-                >
+                <h1 class="w-fit text-center text-2xl sm:text-left xl:text-3xl">
                   {{ estProfile.name }}
                 </h1>
                 <div
-                  class="flex flex-row flex-wrap justify-center gap-1 sm:flex-nowrap xl:justify-start"
+                  class="flex flex-row flex-wrap justify-center gap-2 xl:justify-start"
                 >
                   <p
                     *ngFor="let category of estProfile.categories"
