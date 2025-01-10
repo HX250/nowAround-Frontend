@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CustomAuthService } from '../../../../core/services/auth/auth.service';
 import { DialogService } from '../../../../core/services/dialog/dialog.service';
 import { Events } from '../../models/profile/events.model';
+import { ImageService } from '../../../../core/services/image/image.service';
 
 @Component({
   selector: 'app-events',
@@ -23,6 +24,7 @@ export class EventsComponent {
     private estServ: EstabilishmentService,
     private customAuth: CustomAuthService,
     private dialog: DialogService,
+    private imgService: ImageService,
   ) {}
 
   ngOnInit(): void {
@@ -57,5 +59,9 @@ export class EventsComponent {
         }
       }
     });
+  }
+
+  addAccordingPhoto(where: string) {
+    return this.imgService.addAccordingPhoto(where);
   }
 }

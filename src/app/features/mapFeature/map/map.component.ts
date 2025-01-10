@@ -6,7 +6,8 @@ import { pins } from '../models/pins.model';
 import { AlertService } from '../../../core/services/alert/alert.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment.dev';
-
+import { marker } from '../models/marker.model';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-map',
   standalone: true,
@@ -27,6 +28,7 @@ export class MapComponent implements OnInit {
     private mapService: MapService,
     private alertService: AlertService,
     private router: Router,
+    private translate: TranslateService,
   ) {}
 
   ngOnInit(): void {
@@ -38,10 +40,13 @@ export class MapComponent implements OnInit {
       accessToken: environment.MAPBOX_TOKEN,
       container: 'map',
       style: this.style,
-      zoom: 16,
+      minZoom: 14,
+      maxZoom: 20,
       attributionControl: false,
       center: [this.lng, this.lat],
     });
+
+    this.map.addControl(new mapboxgl.NavigationControl());
 
     const geolocateControl = new mapboxgl.GeolocateControl({
       positionOptions: {
@@ -63,9 +68,10 @@ export class MapComponent implements OnInit {
       const bounds = this.map?.getBounds();
       if (bounds) {
         if (
-          !this.lastBounds ||
-          !this.lastBounds.contains(bounds.getNorthWest()) ||
-          !this.lastBounds.contains(bounds.getSouthEast())
+          (!this.lastBounds ||
+            !this.lastBounds.contains(bounds.getNorthWest()) ||
+            !this.lastBounds.contains(bounds.getSouthEast())) &&
+          this.checkZoomLevel()
         ) {
           this.callMapService(this.getCornersCords(bounds));
         }
@@ -76,10 +82,6 @@ export class MapComponent implements OnInit {
       }
 
       this.lastBounds = this.extendBounds(bounds, this.bufferZone);
-    });
-
-    this.map.on('zoom', () => {
-      this.checkZoomLevel();
     });
   }
 
@@ -155,33 +157,19 @@ export class MapComponent implements OnInit {
           (res) =>
             !this.markers.some((markerObj) => markerObj.id === res.auth0Id),
         );
+        console.log(Response);
+
         newMarkers.forEach((res) => {
-          this.addCustomMarker(
-            res.auth0Id,
-            res.name,
-            res.longitude,
-            res.latitude,
-          );
+          this.addCustomMarker(res);
         });
       },
       error: (error) => {
         this.alertService.showAlert('establishmentMarks-error', false);
       },
     });
-    this.addCustomMarker(
-      'auth0|6719413321911e8a1a607b29',
-      'asdasd',
-      this.lng,
-      this.lat,
-    );
   }
 
-  addCustomMarker(
-    id: string,
-    estName: string,
-    long: number,
-    lat: number,
-  ): void {
+  addCustomMarker(mark: marker): void {
     const markerElement = document.createElement('div');
     markerElement.style.display = 'flex';
     markerElement.style.flexDirection = 'column';
@@ -198,40 +186,39 @@ export class MapComponent implements OnInit {
     >
       <path d="M12 2C8.13 2 5 5.13 5 9c0 4.25 4.44 10.74 6.1 13.02.42.63 1.38.63 1.8 0C14.56 19.74 19 13.25 19 9c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
     </svg>
-    <p class="m-0 text-sm text-ang-black text-center font-semibold">${estName}</p>
+    <p class="m-0 text-sm text-ang-black text-center font-semibold">${mark.name}</p>
   `;
 
     const marker = new mapboxgl.Marker(markerElement)
-      .setLngLat([long, lat])
+      .setLngLat([mark.longitude, mark.latitude])
       .addTo(this.map!);
 
-    this.markers.push({ marker, id });
+    this.markers.push({ marker, id: mark.auth0Id });
 
     markerElement.addEventListener('click', () => {
-      this.showSmallEstablishment(marker, id, estName, long, lat);
+      this.showSmallEstablishment(marker, mark);
     });
   }
 
-  showSmallEstablishment(
-    marker: any,
-    establishmentID: string,
-    estName: string,
-    long: number,
-    lat: number,
-  ) {
+  showSmallEstablishment(marker: any, mark: marker) {
     this.map.flyTo({
-      center: [long, lat],
+      center: [mark.longitude, mark.latitude],
       zoom: 17,
       essential: true,
     });
+    const localizedTags = this.localizeTags(mark.tags).join(', ');
 
     const popupHTML = `
-      <h3 class="text-lg font-semibold text-gray-800 mb-2">${estName}</h3>
-      <p *ngFor='let '>${estName}</p>
-      <button class="bg-ang-orange text-white rounded-md px-4 py-2 hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300" id="navigate-btn">
-        Navigate
+    <div class="w-fit h-fit bg-ang-white flex gap-2 flex-col p-4">
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">${mark.name}</h3>
+      <p>${mark.descritpion}</p>
+      <p>${localizedTags}</p>
+      <p>${mark.priceCategory}</p>
+      <button class="bg-ang-orange text-ang-white text-lg rounded-md px-4 py-2 hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300" id="visit-btn">
+        Visit ${mark.name}
       </button>
-  `;
+    </div>
+      `;
 
     const popup = new mapboxgl.Popup({
       offset: 25,
@@ -241,18 +228,16 @@ export class MapComponent implements OnInit {
     marker.setPopup(popup);
 
     popup.on('open', () => {
-      const button = document.getElementById('navigate-btn');
+      const button = document.getElementById('visit-btn');
       if (button) {
-        button.addEventListener('click', () =>
-          this.navigateToEst(establishmentID),
-        );
+        button.addEventListener('click', () => this.visitEst(mark.auth0Id));
       }
     });
 
-    console.log(establishmentID);
+    console.log(mark.auth0Id);
   }
 
-  navigateToEst(establishmentID: string) {
+  visitEst(establishmentID: string) {
     console.log('Navigating to establishment:', establishmentID);
     this.router.navigate([`/establishment/${establishmentID}`]);
   }
@@ -262,12 +247,22 @@ export class MapComponent implements OnInit {
     this.markers = [];
   }
 
-  checkZoomLevel(): void {
+  checkZoomLevel(): boolean {
     if (this.map) {
       const zoom = this.map.getZoom();
-      if (zoom < 15) {
+      if (zoom <= 15) {
+        console.log(zoom);
+
         this.removeAllMarkers();
+        return false;
+      } else {
+        return true;
       }
     }
+    return false;
+  }
+
+  localizeTags(tags: string[]): string[] {
+    return tags.map((tag) => this.translate.instant(`TAGS.${tag}`));
   }
 }

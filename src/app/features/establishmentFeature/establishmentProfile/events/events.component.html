@@ -5,13 +5,6 @@
     </p>
   </div>
   <ng-template #showItems>
-    <div class="flex gap-2 pt-4">
-      <input
-        type="search"
-        class="h-8 w-full rounded-lg border border-ang-orange p-1"
-      />
-      <button>Search</button>
-    </div>
     <div
       class="flex flex-wrap items-center justify-center gap-4 py-4 md:justify-start"
     >
@@ -20,15 +13,15 @@
         class="relative row-span-2 flex max-h-[30rem] w-full max-w-96 flex-col gap-2 rounded-md border border-ang-orange"
       >
         <img
-          *ngIf="event.imageUrl; else defaultPicutre"
-          [src]="event.imageUrl"
-          alt="Post image"
+          *ngIf="event.pictureUrl; else defaultPicutre"
+          [src]="event.pictureUrl"
+          alt="Event image"
           class="h-96 w-96 rounded-t-md"
         />
         <ng-template #defaultPicutre>
           <img
-            src="/logo/logo.png"
-            alt="Post image"
+            [src]="addAccordingPhoto('event')"
+            alt="Event image"
             class="h-96 w-96 rounded-t-md"
           />
         </ng-template>
@@ -36,8 +29,9 @@
           <div>
             <h2 class="text-xl">{{ event.title }}</h2>
             <p class="text-sm">
-              {{ event.dateOfEvent | date: "mediumDate" }}
+              {{ event.start | date: "mediumDate" }}
             </p>
+            <p>{{ event.end | date: "mediumDate" }}</p>
           </div>
           <p class="text-base">{{ event.body }}</p>
 

@@ -6,6 +6,7 @@ import { establishmentProfile } from '../../../features/establishmentFeature/mod
 import { AlertService } from '../alert/alert.service';
 import { environment } from '../../../../environments/environment.dev';
 import { Menu } from '../../../features/establishmentFeature/models/profile/menu.model';
+import { posts } from '../../../features/establishmentFeature/models/profile/posts.model';
 
 @Injectable({
   providedIn: 'root',
@@ -43,19 +44,36 @@ export class EstabilishmentService {
     );
   }
 
-  changeSpecificProfileInfo<T>(
+  private changeSpecificProfileInfo<T>(
     infoPart: keyof establishmentProfile,
     newValue: T,
-  ): Observable<establishmentProfile | undefined> {
-    return this.estProfileState$.pipe(
-      map((profile) => {
-        if (profile) {
-          const updatedProfile = { ...profile, [infoPart]: newValue };
-          return updatedProfile;
-        }
-        return undefined;
-      }),
-    );
+  ): void {
+    const currentProfile = this.estProfileSubject.value;
+    if (currentProfile) {
+      const updatedProfile = {
+        ...currentProfile,
+        [infoPart]: Array.isArray(currentProfile[infoPart])
+          ? [...(currentProfile[infoPart] as T[]), newValue]
+          : newValue,
+      };
+      this.estProfileSubject.next(updatedProfile);
+    }
+  }
+
+  private removeSpecificProfileInfo(
+    infoPart: keyof establishmentProfile,
+    id: string,
+  ): void {
+    const currentProfile = this.estProfileSubject.value;
+    if (currentProfile) {
+      const updatedProfile = {
+        ...currentProfile,
+        [infoPart]: Array.isArray(currentProfile[infoPart])
+          ? (currentProfile[infoPart] as any[]).filter((post) => post.id !== id)
+          : currentProfile[infoPart],
+      };
+      this.estProfileSubject.next(updatedProfile);
+    }
   }
 
   setTestProfile(estId: string): Observable<establishmentProfile | any> {
@@ -101,28 +119,29 @@ export class EstabilishmentService {
   /*
    * Post specific calls
    */
-  uploadPost(formData: FormData): Observable<any> {
-    return this.http.post(`${environment.API_END_POINT}Post`, formData).pipe(
-      map((Response) => {
-        this.alert.showAlert('Post created succsefully', true);
-        this.changeSpecificProfileInfo('posts', Response);
-      }),
-      catchError((error) => {
-        console.log(error);
-        this.alert.showAlert(
-          'There has been an error in uploading the post, please try again',
-          false,
-        );
-        return of(null);
-      }),
-    );
+  uploadPost(formData: FormData): Observable<posts> {
+    return this.http
+      .post<posts>(`${environment.API_END_POINT}Post`, formData)
+      .pipe(
+        map((Response) => {
+          this.alert.showAlert('Post created succsefully', true);
+          this.changeSpecificProfileInfo('posts', Response);
+        }),
+        catchError((error) => {
+          this.alert.showAlert(
+            'There has been an error in uploading the post, please try again',
+            false,
+          );
+          return of(error);
+        }),
+      );
   }
 
   deletePost(postId: string): Observable<any> {
     return this.http.delete(`${environment.API_END_POINT}Post/${postId}`).pipe(
       map((Response) => {
         this.alert.showAlert('Post deleted succsefully', true);
-        console.log(Response);
+        this.removeSpecificProfileInfo('posts', postId);
       }),
       catchError((error) => {
         console.log(error);
@@ -164,7 +183,7 @@ export class EstabilishmentService {
       );
   }
 
-  updateMenuItems(menu: Menu) {
+  updateMenuItems(menu: Menu): Observable<any> {
     return this.http
       .put<any>(`${environment.API_END_POINT}Establishment/menu`, menu)
       .pipe(
@@ -267,7 +286,7 @@ export class EstabilishmentService {
   //Establishment/image/
   uploadImage(formData: FormData, where?: string): Observable<any> {
     return this.http
-      .put(`${environment.API_END_POINT}/Establishment${where}`, formData)
+      .put(`${environment.API_END_POINT}Establishment${where}`, formData)
       .pipe(
         map((Response) => {
           console.log(Response);

@@ -69,6 +69,23 @@ export class ImageService {
     return file.size <= maxSizeInBytes;
   }
 
+  addAccordingPhoto(where: string): string {
+    switch (where) {
+      case 'estProfilePicture':
+        return 'establishment/placeholders/estProfilePicture';
+      case 'estCoverPicture':
+        return 'establishment/placeholders/image.png';
+      case 'post':
+        return 'establishment/placeholders/post.png';
+      case 'menuItem':
+        return 'establishment/placeholders/menuItem.png';
+      case 'event':
+        return 'establishment/placeholders/event.png';
+      default:
+        return 'establishment/placeholders/image.png';
+    }
+  }
+
   sendToBackend(formData: FormData, where?: string) {
     this.estServ.uploadImage(formData, where).subscribe();
   }

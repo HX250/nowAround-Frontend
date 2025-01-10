@@ -4,6 +4,7 @@ export interface marker {
   descritpion: string;
   tags: string[];
   categories: string[];
+  priceCategory: string;
   longitude: number;
   latitude: number;
 }

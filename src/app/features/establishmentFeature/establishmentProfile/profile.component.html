@@ -16,7 +16,7 @@
           />
           <ng-template #defaultImage>
             <img
-              src="userProfile/image.png"
+              [src]="addAccordingPhoto('estCoverPicture')"
               width="64px"
               height="64px"
               alt="Default Placeholder"
@@ -54,7 +54,7 @@
                 />
                 <ng-template #defaultProfileImage>
                   <img
-                    src="userProfile/image.png"
+                    [src]="addAccordingPhoto('estProfilePicture')"
                     class="h-full w-full"
                     alt="Default Placeholder"
                   />

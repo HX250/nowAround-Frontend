@@ -5,13 +5,6 @@
     </p>
   </div>
   <ng-template #showItems>
-    <div class="flex gap-2 pt-4">
-      <input
-        type="search"
-        class="h-8 w-full rounded-lg border border-ang-orange p-1"
-      />
-      <button>Search</button>
-    </div>
     <div
       class="flex flex-wrap items-center justify-center gap-4 py-4 md:justify-start"
     >
@@ -27,7 +20,7 @@
         />
         <ng-template #defaultPicutre>
           <img
-            src="/logo/logo.png"
+            [src]="addAccordingPhoto('post')"
             alt="Post image"
             class="h-96 w-96 rounded-t-md"
           />

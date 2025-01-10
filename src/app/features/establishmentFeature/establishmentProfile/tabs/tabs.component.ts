@@ -95,6 +95,9 @@ export class TabsComponent {
       }
     });
   }
+  addAccordingPhoto(where: string) {
+    return this.imgService.addAccordingPhoto(where);
+  }
 
   uploadImg(event: any, menuId: string) {
     this.imgService.onFileChange(event, `/menu/item/image/${menuId}`);

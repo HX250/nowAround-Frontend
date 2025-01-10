@@ -16,6 +16,7 @@ import { EstablishmentEditComponent } from '../establishmentEdit/establishment-e
 import { TranslateModule } from '@ngx-translate/core';
 import { AddComponent } from '../addEventPostMenu/add.component';
 import { ImageService } from '../../../core/services/image/image.service';
+import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-profile',
@@ -106,6 +107,10 @@ export class ProfileComponent implements OnInit {
 
   onFileChange(event: any, where: string) {
     this.imgService.onFileChange(event, where);
+  }
+
+  addAccordingPhoto(where: string) {
+    return this.imgService.addAccordingPhoto(where);
   }
 
   openWindow() {
