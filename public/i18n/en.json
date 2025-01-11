@@ -230,7 +230,7 @@
   "establishmentAddEvent-endDateOfEvent": "End of event",
   "establishmentAddEvent-location": "Event location",
   "establishmentAddEvent-eventDuration": "Event duration",
-  "establishmentAddEvent-price": "Entry fee",
+  "establishmentAddEvent-price": "Event price",
   "establishmentAddEvent-maxParticipants": "Maximum Number of Participants",
   "establishmentAddEvent-eventCategory": "Event Categories",
   "establishmentAddEvent-interests": "Interest",

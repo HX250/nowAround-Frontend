@@ -79,15 +79,17 @@
             </div>
           </div>
 
-          <div class="flex w-full justify-center pt-2">
-            <button
-              type="button"
-              (click)="removeMenuItem(i)"
-              class="w-fit rounded-md bg-ang-redAlert p-2 text-ang-white hover:opacity-90"
-            >
-              Remove Item
-            </button>
-          </div>
+          @if (!oldMenu) {
+            <div class="flex w-full justify-center pt-2">
+              <button
+                type="button"
+                (click)="removeMenuItem(i)"
+                class="w-fit rounded-md bg-ang-redAlert p-2 text-ang-white hover:opacity-90"
+              >
+                Remove Item
+              </button>
+            </div>
+          }
         </div>
       </div>
     </div>

@@ -50,7 +50,8 @@ export class EventComponent implements OnInit {
       endDateOfEvent: ['', [Validators.required, this.futureDateValidator]],
       endTimeOfEvent: ['', Validators.required],
       city: ['', Validators.required],
-      price: [null, Validators.required],
+      price: ['', Validators.required],
+      //  eventPriceCategory: [''],
       location: ['', Validators.required],
       maxParticipants: ['', Validators.required],
       eventCategory: ['', Validators.required],
@@ -94,7 +95,7 @@ export class EventComponent implements OnInit {
     previewReader.readAsDataURL(file);
   }
 
-  submitPost() {
+  submitEvent() {
     if (this.eventForm.invalid) {
       this.eventForm.markAllAsTouched();
       return;
@@ -118,11 +119,14 @@ export class EventComponent implements OnInit {
     );
     formData.append('city', formValue.city);
     formData.append('price', formValue.price.toString());
+    //  formData.append('eventPriceCategory', formValue.eventPriceCategory);
     formData.append('address', formValue.location);
     formData.append('maxParticipants', formValue.maxParticipants.toString());
     formData.append('eventCategory', formValue.eventCategory);
 
     this.estServ.uploadEvent(formData).subscribe();
+    this.estServ.addEvent.set(false);
+    this.eventForm.reset();
   }
 
   cancelAddingEvent() {

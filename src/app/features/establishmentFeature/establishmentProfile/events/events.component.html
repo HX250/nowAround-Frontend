@@ -1,51 +1,74 @@
-<div>
-  <div *ngIf="eventList.length == 0; else showItems">
-    <p class="pt-4 text-center text-xl">
+<div class="container mx-auto px-4 py-8">
+  <div *ngIf="eventList.length == 0; else showItems" class="text-center">
+    <p class="text-xl text-ang-black">
       {{ "establishmentPost-Error" | translate }}
     </p>
   </div>
   <ng-template #showItems>
-    <div
-      class="flex flex-wrap items-center justify-center gap-4 py-4 md:justify-start"
-    >
+    <div class="grid gap-6 lg:grid-cols-1 xl:grid-cols-2">
       <div
         *ngFor="let event of eventList"
-        class="relative row-span-2 flex max-h-[30rem] w-full max-w-96 flex-col gap-2 rounded-md border border-ang-orange"
+        class="relative overflow-hidden rounded-lg bg-ang-white shadow-lg"
       >
-        <img
-          *ngIf="event.pictureUrl; else defaultPicutre"
-          [src]="event.pictureUrl"
-          alt="Event image"
-          class="h-96 w-96 rounded-t-md"
-        />
-        <ng-template #defaultPicutre>
-          <img
-            [src]="addAccordingPhoto('event')"
-            alt="Event image"
-            class="h-96 w-96 rounded-t-md"
-          />
-        </ng-template>
-        <div class="flex flex-col justify-between pl-1">
-          <div>
-            <h2 class="text-xl">{{ event.title }}</h2>
-            <p class="text-sm">
-              {{ event.start | date: "mediumDate" }}
-            </p>
-            <p>{{ event.end | date: "mediumDate" }}</p>
+        <div class="flex flex-col gap-3 p-4 md:flex-row lg:h-full">
+          <div class="h-full w-full lg:w-72">
+            <img
+              *ngIf="event.pictureUrl; else defaultPicture"
+              [src]="event.pictureUrl"
+              alt="Event image"
+              class="h-full w-full object-cover"
+            />
+            <ng-template #defaultPicture>
+              <img
+                [src]="addAccordingPhoto('event')"
+                alt="Event image"
+                class="h-full w-full object-cover"
+              />
+            </ng-template>
           </div>
-          <p class="text-base">{{ event.body }}</p>
-
-          <span class="text-sm"
-            >{{ event.interestedUsers.length }}
-            {{ "establishmentProfile-Like" | translate }}</span
-          >
-          <button
-            class="absolute right-2 top-2 transition-all hover:scale-125"
-            *ngIf="isLoggedIn()"
-            (click)="deletePost(event.id)"
-          >
-            <img src="/icons/bin.png" class="h-6 w-6" alt="" />
-          </button>
+          <div class="flex flex-1 flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-4">
+                <h2 class="text-xl font-bold text-ang-black">
+                  {{ event.title }}
+                </h2>
+                <p class="text-ang-black/80">{{ event.eventCategory }}</p>
+              </div>
+              <p class="mb-2 text-sm text-ang-black/70">
+                {{ event.start | date: "mediumDate" }} -
+                {{ event.end | date: "mediumDate" }}
+              </p>
+              <p
+                class="mb-2 max-h-28 w-96 overflow-y-scroll whitespace-pre-wrap break-words text-sm text-ang-black/80"
+              >
+                {{ event.body }}
+              </p>
+            </div>
+            <div class="mt-4 flex flex-wrap items-center gap-2 text-xs">
+              <span class="rounded bg-ang-orange px-2 py-1 text-ang-white">{{
+                event.price
+              }}</span>
+              <span class="rounded bg-ang-greenAlert px-2 py-1 text-ang-white"
+                >{{ event.maxParticipants }} participants</span
+              >
+            </div>
+            <div class="mt-4 text-xs text-ang-black/60">
+              <p>{{ event.address }}, {{ event.city }}</p>
+            </div>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-sm text-ang-black/70">
+                {{ event.interestedUsers.length }}
+                {{ "establishmentProfile-Like" | translate }}
+              </span>
+              <button
+                *ngIf="isLoggedIn()"
+                (click)="deletePost(event.id)"
+                class="absolute right-2 top-2"
+              >
+                <img src="/icons/bin.png" class="h-6 w-6" alt="" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

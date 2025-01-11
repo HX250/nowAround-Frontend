@@ -77,10 +77,9 @@ export class PostComponent implements OnInit {
     formData.append('headline', formValue.headline);
     formData.append('body', formValue.body);
 
-    this.uploadPost(formData);
-  }
-  uploadPost(formData: FormData) {
     this.estServ.uploadPost(formData).subscribe();
+    this.postForm.reset();
+    this.estServ.addPost.set(false);
   }
 
   cancelAddingPost() {

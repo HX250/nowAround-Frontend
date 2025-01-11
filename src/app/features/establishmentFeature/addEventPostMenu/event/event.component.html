@@ -3,7 +3,7 @@
     {{ "establishmentAddPost-headline" | translate }}
   </h2>
   <form
-    (ngSubmit)="submitPost()"
+    (ngSubmit)="submitEvent()"
     class="flex w-full flex-col gap-4"
     [formGroup]="eventForm"
   >
@@ -58,6 +58,7 @@
     <div class="flex flex-col gap-1">
       <label for="title">{{ "establishmentAddEvent-title" | translate }}</label>
       <input
+        maxlength="64"
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
         type="text"
         id="title"
@@ -75,6 +76,7 @@
         "establishmentAddEvent-description" | translate
       }}</label>
       <textarea
+        maxlength="255"
         class="w-full rounded-lg border border-ang-orange p-1"
         id="body"
         formControlName="body"
@@ -185,6 +187,7 @@
       <input
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
         type="text"
+        maxlength="64"
         id="location"
         formControlName="location"
       />
@@ -200,6 +203,7 @@
       <input
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
         type="text"
+        maxlength="64"
         id="city"
         formControlName="city"
       />
@@ -208,13 +212,50 @@
       </span>
     </div>
     <div class="flex flex-col gap-1">
-      <label for="price">{{ "establishmentAddEvent-price" | translate }}</label>
-      <input
-        class="h-8 w-full rounded-lg border border-ang-orange p-1"
-        type="number"
-        id="price"
-        formControlName="price"
-      />
+      <div class="relative flex flex-row-reverse items-center justify-between">
+        <div class="has-tooltip group w-fit">
+          <span
+            class="tooltip invisible absolute right-0 z-50 -mt-24 w-max rounded border bg-ang-white p-2 text-ang-black shadow-lg group-hover:visible"
+          >
+            <ul>
+              <li>For adding an event with tickets please select €</li>
+              <li>For adding action please select %</li>
+              <li>
+                If you have a special action (1 + 1 free) please select empty
+                value
+              </li>
+            </ul></span
+          >
+          <img
+            src="establishment/establishmentForm/i.png"
+            alt=""
+            srcset=""
+            class="h-6 w-6"
+          />
+        </div>
+        <label for="price">{{
+          "establishmentAddEvent-price" | translate
+        }}</label>
+      </div>
+      <div class="flex gap-2">
+        <input
+          class="h-8 w-full rounded-lg border border-ang-orange p-1"
+          type="number"
+          maxlength="12"
+          id="price"
+          formControlName="price"
+        />
+        <select
+          name="typeOfPrice"
+          id="typeOfPrice"
+          class="max-w-12 rounded-lg border border-ang-orange p-1"
+          formControlName="eventPriceCategory"
+        >
+          <option value=""></option>
+          <option value="eur">€</option>
+          <option value="per">%</option>
+        </select>
+      </div>
       <span
         *ngIf="f['price'].invalid && f['price'].touched"
         class="text-red-500"
@@ -223,9 +264,30 @@
       </span>
     </div>
     <div class="flex flex-col gap-1">
-      <label for="maxParticipants">{{
-        "establishmentAddEvent-maxParticipants" | translate
-      }}</label>
+      <div class="relative flex flex-row-reverse items-center justify-between">
+        <div class="has-tooltip group w-fit">
+          <span
+            class="tooltip invisible absolute right-0 z-50 -mt-16 w-max rounded border bg-ang-white p-2 text-ang-black shadow-lg group-hover:visible"
+          >
+            <ul>
+              <li class="max-w-80">
+                If the action doesnt need participants please proceed with empty
+                value
+              </li>
+            </ul></span
+          >
+          <img
+            src="establishment/establishmentForm/i.png"
+            alt=""
+            srcset=""
+            class="h-6 w-6"
+          />
+        </div>
+        <label for="maxParticipants">{{
+          "establishmentAddEvent-maxParticipants" | translate
+        }}</label>
+      </div>
+
       <select
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
         id="maxParticipants"

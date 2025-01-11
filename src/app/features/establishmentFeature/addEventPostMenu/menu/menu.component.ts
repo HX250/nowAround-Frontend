@@ -75,15 +75,17 @@ export class MenuComponent {
     this.updatedMenuItems.emit();
     if (this.oldMenu) {
       this.estServ.updateMenuItems(menu).subscribe();
+      this.estServ.addMenu.set(false);
     } else {
       this.menuItems.clear();
       this.menuForm.reset();
       this.estServ.addNewMenu(menu).subscribe();
+      this.estServ.addMenu.set(false);
     }
   }
 
   cancelAddMenuCategory() {
-    this.estServ.editMenu.set(false);
+    this.estServ.addMenu.set(false);
   }
 
   addMenuItem() {

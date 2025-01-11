@@ -23,13 +23,13 @@ import { CommonModule } from '@angular/common';
 export class AddComponent {
   @Output() close = new EventEmitter<void>();
   isEditing = computed(() =>
-    this.estServ.editMenu() || this.estServ.addEvent() || this.estServ.addPost()
+    this.estServ.addMenu() || this.estServ.addEvent() || this.estServ.addPost()
       ? true
       : false,
   );
   isAddingEvent = computed(() => (this.estServ.addEvent() ? true : false));
   isAddingPost = computed(() => (this.estServ.addPost() ? true : false));
-  isAddingMenu = computed(() => (this.estServ.editMenu() ? true : false));
+  isAddingMenu = computed(() => (this.estServ.addMenu() ? true : false));
 
   constructor(private estServ: EstabilishmentService) {}
 
@@ -37,7 +37,7 @@ export class AddComponent {
     this.close.emit();
     this.estServ.addEvent.set(false);
     this.estServ.addPost.set(false);
-    this.estServ.editMenu.set(false);
+    this.estServ.addMenu.set(false);
   }
   stopPropagation(event: Event) {
     event.stopPropagation();
@@ -58,6 +58,6 @@ export class AddComponent {
     this.estServ.addPost.set(true);
   }
   addMenu() {
-    this.estServ.editMenu.set(true);
+    this.estServ.addMenu.set(true);
   }
 }

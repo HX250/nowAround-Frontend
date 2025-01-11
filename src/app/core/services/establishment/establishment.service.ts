@@ -16,7 +16,7 @@ export class EstabilishmentService {
     null,
   );
   estProfileState$ = this.estProfileSubject.asObservable();
-  editMenu = signal(false);
+  addMenu = signal(false);
   addPost = signal(false);
   addEvent = signal(false);
 
@@ -55,6 +55,26 @@ export class EstabilishmentService {
         [infoPart]: Array.isArray(currentProfile[infoPart])
           ? [...(currentProfile[infoPart] as T[]), newValue]
           : newValue,
+      };
+      this.estProfileSubject.next(updatedProfile);
+    }
+  }
+  private updateSpecificMenuCategory<T>(
+    infoPart: keyof establishmentProfile,
+    categoryId: string,
+    newValue: T,
+  ): void {
+    const currentProfile = this.estProfileSubject.value;
+    if (currentProfile) {
+      const updatedProfile = {
+        ...currentProfile,
+        [infoPart]: Array.isArray(currentProfile[infoPart])
+          ? (currentProfile[infoPart] as any[]).map((category) =>
+              category.id === categoryId
+                ? { ...category, ...newValue }
+                : category,
+            )
+          : currentProfile[infoPart],
       };
       this.estProfileSubject.next(updatedProfile);
     }
@@ -169,7 +189,7 @@ export class EstabilishmentService {
         map((Response) => {
           this.alert.showAlert('Menu has been updated', true);
           console.log(Response);
-
+          this.changeSpecificProfileInfo('menus', Response);
           return true;
         }),
         catchError((error) => {
@@ -183,14 +203,15 @@ export class EstabilishmentService {
       );
   }
 
-  updateMenuItems(menu: Menu): Observable<any> {
+  updateMenuItems(menu: Menu): Observable<Menu> {
     return this.http
-      .put<any>(`${environment.API_END_POINT}Establishment/menu`, menu)
+      .put<Menu>(`${environment.API_END_POINT}Establishment/menu`, menu)
       .pipe(
         map((Response) => {
           this.alert.showAlert('Menu has been updated', true);
+          this.updateSpecificMenuCategory('menus', Response.id, Response);
           console.log(Response);
-          return true;
+          return Response;
         }),
         catchError((error) => {
           console.log(error);
@@ -198,7 +219,7 @@ export class EstabilishmentService {
             'There has been an error in uploading the menu, please try again',
             false,
           );
-          return of(null);
+          return of(error);
         }),
       );
   }
@@ -214,8 +235,7 @@ export class EstabilishmentService {
       .pipe(
         map((Response) => {
           this.alert.showAlert('Menu category has been deleted', true);
-          console.log(Response);
-
+          this.removeSpecificProfileInfo('menus', categoryId);
           return true;
         }),
         catchError((error) => {
@@ -240,8 +260,7 @@ export class EstabilishmentService {
       .pipe(
         map((Response) => {
           this.alert.showAlert('Menu item has been updated', true);
-          console.log(Response);
-
+          this.removeSpecificProfileInfo('menus', tabId);
           return true;
         }),
         catchError((error) => {
@@ -263,8 +282,9 @@ export class EstabilishmentService {
    */
   uploadEvent(eventForm: FormData): Observable<any> {
     return this.http.post(`${environment.API_END_POINT}Event`, eventForm).pipe(
-      map((Response) => {
+      map((response) => {
         this.alert.showAlert('Event has been added', true);
+        this.changeSpecificProfileInfo('events', response);
       }),
       catchError((error) => {
         console.log(error);
@@ -282,15 +302,12 @@ export class EstabilishmentService {
   /*
    * Image specific calls
    */
-  //Establishment/menu/item/image/{menuItemId}
-  //Establishment/image/
   uploadImage(formData: FormData, where?: string): Observable<any> {
     return this.http
       .put(`${environment.API_END_POINT}Establishment${where}`, formData)
       .pipe(
         map((Response) => {
           console.log(Response);
-
           this.alert.showAlert('Image has been uploaded', true);
         }),
         catchError((error) => {
