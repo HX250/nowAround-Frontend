@@ -75,7 +75,7 @@
           <div class="flex gap-4">
             <span class="text-right font-bold">{{ item.price }} €</span>
             <button
-              (click)="removeMenuItem(item)"
+              (click)="removeMenuItem(item, tab.id)"
               *ngIf="isLoggedIn()"
               class="transition-all hover:scale-110"
             >

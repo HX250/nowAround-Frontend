@@ -83,15 +83,28 @@ export class EstabilishmentService {
   private removeSpecificProfileInfo(
     infoPart: keyof establishmentProfile,
     id: string,
+    categoryId?: string,
   ): void {
     const currentProfile = this.estProfileSubject.value;
+
     if (currentProfile) {
       const updatedProfile = {
         ...currentProfile,
         [infoPart]: Array.isArray(currentProfile[infoPart])
-          ? (currentProfile[infoPart] as any[]).filter((post) => post.id !== id)
+          ? (currentProfile[infoPart] as Menu[])
+              .map((menu) => {
+                if (categoryId && menu.id === categoryId) {
+                  return {
+                    ...menu,
+                    menuItems: menu.menuItems.filter((item) => item.id !== id),
+                  };
+                }
+                return menu;
+              })
+              .filter((menu) => (categoryId ? true : menu.id !== id))
           : currentProfile[infoPart],
       };
+
       this.estProfileSubject.next(updatedProfile);
     }
   }
@@ -109,10 +122,7 @@ export class EstabilishmentService {
         catchError((error) => {
           console.log(error);
           this.estProfileSubject.next(null);
-          this.alert.showAlert(
-            'There has been an error in loading establishment, please try again',
-            false,
-          );
+          this.alert.showAlert('estServErrors-loadEstFalse', false);
           return of(null);
         }),
       );
@@ -144,33 +154,20 @@ export class EstabilishmentService {
       .post<posts>(`${environment.API_END_POINT}Post`, formData)
       .pipe(
         map((Response) => {
-          this.alert.showAlert('Post created succsefully', true);
+          this.alert.showAlert('estServErrors-addNewPostTrue', true);
           this.changeSpecificProfileInfo('posts', Response);
         }),
-        catchError((error) => {
-          this.alert.showAlert(
-            'There has been an error in uploading the post, please try again',
-            false,
-          );
-          return of(error);
-        }),
+        catchError(this.handleError('estServErrors-addNewPostFalse')),
       );
   }
 
   deletePost(postId: string): Observable<any> {
     return this.http.delete(`${environment.API_END_POINT}Post/${postId}`).pipe(
       map((Response) => {
-        this.alert.showAlert('Post deleted succsefully', true);
+        this.alert.showAlert('estServErrors-deletePostTrue', true);
         this.removeSpecificProfileInfo('posts', postId);
       }),
-      catchError((error) => {
-        console.log(error);
-        this.alert.showAlert(
-          'There has been an error in deleting the post, please try again',
-          false,
-        );
-        return of(null);
-      }),
+      catchError(this.handleError('estServErrors-deletePostFalse')),
     );
   }
 
@@ -187,19 +184,12 @@ export class EstabilishmentService {
       .post<any>(`${environment.API_END_POINT}Establishment/menu`, menuForm)
       .pipe(
         map((Response) => {
-          this.alert.showAlert('Menu has been updated', true);
+          this.alert.showAlert('estServErrors-addNewMenuTrue', true);
           console.log(Response);
           this.changeSpecificProfileInfo('menus', Response);
           return true;
         }),
-        catchError((error) => {
-          console.log(error);
-          this.alert.showAlert(
-            'There has been an error in uploading the menu, please try again',
-            false,
-          );
-          return of(null);
-        }),
+        catchError(this.handleError('estServErrors-addNewMenuFalse')),
       );
   }
 
@@ -208,19 +198,12 @@ export class EstabilishmentService {
       .put<Menu>(`${environment.API_END_POINT}Establishment/menu`, menu)
       .pipe(
         map((Response) => {
-          this.alert.showAlert('Menu has been updated', true);
+          this.alert.showAlert('estServErrors-updateMenuTrue', true);
           this.updateSpecificMenuCategory('menus', Response.id, Response);
           console.log(Response);
           return Response;
         }),
-        catchError((error) => {
-          console.log(error);
-          this.alert.showAlert(
-            'There has been an error in uploading the menu, please try again',
-            false,
-          );
-          return of(error);
-        }),
+        catchError(this.handleError('estServErrors-updateMenuFalse')),
       );
   }
 
@@ -234,22 +217,15 @@ export class EstabilishmentService {
       )
       .pipe(
         map((Response) => {
-          this.alert.showAlert('Menu category has been deleted', true);
+          this.alert.showAlert('estServErrors-removeMenuCategoryTrue', true);
           this.removeSpecificProfileInfo('menus', categoryId);
           return true;
         }),
-        catchError((error) => {
-          console.log(error);
-          this.alert.showAlert(
-            'There has been an error in updating the mnenu, please try again',
-            false,
-          );
-          return of(null);
-        }),
+        catchError(this.handleError('estServErrors-removeMenuCategoryFalse')),
       );
   }
 
-  removeMenuItem(tabId: string): Observable<any> {
+  removeMenuItem(tabId: string, categoryId: string): Observable<any> {
     return this.http
       .delete<any>(
         `${environment.API_END_POINT}Establishment/menu/item/${tabId}`,
@@ -259,18 +235,11 @@ export class EstabilishmentService {
       )
       .pipe(
         map((Response) => {
-          this.alert.showAlert('Menu item has been updated', true);
-          this.removeSpecificProfileInfo('menus', tabId);
+          this.alert.showAlert('estServErrors-removeMenuItemTrue', true);
+          this.removeSpecificProfileInfo('menus', tabId, categoryId);
           return true;
         }),
-        catchError((error) => {
-          console.log(error);
-          this.alert.showAlert(
-            'There has been an error in updating the mnenu, please try again',
-            false,
-          );
-          return of(null);
-        }),
+        catchError(this.handleError('estServErrors-removeMenuItemFalse')),
       );
   }
   /**
@@ -283,17 +252,10 @@ export class EstabilishmentService {
   uploadEvent(eventForm: FormData): Observable<any> {
     return this.http.post(`${environment.API_END_POINT}Event`, eventForm).pipe(
       map((response) => {
-        this.alert.showAlert('Event has been added', true);
+        this.alert.showAlert('estServErrors-addEventTrue', true);
         this.changeSpecificProfileInfo('events', response);
       }),
-      catchError((error) => {
-        console.log(error);
-        this.alert.showAlert(
-          'There has been an error in adding the event, please try again',
-          false,
-        );
-        return of(null);
-      }),
+      catchError(this.handleError('estServErrors-addEventFalse')),
     );
   }
   /**
@@ -308,16 +270,9 @@ export class EstabilishmentService {
       .pipe(
         map((Response) => {
           console.log(Response);
-          this.alert.showAlert('Image has been uploaded', true);
+          this.alert.showAlert('estServErrors-imageUploadTrue', true);
         }),
-        catchError((error) => {
-          console.log(error);
-          this.alert.showAlert(
-            'Image couldnt be uploaded, please try again',
-            false,
-          );
-          return of(null);
-        }),
+        catchError(this.handleError('estServErrors-imageUploadFalse')),
       );
   }
   /**
@@ -342,9 +297,9 @@ export class EstabilishmentService {
    * ! END OF REGISTER
    */
 
-  private handleError(operation = 'operation', result?: any) {
+  private handleError(message: string, result?: any) {
     return (error: any): Observable<any> => {
-      this.alert.showAlert(`${operation} failed, please try again.`, false);
+      this.alert.showAlert(`${message}`, false);
       return of(result);
     };
   }

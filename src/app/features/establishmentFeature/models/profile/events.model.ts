@@ -22,6 +22,7 @@ export enum EventCategory {
 }
 
 export enum maxParticipants {
+  zero = '',
   first = '1 - 10',
   second = '11 - 20',
   third = '21 - 30',

@@ -206,6 +206,7 @@
   "dialogRemoveItem-decline": "No",
   "dialogRemovePost": "Post deletion",
 
+  "establishmentAdd-headline": "Add new:",
   "establishmentAdd-addPost": "Post",
   "establishmentAdd-addMenu": "Menu",
   "establishmentAdd-addEvent": "Event",
@@ -224,16 +225,24 @@
   "establishmentAddPostError-title": "Title is required",
   "establishmentAddPostError-body": "Post description is required",
 
+  "establishmentAddEvent-headline": "Add new event",
   "establishmentAddEvent-title": "Event title",
   "establishmentAddEvent-description": "Event description",
   "establishmentAddEvent-startDateOfEvent": "Start of event",
   "establishmentAddEvent-endDateOfEvent": "End of event",
+  "establishmentAddEvent-city": "City",
   "establishmentAddEvent-location": "Event location",
   "establishmentAddEvent-eventDuration": "Event duration",
   "establishmentAddEvent-price": "Event price",
   "establishmentAddEvent-maxParticipants": "Maximum Number of Participants",
   "establishmentAddEvent-eventCategory": "Event Categories",
-  "establishmentAddEvent-interests": "Interest",
+  "establishmentAddEvent-interests": "Are interested",
+
+  "establishmentAddEvent-infoPriceFirst": "For adding an event with tickets please select €",
+  "establishmentAddEvent-infoPriceSecond": "For adding action please select %",
+  "establishmentAddEvent-infoPriceThird": "If you have a special action (1 + 1 free) please select empty value",
+
+  "establishmentAddEvent-infoParticipants": "If the action doesnt need participants please proceed with empty value",
 
   "establishmentAddEventError-description": "Event description is required",
   "establishmentAddEventError-dateOfEvent": " Date of event is required",
@@ -246,6 +255,36 @@
   "establishmentAddEventError-eventCategory": "Event category is required",
   "establishmentAddEventError-endBeforeStart": "End cant start before it ends",
 
+  "establishmentAddMenu-categoryName": "Category name",
+  "establishmentAddMenu-itemName": "Item name",
+  "establishmentAddMenu-price": "Price",
+  "establishmentAddMenu-desc": "Description",
+  "establishmentAddMenu-removeItem": "Remove item",
+  "establishmentAddMenu-saveCategory": "Save category",
+
+  "establishmentAddMenuError-categoryName": "Category name is required",
+  "establishmentAddMenuError-itemName": "Item name is required",
+  "establishmentAddMenuError-price": "Price is required",
+  "establishmentAddMenuError-desc": " Description is required",
+
   "utils-submitButton": "Submit",
-  "utils-cancelButton": "Cancel"
+  "utils-cancelButton": "Cancel",
+
+  "estServErrors-loadEstFalse": "There has been an error in loading establishment, please try again",
+  "estServErrors-addNewPostTrue": "New post has been created",
+  "estServErrors-addNewPostFalse": "There was an error in creating new post, please try again",
+  "estServErrors-deletePostTrue": "Post has been deleted",
+  "estServErrors-deletePostFalse": "There was an error in deleting the post, please try again",
+  "estServErrors-addNewMenuTrue": "New menu has been created",
+  "estServErrors-addNewMenuFalse": "There has been an error in creating new menu, please try again",
+  "estServErrors-updateMenuTrue": "Menu has been updated",
+  "estServErrors-updateMenuFalse": "There has been an error in updating the menu, please try again",
+  "estServErrors-removeMenuCategoryTrue": "Menu category has been deleted",
+  "estServErrors-removeMenuCategoryFalse": "There has been an error in updating the menu category, please try again",
+  "estServErrors-removeMenuItemTrue": "Menu item has been deleted",
+  "estServErrors-removeMenuItemFalse": "There was an error in deleting the menu, please try again",
+  "estServErrors-addEventTrue": "Event has been added",
+  "estServErrors-addEventFalse": "There has been an error in adding the event, please try again",
+  "estServErrors-imageUploadTrue": "Image has been uploaded",
+  "estServErrors-imageUploadFalse": "Image couldnt be uploaded, please try again"
 }

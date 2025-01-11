@@ -51,7 +51,7 @@ export class EventComponent implements OnInit {
       endTimeOfEvent: ['', Validators.required],
       city: ['', Validators.required],
       price: ['', Validators.required],
-      //  eventPriceCategory: [''],
+      eventPriceCategory: [''],
       location: ['', Validators.required],
       maxParticipants: ['', Validators.required],
       eventCategory: ['', Validators.required],
@@ -119,7 +119,7 @@ export class EventComponent implements OnInit {
     );
     formData.append('city', formValue.city);
     formData.append('price', formValue.price.toString());
-    //  formData.append('eventPriceCategory', formValue.eventPriceCategory);
+    formData.append('eventPriceCategory', formValue.eventPriceCategory);
     formData.append('address', formValue.location);
     formData.append('maxParticipants', formValue.maxParticipants.toString());
     formData.append('eventCategory', formValue.eventCategory);

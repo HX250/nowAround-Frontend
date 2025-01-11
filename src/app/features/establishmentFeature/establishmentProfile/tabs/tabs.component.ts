@@ -74,7 +74,7 @@ export class TabsComponent {
     });
   }
 
-  removeMenuItem(tab?: MenuItem) {
+  removeMenuItem(tab: MenuItem, categoryId: string) {
     this.dialog.showDialog(
       'DELETE_MENU_ITEM',
       'dialogRemoveItem-desc',
@@ -86,10 +86,9 @@ export class TabsComponent {
     const subscription = this.dialog.dialogResult$.subscribe((result) => {
       if (result !== null) {
         if (result) {
-          this.estServ.removeMenuItem(tab!.id).subscribe();
+          this.estServ.removeMenuItem(tab!.id, categoryId).subscribe();
           subscription.unsubscribe();
         } else {
-          console.log('Item deletion cancelled');
           subscription.unsubscribe();
         }
       }

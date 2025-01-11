@@ -40,8 +40,7 @@ export class MapComponent implements OnInit {
       accessToken: environment.MAPBOX_TOKEN,
       container: 'map',
       style: this.style,
-      minZoom: 14,
-      maxZoom: 20,
+      zoom: 16,
       attributionControl: false,
       center: [this.lng, this.lat],
     });
@@ -68,10 +67,9 @@ export class MapComponent implements OnInit {
       const bounds = this.map?.getBounds();
       if (bounds) {
         if (
-          (!this.lastBounds ||
-            !this.lastBounds.contains(bounds.getNorthWest()) ||
-            !this.lastBounds.contains(bounds.getSouthEast())) &&
-          this.checkZoomLevel()
+          !this.lastBounds ||
+          !this.lastBounds.contains(bounds.getNorthWest()) ||
+          !this.lastBounds.contains(bounds.getSouthEast())
         ) {
           this.callMapService(this.getCornersCords(bounds));
         }

@@ -206,9 +206,10 @@
   "dialogRemoveItem-decline": "Nie",
   "dialogRemovePost": "Odstánenie príspevku",
 
+  "establishmentAdd-headline": "Pridať:",
   "establishmentAdd-addPost": "Príspevok",
   "establishmentAdd-addMenu": "Menu",
-  "establishmentAdd-addEvent": "Udalosti",
+  "establishmentAdd-addEvent": "Udalosť",
 
   "establishmentAdd-postDesc": "Zdieľajte svoje nápady, príbehy alebo novinky so svojím publikom. Príspevky sú skvelé na zapojenie používateľov a ich informovanie.",
   "establishmentAdd-menuDesc": "Vytvorte a spravujte položky v menu. Zvýraznite svoje jedlá, aby ste prilákali zákazníkov a zjednodušili objednávanie.",
@@ -224,16 +225,24 @@
   "establishmentAddPostError-title": "Nadpis je povinný",
   "establishmentAddPostError-body": "Popis príspevku je povinný",
 
+  "establishmentAddEvent-headline": "Pridať novú udalosť",
   "establishmentAddEvent-title": "Nadpis udalosti",
   "establishmentAddEvent-description": "Popis udalosti",
   "establishmentAddEvent-startDateOfEvent": "Začiatok podujatia",
   "establishmentAddEvent-endDateOfEvent": "Koniec podujatia",
+  "establishmentAddEvent-city": "Mesto",
   "establishmentAddEvent-location": "Miesto konania udalosti",
   "establishmentAddEvent-eventDuration": "Dlžka udalosti",
   "establishmentAddEvent-price": "Cena akcie",
   "establishmentAddEvent-maxParticipants": "Maximalný počet účastníkov",
   "establishmentAddEvent-eventCategory": "Kategórie udalostí",
-  "establishmentAddEvent-interests": "Záujem",
+  "establishmentAddEvent-interests": "Ma záujem",
+
+  "establishmentAddEvent-infoPriceFirst": "Pre pridanie ackie s platbou, vyberte €",
+  "establishmentAddEvent-infoPriceSecond": "Ak chcete pridať akciu, vyberte %",
+  "establishmentAddEvent-infoPriceThird": "Ak máte špeciálnu akciu (1 + 1 zadarmo), vyberte prázdnu hodnotu",
+
+  "establishmentAddEvent-infoParticipants": "Ak akcia nevyžaduje účastníkov, pokračujte s prázdnou hodnotou",
 
   "establishmentAddEventError-description": "Popis udalosti je povinný",
   "establishmentAddEventError-dateOfEvent": "Dátum udalosti je povinný",
@@ -246,6 +255,36 @@
   "establishmentAddEventError-eventCategory": "Kategória udalosti je povinná",
   "establishmentAddEventError-endBeforeStart": "Podujatie nemôže začínať skôr ako skončí",
 
+  "establishmentAddMenu-categoryName": "Názov kategórie",
+  "establishmentAddMenu-itemName": "Názov jedla",
+  "establishmentAddMenu-price": "Price",
+  "establishmentAddMenu-desc": "Popis jedla",
+  "establishmentAddMenu-removeItem": "Odstrániť jedlo",
+  "establishmentAddMenu-saveCategory": "Uložiť kategóriu",
+
+  "establishmentAddMenuError-categoryName": "Názov kategórie je povinný",
+  "establishmentAddMenuError-itemName": "Názov jedla je povinný",
+  "establishmentAddMenuError-price": "Cena je povinná",
+  "establishmentAddMenuError-desc": " Popis je povinný",
+
   "utils-submitButton": "Odoslať",
-  "utils-cancelButton": "Zrušiť"
+  "utils-cancelButton": "Zrušiť",
+
+  "estServErrors-loadEstFalse": "Nastala chyba pri načítani podniku, skúste to znova",
+  "estServErrors-addNewPostTrue": "Nový príspevok bol vytvorený",
+  "estServErrors-addNewPostFalse": "Nastala chyba pri vytvárani nového príspevku, skúste to znova",
+  "estServErrors-deletePostTrue": "Príspevok bol vymazaný",
+  "estServErrors-deletePostFalse": "Nastala chyba pri vymazávani príspevku, skúste to znova",
+  "estServErrors-addNewMenuTrue": "Nové menu bolo pridané",
+  "estServErrors-addNewMenuFalse": "Nastala chyba pri vytvárani nového menu, skúste to znova",
+  "estServErrors-updateMenuTrue": "Menu bolo aktualizované",
+  "estServErrors-updateMenuFalse": "Nastala chyba pri aktualizovaní menu, skúste to znova",
+  "estServErrors-removeMenuCategoryTrue": "Menu kategória bola odstánena z menu",
+  "estServErrors-removeMenuCategoryFalse": "Nastala chyba pri odstráneni kategórie, skúste to znova",
+  "estServErrors-removeMenuItemTrue": "Jedlo bolo odstánene z menu",
+  "estServErrors-removeMenuItemFalse": "Nastala chyba pri odstráneni jedla, skúste to znova",
+  "estServErrors-addEventTrue": "Udalosť bola pridaná",
+  "estServErrors-addEventFalse": "Nastala chyba pri pridávani udalosti, skúste to znova",
+  "estServErrors-imageUploadTrue": "Fotka bola úspešne nahratá",
+  "estServErrors-imageUploadFalse": "Fotku sa nepodarilo nahrať, skúste to znova"
 }

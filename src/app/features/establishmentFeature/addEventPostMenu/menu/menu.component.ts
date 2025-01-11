@@ -12,11 +12,12 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Menu } from '../../models/profile/menu.model';
 import { EstabilishmentService } from '../../../../core/services/establishment/establishment.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, TranslateModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css',
 })

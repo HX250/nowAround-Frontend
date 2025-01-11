@@ -13,7 +13,7 @@
       <span class="flex items-center justify-center text-ang-black">X</span>
     </button>
     @if (!isEditing()) {
-      <h2 class="text-center">Add new:</h2>
+      <h2 class="text-center">{{ "establishmentAdd-headline" | translate }}</h2>
       <div class="flex flex-col gap-6 sm:flex-row">
         <div
           (click)="addPost()"
