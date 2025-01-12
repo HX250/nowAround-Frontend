@@ -13,28 +13,9 @@
       <span class="flex items-center justify-center text-ang-black">X</span>
     </button>
     <div class="z-40 overflow-y-scroll px-2">
-      <nav class="sticky top-0 h-10 w-full bg-ang-white">
-        <ul class="flex items-center justify-center gap-4 pb-4 pt-2">
-          <li
-            class="cursor-pointer hover:text-ang-orange"
-            (click)="scrollTo(info)"
-          >
-            {{ "establishmentEdit-generalInfo" | translate }}
-          </li>
-          <li
-            class="cursor-pointer hover:text-ang-orange"
-            (click)="scrollTo(location)"
-          >
-            {{ "establishmentInfo-locationInfo" | translate }}
-          </li>
-        </ul>
-      </nav>
       <div class="flex w-full flex-col gap-4 px-2 py-2 md:px-0">
         <div #info>
           <app-info></app-info>
-        </div>
-        <div #location>
-          <app-location></app-location>
         </div>
       </div>
     </div>

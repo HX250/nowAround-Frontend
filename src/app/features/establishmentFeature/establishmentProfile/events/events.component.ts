@@ -39,9 +39,9 @@ export class EventsComponent {
       });
   }
 
-  deletePost(postId: string) {
+  deleteEvent(eventId: string) {
     this.dialog.showDialog(
-      'dialogRemovePost',
+      'dialogRemoveEvent',
       'dialogRemoveItem-desc',
       'dialogRemoveItem-accept',
       'dialogRemoveItem-decline',
@@ -51,7 +51,7 @@ export class EventsComponent {
       if (result !== null) {
         console.log('Dialog result:', result);
         if (result) {
-          this.estServ.deletePost(postId).subscribe();
+          this.estServ.deleteEvent(eventId).subscribe();
           subscription.unsubscribe();
         } else {
           console.log('Item deletion cancelled');

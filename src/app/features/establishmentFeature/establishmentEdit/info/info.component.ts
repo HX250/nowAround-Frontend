@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { DaySortPipe } from '../../../../shared/pipe/daySort.pipe';
 
 @Component({
   selector: 'app-info',
@@ -48,6 +49,8 @@ export class InfoComponent implements OnInit, OnDestroy {
   ];
   establishmentTags?: string[] = [];
   establishmentCategory?: string[] = [];
+  catError: string = '';
+  tagError: string = '';
 
   constructor(
     private estServ: EstabilishmentService,
@@ -71,15 +74,26 @@ export class InfoComponent implements OnInit, OnDestroy {
 
   buildForm() {
     this.updatedGenericInfo = this.fb.group({
-      companyName: [this.estProfile?.name],
-      category: [[this.estProfile?.categories]],
-      tags: [[this.estProfile?.tags]],
-      priceCategory: [this.estProfile?.priceRange],
+      name: [this.estProfile?.name],
+      description: [this.estProfile?.description],
+      categories: [this.estProfile?.categories],
+      tags: [this.estProfile?.tags],
+      priceCategory: [this.pipePriceRange()],
     });
   }
 
+  pipePriceRange() {
+    if (this.estProfile?.priceRange == 'Affordable') {
+      return '0';
+    } else if (this.estProfile?.priceRange == 'Moderate') {
+      return '1';
+    } else {
+      return '2';
+    }
+  }
   addCategory(category: string) {
     if (this.establishmentCategory?.length === 3) {
+      this.catError = 'maxCat';
       return;
     }
     if (!this.establishmentCategory?.includes(category)) {
@@ -96,7 +110,10 @@ export class InfoComponent implements OnInit, OnDestroy {
       !this.establishmentTags?.includes(val) &&
       this.establishmentTags!.length >= 5
     ) {
+      this.tagError = 'maxTags';
       return;
+    } else {
+      this.tagError = '';
     }
     if (this.establishmentTags?.includes(val)) {
       const index = this.establishmentTags?.indexOf(val);
@@ -115,9 +132,19 @@ export class InfoComponent implements OnInit, OnDestroy {
     this.establishmentCategory!.splice(index, 1);
   }
 
+  updateProfile() {
+    this.estServ
+      .updateGenericInfoProfile(this.updatedGenericInfo.value)
+      .subscribe();
+  }
+
   ngOnDestroy(): void {
     if (this.profileSubscription) {
       this.profileSubscription.unsubscribe();
     }
+  }
+
+  get f() {
+    return this.updatedGenericInfo.controls;
   }
 }

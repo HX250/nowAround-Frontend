@@ -127,6 +127,23 @@ export class EstabilishmentService {
         }),
       );
   }
+
+  updateGenericInfoProfile(form: any): Observable<any> {
+    return this.http
+      .put(`${environment.API_END_POINT}Establishment/general-info`, form)
+      .pipe(
+        map((response) => {
+          console.log(response);
+          this.changeSpecificProfileInfo('genericInfo', response);
+        }),
+        catchError((error) => {
+          console.log(error);
+          this.estProfileSubject.next(null);
+          this.alert.showAlert('estServErrors-loadEstFalse', false);
+          return of(null);
+        }),
+      );
+  }
   /**
    * !END OF PROFILE
    */
@@ -257,6 +274,17 @@ export class EstabilishmentService {
       }),
       catchError(this.handleError('estServErrors-addEventFalse')),
     );
+  }
+  deleteEvent(eventId: string): Observable<any> {
+    return this.http
+      .delete(`${environment.API_END_POINT}Event/${eventId}`)
+      .pipe(
+        map((Response) => {
+          this.alert.showAlert('estServErrors-removeEventTrue', true);
+          this.removeSpecificProfileInfo('events', eventId);
+        }),
+        catchError(this.handleError('estServErrors-removeEventFalse')),
+      );
   }
   /**
    * ! END OF EVENT

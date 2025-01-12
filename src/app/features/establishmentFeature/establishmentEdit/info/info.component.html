@@ -2,15 +2,28 @@
   <h1 class="text-left text-xl font-semibold text-ang-orange">
     Generic information
   </h1>
-  <form [formGroup]="updatedGenericInfo" class="flex flex-col gap-2">
+  <form
+    [formGroup]="updatedGenericInfo"
+    class="flex flex-col gap-2"
+    (ngSubmit)="updateProfile()"
+  >
     <div class="flex flex-col gap-2">
-      <label for="companyName">Establishment name:</label>
+      <label for="name">Establishment name:</label>
       <input
         type="text"
-        id="companyName"
+        id="name"
         class="h-8 w-full rounded-lg border border-ang-orange p-1"
-        formControlName="companyName"
+        formControlName="name"
       />
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="description">Establishment description:</label>
+      <textarea
+        maxlength="126"
+        id="description"
+        class="h-16 w-full rounded-lg border border-ang-orange p-1"
+        formControlName="description"
+      ></textarea>
     </div>
     <h1>Tags:</h1>
     <div class="flex flex-wrap justify-center gap-5 lg:justify-between">
@@ -27,20 +40,26 @@
         {{ "TAGS." + tag | translate }}
       </button>
     </div>
+    <p *ngIf="tagError" class="text-center text-ang-redAlert">
+      {{ "tagError." + tagError | translate }}
+    </p>
     <div class="w-full">
-      <label for="category" class="font-semibold">Categories:</label>
+      <label for="categories" class="font-semibold">Categories:</label>
       <select
         #categorySelect
         class="w-full rounded-lg border border-ang-orange p-1"
         (change)="addCategory(categorySelect.value)"
-        name="category"
-        id="category"
-        formControlName="category"
+        name="categories"
+        id="categories"
+        formControlName="categories"
       >
         <option *ngFor="let category of category" [value]="category">
           {{ "CATEGORIES." + category | translate }}
         </option>
       </select>
+      <p *ngIf="catError" class="py-1 text-ang-redAlert">
+        {{ "catError." + catError | translate }}
+      </p>
       <div class="flex flex-col gap-1">
         <div
           *ngFor="let category of establishmentCategory"
@@ -68,7 +87,12 @@
             </li>
           </ul></span
         >
-        <img src="establishmentForm/i.png" alt="" srcset="" class="h-6 w-6" />
+        <img
+          src="establishment/establishmentForm/i.png"
+          alt=""
+          srcset=""
+          class="h-6 w-6"
+        />
       </div>
       <label for="price" class="font-semibold">{{
         "Select price*" | translate
@@ -84,5 +108,8 @@
       <option value="1">€€</option>
       <option value="2">€€€</option>
     </select>
+    <button class="primary-buttons">
+      {{ "utils-submitButton" | translate }}
+    </button>
   </form>
 </div>

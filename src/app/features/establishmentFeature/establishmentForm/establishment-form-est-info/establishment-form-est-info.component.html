@@ -20,7 +20,10 @@
         <div
           *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)"
         >
-          <div *ngIf="f['name'].errors?.['required']" class="text-red-600">
+          <div
+            *ngIf="f['name'].errors?.['required']"
+            class="nametext-ang-redAlert"
+          >
             {{ "establishmentReg-estRegFormError-estName" | translate }}
           </div>
         </div>
@@ -41,7 +44,7 @@
                 {{ "CATEGORIES." + category | translate }}
               </option>
             </select>
-            <p *ngIf="catError" class="py-1 text-red-600">
+            <p *ngIf="catError" class="nametext-ang-redAlert py-1">
               {{ "catError." + catError | translate }}
             </p>
             <div class="flex flex-col gap-1">
@@ -109,7 +112,7 @@
             >
               <div
                 *ngIf="f['priceCategory'].errors?.['required']"
-                class="text-red-600"
+                class="nametext-ang-redAlert"
               >
                 {{ "establishmentReg-estRegFormError-priceRange" | translate }}
               </div>
@@ -137,7 +140,7 @@
         </button>
       </div>
     </div>
-    <p *ngIf="tagError" class="text-center text-red-600">
+    <p *ngIf="tagError" class="text-center text-ang-redAlert">
       {{ "tagError." + tagError | translate }}
     </p>
     <div class="flex flex-col gap-6">
@@ -156,7 +159,10 @@
           <div
             *ngIf="f['city'].invalid && (f['city'].dirty || f['city'].touched)"
           >
-            <div *ngIf="f['city'].errors?.['required']" class="text-red-600">
+            <div
+              *ngIf="f['city'].errors?.['required']"
+              class="nametext-ang-redAlert"
+            >
               {{ "establishmentReg-estRegFormError-city" | translate }}
             </div>
           </div>
@@ -178,7 +184,10 @@
               (f['address'].dirty || f['address'].touched)
             "
           >
-            <div *ngIf="f['address'].errors?.['required']" class="text-red-600">
+            <div
+              *ngIf="f['address'].errors?.['required']"
+              class="nametext-ang-redAlert"
+            >
               {{ "establishmentReg-estRegFormError-address" | translate }}
             </div>
           </div>
@@ -203,11 +212,14 @@
         >
           <div
             *ngIf="f['postalCode'].errors?.['required']"
-            class="text-red-600"
+            class="nametext-ang-redAlert"
           >
             {{ "establishmentReg-estRegFormError-postalCode" | translate }}
           </div>
-          <div *ngIf="f['postalCode'].errors?.['pattern']" class="text-red-600">
+          <div
+            *ngIf="f['postalCode'].errors?.['pattern']"
+            class="nametext-ang-redAlert"
+          >
             <p>
               {{
                 "establishmentReg-estRegFormError-postalCodeRegex" | translate

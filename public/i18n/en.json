@@ -205,6 +205,7 @@
   "dialogRemoveItem-accept": "Yes",
   "dialogRemoveItem-decline": "No",
   "dialogRemovePost": "Post deletion",
+  "dialogRemoveEvent": "Event deletion",
 
   "establishmentAdd-headline": "Add new:",
   "establishmentAdd-addPost": "Post",
@@ -285,6 +286,8 @@
   "estServErrors-removeMenuItemFalse": "There was an error in deleting the menu, please try again",
   "estServErrors-addEventTrue": "Event has been added",
   "estServErrors-addEventFalse": "There has been an error in adding the event, please try again",
+  "estServErrors-removeEventTrue": "Event has been deleted",
+  "estServErrors-removeEventFalse": "There has been an error in deleting the event, please try again",
   "estServErrors-imageUploadTrue": "Image has been uploaded",
   "estServErrors-imageUploadFalse": "Image couldnt be uploaded, please try again"
 }

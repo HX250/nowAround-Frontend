@@ -205,6 +205,7 @@
   "dialogRemoveItem-accept": "Ano",
   "dialogRemoveItem-decline": "Nie",
   "dialogRemovePost": "Odstánenie príspevku",
+  "dialogRemoveEvent": "Odstánenie akcie",
 
   "establishmentAdd-headline": "Pridať:",
   "establishmentAdd-addPost": "Príspevok",
@@ -285,6 +286,8 @@
   "estServErrors-removeMenuItemFalse": "Nastala chyba pri odstráneni jedla, skúste to znova",
   "estServErrors-addEventTrue": "Udalosť bola pridaná",
   "estServErrors-addEventFalse": "Nastala chyba pri pridávani udalosti, skúste to znova",
+  "estServErrors-removeEventTrue": "Udalosť bola odstránena",
+  "estServErrors-removeEventFalse": "Nastala chyba pri odstráneni udalosti, skúste to znova",
   "estServErrors-imageUploadTrue": "Fotka bola úspešne nahratá",
   "estServErrors-imageUploadFalse": "Fotku sa nepodarilo nahrať, skúste to znova"
 }
