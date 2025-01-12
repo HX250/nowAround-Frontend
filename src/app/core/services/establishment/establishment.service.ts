@@ -7,6 +7,7 @@ import { AlertService } from '../alert/alert.service';
 import { environment } from '../../../../environments/environment.dev';
 import { Menu } from '../../../features/establishmentFeature/models/profile/menu.model';
 import { posts } from '../../../features/establishmentFeature/models/profile/posts.model';
+import { updateGenericInfo } from '../../../features/establishmentFeature/models/profile/updateGenericInfo.model';
 
 @Injectable({
   providedIn: 'root',
@@ -128,9 +129,9 @@ export class EstabilishmentService {
       );
   }
 
-  updateGenericInfoProfile(form: any): Observable<any> {
+  updateGenericInfoProfile(form: updateGenericInfo): Observable<any> {
     return this.http
-      .put(`${environment.API_END_POINT}Establishment/general-info`, form)
+      .put(`${environment.API_END_POINT}Establishment/generic-info`, form)
       .pipe(
         map((response) => {
           console.log(response);

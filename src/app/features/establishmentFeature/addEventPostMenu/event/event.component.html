@@ -252,10 +252,18 @@
           class="max-w-12 rounded-lg border border-ang-orange p-1"
           formControlName="eventPriceCategory"
         >
-          <option value=""></option>
+          <option value="*" selected></option>
           <option value="eur">€</option>
           <option value="per">%</option>
         </select>
+        <span
+          *ngIf="
+            f['eventPriceCategory'].invalid && f['eventPriceCategory'].touched
+          "
+          class="text-red-500"
+        >
+          {{ "establishmentAddEventError-eventPriceCategory" | translate }}
+        </span>
       </div>
       <span
         *ngIf="f['price'].invalid && f['price'].touched"

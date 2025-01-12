@@ -252,6 +252,7 @@
   "establishmentAddEventError-location": "Miesto udalosti je povinné",
   "establishmentAddEventError-eventDuration": "Dĺžka trvania události je povinná",
   "establishmentAddEventError-price": "Cena udalosti je povinná",
+  "establishmentAddEventError-eventPriceCategory": "Cenova kategória události je povinná",
   "establishmentAddEventError-maxParticipants": "Maximalný počet je povinný",
   "establishmentAddEventError-eventCategory": "Kategória udalosti je povinná",
   "establishmentAddEventError-endBeforeStart": "Podujatie nemôže začínať skôr ako skončí",

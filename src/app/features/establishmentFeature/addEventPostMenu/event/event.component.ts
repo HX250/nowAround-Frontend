@@ -51,7 +51,7 @@ export class EventComponent implements OnInit {
       endTimeOfEvent: ['', Validators.required],
       city: ['', Validators.required],
       price: ['', Validators.required],
-      eventPriceCategory: [''],
+      eventPriceCategory: ['', Validators.required],
       location: ['', Validators.required],
       maxParticipants: ['', Validators.required],
       eventCategory: ['', Validators.required],

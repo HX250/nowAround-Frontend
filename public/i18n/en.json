@@ -252,6 +252,7 @@
   "establishmentAddEventError-location": "Location of event is required",
   "establishmentAddEventError-eventDuration": "Event duration is required",
   "establishmentAddEventError-price": "Price is required",
+  "establishmentAddEventError-eventPriceCategory": "Event price category is required",
   "establishmentAddEventError-maxParticipants": "Max participants is required",
   "establishmentAddEventError-eventCategory": "Event category is required",
   "establishmentAddEventError-endBeforeStart": "End cant start before it ends",

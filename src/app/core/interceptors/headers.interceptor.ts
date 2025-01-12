@@ -32,7 +32,7 @@ function shouldIntercept(url: string): boolean {
     'Establishment/menu',
     'Establishment/menu/item/image',
     'Establishment/image',
-    'Establishment/general-info',
+    'Establishment/generic-info',
     'Post',
     'Event',
   ];

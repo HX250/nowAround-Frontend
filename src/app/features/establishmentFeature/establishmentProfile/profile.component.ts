@@ -17,6 +17,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AddComponent } from '../addEventPostMenu/add.component';
 import { ImageService } from '../../../core/services/image/image.service';
 import { LucideAngularModule } from 'lucide-angular';
+import { Menu } from '../models/profile/menu.model';
+import { Events } from '../models/profile/events.model';
 
 @Component({
   selector: 'app-profile',
@@ -40,7 +42,7 @@ export class ProfileComponent implements OnInit {
   addWindow = signal(false);
   isLoggedIn = computed(() => (this.customAuth.estLogin() ? true : false));
   estProfile?: profile = undefined;
-  tabLink?: boolean = false;
+  tabLink: boolean = false;
   eventLink: boolean = false;
   establishmentID: string = '';
   backgroundPreviewImage: any;
@@ -85,14 +87,14 @@ export class ProfileComponent implements OnInit {
   }
 
   checkTab(): void {
-    this.estServ.returnSpecificProfileInfo<boolean>('menus').subscribe({
+    this.estServ.returnSpecificProfileInfo<Menu>('menus').subscribe({
       next: (response) => {
-        this.tabLink = response !== undefined && response;
+        this.tabLink = response ? true : false;
       },
     });
-    this.estServ.returnSpecificProfileInfo<boolean>('events').subscribe({
+    this.estServ.returnSpecificProfileInfo<Events>('events').subscribe({
       next: (response) => {
-        this.eventLink = response !== undefined && response;
+        this.eventLink = response ? true : false;
       },
     });
   }

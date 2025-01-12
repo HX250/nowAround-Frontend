@@ -101,7 +101,7 @@ export class InfoComponent implements OnInit, OnDestroy {
     }
 
     this.updatedGenericInfo.patchValue({
-      category: this.establishmentCategory,
+      categories: this.establishmentCategory,
     });
   }
 
