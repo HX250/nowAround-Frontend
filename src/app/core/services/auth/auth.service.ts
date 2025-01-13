@@ -15,7 +15,7 @@ export class CustomAuthService {
 
   setRole(role: string): void {
     this.roleSubject.next(role);
-    localStorage.setItem('role', role);
+    sessionStorage.setItem('role', role);
 
     if (role === 'Establishment') {
       this.estLogin.set(true);
@@ -23,7 +23,7 @@ export class CustomAuthService {
   }
 
   private getRoleVal() {
-    return localStorage.getItem('role');
+    return sessionStorage.getItem('role');
   }
 
   constructor(
@@ -105,6 +105,6 @@ export class CustomAuthService {
   resetRoleState(): void {
     this.roleSubject.next('');
     this.estLogin.set(false);
-    localStorage.removeItem('role');
+    sessionStorage.removeItem('role');
   }
 }

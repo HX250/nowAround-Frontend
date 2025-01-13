@@ -12,7 +12,7 @@
         <img
           *ngIf="eventImg; else defaultEventImage"
           [src]="eventImg"
-          class="w-full object-cover"
+          class="max-w-72 object-cover"
           alt="Uploaded Image"
         />
         <ng-template #defaultEventImage>
@@ -66,7 +66,7 @@
       />
       <span
         *ngIf="f['title'].invalid && f['title'].touched"
-        class="text-red-500"
+        class="text-ang-redAlert"
       >
         {{ "establishmentAddPostError-title" | translate }}
       </span>
@@ -81,103 +81,69 @@
         id="body"
         formControlName="body"
       ></textarea>
-      <span *ngIf="f['body'].invalid && f['body'].touched" class="text-red-500">
+      <span
+        *ngIf="f['body'].invalid && f['body'].touched"
+        class="text-ang-redAlert"
+      >
         {{ "establishmentAddEventError-description" | translate }}
       </span>
     </div>
-    <div class="flex gap-4">
-      <div class="flex gap-2">
-        <div class="flex flex-col gap-1">
-          <label for="startDateOfEvent">{{
-            "establishmentAddEvent-startDateOfEvent" | translate
-          }}</label>
-          <div class="flex items-center justify-center gap-2">
-            <input
-              class="h-8 w-full rounded-lg border border-ang-orange p-1"
-              type="date"
-              id="startDateOfEvent"
-              formControlName="startDateOfEvent"
-            />
-            <input
-              class="h-8 w-full rounded-lg border border-ang-orange p-1"
-              type="time"
-              id="startTimeOfEvent"
-              formControlName="startTimeOfEvent"
-            />
-          </div>
-          <span
-            *ngIf="
-              f['startDateOfEvent'].invalid && f['startDateOfEvent'].touched
-            "
-            class="text-red-500"
-          >
-            {{ "establishmentAddEventError-dateOfEvent" | translate }}
-          </span>
-          <span
-            *ngIf="
-              f['startDateOfEvent'].hasError('pastDate') &&
-              f['startDateOfEvent'].touched
-            "
-            class="text-red-500"
-          >
-            {{ "establishmentAddEventError-pastEvenet" | translate }}
-          </span>
-          <span
-            *ngIf="
-              f['startTimeOfEvent'].invalid && f['startTimeOfEvent'].touched
-            "
-            class="text-red-500"
-          >
-            {{ "establishmentAddEventError-timeOfTime" | translate }}
-          </span>
+    <div class="flex flex-col gap-4 sm:flex-row">
+      <div class="flex flex-col gap-2">
+        <label for="startDateOfEvent" class="text-sm sm:text-base">
+          {{ "establishmentAddEvent-startDateOfEvent" | translate }}
+        </label>
+        <div class="flex flex-wrap gap-2">
+          <input
+            class="h-10 w-full rounded-lg border border-ang-orange p-2 sm:w-auto"
+            type="date"
+            id="startDateOfEvent"
+            formControlName="startDateOfEvent"
+          />
+          <input
+            class="h-10 w-full rounded-lg border border-ang-orange p-2 sm:w-auto"
+            type="time"
+            id="startTimeOfEvent"
+            formControlName="startTimeOfEvent"
+          />
         </div>
+        <span
+          *ngIf="f['startDateOfEvent'].invalid && f['startDateOfEvent'].touched"
+          class="text-ang-redAlert"
+        >
+          {{ "establishmentAddEventError-dateOfEvent" | translate }}
+        </span>
       </div>
-      <p>-</p>
-      <div class="flex gap-2">
-        <div class="flex flex-col gap-1">
-          <label for="endDateOfEvent">{{
-            "establishmentAddEvent-endDateOfEvent" | translate
-          }}</label>
-          <div class="flex items-center justify-center gap-2">
-            <input
-              class="h-8 w-full rounded-lg border border-ang-orange p-1"
-              type="date"
-              id="endDateOfEvent"
-              formControlName="endDateOfEvent"
-            />
-
-            <input
-              class="h-8 w-full rounded-lg border border-ang-orange p-1"
-              type="time"
-              id="endTimeOfEvent"
-              formControlName="endTimeOfEvent"
-            />
-          </div>
-          <span
-            *ngIf="f['endDateOfEvent'].invalid && f['endDateOfEvent'].touched"
-            class="text-red-500"
-          >
-            {{ "establishmentAddEventError-dateOfEvent" | translate }}
-          </span>
-          <span
-            *ngIf="
-              f['endDateOfEvent'].hasError('pastDate') &&
-              f['endDateOfEvent'].touched
-            "
-            class="text-red-500"
-          >
-            {{ "establishmentAddEventError-pastEvenet" | translate }}
-          </span>
-          <span
-            *ngIf="f['endTimeOfEvent'].invalid && f['endTimeOfEvent'].touched"
-            class="text-red-500"
-          >
-            {{ "establishmentAddEventError-timeOfTime" | translate }}
-          </span>
+      <div class="flex flex-col gap-2">
+        <label for="endDateOfEvent" class="text-sm sm:text-base">
+          {{ "establishmentAddEvent-endDateOfEvent" | translate }}
+        </label>
+        <div class="flex flex-wrap gap-2">
+          <input
+            class="h-10 w-full rounded-lg border border-ang-orange p-2 sm:w-auto"
+            type="date"
+            id="endDateOfEvent"
+            formControlName="endDateOfEvent"
+          />
+          <input
+            class="h-10 w-full rounded-lg border border-ang-orange p-2 sm:w-auto"
+            type="time"
+            id="endTimeOfEvent"
+            formControlName="endTimeOfEvent"
+          />
         </div>
+        <span
+          *ngIf="f['endDateOfEvent'].invalid && f['endDateOfEvent'].touched"
+          class="text-ang-redAlert"
+        >
+          {{ "establishmentAddEventError-dateOfEvent" | translate }}
+        </span>
       </div>
     </div>
-    <span *ngIf="eventForm.errors?.['endBeforeStart']" class="text-red-500">
+    <span
+      *ngIf="eventForm.errors?.['endBeforeStart']"
+      class="text-ang-redAlert"
+    >
       {{ "establishmentAddEventError-endBeforeStart" | translate }}
     </span>
     <div class="flex flex-col gap-1">
@@ -193,7 +159,7 @@
       />
       <span
         *ngIf="f['location'].invalid && f['location'].touched"
-        class="text-red-500"
+        class="text-ang-redAlert"
       >
         {{ "establishmentAddEventError-location" | translate }}
       </span>
@@ -209,7 +175,10 @@
         id="city"
         formControlName="city"
       />
-      <span *ngIf="f['city'].invalid && f['city'].touched" class="text-red-500">
+      <span
+        *ngIf="f['city'].invalid && f['city'].touched"
+        class="text-ang-redAlert"
+      >
         {{ "establishmentAddEventError-eventDuration" | translate }}
       </span>
     </div>
@@ -261,13 +230,13 @@
         *ngIf="
           f['eventPriceCategory'].invalid && f['eventPriceCategory'].touched
         "
-        class="text-red-500"
+        class="text-ang-redAlert"
       >
         {{ "establishmentAddEventError-eventPriceCategory" | translate }}
       </span>
       <span
         *ngIf="f['price'].invalid && f['price'].touched"
-        class="text-red-500"
+        class="text-ang-redAlert"
       >
         {{ "establishmentAddEventError-price" | translate }}
       </span>
@@ -310,7 +279,7 @@
       </select>
       <span
         *ngIf="f['maxParticipants'].invalid && f['maxParticipants'].touched"
-        class="text-red-500"
+        class="text-ang-redAlert"
       >
         {{ "establishmentAddEventError-maxParticipants" | translate }}
       </span>
@@ -330,7 +299,7 @@
       </select>
       <span
         *ngIf="f['eventCategory'].invalid && f['eventCategory'].touched"
-        class="text-red-500"
+        class="text-ang-redAlert"
       >
         {{ "establishmentAddEventError-eventCategory" | translate }}
       </span>

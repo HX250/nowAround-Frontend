@@ -4,16 +4,15 @@
   </h2>
   <form
     (ngSubmit)="submitPost()"
-    class="flex w-96 flex-col gap-4"
+    class="mx-auto flex w-full max-w-lg flex-col gap-4"
     [formGroup]="postForm"
-    novalidate
   >
     <div class="flex w-full items-center justify-center">
       <label for="image">
         <img
           *ngIf="postImg; else defaultProfileImage"
           [src]="postImg"
-          class="h-96 w-96 object-cover"
+          class="max-w-72 object-cover"
           alt="Uploaded Image"
         />
         <ng-template #defaultProfileImage>
@@ -100,15 +99,17 @@
       </span>
     </div>
 
-    <button type="submit" class="primary-buttons">
-      {{ "utils-submitButton" | translate }}
-    </button>
-    <button
-      type="button"
-      (click)="cancelAddingPost()"
-      class="secondary-buttons border-2"
-    >
-      {{ "utils-cancelButton" | translate }}
-    </button>
+    <div class="flex flex-col gap-4 sm:flex-row">
+      <button type="submit" class="primary-buttons">
+        {{ "utils-submitButton" | translate }}
+      </button>
+      <button
+        type="button"
+        (click)="cancelAddingPost()"
+        class="secondary-buttons border-2"
+      >
+        {{ "utils-cancelButton" | translate }}
+      </button>
+    </div>
   </form>
 </div>
