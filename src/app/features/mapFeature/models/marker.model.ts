@@ -1,7 +1,7 @@
 export interface marker {
   auth0Id: string;
   name: string;
-  descritpion: string;
+  description: string;
   tags: string[];
   categories: string[];
   priceCategory: string;

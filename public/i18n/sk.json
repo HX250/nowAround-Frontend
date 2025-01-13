@@ -243,7 +243,7 @@
   "establishmentAddEvent-infoPriceSecond": "Ak chcete pridať akciu, vyberte %",
   "establishmentAddEvent-infoPriceThird": "Ak máte špeciálnu akciu (1 + 1 zadarmo), vyberte prázdnu hodnotu",
 
-  "establishmentAddEvent-infoParticipants": "Ak akcia nevyžaduje účastníkov, pokračujte s prázdnou hodnotou",
+  "establishmentAddEvent-infoParticipants": "Ak akcia nevyžaduje účastníkov, pokračujte s 0",
 
   "establishmentAddEventError-description": "Popis udalosti je povinný",
   "establishmentAddEventError-dateOfEvent": "Dátum udalosti je povinný",

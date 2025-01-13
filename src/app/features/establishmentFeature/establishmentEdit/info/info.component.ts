@@ -47,7 +47,7 @@ export class InfoComponent implements OnInit, OnDestroy {
     'CINEMA',
     'RESTAURANT',
   ];
-  establishmentTags?: string[] = [];
+  establishmentTags: string[] = [];
   establishmentCategory?: string[] = [];
   catError: string = '';
   tagError: string = '';
@@ -67,7 +67,7 @@ export class InfoComponent implements OnInit, OnDestroy {
       .subscribe((Response) => {
         this.estProfile = Response;
         this.establishmentCategory = this.estProfile?.categories;
-        this.establishmentTags = this.estProfile?.tags;
+        this.establishmentTags = this.estProfile?.tags || [];
         this.buildForm();
       });
   }
@@ -76,9 +76,9 @@ export class InfoComponent implements OnInit, OnDestroy {
     this.updatedGenericInfo = this.fb.group({
       name: [this.estProfile?.name],
       description: [this.estProfile?.description],
+      priceCategory: [this.pipePriceRange()],
       categories: [this.estProfile?.categories],
       tags: [this.estProfile?.tags],
-      priceCategory: [this.pipePriceRange()],
     });
   }
 
@@ -96,30 +96,32 @@ export class InfoComponent implements OnInit, OnDestroy {
       this.catError = 'maxCat';
       return;
     }
-    if (!this.establishmentCategory?.includes(category)) {
-      this.establishmentCategory?.push(category);
-    }
 
-    this.updatedGenericInfo.patchValue({
-      categories: this.establishmentCategory,
-    });
+    if (!this.establishmentCategory?.includes(category)) {
+      this.establishmentCategory = [...this.establishmentCategory!, category];
+      this.updatedGenericInfo.patchValue({
+        categories: this.establishmentCategory,
+      });
+    } else {
+      this.establishmentCategory = [...this.establishmentCategory!];
+      this.updatedGenericInfo.patchValue({
+        categories: this.establishmentCategory,
+      });
+    }
   }
 
-  addTag(val: string) {
-    if (
-      !this.establishmentTags?.includes(val) &&
-      this.establishmentTags!.length >= 5
-    ) {
-      this.tagError = 'maxTags';
-      return;
+  addTag(tag: string) {
+    if (this.establishmentTags?.includes(tag)) {
+      this.establishmentTags = this.establishmentTags.filter(
+        (existingTag) => existingTag !== tag,
+      );
     } else {
+      if (this.establishmentTags!.length >= 5) {
+        this.tagError = 'maxTags';
+        return;
+      }
+      this.establishmentTags = [...this.establishmentTags, tag];
       this.tagError = '';
-    }
-    if (this.establishmentTags?.includes(val)) {
-      const index = this.establishmentTags?.indexOf(val);
-      this.establishmentTags?.splice(index, 1);
-    } else {
-      this.establishmentTags?.push(val);
     }
 
     this.updatedGenericInfo.patchValue({
@@ -128,8 +130,12 @@ export class InfoComponent implements OnInit, OnDestroy {
   }
 
   removeCategory(category: string) {
-    const index = this.establishmentCategory!.indexOf(category);
-    this.establishmentCategory!.splice(index, 1);
+    this.establishmentCategory = this.establishmentCategory!.filter(
+      (cat) => cat !== category,
+    );
+    this.updatedGenericInfo.patchValue({
+      categories: this.establishmentCategory,
+    });
   }
 
   updateProfile() {

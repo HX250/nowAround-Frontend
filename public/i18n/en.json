@@ -243,7 +243,7 @@
   "establishmentAddEvent-infoPriceSecond": "For adding action please select %",
   "establishmentAddEvent-infoPriceThird": "If you have a special action (1 + 1 free) please select empty value",
 
-  "establishmentAddEvent-infoParticipants": "If the action doesnt need participants please proceed with empty value",
+  "establishmentAddEvent-infoParticipants": "If the action doesnt need participants please proceed with 0",
 
   "establishmentAddEventError-description": "Event description is required",
   "establishmentAddEventError-dateOfEvent": " Date of event is required",

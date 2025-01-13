@@ -256,15 +256,15 @@
           <option value="eur">€</option>
           <option value="per">%</option>
         </select>
-        <span
-          *ngIf="
-            f['eventPriceCategory'].invalid && f['eventPriceCategory'].touched
-          "
-          class="text-red-500"
-        >
-          {{ "establishmentAddEventError-eventPriceCategory" | translate }}
-        </span>
       </div>
+      <span
+        *ngIf="
+          f['eventPriceCategory'].invalid && f['eventPriceCategory'].touched
+        "
+        class="text-red-500"
+      >
+        {{ "establishmentAddEventError-eventPriceCategory" | translate }}
+      </span>
       <span
         *ngIf="f['price'].invalid && f['price'].touched"
         class="text-red-500"

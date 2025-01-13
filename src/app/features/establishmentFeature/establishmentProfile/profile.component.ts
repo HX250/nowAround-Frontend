@@ -16,7 +16,6 @@ import { EstablishmentEditComponent } from '../establishmentEdit/establishment-e
 import { TranslateModule } from '@ngx-translate/core';
 import { AddComponent } from '../addEventPostMenu/add.component';
 import { ImageService } from '../../../core/services/image/image.service';
-import { LucideAngularModule } from 'lucide-angular';
 import { Menu } from '../models/profile/menu.model';
 import { Events } from '../models/profile/events.model';
 
@@ -67,19 +66,15 @@ export class ProfileComponent implements OnInit {
 
   saveProfile() {
     const handleLoggedIn = () => {
-      console.log('Logged in');
       this.auth0.user$.subscribe((response) => {
         const establishmentID = response?.sub || '';
-        console.log(establishmentID);
         this.router.navigateByUrl(`establishment/${establishmentID}`);
         this.estServ.setTestProfile(establishmentID).subscribe();
       });
     };
 
     const handleNotLoggedIn = () => {
-      console.log('Not logged in');
       const establishmentID = this.route.snapshot.paramMap.get('id') || '';
-      console.log(establishmentID);
       this.estServ.setTestProfile(establishmentID).subscribe();
     };
 

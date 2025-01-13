@@ -205,17 +205,50 @@ export class MapComponent implements OnInit {
       essential: true,
     });
     const localizedTags = this.localizeTags(mark.tags).join(', ');
-
     const popupHTML = `
-    <div class="w-fit h-fit bg-ang-white flex gap-2 flex-col p-4">
-      <h3 class="text-lg font-semibold text-gray-800 mb-2">${mark.name}</h3>
-      <p>${mark.descritpion}</p>
-      <p>${localizedTags}</p>
-      <p>${mark.priceCategory}</p>
-      <button class="bg-ang-orange text-ang-white text-lg rounded-md px-4 py-2 hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300" id="visit-btn">
-        Visit ${mark.name}
-      </button>
+<div class="w-fit h-fit flex flex-col gap-4 bg-ang-white p-4 ">
+  <div class="flex h-fit items-center gap-2">
+    <div class="h-6 w-6">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store">
+        <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/>
+      </svg>
     </div>
+    <h3 class="text-lg font-semibold text-gray-800">${mark.name}</h3>
+  </div>
+  
+  <div class="flex h-fit items-center gap-2">
+   <div class="h-6 w-6 ">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-text">
+        <path d="M17 6.1H3"/><path d="M21 12.1H3"/><path d="M15.1 18H3"/>
+      </svg>
+    </div>  
+    <p>${mark.description}</p>
+  </div>
+
+  <div class="flex h-fit  gap-2">
+    <div class="h-6 w-6">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tags">
+        <path d="m15 5 6.3 6.3a2.4 2.4 0 0 1 0 3.4L17 19"/><path d="M9.586 5.586A2 2 0 0 0 8.172 5H3a1 1 0 0 0-1 1v5.172a2 2 0 0 0 .586 1.414L8.29 18.29a2.426 2.426 0 0 0 3.42 0l3.58-3.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="6.5" cy="9.5" r=".5" fill="currentColor"/>
+      </svg>
+    </div>  
+  <p>${localizedTags}</p>
+  </div>
+  
+  <div class="flex h-fit items-center gap-2">
+    <div class="h-6 w-6">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-euro">
+        <path d="M4 10h12"/><path d="M4 14h9"/><path d="M19 6a7.7 7.7 0 0 0-5.2-2A7.9 7.9 0 0 0 6 12c0 4.4 3.5 8 7.8 8 2 0 3.8-.8 5.2-2"/>
+      </svg>
+  </div>  
+    <p>${mark.priceCategory}</p>
+  </div>
+  
+  <button class="bg-ang-orange text-ang-white text-sm rounded-md px-4 py-2 hover:bg-ang-orange/80 focus:outline-none focus:ring focus:ring-orange-300" id="visit-btn">
+    Visit ${mark.name}
+  </button>
+</div>
+
+
       `;
 
     const popup = new mapboxgl.Popup({

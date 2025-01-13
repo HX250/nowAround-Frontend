@@ -134,8 +134,7 @@ export class EstabilishmentService {
       .put(`${environment.API_END_POINT}Establishment/generic-info`, form)
       .pipe(
         map((response) => {
-          console.log(response);
-          this.changeSpecificProfileInfo('genericInfo', response);
+          window.location.reload();
         }),
         catchError((error) => {
           console.log(error);

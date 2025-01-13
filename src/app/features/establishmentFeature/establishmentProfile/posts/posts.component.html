@@ -29,14 +29,52 @@
           <h2 class="mb-2 text-xl font-bold text-ang-black">
             {{ post.headline }}
           </h2>
-          <p class="mb-2 text-sm text-ang-black/70">
-            {{ post.createdAt | date: "mediumDate" }}
-          </p>
-          <p
-            class="mb-4 h-fit w-full whitespace-pre-wrap break-words text-ang-black/80"
-          >
-            {{ post.body }}
-          </p>
+          <div class="mb-4 flex items-center gap-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-calendar-1"
+            >
+              <path d="M11 14h1v4" />
+              <path d="M16 2v4" />
+              <path d="M3 10h18" />
+              <path d="M8 2v4" />
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+            </svg>
+            <p class="text-sm text-ang-black/70">
+              {{ post.createdAt | date: "mediumDate" }}
+            </p>
+          </div>
+          <div class="mb-2 flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-text mr-2 inline-block align-middle"
+            >
+              <path d="M17 6.1H3" />
+              <path d="M21 12.1H3" />
+              <path d="M15.1 18H3" />
+            </svg>
+            <p
+              class="h-fit w-full whitespace-pre-wrap break-words text-ang-black/80"
+            >
+              {{ post.body }}
+            </p>
+          </div>
           <div class="flex items-center justify-between">
             <span class="text-sm text-ang-black/70">
               {{ post.likes.length }}

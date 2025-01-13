@@ -25,7 +25,7 @@
         </label>
         <input
           *ngIf="isLoggedIn()"
-          (change)="onFileChange($event, '/image/background-picture')"
+          (change)="onFileChange($event, '/picture/background-picture')"
           class="hidden"
           type="file"
           id="backgroundPreviewImage"
@@ -62,7 +62,7 @@
               </label>
               <input
                 *ngIf="isLoggedIn()"
-                (change)="onFileChange($event, '/image/profile-picture')"
+                (change)="onFileChange($event, '/picture/profile-picture')"
                 class="hidden"
                 type="file"
                 id="profilePreviewImage"

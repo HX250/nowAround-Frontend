@@ -11,6 +11,7 @@ export interface Events {
   city: string;
   maxParticipants: string;
   eventCategory: EventCategory;
+  eventPriceCategory: string;
 }
 
 export enum EventCategory {
@@ -22,7 +23,7 @@ export enum EventCategory {
 }
 
 export enum maxParticipants {
-  zero = '',
+  zero = '0',
   first = '1 - 10',
   second = '11 - 20',
   third = '21 - 30',

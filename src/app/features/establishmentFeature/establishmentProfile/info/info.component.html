@@ -12,6 +12,52 @@
     >
       <span class="flex items-center justify-center text-ang-black">X</span>
     </button>
+    <div
+      class="has-tooltip group absolute top-0 z-50 w-fit rounded-br-lg bg-ang-orange p-2"
+    >
+      <span
+        class="tooltip invisible absolute -right-[18.7rem] z-50 mt-9 w-max rounded border bg-ang-white p-2 text-ang-black shadow-lg group-hover:visible"
+      >
+        <p>Click on the map to change the location.</p>
+      </span>
+      @if (!editingLocationInfo) {
+        <svg
+          (click)="toggleLocationChange()"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#000000"
+          stroke-width="1.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-settings"
+        >
+          <path
+            d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"
+          />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      } @else {
+        <svg
+          (click)="toggleLocationChange()"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#000000"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-x"
+        >
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      }
+    </div>
 
     <div
       class="z-40 flex flex-col items-center gap-4 pb-2 pt-12 sm:flex-row sm:p-4"
@@ -23,29 +69,65 @@
       </div>
       <ng-template #showItems>
         <div class="map" id="map" style="height: 20rem; width: 20rem"></div>
-        <div class="flex flex-col gap-3 text-ang-black">
-          <p class="font-semibold">
-            {{ "establishmentInfo-openingHours" | translate }}
-          </p>
-          <div class="flex w-80 flex-col gap-1">
+        @if (!editingLocationInfo) {
+          <div class="flex flex-col gap-3 text-ang-black">
+            <p class="font-semibold">
+              {{ "establishmentInfo-openingHours" | translate }}
+            </p>
+            <div class="flex w-80 flex-col gap-1">
+              <div
+                *ngFor="let entry of infoList?.businessHours | daySort"
+                class="flex w-full justify-between"
+              >
+                <p>
+                  {{
+                    "establishmentProfileInfo-OpeningHours." + entry.key
+                      | translate
+                  }}:
+                </p>
+                <p>{{ entry.value }}</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <p>{{ infoList?.address }}</p>
+            </div>
+          </div>
+        } @else {
+          <form [formGroup]="locInfoForm" (ngSubmit)="updateLocationInfo()">
             <div
               *ngFor="let entry of infoList?.businessHours | daySort"
-              class="flex w-full justify-between"
+              class="mb-1 grid grid-cols-3"
             >
               <p>
                 {{
                   "establishmentProfileInfo-OpeningHours." + entry.key
                     | translate
-                }}
-                :
+                }}:
               </p>
-              <p>{{ entry.value }}</p>
+              <div class="flex max-w-36 gap-2">
+                <input
+                  type="text"
+                  formControlName="{{ entry.key }}_open"
+                  placeholder="Open"
+                  class="h-8 w-full rounded-lg border border-ang-orange p-1"
+                />
+                -
+                <input
+                  type="text"
+                  formControlName="{{ entry.key }}_close"
+                  placeholder="Close"
+                  class="h-8 w-full rounded-lg border border-ang-orange p-1"
+                />
+              </div>
+              <button type="button" (click)="closeThisDay(entry)">
+                Close today
+              </button>
             </div>
-          </div>
-          <div class="flex gap-3">
-            <p>{{ infoList?.address }}</p>
-          </div>
-        </div>
+            <button type="submit" class="primary-buttons mt-6 w-full">
+              {{ "utils-submitButton" | translate }}
+            </button>
+          </form>
+        }
       </ng-template>
     </div>
   </div>

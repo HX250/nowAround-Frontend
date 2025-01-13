@@ -31,7 +31,7 @@ function shouldIntercept(url: string): boolean {
     'Establishment/register-status',
     'Establishment/menu',
     'Establishment/menu/item/image',
-    'Establishment/image',
+    'Establishment/picture',
     'Establishment/generic-info',
     'Post',
     'Event',
