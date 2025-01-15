@@ -46,9 +46,7 @@ export class AddComponent {
   getProfileData() {
     this.estServ
       .returnSpecificProfileInfo<Menu[]>('menus')
-      .subscribe((Response) => {
-        console.log(Response);
-      });
+      .subscribe((Response) => {});
   }
 
   addEvent() {

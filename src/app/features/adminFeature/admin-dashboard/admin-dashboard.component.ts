@@ -39,9 +39,7 @@ export class AdminDashboardComponent implements OnInit {
         this.adminStats = Response;
         this.createFirstChart();
       },
-      error: (Error: any) => {
-        console.log(Error);
-      },
+      error: (Error: any) => {},
     });
   }
 
@@ -50,9 +48,7 @@ export class AdminDashboardComponent implements OnInit {
       next: (response) => {
         this.establishments = Array.isArray(response) ? response : [];
       },
-      error: (error) => {
-        console.error('Error fetching establishments:', error);
-      },
+      error: (error) => {},
     });
   }
 
@@ -65,9 +61,7 @@ export class AdminDashboardComponent implements OnInit {
         next: (response) => {
           this.loadPendingEstablishments();
         },
-        error: (error) => {
-          console.error('Error processing establishment:', error);
-        },
+        error: (error) => {},
       });
   }
   createFirstChart() {

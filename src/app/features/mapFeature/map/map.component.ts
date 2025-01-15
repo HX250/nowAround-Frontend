@@ -91,7 +91,6 @@ export class MapComponent implements OnInit {
         this.initializeMap();
       },
       (error) => {
-        console.error('Geolocation error: ', error);
         this.initializeMap();
       },
     );
@@ -155,7 +154,6 @@ export class MapComponent implements OnInit {
           (res) =>
             !this.markers.some((markerObj) => markerObj.id === res.auth0Id),
         );
-        console.log(Response);
 
         newMarkers.forEach((res) => {
           this.addCustomMarker(res);
@@ -264,12 +262,9 @@ export class MapComponent implements OnInit {
         button.addEventListener('click', () => this.visitEst(mark.auth0Id));
       }
     });
-
-    console.log(mark.auth0Id);
   }
 
   visitEst(establishmentID: string) {
-    console.log('Navigating to establishment:', establishmentID);
     this.router.navigate([`/establishment/${establishmentID}`]);
   }
 
@@ -282,8 +277,6 @@ export class MapComponent implements OnInit {
     if (this.map) {
       const zoom = this.map.getZoom();
       if (zoom <= 15) {
-        console.log(zoom);
-
         this.removeAllMarkers();
         return false;
       } else {

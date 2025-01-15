@@ -47,12 +47,10 @@ export class PostsComponent implements OnInit {
 
     const subscription = this.dialog.dialogResult$.subscribe((result) => {
       if (result !== null) {
-        console.log('Dialog result:', result);
         if (result) {
           this.estServ.deletePost(postId).subscribe();
           subscription.unsubscribe();
         } else {
-          console.log('Item deletion cancelled');
           subscription.unsubscribe();
         }
       }

@@ -73,9 +73,7 @@ export class CustomAuthService {
         this.setRole(role);
         this.handleRole(role);
       },
-      error: (error) => {
-        console.error('Token error:', error);
-      },
+      error: (error) => {},
     });
   }
 
@@ -96,7 +94,6 @@ export class CustomAuthService {
     try {
       return jwtDecode(token);
     } catch (Error) {
-      console.error('Error decoding token:', Error);
       return {};
     }
   }

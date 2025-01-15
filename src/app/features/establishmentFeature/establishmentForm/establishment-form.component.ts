@@ -40,18 +40,13 @@ export class EstablishmentFormComponent {
 
     if (personalValid && establishmentValid) {
       const completeFormData = { establishmentOwnerInfo, establishmentInfo };
-      console.log(completeFormData);
 
       this.estService
         .registerEstablishment(completeFormData)
         .pipe(take(1))
         .subscribe({
-          next: (response) => {
-            console.log('Establishment registered successfully', response);
-          },
-          error: (error) => {
-            console.error('Error registering establishment', error);
-          },
+          next: (response) => {},
+          error: (error) => {},
           complete: () => {
             this.estEmail = completeFormData.establishmentOwnerInfo.email;
             this.popUpHidden = false;

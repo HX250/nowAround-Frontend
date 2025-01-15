@@ -45,7 +45,6 @@ export class ImageService {
     required?: boolean;
   } | null {
     const errors: { [key: string]: boolean } = {};
-    console.log(file);
 
     if (!this.validateFileType(file)) {
       errors['invalidFileType'] = true;

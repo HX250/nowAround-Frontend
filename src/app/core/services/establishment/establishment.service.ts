@@ -117,11 +117,9 @@ export class EstabilishmentService {
       )
       .pipe(
         map((response) => {
-          console.log(response);
           this.estProfileSubject.next(response);
         }),
         catchError((error) => {
-          console.log(error);
           this.estProfileSubject.next(null);
           this.alert.showAlert('estServErrors-loadEstFalse', false);
           return of(null);
@@ -137,7 +135,6 @@ export class EstabilishmentService {
           window.location.reload();
         }),
         catchError((error) => {
-          console.log(error);
           this.estProfileSubject.next(null);
           this.alert.showAlert('estServErrors-loadEstFalse', false);
           return of(null);
@@ -202,7 +199,7 @@ export class EstabilishmentService {
       .pipe(
         map((Response) => {
           this.alert.showAlert('estServErrors-addNewMenuTrue', true);
-          console.log(Response);
+
           this.changeSpecificProfileInfo('menus', Response);
           return true;
         }),
@@ -217,7 +214,7 @@ export class EstabilishmentService {
         map((Response) => {
           this.alert.showAlert('estServErrors-updateMenuTrue', true);
           this.updateSpecificMenuCategory('menus', Response.id, Response);
-          console.log(Response);
+
           return Response;
         }),
         catchError(this.handleError('estServErrors-updateMenuFalse')),
@@ -275,6 +272,7 @@ export class EstabilishmentService {
       catchError(this.handleError('estServErrors-addEventFalse')),
     );
   }
+
   deleteEvent(eventId: string): Observable<any> {
     return this.http
       .delete(`${environment.API_END_POINT}Event/${eventId}`)
@@ -297,7 +295,6 @@ export class EstabilishmentService {
       .put(`${environment.API_END_POINT}Establishment${where}`, formData)
       .pipe(
         map((Response) => {
-          console.log(Response);
           this.alert.showAlert('estServErrors-imageUploadTrue', true);
         }),
         catchError(this.handleError('estServErrors-imageUploadFalse')),

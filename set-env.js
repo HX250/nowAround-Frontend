@@ -11,9 +11,7 @@ export const environment = {
 
 fs.writeFile(environmentFilePath, envConfigFile, (err) => {
   if (err) {
-    console.error("Error writing environment file:", err);
     process.exit(1);
   } else {
-    console.log(`Environment variables injected into ${environmentFilePath}`);
   }
 });

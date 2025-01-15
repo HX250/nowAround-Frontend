@@ -49,12 +49,10 @@ export class EventsComponent {
 
     const subscription = this.dialog.dialogResult$.subscribe((result) => {
       if (result !== null) {
-        console.log('Dialog result:', result);
         if (result) {
           this.estServ.deleteEvent(eventId).subscribe();
           subscription.unsubscribe();
         } else {
-          console.log('Item deletion cancelled');
           subscription.unsubscribe();
         }
       }

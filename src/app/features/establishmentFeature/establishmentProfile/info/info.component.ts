@@ -197,7 +197,7 @@ export class InfoComponent implements OnInit, AfterViewInit {
     this.lng = lng;
     this.lat = lat;
     this.map.flyTo({ center: [lng, lat], zoom: 16 });
-    console.log(lng, lat);
+
     this.locInfoForm.patchValue({ lat: lat, long: lng });
     this.marker?.setLngLat([lng, lat]);
   }

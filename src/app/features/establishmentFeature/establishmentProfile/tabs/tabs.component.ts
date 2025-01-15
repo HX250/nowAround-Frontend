@@ -30,7 +30,6 @@ export class TabsComponent {
 
   ngOnInit(): void {
     this.getProfileData();
-    console.log(this.tabList);
   }
 
   getProfileData() {
@@ -66,7 +65,6 @@ export class TabsComponent {
           this.estServ.removeMenuCategory(menuCategory.id).subscribe();
           subscription.unsubscribe();
         } else {
-          console.log('Item deletion cancelled');
           subscription.unsubscribe();
         }
       }
