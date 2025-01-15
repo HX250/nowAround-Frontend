@@ -43,7 +43,9 @@ export class CustomAuthService {
       next: (response) => {
         this.handleTokenResponse(response.id_token);
       },
-      error: (error) => {},
+      error: (error) => {
+        sessionStorage.clear();
+      },
     });
   }
 

@@ -13,6 +13,7 @@
       <span class="flex items-center justify-center text-ang-black">X</span>
     </button>
     <div
+      *ngIf="isLoggedIn()"
       class="has-tooltip group absolute top-0 z-50 w-fit rounded-br-lg bg-ang-orange p-2"
     >
       <span
@@ -88,6 +89,23 @@
                 <p>{{ entry.value }}</p>
               </div>
             </div>
+            <div
+              *ngFor="
+                let exception of infoList?.businessHoursExceptions;
+                let i = index
+              "
+              class="mt-2 flex justify-between gap-4"
+            >
+              <p>{{ exception.date }} - {{ exception.status }}</p>
+              <button
+                type="button"
+                class="text-red-500"
+                (click)="removeException(i)"
+              >
+                Remove
+              </button>
+            </div>
+
             <div class="flex gap-3">
               <p>{{ infoList?.address }}</p>
             </div>
@@ -125,42 +143,43 @@
             </div>
             <div formArrayName="businessHoursExceptions">
               <div
-                *ngFor="
-                  let exception of businessHoursExceptions.controls;
-                  let i = index
-                "
+                *ngFor="let exception of f.controls; let i = index"
                 [formGroupName]="i"
               >
                 <div class="mb-2 flex gap-4">
-                  <input
-                    type="date"
-                    formControlName="date"
-                    placeholder="Date"
-                    class="h-8 w-full rounded-lg border border-ang-orange p-1"
-                  />
-                  <div
-                    *ngIf="
-                      exception.get('date')?.invalid &&
-                      exception.get('date')?.touched
-                    "
-                    class="text-sm text-red-500"
-                  >
-                    Date is required.
+                  <div class="flex flex-col">
+                    <input
+                      type="date"
+                      formControlName="date"
+                      placeholder="Date"
+                      class="h-8 w-full rounded-lg border border-ang-orange p-1"
+                    />
+                    <div
+                      *ngIf="
+                        exception.get('date')?.invalid &&
+                        exception.get('date')?.touched
+                      "
+                      class="text-sm text-red-500"
+                    >
+                      Date is required.
+                    </div>
                   </div>
-                  <input
-                    type="text"
-                    formControlName="status"
-                    placeholder="Reason"
-                    class="h-8 w-full rounded-lg border border-ang-orange p-1"
-                  />
-                  <div
-                    *ngIf="
-                      exception.get('reason')?.invalid &&
-                      exception.get('reason')?.touched
-                    "
-                    class="text-sm text-red-500"
-                  >
-                    Reason is required.
+                  <div class="flex flex-col">
+                    <input
+                      type="text"
+                      formControlName="status"
+                      placeholder="Reason"
+                      class="h-8 w-full rounded-lg border border-ang-orange p-1"
+                    />
+                    <div
+                      *ngIf="
+                        exception.get('status')?.invalid &&
+                        exception.get('status')?.touched
+                      "
+                      class="text-sm text-red-500"
+                    >
+                      Reason is required.
+                    </div>
                   </div>
                   <button
                     type="button"
@@ -171,14 +190,15 @@
                   </button>
                 </div>
               </div>
+              <!--
               <button
-                type="button"
-                (click)="addException()"
-                class="mt-2 text-blue-500"
+              type="button"
+              (click)="addException()"
+              class="mt-2 text-blue-500"
               >
-                Add Exception
-              </button>
-            </div>
+              Add Exception
+            </button>
+            --></div>
             <button type="submit" class="primary-buttons mt-6 w-full">
               {{ "utils-submitButton" | translate }}
             </button>

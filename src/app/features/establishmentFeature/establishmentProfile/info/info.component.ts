@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  computed,
   EventEmitter,
   OnInit,
   Output,
@@ -19,6 +20,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CustomAuthService } from '../../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-info',
@@ -31,6 +33,7 @@ export class InfoComponent implements OnInit, AfterViewInit {
   @Output() close = new EventEmitter<void>();
   infoList?: locationInfo = undefined;
   map!: mapboxgl.Map;
+  isLoggedIn = computed(() => (this.customAuth.estLogin() ? true : false));
   style = 'mapbox://styles/mapbox/light-v11';
   lat?: number;
   lng?: number;
@@ -41,6 +44,7 @@ export class InfoComponent implements OnInit, AfterViewInit {
   constructor(
     private estServ: EstabilishmentService,
     private fb: FormBuilder,
+    private customAuth: CustomAuthService,
   ) {}
 
   ngOnInit(): void {
@@ -145,12 +149,17 @@ export class InfoComponent implements OnInit, AfterViewInit {
             : '';
 
         if (typeof hours === 'string') {
-          const [open, close] = hours.split('-').map((time) => time.trim());
-          const validOpen = this.formatToTimeInput(open);
-          const validClose = this.formatToTimeInput(close);
+          if (hours.toLowerCase() === 'closed - closed') {
+            openingHourControl?.setValue('Closed');
+            closingHourControl?.setValue('Closed');
+          } else {
+            const [open, close] = hours.split('-').map((time) => time.trim());
+            const validOpen = this.formatToTimeInput(open);
+            const validClose = this.formatToTimeInput(close);
 
-          openingHourControl?.setValue(validOpen);
-          closingHourControl?.setValue(validClose);
+            openingHourControl?.setValue(validOpen);
+            closingHourControl?.setValue(validClose);
+          }
         }
       });
 
@@ -161,11 +170,11 @@ export class InfoComponent implements OnInit, AfterViewInit {
 
       if (this.infoList?.businessHoursExceptions) {
         this.infoList.businessHoursExceptions.forEach(
-          (exception: { date: string; reason: string }) => {
+          (exception: { date: string; status: string }) => {
             exceptionsControl.push(
               this.fb.group({
-                date: [exception.date, [Validators.required]],
-                reason: [exception.reason, [Validators.required]],
+                date: [exception.date],
+                status: [exception.status],
               }),
             );
           },
@@ -206,8 +215,8 @@ export class InfoComponent implements OnInit, AfterViewInit {
     ) as FormArray;
     exceptionsControl.push(
       this.fb.group({
-        date: [''],
-        status: [''],
+        date: ['', Validators.required],
+        status: ['', Validators.required],
       }),
     );
   }
@@ -240,7 +249,7 @@ export class InfoComponent implements OnInit, AfterViewInit {
     this.estServ.updateLocationInfo(updatedData).subscribe();
   }
 
-  get businessHoursExceptions(): FormArray {
+  get f(): FormArray {
     return this.locInfoForm.get('businessHoursExceptions') as FormArray;
   }
 }

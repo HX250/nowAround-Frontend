@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { map } from 'rxjs';
+import { map, take } from 'rxjs';
 import { CustomAuthService } from '../../services/auth/auth.service';
 
 export const roleGuard: CanActivateFn = (route, state) => {
@@ -8,6 +8,7 @@ export const roleGuard: CanActivateFn = (route, state) => {
   const customAuth = inject(CustomAuthService);
 
   return customAuth.roleState$.pipe(
+    take(1),
     map((role) => {
       if (role === 'Admin') {
         router.navigateByUrl('admin-page');
