@@ -290,5 +290,7 @@
   "estServErrors-removeEventTrue": "Event has been deleted",
   "estServErrors-removeEventFalse": "There has been an error in deleting the event, please try again",
   "estServErrors-imageUploadTrue": "Image has been uploaded",
-  "estServErrors-imageUploadFalse": "Image couldnt be uploaded, please try again"
+  "estServErrors-imageUploadFalse": "Image couldnt be uploaded, please try again",
+
+  "authServError-Login": "Login window has been closed, please try again!"
 }

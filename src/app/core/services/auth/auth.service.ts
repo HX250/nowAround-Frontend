@@ -9,22 +9,9 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class CustomAuthService {
-  private roleSubject = new BehaviorSubject<string>(this.getRoleVal() || '');
+  private roleSubject = new BehaviorSubject<string>('');
   roleState$ = this.roleSubject.asObservable();
   estLogin = signal(false);
-
-  setRole(role: string): void {
-    this.roleSubject.next(role);
-    sessionStorage.setItem('role', role);
-
-    if (role === 'Establishment') {
-      this.estLogin.set(true);
-    }
-  }
-
-  private getRoleVal() {
-    return sessionStorage.getItem('role');
-  }
 
   constructor(
     private auth: AuthService,
@@ -34,53 +21,62 @@ export class CustomAuthService {
     this.checkAuthOnInit();
   }
 
-  getAccessToken() {
-    return this.auth.getAccessTokenSilently({ detailedResponse: true });
+  private getRoleFromToken(token: string): string {
+    const decodedToken = this.getDecodedAccessToken(token);
+    const role = decodedToken['https://now-around-auth-api/roles']?.[0] || '';
+
+    if (role === 'Admin') {
+      this.router.navigateByUrl('/admin-page');
+    } else if (role === 'Establishment') {
+      this.navigateToEstablishment();
+    }
+    return role;
+  }
+  navigateToEstablishment() {
+    this.router.navigateByUrl(`/establishment/${this.getAccessToken()}`);
+  }
+
+  setRole(role: string): void {
+    this.roleSubject.next(role);
+
+    if (role === 'Establishment') {
+      this.estLogin.set(true);
+    }
   }
 
   checkAuthOnInit() {
     this.getAccessToken().subscribe({
       next: (response) => {
-        this.handleTokenResponse(response.id_token);
-      },
-      error: (error) => {
-        sessionStorage.clear();
+        const role = this.getRoleFromToken(response.id_token);
+        this.setRole(role);
       },
     });
   }
 
+  getAccessToken() {
+    return this.auth.getAccessTokenSilently({ detailedResponse: true });
+  }
+
   loginWithRedirect(): void {
     this.auth.loginWithPopup().subscribe({
-      next: (response) => {
-        this.getToken();
+      next: () => this.getToken(),
+      error: () => {
+        this.alert.showAlert('authServError-Login', false);
       },
-      error: (error) => {
-        this.alert.showAlert(
-          'Login window has been closed, please try again!',
-          false,
-        );
-      },
-      complete: () => {},
     });
   }
 
   getToken(): void {
     this.getAccessToken().subscribe({
       next: (response) => {
-        this.handleTokenResponse(response.access_token);
-        this.handleRole(this.roleSubject.value);
+        const role = this.getRoleFromToken(response.access_token);
+        this.setRole(role);
+        this.handleRole(role);
       },
       error: (error) => {
         console.error('Token error:', error);
       },
     });
-  }
-
-  handleTokenResponse(idToken: string) {
-    const decodedToken = this.getDecodedAccessToken(idToken);
-    const apiRole =
-      decodedToken['https://now-around-auth-api/roles']?.[0] || null;
-    this.setRole(apiRole);
   }
 
   handleRole(role: string) {
@@ -100,13 +96,13 @@ export class CustomAuthService {
     try {
       return jwtDecode(token);
     } catch (Error) {
-      return Error;
+      console.error('Error decoding token:', Error);
+      return {};
     }
   }
 
   resetRoleState(): void {
     this.roleSubject.next('');
     this.estLogin.set(false);
-    sessionStorage.removeItem('role');
   }
 }

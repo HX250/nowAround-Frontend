@@ -72,7 +72,7 @@ export class ImageService {
   addAccordingPhoto(where: string): string {
     switch (where) {
       case 'estProfilePicture':
-        return 'establishment/placeholders/estProfilePicture';
+        return 'establishment/placeholders/image.png';
       case 'estCoverPicture':
         return 'establishment/placeholders/image.png';
       case 'post':

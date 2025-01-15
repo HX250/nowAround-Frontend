@@ -290,5 +290,7 @@
   "estServErrors-removeEventTrue": "Udalosť bola odstránena",
   "estServErrors-removeEventFalse": "Nastala chyba pri odstráneni udalosti, skúste to znova",
   "estServErrors-imageUploadTrue": "Fotka bola úspešne nahratá",
-  "estServErrors-imageUploadFalse": "Fotku sa nepodarilo nahrať, skúste to znova"
+  "estServErrors-imageUploadFalse": "Fotku sa nepodarilo nahrať, skúste to znova",
+
+  "authServError-Login": "Prihlasovacie okno bolo zatvorené, prosím skúste to znova!"
 }

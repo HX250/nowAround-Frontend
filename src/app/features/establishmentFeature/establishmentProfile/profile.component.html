@@ -9,7 +9,10 @@
           class="flex h-full w-full items-center justify-center bg-ang-black bg-opacity-10"
         >
           <img
-            *ngIf="estProfile.backgroundPictureUrl; else defaultImage"
+            *ngIf="
+              estProfile.backgroundPictureUrl != 'default';
+              else defaultImage
+            "
             [src]="estProfile.backgroundPictureUrl"
             class="h-full w-full object-cover"
             alt="Uploaded Image"
@@ -47,7 +50,10 @@
                 class="flex h-full w-full items-center justify-center bg-ang-black bg-opacity-10"
               >
                 <img
-                  *ngIf="estProfile.profilePictureUrl; else defaultProfileImage"
+                  *ngIf="
+                    estProfile.profilePictureUrl != 'default';
+                    else defaultProfileImage
+                  "
                   [src]="estProfile.profilePictureUrl"
                   class="h-full w-full object-cover"
                   alt="Uploaded Image"
@@ -147,11 +153,6 @@
                     class="h-8 w-8 transition-all hover:scale-110"
                   />
                 </button>
-              </div>
-            } @else {
-              <div class="flex gap-4">
-                <button>Follow</button>
-                <button>Settings</button>
               </div>
             }
           </div>

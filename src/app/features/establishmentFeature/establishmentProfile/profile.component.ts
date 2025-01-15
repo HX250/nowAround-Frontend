@@ -82,14 +82,14 @@ export class ProfileComponent implements OnInit {
   }
 
   checkTab(): void {
-    this.estServ.returnSpecificProfileInfo<Menu>('menus').subscribe({
+    this.estServ.returnSpecificProfileInfo<Menu[]>('menus').subscribe({
       next: (response) => {
-        this.tabLink = response ? true : false;
+        this.tabLink = response?.length === 0 ? false : true;
       },
     });
-    this.estServ.returnSpecificProfileInfo<Events>('events').subscribe({
+    this.estServ.returnSpecificProfileInfo<Events[]>('events').subscribe({
       next: (response) => {
-        this.eventLink = response ? true : false;
+        this.eventLink = response?.length === 0 ? false : true;
       },
     });
   }
