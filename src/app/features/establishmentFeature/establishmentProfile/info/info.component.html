@@ -104,16 +104,16 @@
                     | translate
                 }}:
               </p>
-              <div class="flex max-w-36 gap-2">
+              <div class="flex max-w-48 gap-2">
                 <input
-                  type="text"
+                  type="time"
                   formControlName="{{ entry.key }}_open"
                   placeholder="Open"
                   class="h-8 w-full rounded-lg border border-ang-orange p-1"
                 />
                 -
                 <input
-                  type="text"
+                  type="time"
                   formControlName="{{ entry.key }}_close"
                   placeholder="Close"
                   class="h-8 w-full rounded-lg border border-ang-orange p-1"
@@ -121,6 +121,62 @@
               </div>
               <button type="button" (click)="closeThisDay(entry)">
                 Close today
+              </button>
+            </div>
+            <div formArrayName="businessHoursExceptions">
+              <div
+                *ngFor="
+                  let exception of businessHoursExceptions.controls;
+                  let i = index
+                "
+                [formGroupName]="i"
+              >
+                <div class="mb-2 flex gap-4">
+                  <input
+                    type="date"
+                    formControlName="date"
+                    placeholder="Date"
+                    class="h-8 w-full rounded-lg border border-ang-orange p-1"
+                  />
+                  <div
+                    *ngIf="
+                      exception.get('date')?.invalid &&
+                      exception.get('date')?.touched
+                    "
+                    class="text-sm text-red-500"
+                  >
+                    Date is required.
+                  </div>
+                  <input
+                    type="text"
+                    formControlName="status"
+                    placeholder="Reason"
+                    class="h-8 w-full rounded-lg border border-ang-orange p-1"
+                  />
+                  <div
+                    *ngIf="
+                      exception.get('reason')?.invalid &&
+                      exception.get('reason')?.touched
+                    "
+                    class="text-sm text-red-500"
+                  >
+                    Reason is required.
+                  </div>
+                  <button
+                    type="button"
+                    (click)="removeException(i)"
+                    class="ml-2 text-red-500"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+              <button
+                type="button"
+                (click)="addException()"
+                class="mt-2 text-blue-500"
+              >
+                Add Exception
               </button>
             </div>
             <button type="submit" class="primary-buttons mt-6 w-full">

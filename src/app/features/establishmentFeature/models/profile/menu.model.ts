@@ -7,7 +7,7 @@ export interface Menu {
 export interface MenuItem {
   id: string;
   name: string;
-  url: string;
+  pictureUrl: string;
   description: string;
   price: number;
 }

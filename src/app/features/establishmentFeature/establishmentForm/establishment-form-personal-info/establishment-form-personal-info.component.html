@@ -17,7 +17,10 @@
             (f['firstName'].dirty || f['firstName'].touched)
           "
         >
-          <div *ngIf="f['firstName'].errors?.['required']" class="text-red-600">
+          <div
+            *ngIf="f['firstName'].errors?.['required']"
+            class="text-ang-redAlert"
+          >
             {{ "establishmentReg-personalInfoError-firstName" | translate }}
           </div>
         </div>
@@ -39,7 +42,10 @@
             (f['lastName'].dirty || f['lastName'].touched)
           "
         >
-          <div *ngIf="f['lastName'].errors?.['required']" class="text-red-600">
+          <div
+            *ngIf="f['lastName'].errors?.['required']"
+            class="text-ang-redAlert"
+          >
             {{ "establishmentReg-personalInfoError-lastName" | translate }}
           </div>
         </div>
@@ -57,10 +63,10 @@
       <div
         *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)"
       >
-        <div *ngIf="f['email'].errors?.['required']" class="text-red-600">
+        <div *ngIf="f['email'].errors?.['required']" class="text-ang-redAlert">
           {{ "establishmentReg-personalInfoError-emailReq" | translate }}
         </div>
-        <div *ngIf="f['email'].errors?.['email']" class="text-red-600">
+        <div *ngIf="f['email'].errors?.['email']" class="text-ang-redAlert">
           {{ "establishmentReg-personalInfoError-emailFormat" | translate }}
         </div>
       </div>
@@ -81,10 +87,10 @@
           (f['phoneNumber'].dirty || f['phoneNumber'].touched)
         "
       >
-        <div *ngIf="f['phoneNumber'].errors?.['required']" class="text-red-600">
+        <div *ngIf="f['phoneNumber'].errors?.['required']" class="text-ang-redAlert">
           {{ "establishmentReg-personalInfoError-phoneNumberReq" | translate }}
         </div>
-        <div *ngIf="f['phoneNumber'].errors?.['pattern']" class="text-red-600">
+        <div *ngIf="f['phoneNumber'].errors?.['pattern']" class="text-ang-redAlert">
           {{
             "establishmentReg-personalInfoError-phoneNumberFromat" | translate
           }}

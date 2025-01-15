@@ -12,7 +12,13 @@ import mapboxgl from 'mapbox-gl';
 import { environment } from '../../../../../environments/environment.dev';
 import { DaySortPipe } from '../../../../shared/pipe/daySort.pipe';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-info',
@@ -57,6 +63,7 @@ export class InfoComponent implements OnInit, AfterViewInit {
       lat: [this.lat],
       long: [this.lng],
       ...businessHoursControls,
+      businessHoursExceptions: this.fb.array([]),
     });
   }
 
@@ -127,20 +134,54 @@ export class InfoComponent implements OnInit, AfterViewInit {
 
   toggleLocationChange() {
     this.editingLocationInfo = !this.editingLocationInfo;
-    const businessHours = this.infoList?.businessHours;
-    if (this.editingLocationInfo && businessHours) {
-      Object.keys(businessHours).forEach((key) => {
+
+    if (this.editingLocationInfo && this.infoList?.businessHours) {
+      Object.keys(this.infoList.businessHours).forEach((key) => {
         const openingHourControl = this.locInfoForm.get(`${key}_open`);
         const closingHourControl = this.locInfoForm.get(`${key}_close`);
+        const hours =
+          this.infoList && this.infoList.businessHours
+            ? this.infoList.businessHours[key]
+            : '';
 
-        if (openingHourControl && closingHourControl) {
-          const hours = businessHours[key] ?? '';
-          const [open, close] = hours.split('-').map((time) => time);
-          openingHourControl.setValue(open || '');
-          closingHourControl.setValue(close || '');
+        if (typeof hours === 'string') {
+          const [open, close] = hours.split('-').map((time) => time.trim());
+          const validOpen = this.formatToTimeInput(open);
+          const validClose = this.formatToTimeInput(close);
+
+          openingHourControl?.setValue(validOpen);
+          closingHourControl?.setValue(validClose);
         }
       });
+
+      const exceptionsControl = this.locInfoForm.get(
+        'businessHoursExceptions',
+      ) as FormArray;
+      exceptionsControl.clear();
+
+      if (this.infoList?.businessHoursExceptions) {
+        this.infoList.businessHoursExceptions.forEach(
+          (exception: { date: string; reason: string }) => {
+            exceptionsControl.push(
+              this.fb.group({
+                date: [exception.date, [Validators.required]],
+                reason: [exception.reason, [Validators.required]],
+              }),
+            );
+          },
+        );
+      }
     }
+  }
+
+  private formatToTimeInput(time: string): string {
+    const [hours, minutes] = time.split(':').map((part) => parseInt(part, 10));
+
+    if (!isNaN(hours) && !isNaN(minutes)) {
+      return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    }
+
+    return '';
   }
 
   updateLocation(lng: number, lat: number): void {
@@ -159,14 +200,36 @@ export class InfoComponent implements OnInit, AfterViewInit {
     });
   }
 
+  addException() {
+    const exceptionsControl = this.locInfoForm.get(
+      'businessHoursExceptions',
+    ) as FormArray;
+    exceptionsControl.push(
+      this.fb.group({
+        date: [''],
+        status: [''],
+      }),
+    );
+  }
+
+  removeException(index: number) {
+    const exceptionsControl = this.locInfoForm.get(
+      'businessHoursExceptions',
+    ) as FormArray;
+    exceptionsControl.removeAt(index);
+  }
+
   updateLocationInfo() {
     const formValues = this.locInfoForm.value;
-    const updatedBusinessHours: { [key: string]: string } = {};
+    const updatedBusinessHours: { [key: string]: string | any } = {};
 
     Object.keys(this.infoList?.businessHours || {}).forEach((key) => {
       updatedBusinessHours[key] =
         `${formValues[`${key}_open`]} - ${formValues[`${key}_close`]}`;
     });
+
+    updatedBusinessHours['businessHoursExceptions'] =
+      formValues.businessHoursExceptions;
 
     const updatedData = {
       lat: formValues.lat,
@@ -174,6 +237,10 @@ export class InfoComponent implements OnInit, AfterViewInit {
       businessHours: updatedBusinessHours,
     };
 
-    console.log(updatedData);
+    this.estServ.updateLocationInfo(updatedData).subscribe();
+  }
+
+  get businessHoursExceptions(): FormArray {
+    return this.locInfoForm.get('businessHoursExceptions') as FormArray;
   }
 }

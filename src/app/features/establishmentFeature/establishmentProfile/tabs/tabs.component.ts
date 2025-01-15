@@ -19,7 +19,6 @@ export class TabsComponent {
   tabList?: Menu[] = [];
   isLoggedIn = computed(() => (this.customAuth.estLogin() ? true : false));
   isAddingNewMenu: boolean = false;
-  menuImg: any;
   currentCategory: string | null = null;
 
   constructor(

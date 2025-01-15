@@ -307,6 +307,27 @@ export class EstabilishmentService {
    * ! END OF IMAGE
    */
 
+  /**
+   * Location info specific calls
+   */
+  updateLocationInfo(updatedData: any): Observable<any> {
+    return this.http
+      .put(
+        `${environment.API_END_POINT}Establishment/location-info`,
+        updatedData,
+      )
+      .pipe(
+        map((Response) => {
+          window.location.reload();
+          this.alert.showAlert('estServErrors-imageUploadTrue', true);
+        }),
+        catchError(this.handleError('estServErrors-imageUploadFalse')),
+      );
+  }
+  /**
+   * ! END OF LOCATION INFO
+   */
+
   /*
    * Register establishment specific calls
    */
@@ -314,7 +335,7 @@ export class EstabilishmentService {
     completeFormData.establishmentInfo.address =
       completeFormData.establishmentInfo.address.replace(/\//g, '-');
     return this.http.post<any>(
-      `${environment.API_END_POINT}/Establishment`,
+      `${environment.API_END_POINT}Establishment`,
       completeFormData,
       {
         observe: 'response',

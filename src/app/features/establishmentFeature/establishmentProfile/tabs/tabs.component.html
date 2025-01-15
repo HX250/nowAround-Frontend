@@ -45,8 +45,8 @@
             class="flex items-center justify-center bg-ang-black bg-opacity-10"
           >
             <img
-              *ngIf="menuImg; else defaultProfileImage"
-              [src]="menuImg"
+              *ngIf="item.pictureUrl; else defaultProfileImage"
+              [src]="item.pictureUrl"
               class="h-14 w-14 object-cover"
               alt="Uploaded Image"
             />

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import {
   AbstractControl,
+  AbstractControlOptions,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -41,21 +42,24 @@ export class EventComponent implements OnInit {
   }
 
   buildForm() {
-    this.eventForm = this.fb.group({
-      image: [File],
-      title: ['', Validators.required],
-      body: ['', Validators.required],
-      startDateOfEvent: ['', [Validators.required, this.futureDateValidator]],
-      startTimeOfEvent: ['', Validators.required],
-      endDateOfEvent: ['', [Validators.required, this.futureDateValidator]],
-      endTimeOfEvent: ['', Validators.required],
-      city: ['', Validators.required],
-      price: ['', Validators.required],
-      eventPriceCategory: ['', Validators.required],
-      location: ['', Validators.required],
-      maxParticipants: ['', Validators.required],
-      eventCategory: ['', Validators.required],
-    });
+    this.eventForm = this.fb.group(
+      {
+        image: [File],
+        title: ['', Validators.required],
+        body: ['', Validators.required],
+        startDateOfEvent: ['', [Validators.required, this.futureDateValidator]],
+        startTimeOfEvent: ['', Validators.required],
+        endDateOfEvent: ['', [Validators.required, this.futureDateValidator]],
+        endTimeOfEvent: ['', Validators.required],
+        city: ['', Validators.required],
+        price: ['', Validators.required],
+        eventPriceCategory: ['', Validators.required],
+        location: ['', Validators.required],
+        maxParticipants: ['', Validators.required],
+        eventCategory: ['', Validators.required],
+      },
+      { validators: this.compareDateValidator },
+    );
   }
 
   getLocation() {
@@ -67,6 +71,20 @@ export class EventComponent implements OnInit {
       });
       this.eventForm.patchValue({ city });
     });
+  }
+
+  compareDateValidator(control: AbstractControl): ValidationErrors | null {
+    const startDate = control.get('startDateOfEvent')?.value;
+    const endDate = control.get('endDateOfEvent')?.value;
+
+    if (!startDate || !endDate) {
+      return null;
+    }
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    return end > start ? null : { endBeforeStart: true };
   }
 
   futureDateValidator(control: AbstractControl): ValidationErrors | null {

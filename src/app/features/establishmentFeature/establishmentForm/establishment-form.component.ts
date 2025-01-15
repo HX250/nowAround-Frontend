@@ -33,13 +33,13 @@ export class EstablishmentFormComponent {
   constructor(private estService: EstabilishmentService) {}
 
   registerEstablishment() {
-    const { valid: personalValid, value: personalInfo } =
+    const { valid: personalValid, value: establishmentOwnerInfo } =
       this.personalInfoComponent.registerForm;
     const { valid: establishmentValid, value: establishmentInfo } =
       this.establishmentRegisterComponent.establishmentRegister;
 
     if (personalValid && establishmentValid) {
-      const completeFormData = { personalInfo, establishmentInfo };
+      const completeFormData = { establishmentOwnerInfo, establishmentInfo };
       console.log(completeFormData);
 
       this.estService
@@ -53,7 +53,7 @@ export class EstablishmentFormComponent {
             console.error('Error registering establishment', error);
           },
           complete: () => {
-            this.estEmail = completeFormData.personalInfo.email;
+            this.estEmail = completeFormData.establishmentOwnerInfo.email;
             this.popUpHidden = false;
           },
         });

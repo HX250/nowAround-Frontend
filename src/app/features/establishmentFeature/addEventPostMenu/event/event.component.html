@@ -108,6 +108,15 @@
           />
         </div>
         <span
+          *ngIf="
+            f['startDateOfEvent']?.hasError('pastDate') &&
+            f['startDateOfEvent']?.touched
+          "
+          class="text-sm text-red-500"
+        >
+          The start date cannot be in the past.
+        </span>
+        <span
           *ngIf="f['startDateOfEvent'].invalid && f['startDateOfEvent'].touched"
           class="text-ang-redAlert"
         >
@@ -132,6 +141,7 @@
             formControlName="endTimeOfEvent"
           />
         </div>
+
         <span
           *ngIf="f['endDateOfEvent'].invalid && f['endDateOfEvent'].touched"
           class="text-ang-redAlert"
