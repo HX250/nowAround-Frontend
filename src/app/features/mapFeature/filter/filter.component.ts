@@ -14,7 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class FilterComponent {
   @Output() filtersChanged = new EventEmitter<any>();
   @Output() updateFilterWindow = new EventEmitter<boolean>();
-  filterWindow: boolean = true;
+  filterWindow: boolean = false;
   category: string[] = [
     'CAFE',
     'BAR',

@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { DaySortPipe } from '../../../../shared/pipe/daySort.pipe';
 
 @Component({
   selector: 'app-info',

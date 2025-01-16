@@ -277,6 +277,8 @@
   "estServErrors-addNewPostFalse": "There was an error in creating new post, please try again",
   "estServErrors-deletePostTrue": "Post has been deleted",
   "estServErrors-deletePostFalse": "There was an error in deleting the post, please try again",
+  "estServErrors-addReviewTrue": "Review has been added",
+  "estServErrors-addReviewFlase": "There has been an error in adding review, please try again",
   "estServErrors-addNewMenuTrue": "New menu has been created",
   "estServErrors-addNewMenuFalse": "There has been an error in creating new menu, please try again",
   "estServErrors-updateMenuTrue": "Menu has been updated",

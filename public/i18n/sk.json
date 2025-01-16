@@ -277,6 +277,8 @@
   "estServErrors-addNewPostFalse": "Nastala chyba pri vytvárani nového príspevku, skúste to znova",
   "estServErrors-deletePostTrue": "Príspevok bol vymazaný",
   "estServErrors-deletePostFalse": "Nastala chyba pri vymazávani príspevku, skúste to znova",
+  "estServErrors-addReviewTrue": "Recenzia bola úspešne pridaná",
+  "estServErrors-addReviewFlase": "Nastala chyba pri pridávanii recenzie, skúste to znova",
   "estServErrors-addNewMenuTrue": "Nové menu bolo pridané",
   "estServErrors-addNewMenuFalse": "Nastala chyba pri vytvárani nového menu, skúste to znova",
   "estServErrors-updateMenuTrue": "Menu bolo aktualizované",

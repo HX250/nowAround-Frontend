@@ -1,5 +1,4 @@
 import { Component, computed } from '@angular/core';
-import { posts } from '../../models/profile/posts.model';
 import { CommonModule } from '@angular/common';
 import { EstabilishmentService } from '../../../../core/services/establishment/establishment.service';
 import { TranslateModule } from '@ngx-translate/core';

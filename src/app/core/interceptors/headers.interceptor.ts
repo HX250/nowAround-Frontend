@@ -36,6 +36,7 @@ function shouldIntercept(url: string): boolean {
     'Establishment/location-info',
     'Post',
     'Event',
+    'Review',
   ];
   return targetUrls.some((targetUrl) => url.includes(targetUrl));
 }

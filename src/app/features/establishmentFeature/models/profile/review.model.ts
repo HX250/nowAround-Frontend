@@ -1,7 +1,6 @@
 export interface review {
-  userAuth0Id: string;
-  fullname: string;
+  fullname?: string;
   rating: number;
   body: string;
-  createdAt: Date;
+  createdAt?: Date;
 }

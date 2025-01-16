@@ -1,6 +1,6 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { CompleteFormData } from '../../../features/establishmentFeature/models/form/complete-form-data.model';
 import { establishmentProfile } from '../../../features/establishmentFeature/models/profile/estProfile.model';
 import { AlertService } from '../alert/alert.service';
@@ -8,6 +8,7 @@ import { environment } from '../../../../environments/environment.dev';
 import { Menu } from '../../../features/establishmentFeature/models/profile/menu.model';
 import { posts } from '../../../features/establishmentFeature/models/profile/posts.model';
 import { updateGenericInfo } from '../../../features/establishmentFeature/models/profile/updateGenericInfo.model';
+import { Events } from '../../../features/establishmentFeature/models/profile/events.model';
 
 @Injectable({
   providedIn: 'root',
@@ -149,12 +150,17 @@ export class EstabilishmentService {
    * Review specific calls
    */
   sendReview(
-    estId?: string,
-    review?: string,
-    userId?: string,
+    body: string,
+    rating: number,
+    establishmentAuth0Id?: string,
   ): Observable<any> {
-    const payload = { estId, review, userId };
-    return this.http.post('/api/reviews', payload);
+    const payload = { establishmentAuth0Id, body, rating };
+    return this.http.post(`${environment.API_END_POINT}Review`, payload).pipe(
+      map((Response) => {
+        this.alert.showAlert('estServErrors-addReviewTrue', true);
+      }),
+      catchError(this.handleError('estServErrors-addReviewFlase')),
+    );
   }
   /**
    * ! END OF REVIEW
@@ -178,6 +184,8 @@ export class EstabilishmentService {
   deletePost(postId: string): Observable<any> {
     return this.http.delete(`${environment.API_END_POINT}Post/${postId}`).pipe(
       map((Response) => {
+        console.log(Response);
+
         this.alert.showAlert('estServErrors-deletePostTrue', true);
         this.removeSpecificProfileInfo('posts', postId);
       }),
@@ -193,7 +201,7 @@ export class EstabilishmentService {
    * Menu specific calls
    */
 
-  addNewMenu(menuForm?: Menu): Observable<any> {
+  addNewMenu(menuForm?: Menu): Observable<Menu> {
     return this.http
       .post<any>(`${environment.API_END_POINT}Establishment/menu`, menuForm)
       .pipe(
@@ -215,7 +223,7 @@ export class EstabilishmentService {
           this.alert.showAlert('estServErrors-updateMenuTrue', true);
           this.updateSpecificMenuCategory('menus', Response.id, Response);
 
-          return Response;
+          return true;
         }),
         catchError(this.handleError('estServErrors-updateMenuFalse')),
       );
@@ -263,7 +271,7 @@ export class EstabilishmentService {
   /*
    * Event specific calls
    */
-  uploadEvent(eventForm: FormData): Observable<any> {
+  uploadEvent(eventForm: FormData): Observable<Events> {
     return this.http.post(`${environment.API_END_POINT}Event`, eventForm).pipe(
       map((response) => {
         this.alert.showAlert('estServErrors-addEventTrue', true);
