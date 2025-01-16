@@ -238,6 +238,16 @@
   "establishmentAddEvent-maxParticipants": "Maximum Number of Participants",
   "establishmentAddEvent-eventCategory": "Event Categories",
   "establishmentAddEvent-interests": "Are interested",
+  "eventParticipants": "participants",
+
+  "addEventCategory": {
+    "Music": "Music",
+    "Food": "Food",
+    "Art": "Art",
+    "Sports": "Sports",
+    "Tech": "Tech",
+    "Other": "Other"
+  },
 
   "establishmentAddEvent-infoPriceFirst": "For adding an event with tickets please select €",
   "establishmentAddEvent-infoPriceSecond": "For adding action please select %",

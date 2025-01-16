@@ -304,7 +304,7 @@
         formControlName="eventCategory"
       >
         <option *ngFor="let category of eventCategories" [value]="category">
-          {{ category }}
+          {{ "addEventCategory." + category | translate }}
         </option>
       </select>
       <span

@@ -16,7 +16,7 @@
               *ngIf="event.pictureUrl; else defaultPicture"
               [src]="event.pictureUrl"
               alt="Event image"
-              class="h-full w-full object-cover"
+              class="h-full w-full object-contain"
             />
             <ng-template #defaultPicture>
               <img
@@ -28,11 +28,13 @@
           </div>
           <div class="flex flex-1 flex-col justify-between">
             <div>
-              <div class="flex items-center gap-4">
-                <h2 class="text-xl font-bold text-ang-orange">
+              <div class="flex gap-4">
+                <h2 class="max-w-64 text-xl font-bold text-ang-orange">
                   {{ event.title }}
                 </h2>
-                <p class="text-ang-black/80">{{ event.eventCategory }}</p>
+                <p class="text-ang-black/80">
+                  {{ "addEventCategory." + event.eventCategory | translate }}
+                </p>
               </div>
               <div class="mb-2 flex items-center gap-1">
                 <svg
@@ -142,7 +144,8 @@
                 <path d="M16 3.13a4 4 0 0 1 0 7.75" />
               </svg>
               <span class="py-1 text-sm text-ang-black"
-                >{{ event.maxParticipants }} participants</span
+                >{{ event.maxParticipants }}
+                {{ "eventParticipants" | translate }}</span
               >
             </div>
             <div class="mt-4 text-xs text-ang-black/60">

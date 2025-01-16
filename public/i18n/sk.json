@@ -238,6 +238,16 @@
   "establishmentAddEvent-maxParticipants": "Maximalný počet účastníkov",
   "establishmentAddEvent-eventCategory": "Kategórie udalostí",
   "establishmentAddEvent-interests": "Ma záujem",
+  "eventParticipants": "účastníkov",
+
+  "addEventCategory": {
+    "Music": "Hudba",
+    "Food": "Jedlo",
+    "Art": "Umenie",
+    "Sports": "Šport",
+    "Tech": "Tech",
+    "Other": "Iné"
+  },
 
   "establishmentAddEvent-infoPriceFirst": "Pre pridanie ackie s platbou, vyberte €",
   "establishmentAddEvent-infoPriceSecond": "Ak chcete pridať akciu, vyberte %",
