@@ -118,6 +118,8 @@ export class EstabilishmentService {
       )
       .pipe(
         map((response) => {
+          console.log(response);
+
           this.estProfileSubject.next(response);
         }),
         catchError((error) => {
@@ -133,7 +135,7 @@ export class EstabilishmentService {
       .put(`${environment.API_END_POINT}Establishment/generic-info`, form)
       .pipe(
         map((response) => {
-          window.location.reload();
+          this.changeSpecificProfileInfo('genericInfo', response);
         }),
         catchError((error) => {
           this.estProfileSubject.next(null);
@@ -323,7 +325,7 @@ export class EstabilishmentService {
       )
       .pipe(
         map((Response) => {
-          window.location.reload();
+          this.changeSpecificProfileInfo('locationInfo', Response);
           this.alert.showAlert('estServErrors-imageUploadTrue', true);
         }),
         catchError(this.handleError('estServErrors-imageUploadFalse')),
