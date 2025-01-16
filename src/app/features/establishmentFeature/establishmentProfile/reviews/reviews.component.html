@@ -15,21 +15,28 @@
           *ngIf="(customAuth.roleState$ | async) === 'User'"
         >
           <form action="" [formGroup]="userReview" (ngSubmit)="sendReview()">
-            <textarea
-              name="userReview"
-              id="userReview"
-              placeholder="Let others know what you think!"
-              class="rounded-md border border-ang-orange p-2"
-              formControlName="body"
-            ></textarea>
-            <select name="rating" id="rating" formControlName="rating">
-              <option value="1">1*</option>
-              <option value="2">2*</option>
-              <option value="3">3*</option>
-              <option value="4">4*</option>
-              <option value="5">5*</option>
-            </select>
-            <button class="primary-buttons w-fit place-self-end">
+            <div class="flex w-full flex-col gap-2">
+              <textarea
+                name="userReview"
+                id="userReview"
+                placeholder="Let others know what you think!"
+                class="rounded-md border border-ang-orange p-2"
+                formControlName="body"
+              ></textarea>
+              <select
+                name="rating"
+                id="rating"
+                class="max-w-16 rounded-md border border-ang-orange p-1"
+                formControlName="rating"
+              >
+                <option value="1">1*</option>
+                <option value="2">2*</option>
+                <option value="3">3*</option>
+                <option value="4">4*</option>
+                <option value="5">5*</option>
+              </select>
+            </div>
+            <button class="primary-buttons mt-2 w-fit place-self-end">
               {{ "establishmentReview-Send" | translate }}
             </button>
           </form>
