@@ -186,8 +186,6 @@ export class EstabilishmentService {
   deletePost(postId: string): Observable<any> {
     return this.http.delete(`${environment.API_END_POINT}Post/${postId}`).pipe(
       map((Response) => {
-        console.log(Response);
-
         this.alert.showAlert('estServErrors-deletePostTrue', true);
         this.removeSpecificProfileInfo('posts', postId);
       }),

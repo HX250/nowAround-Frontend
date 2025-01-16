@@ -18,7 +18,6 @@ export enum EventCategory {
   Music = 'Music',
   Food = 'Food',
   Art = 'Art',
-  Sports = 'Sports',
   Other = 'Other',
 }
 
