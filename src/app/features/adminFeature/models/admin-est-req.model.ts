@@ -1,5 +1,5 @@
 export interface adminReq {
-  establishmentID: string;
-  establishmentName: string;
+  auth0Id: string;
+  name: string;
   ownerName: string;
 }
