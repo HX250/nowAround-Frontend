@@ -118,8 +118,6 @@ export class EstabilishmentService {
       )
       .pipe(
         map((response) => {
-          console.log(response);
-
           this.estProfileSubject.next(response);
         }),
         catchError((error) => {
