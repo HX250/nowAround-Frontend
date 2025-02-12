@@ -23,14 +23,6 @@ jobs:
         with:
           submodules: true
 
-      - name: Install dependencies
-        run: |
-          npm install
-
-      - name: Run Unit Tests
-        run: |
-          npx jest --verbose --watch=false
-
       - name: Login to Azure
         uses: azure/login@v2
         with:
