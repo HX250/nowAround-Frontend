@@ -4,17 +4,13 @@ import { AdminComponent } from './admin.component';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
-  let fixture: ComponentFixture<AdminComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AdminComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [AdminComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(AdminComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(AdminComponent);
   });
 
   it('should create', () => {

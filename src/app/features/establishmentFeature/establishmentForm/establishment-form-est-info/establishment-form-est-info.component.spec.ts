@@ -4,17 +4,13 @@ import { EstablishmentFormEstInfoComponent } from './establishment-form-est-info
 
 describe('EstablishmentFormEstInfoComponent', () => {
   let component: EstablishmentFormEstInfoComponent;
-  let fixture: ComponentFixture<EstablishmentFormEstInfoComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [EstablishmentFormEstInfoComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [EstablishmentFormEstInfoComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(EstablishmentFormEstInfoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(EstablishmentFormEstInfoComponent);
   });
 
   it('should create', () => {

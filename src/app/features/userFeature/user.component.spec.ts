@@ -1,20 +1,30 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserComponent } from './user.component';
+import { of } from 'rxjs';
+import { AuthService } from '@auth0/auth0-angular';
 
 describe('UserComponent', () => {
   let component: UserComponent;
-  let fixture: ComponentFixture<UserComponent>;
+  const mockAuthService = {
+    isAuthenticated$: of(true),
+    user$: of({ name: 'Test User', email: 'test@example.com' }),
+    loginWithRedirect: jest.fn(),
+    logout: jest.fn(),
+    getAccessTokenSilently: jest
+      .fn()
+      .mockReturnValue(of({ id_token: 'mock-token' })),
+  };
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [UserComponent]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule({
+      providers: [
+        UserComponent,
+        { provide: AuthService, useValue: mockAuthService },
+      ],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(UserComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(UserComponent);
   });
 
   it('should create', () => {

@@ -1,20 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { TabsComponent } from './tabs.component';
+import { EstabilishmentService } from '../../../../core/services/establishment/establishment.service';
+import { CustomAuthService } from '../../../../core/services/auth/auth.service';
 
 describe('TabsComponent', () => {
   let component: TabsComponent;
-  let fixture: ComponentFixture<TabsComponent>;
+  let estServMock = {};
+  let customAuthService: CustomAuthService;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TabsComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        TabsComponent,
+        CustomAuthService,
+        { provide: EstabilishmentService, useValue: estServMock },
+      ],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(TabsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(TabsComponent);
+    customAuthService = TestBed.inject(CustomAuthService);
   });
 
   it('should create', () => {

@@ -1,20 +1,31 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminMenuComponent } from './admin-menu.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('AdminMenuComponent', () => {
   let component: AdminMenuComponent;
-  let fixture: ComponentFixture<AdminMenuComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AdminMenuComponent]
-    })
-    .compileComponents();
+  const mockActivatedRoute = {
+    snapshot: {
+      paramMap: {
+        get: jest.fn().mockReturnValue('mock-id'),
+      },
+      data: {
+        someData: 'mock-data',
+      },
+    },
+  };
 
-    fixture = TestBed.createComponent(AdminMenuComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        AdminMenuComponent,
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
+      ],
+    }).compileComponents();
+
+    component = TestBed.inject(AdminMenuComponent);
   });
 
   it('should create', () => {

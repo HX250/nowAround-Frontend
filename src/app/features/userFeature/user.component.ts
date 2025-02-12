@@ -10,14 +10,7 @@ import { AuthService } from '@auth0/auth0-angular';
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
 })
-export class UserComponent implements OnInit {
+export class UserComponent {
   popUpHidden: boolean = true;
   constructor(public auth0: AuthService) {}
-
-  ngOnInit(): void {
-    this.auth0.user$.subscribe((user) => {
-      if (user) {
-      }
-    });
-  }
 }

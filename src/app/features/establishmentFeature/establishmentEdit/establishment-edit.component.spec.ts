@@ -4,17 +4,13 @@ import { EstablishmentEditComponent } from './establishment-edit.component';
 
 describe('EstablishmentEditComponent', () => {
   let component: EstablishmentEditComponent;
-  let fixture: ComponentFixture<EstablishmentEditComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [EstablishmentEditComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [EstablishmentEditComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(EstablishmentEditComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(EstablishmentEditComponent);
   });
 
   it('should create', () => {

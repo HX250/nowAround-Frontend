@@ -1,18 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { EstablishmentFormComponent } from './establishment-form.component';
+import { EstabilishmentService } from '../../../core/services/establishment/establishment.service';
 
 describe('EstablishmentFormComponent', () => {
   let component: EstablishmentFormComponent;
-  let fixture: ComponentFixture<EstablishmentFormComponent>;
+  let estServMock = {};
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [EstablishmentFormComponent],
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        EstablishmentFormComponent,
+        { provide: EstabilishmentService, useValue: estServMock },
+      ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(EstablishmentFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(EstablishmentFormComponent);
   });
 
   it('should create', () => {

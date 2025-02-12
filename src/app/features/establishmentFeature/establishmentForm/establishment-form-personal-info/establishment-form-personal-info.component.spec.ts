@@ -1,20 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { EstablishmentFormPersonalInfoComponent } from './establishment-form-personal-info.component';
 
 describe('EstablishmentFormPersonalInfoComponent', () => {
   let component: EstablishmentFormPersonalInfoComponent;
-  let fixture: ComponentFixture<EstablishmentFormPersonalInfoComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [EstablishmentFormPersonalInfoComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [EstablishmentFormPersonalInfoComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(EstablishmentFormPersonalInfoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(EstablishmentFormPersonalInfoComponent);
   });
 
   it('should create', () => {

@@ -1,20 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { MapComponent } from './map.component';
+import { MapService } from '../../../core/services/map/map.service';
 
 describe('MapComponent', () => {
   let component: MapComponent;
-  let fixture: ComponentFixture<MapComponent>;
+  const mockMapService = {
+    getMap: jest.fn(),
+  };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [MapComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        MapComponent,
+        { provide: MapService, useValue: mockMapService },
+      ],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(MapComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(MapComponent);
   });
 
   it('should create', () => {

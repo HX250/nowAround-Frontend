@@ -4,17 +4,13 @@ import { UserAboutComponent } from './user-about.component';
 
 describe('UserAboutComponent', () => {
   let component: UserAboutComponent;
-  let fixture: ComponentFixture<UserAboutComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [UserAboutComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [UserAboutComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(UserAboutComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(UserAboutComponent);
   });
 
   it('should create', () => {

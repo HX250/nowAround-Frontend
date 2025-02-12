@@ -4,17 +4,13 @@ import { UserNewsComponent } from './user-news.component';
 
 describe('UserNewsComponent', () => {
   let component: UserNewsComponent;
-  let fixture: ComponentFixture<UserNewsComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [UserNewsComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [UserNewsComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(UserNewsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(UserNewsComponent);
   });
 
   it('should create', () => {

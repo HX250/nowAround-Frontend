@@ -1,20 +1,30 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EstablishmentMenuComponent } from './establishment-menu.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('EstablishmentMenuComponent', () => {
   let component: EstablishmentMenuComponent;
-  let fixture: ComponentFixture<EstablishmentMenuComponent>;
+  const mockActivatedRoute = {
+    snapshot: {
+      paramMap: {
+        get: jest.fn().mockReturnValue('mock-id'),
+      },
+      data: {
+        someData: 'mock-data',
+      },
+    },
+  };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [EstablishmentMenuComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        EstablishmentMenuComponent,
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
+      ],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(EstablishmentMenuComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(EstablishmentMenuComponent);
   });
 
   it('should create', () => {

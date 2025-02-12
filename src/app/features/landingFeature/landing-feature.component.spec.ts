@@ -1,20 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { LandingFeatureComponent } from './landing-feature.component';
+import { CustomAuthService } from '../../core/services/auth/auth.service';
 
 describe('LandingFeatureComponent', () => {
   let component: LandingFeatureComponent;
-  let fixture: ComponentFixture<LandingFeatureComponent>;
+  let customAuthMockService = {};
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [LandingFeatureComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        LandingFeatureComponent,
+        { provide: CustomAuthService, useValue: customAuthMockService },
+      ],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(LandingFeatureComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(LandingFeatureComponent);
   });
 
   it('should create', () => {

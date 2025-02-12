@@ -1,20 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { MenuComponent } from './menu.component';
+import { EstabilishmentService } from '../../../../core/services/establishment/establishment.service';
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
-  let fixture: ComponentFixture<MenuComponent>;
+  let estServMock = {};
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [MenuComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        MenuComponent,
+        { provide: EstabilishmentService, useValue: estServMock },
+      ],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(MenuComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(MenuComponent);
   });
 
   it('should create', () => {

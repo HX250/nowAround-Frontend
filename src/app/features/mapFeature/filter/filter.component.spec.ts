@@ -1,20 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FilterComponent } from './filter.component';
+import { MapService } from '../../../core/services/map/map.service';
 
 describe('FilterComponent', () => {
   let component: FilterComponent;
-  let fixture: ComponentFixture<FilterComponent>;
+  let mapMockService = {};
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [FilterComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        FilterComponent,
+        { provide: MapService, useValue: mapMockService },
+      ],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(FilterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(FilterComponent);
   });
 
   it('should create', () => {

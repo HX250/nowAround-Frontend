@@ -1,20 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { InfoComponent } from './info.component';
+import { EstabilishmentService } from '../../../../core/services/establishment/establishment.service';
 
 describe('InfoComponent', () => {
   let component: InfoComponent;
-  let fixture: ComponentFixture<InfoComponent>;
+  let estServMock = {};
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [InfoComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        InfoComponent,
+        { provide: EstabilishmentService, useValue: estServMock },
+      ],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(InfoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(InfoComponent);
   });
 
   it('should create', () => {

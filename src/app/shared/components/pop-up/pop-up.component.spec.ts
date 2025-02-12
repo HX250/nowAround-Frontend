@@ -4,17 +4,13 @@ import { PopUpComponent } from './pop-up.component';
 
 describe('PopUpComponent', () => {
   let component: PopUpComponent;
-  let fixture: ComponentFixture<PopUpComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [PopUpComponent]
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [PopUpComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(PopUpComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(PopUpComponent);
   });
 
   it('should create', () => {

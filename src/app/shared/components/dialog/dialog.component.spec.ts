@@ -1,20 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { DialogComponent } from './dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('DialogComponent', () => {
   let component: DialogComponent;
-  let fixture: ComponentFixture<DialogComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [DialogComponent]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule({
+      providers: [DialogComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(DialogComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(DialogComponent);
   });
 
   it('should create', () => {
