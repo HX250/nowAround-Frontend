@@ -23,6 +23,10 @@ jobs:
         with:
           submodules: true
 
+      - name: Run Unit Tests
+        run: |
+          npm run test -- --watch=false --code-coverage
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
